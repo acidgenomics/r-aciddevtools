@@ -1,0 +1,24 @@
+Package: devtoolsMJS
+Title: Personal Tools for Developing R Packages
+Version: 0.0.1
+Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
+Description: Personal package with additional devtools utilities.
+Depends:
+    R (>= 3.4.1),
+    devtools
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+    BiocCheck,
+    BiocInstaller,
+    covr,
+    lintr (>= 1.0.0.9000),
+    magrittr,
+    pkgdown,
+    rmarkdown
+Remotes:
+    jimhester/lintr,
+    hadley/pkgdown
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.0.1
