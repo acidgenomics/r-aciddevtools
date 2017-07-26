@@ -10,6 +10,7 @@
 #' @importFrom lintr lint_package
 #' @importFrom magrittr %>%
 #' @importFrom rmarkdown render
+#' @importFrom utils globalVariables
 "_PACKAGE"
 
 globalVariables(c(".", "biocLite"))

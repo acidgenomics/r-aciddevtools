@@ -9,6 +9,6 @@
 Personal package with additional devtools utilities.
 }
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com}
+\strong{Maintainer}: Michael J. Steinbaugh \email{mike@steinbaugh.com}
 
 }
