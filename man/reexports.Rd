@@ -26,6 +26,8 @@
 \alias{lint_package}
 \alias{reexports}
 \alias{\%>\%}
+\alias{reexports}
+\alias{build_site}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -40,5 +42,7 @@ below to see their documentation.
   \item{lintr}{\code{\link[lintr]{lint_package}}}
 
   \item{magrittr}{\code{\link[magrittr]{\%>\%}}}
+
+  \item{pkgdown}{\code{\link[pkgdown]{build_site}}}
 }}
 

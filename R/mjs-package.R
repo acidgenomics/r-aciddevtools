@@ -9,6 +9,7 @@
 #'   test update_packages use_data use_data_raw use_testthat
 #' @importFrom lintr lint_package
 #' @importFrom magrittr %>%
+#' @importFrom pkgdown build_site
 #' @importFrom rmarkdown render
 #' @importFrom utils globalVariables
 "_PACKAGE"
