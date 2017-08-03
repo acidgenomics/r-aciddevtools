@@ -43,3 +43,9 @@ lintr::lint_package
 # magrittr ====
 #' @export
 magrittr::`%>%`
+
+
+
+# pkgdown ====
+#' @export
+pkgdown::build_site
