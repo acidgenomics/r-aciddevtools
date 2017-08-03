@@ -1,4 +1,4 @@
-Package: devtoolsMJS
+Package: mjs
 Title: Personal Tools for Developing R Packages
 Version: 0.0.1
 Authors@R: person("Michael J.", "Steinbaugh",
