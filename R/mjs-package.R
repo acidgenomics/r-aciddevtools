@@ -11,6 +11,7 @@
 #' @importFrom magrittr %>%
 #' @importFrom pkgdown build_site
 #' @importFrom rmarkdown render
+#' @importFrom testthat expect_equal
 #' @importFrom utils globalVariables
 "_PACKAGE"
 
