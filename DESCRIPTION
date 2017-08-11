@@ -7,7 +7,8 @@ Authors@R: person("Michael J.", "Steinbaugh",
 Description: Personal package with additional devtools utilities.
 Depends:
     R (>= 3.4.1),
-    devtools
+    devtools,
+    testthat
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
