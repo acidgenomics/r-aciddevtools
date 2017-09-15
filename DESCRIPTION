@@ -6,9 +6,7 @@ Authors@R: person("Michael J.", "Steinbaugh",
                   role = c("aut", "cre"))
 Description: Personal package with additional devtools utilities.
 Depends:
-    R (>= 3.4.1),
-    devtools,
-    testthat
+    R (>= 3.4.1)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -25,4 +23,4 @@ Remotes:
     jimhester/lintr,
     hadley/pkgdown
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.0.1
+RoxygenNote: 6.0.1.9000

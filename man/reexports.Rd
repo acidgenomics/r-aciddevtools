@@ -4,31 +4,46 @@
 \name{reexports}
 \alias{reexports}
 \alias{biocValid}
-\alias{reexports}
 \alias{build}
-\alias{reexports}
 \alias{build_vignettes}
-\alias{reexports}
 \alias{document}
-\alias{reexports}
 \alias{install}
-\alias{reexports}
 \alias{load_all}
-\alias{reexports}
 \alias{test}
-\alias{reexports}
 \alias{use_data}
-\alias{reexports}
 \alias{use_data_raw}
-\alias{reexports}
 \alias{use_testthat}
-\alias{reexports}
 \alias{lint_package}
-\alias{reexports}
 \alias{\%>\%}
-\alias{reexports}
 \alias{build_site}
 \title{Objects exported from other packages}
+\description{
+Objects exported from other packages
+
+Objects exported from other packages
+
+Objects exported from other packages
+
+Objects exported from other packages
+
+Objects exported from other packages
+
+Objects exported from other packages
+
+Objects exported from other packages
+
+Objects exported from other packages
+
+Objects exported from other packages
+
+Objects exported from other packages
+
+Objects exported from other packages
+
+Objects exported from other packages
+
+Objects exported from other packages
+}
 \keyword{internal}
 \description{
 These objects are imported from other packages. Follow the links

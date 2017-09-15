@@ -4,7 +4,7 @@
 \name{mjs-package}
 \alias{mjs}
 \alias{mjs-package}
-\title{devtoolsMJS}
+\title{MJS devtools}
 \description{
 Personal package with additional devtools utilities.
 }
