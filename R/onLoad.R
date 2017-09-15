@@ -15,6 +15,7 @@
           "rmarkdown",
           "stringr",
           # Final NAMESPACE bootup ====
+          "Biobase",
           "basejump",
           "rlang",
           "tidyverse")
