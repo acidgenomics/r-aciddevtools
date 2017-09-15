@@ -1,4 +1,5 @@
 .onLoad <- function(libname, pkgname) {
+    # Order is important here
     pkgs <-
         c("Matrix",
           "pbapply",
@@ -18,8 +19,8 @@
           "Biobase",
           "S4Vectors",
           "basejump",
-          "rlang",
-          "tidyverse")
+          "tidyverse",
+          "rlang")
     lapply(seq_along(pkgs), function(a) {
         if (!pkgs[a] %in% (.packages())) {
             attachNamespace(pkgs[a])
