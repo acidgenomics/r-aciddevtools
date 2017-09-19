@@ -19,8 +19,25 @@ Imports:
     pkgdown,
     rmarkdown,
     utils
+Suggests:
+    basejump
+    Biobase,
+    devtools,
+    googlesheets,
+    knitr,
+    Matrix,
+    pbapply,
+    readxl,
+    rlang,
+    rmarkdown,
+    S4Vectors,
+    stringr,
+    testthat,
+    tidyverse,
+    viridis
 Remotes:
-    jimhester/lintr,
     hadley/pkgdown
+    jimhester/lintr,
+    steinbaugh/basejump
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1.9000
