@@ -20,7 +20,7 @@ Imports:
     rmarkdown,
     utils
 Suggests:
-    basejump
+    basejump,
     Biobase,
     devtools,
     googlesheets,
