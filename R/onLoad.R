@@ -11,6 +11,7 @@
           "testthat",
           # RStudio core ====
           "googlesheets",
+          "knitr",
           "pkgdown",
           "readxl",
           "rmarkdown",
