@@ -1,7 +1,8 @@
 .onLoad <- function(libname, pkgname) {
     # Order is important here
     pkgs <-
-        c("Matrix",
+        c("magrittr",
+          "Matrix",
           "pbapply",
           "viridis",
           # Package development ====
