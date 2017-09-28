@@ -12,24 +12,19 @@ Encoding: UTF-8
 URL: https://github.com/mjsteinbaugh/devtools
 LazyData: true
 Imports:
+    basejump,
+    Biobase,
     BiocCheck,
     BiocInstaller,
     devtools,
     covr,
-    lintr (>= 1.0.0.9000),
-    magrittr,
-    pkgdown,
-    rmarkdown,
-    testthat,
-    utils
-Suggests:
-    basejump,
-    Biobase,
-    devtools,
     googlesheets,
     knitr,
+    lintr (>= 1.0.0.9000),
+    magrittr,
     Matrix,
     pbapply,
+    pkgdown,
     readxl,
     rlang,
     rmarkdown,
@@ -37,7 +32,8 @@ Suggests:
     stringr,
     testthat,
     tidyverse,
-    viridis
+    viridis,
+    utils
 Remotes:
     hadley/pkgdown
     jimhester/lintr,
