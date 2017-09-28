@@ -13,7 +13,8 @@ updatePackages <- function() {
     BiocInstaller::biocLite()
 
     # Now update packages from GitHub repos
-    devtools::update_packages()
+    # `pkgs = TRUE` will update all packages without prompt
+    devtools::update_packages(pkgs = TRUE)
 
     # Ensure safe developer environment
     BiocInstaller::biocValid()
