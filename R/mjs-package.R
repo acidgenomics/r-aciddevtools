@@ -12,6 +12,7 @@
 #' @importFrom pkgdown build_site
 #' @importFrom rmarkdown render
 #' @importFrom testthat expect_equal
+#' @importFrom tools file_path_sans_ext
 #' @importFrom utils globalVariables
 "_PACKAGE"
 
