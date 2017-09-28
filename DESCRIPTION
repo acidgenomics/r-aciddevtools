@@ -1,7 +1,7 @@
 Package: mjs
 Title: Personal Tools for Developing R Packages
 Version: 0.0.1
-Authors@R: person("Michael J.", "Steinbaugh",
+Authors@R: person("Michael", "Steinbaugh",
                   email = "mike@steinbaugh.com",
                   role = c("aut", "cre"))
 Description: Personal package with additional devtools utilities.
