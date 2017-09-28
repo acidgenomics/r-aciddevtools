@@ -8,6 +8,13 @@
 \description{
 Personal package with additional devtools utilities.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/mjsteinbaugh/devtools}
+}
+
+}
 \author{
 \strong{Maintainer}: Michael J. Steinbaugh \email{mike@steinbaugh.com}
 
