@@ -32,6 +32,7 @@ Imports:
     stringr,
     testthat,
     tidyverse,
+    tools,
     viridis,
     utils
 Remotes:

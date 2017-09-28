@@ -19,6 +19,7 @@
           "stringr",
           # Final NAMESPACE bootup ====
           "Biobase",
+          "BiocInstaller",
           "S4Vectors",
           "basejump",
           "tidyverse",
