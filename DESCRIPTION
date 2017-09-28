@@ -14,11 +14,13 @@ LazyData: true
 Imports:
     BiocCheck,
     BiocInstaller,
+    devtools,
     covr,
     lintr (>= 1.0.0.9000),
     magrittr,
     pkgdown,
     rmarkdown,
+    testthat,
     utils
 Suggests:
     basejump,
