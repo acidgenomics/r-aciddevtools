@@ -20,22 +20,8 @@ Imports:
     tools,
     utils
 Suggests:
-    basejump,
-    Biobase,
-    BiocInstaller,
-    covr,
-    googlesheets,
-    knitr,
-    lintr (>= 1.0.0.9000),
-    Matrix,
-    pbapply,
-    pkgdown,
-    readxl,
-    rlang,
-    S4Vectors,
-    stringr,
-    testthat,
-    tidyverse,
-    viridis
+    lintr (>= 1.0.0.9000)
+Remotes:
+    jimhester/lintr
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1.9000
