@@ -37,9 +37,5 @@ Suggests:
     testthat,
     tidyverse,
     viridis
-Remotes:
-    hadley/pkgdown
-    jimhester/lintr,
-    steinbaugh/basejump
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1.9000
