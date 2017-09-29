@@ -2,7 +2,7 @@
 #' @export
 dev <- function() {
     # Order is important here
-    pkgs <-
+    packages <-
         c("magrittr",
           "Matrix",
           "pbapply",
@@ -26,9 +26,21 @@ dev <- function() {
           "basejump",
           "tidyverse",
           "rlang")
-    lapply(seq_along(pkgs), function(a) {
-        if (!pkgs[[a]] %in% (.packages())) {
-            attachNamespace(pkgs[[a]])
+
+    # Stop on missing packages
+    notInstalled = setdiff(packages, rownames(installed.packages()))
+    if (length(notInstalled) > 0) {
+        stop(paste(
+            "The libraries",
+            notInstalled,
+            "are not installed"
+        ))
+    }
+
+    # Attach unloaded packages
+    lapply(seq_along(packages), function(a) {
+        if (!packages[[a]] %in% (.packages())) {
+            attachNamespace(packages[[a]])
         }
     })
     invisible()
