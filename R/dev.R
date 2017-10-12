@@ -31,10 +31,9 @@ dev <- function() {
     notInstalled = setdiff(packages, rownames(installed.packages()))
     if (length(notInstalled) > 0) {
         stop(paste(
-            "The libraries",
-            notInstalled,
-            "are not installed"
-        ))
+            "Not installed:",
+            toString(notInstalled)
+        ), call. = FALSE)
     }
 
     # Attach unloaded packages
