@@ -20,8 +20,11 @@ Imports:
     tools,
     utils
 Suggests:
-    lintr (>= 1.0.0.9000)
+    covr,
+    lintr
 Remotes:
     jimhester/lintr
+biocViews:
+    Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1.9000
