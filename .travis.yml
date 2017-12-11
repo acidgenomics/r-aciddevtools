@@ -12,6 +12,7 @@ warnings_are_errors: false
 bioc_packages:
   - AnnotationHub
   - BiocCheck
+  - BiocInstaller
   - ensembldb
   - SummarizedExperiment
 r_packages:

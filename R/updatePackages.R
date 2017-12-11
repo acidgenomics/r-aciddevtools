@@ -7,15 +7,18 @@
 #' Internaly this is a wrapper for [devtools::update_packages()] that adds
 #' Bioconductor support.
 #'
+#' @importFrom BiocInstaller biocValid
+#' @importFrom devtools update_packages
+#'
 #' @export
 updatePackages <- function() {
     # Update Bioconductor packages first
-    BiocInstaller::biocLite()
+    biocLite()
 
     # Now update packages from GitHub repos
     # `pkgs = TRUE` will update all packages without prompt
-    devtools::update_packages(pkgs = TRUE)
+    update_packages(pkgs = TRUE)
 
     # Ensure safe developer environment
-    BiocInstaller::biocValid()
+    biocValid()
 }

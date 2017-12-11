@@ -2,7 +2,7 @@
 % Please edit documentation in R/check.R
 \name{check}
 \alias{check}
-\title{Build and check a package, cleaning up automatically on success.}
+\title{Check Package}
 \usage{
 check(...)
 }
@@ -10,11 +10,10 @@ check(...)
 \item{...}{Additional arguments passed on to \code{\link{build}()}.}
 }
 \value{
-An object containing errors, warnings, and notes.
+No return.
 }
 \description{
-\code{check} automatically builds and checks a source package, using all
-known best practices. \code{check_built} checks an already built package.
+Check Package
 }
 \details{
 Passing \code{R CMD check} is essential if you want to submit your package

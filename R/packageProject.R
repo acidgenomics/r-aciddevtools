@@ -1,5 +1,7 @@
 #' Package Project and Build Website
 #'
+#' @importFrom devtools build build_vignettes document install load_all
+#'
 #' @param install Install package.
 #'
 #' @export

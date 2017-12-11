@@ -1,5 +1,7 @@
 #' Render All RMarkdown Files in Working Directory
 #'
+#' @importFrom rmarkdown render
+#'
 #' @param today Render to a subdirectory with today's date.
 #'
 #' @return No value.
@@ -40,5 +42,5 @@ renderProject <- function(today = TRUE) {
                output_dir = outputDir,
                output_format = "all")
     }) %>%
-        invisible
+        invisible()
 }

@@ -2,10 +2,13 @@
 % Please edit documentation in R/dev.R
 \name{dev}
 \alias{dev}
-\title{Load up developer environment}
+\title{Load Developer Environment}
 \usage{
 dev()
 }
+\value{
+No return.
+}
 \description{
-Load up developer environment
+Load Developer Environment
 }
