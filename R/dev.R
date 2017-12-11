@@ -50,5 +50,5 @@ dev <- function() {
     invisible()
 
     # Check that workspace is kosher
-    biocValid()
+    biocValid(silent = TRUE)
 }
