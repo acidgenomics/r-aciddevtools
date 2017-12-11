@@ -1,8 +1,8 @@
 # mjs devtools
 
-[![Build Status](https://travis-ci.org/mjsteinbaugh/mjs.svg?branch=master)](https://travis-ci.org/mjsteinbaugh/mjs)
+[![Build Status](https://travis-ci.org/mjsteinbaugh/devtools.svg?branch=master)](https://travis-ci.org/mjsteinbaugh/devtools)
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![codecov](https://codecov.io/gh/mjsteinbaugh/mjs/branch/master/graph/badge.svg)](https://codecov.io/gh/mjsteinbaugh/mjs)
+[![codecov](https://codecov.io/gh/mjsteinbaugh/devtools/branch/master/graph/badge.svg)](https://codecov.io/gh/mjsteinbaugh/devtools)
 
 Personal development workspace utility package.
 
