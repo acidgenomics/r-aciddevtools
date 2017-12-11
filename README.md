@@ -16,7 +16,7 @@ This is an [R][] package.
 ```{r}
 source("https://bioconductor.org/biocLite.R")
 biocLite(
-    "mjsteinbaugh/mjs",
+    "mjsteinbaugh/devtools",
     dependencies = c("Depends", "Imports", "Suggests")
 )
 ```
