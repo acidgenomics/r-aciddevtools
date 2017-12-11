@@ -1,4 +1,8 @@
-#' Load up developer environment
+#' Load Developer Environment
+#'
+#' @importFrom utils installed.packages
+#'
+#' @return No return.
 #' @export
 dev <- function() {
     # Order is important here
