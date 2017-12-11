@@ -1,5 +1,6 @@
 #' Load Developer Environment
 #'
+#' @importFrom BiocInstaller biocValid
 #' @importFrom utils installed.packages
 #'
 #' @return No return.
@@ -47,4 +48,7 @@ dev <- function() {
         }
     })
     invisible()
+
+    # Check that workspace is kosher
+    biocValid()
 }
