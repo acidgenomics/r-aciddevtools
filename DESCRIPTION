@@ -20,24 +20,28 @@ Imports:
     tools,
     utils
 Suggests:
+    AnnotationHub,
     basejump,
     covr,
     googlesheets,
     knitr,
     lintr,
-    Matrix,
     pbapply,
     pkgdown,
+    R.utils,
+    RCurl,
     readxl,
-    roxygen2,
     rlang,
-    stringr,
+    roxygen2,
+    scales,
+    SummarizedExperiment,
     testthat,
     tidyverse,
-    viridis
+    viridis,
+    yaml
 Remotes:
-    jimhester/lintr,
     hadley/pkgdown,
+    jimhester/lintr,
     steinbaugh/basejump
 biocViews:
     Infrastructure
