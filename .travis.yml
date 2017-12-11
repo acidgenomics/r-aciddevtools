@@ -1,0 +1,43 @@
+# R for travis
+# https://docs.travis-ci.com/user/languages/r
+
+language: r
+sudo: false
+cache: packages
+warnings_are_errors: false
+
+# Temporarily enable to cache R packages
+# script: true
+
+bioc_packages:
+  - AnnotationHub
+  - BiocCheck
+  - ensembldb
+  - SummarizedExperiment
+r_packages:
+  - covr
+  - devtools
+  - googlesheets
+  - knitr
+  - magrittr
+  - Matrix.utils
+  - pbapply
+  - R.utils
+  - RCurl
+  - readr
+  - readxl
+  - rlang
+  - rmarkdown
+  - roxygen2
+  - scales
+  - testthat
+  - tidyverse
+  - viridis
+  - yaml
+r_github_packages:
+  - hadley/pkgdown
+  - jimhester/lintr
+  - steinbaugh/basejump
+
+after_success:
+  - Rscript -e 'covr::codecov()'
