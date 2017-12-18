@@ -1,5 +1,8 @@
 #' Open Working Directory in Finder
 #'
+#' @return No return.
+#' @export
+#'
 #' @examples
 #' finder()
 finder <- function() {
