@@ -6,6 +6,9 @@
 \usage{
 finder()
 }
+\value{
+No return.
+}
 \description{
 Open Working Directory in Finder
 }
