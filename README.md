@@ -1,10 +1,10 @@
-# mjs devtools
+# bb8
 
-[![Build Status](https://travis-ci.org/mjsteinbaugh/devtools.svg?branch=master)](https://travis-ci.org/mjsteinbaugh/devtools)
+[![Build Status](https://travis-ci.org/steinbaugh/bb8.svg?branch=master)](https://travis-ci.org/steinbaugh/bb8)
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![codecov](https://codecov.io/gh/mjsteinbaugh/devtools/branch/master/graph/badge.svg)](https://codecov.io/gh/mjsteinbaugh/devtools)
+[![codecov](https://codecov.io/gh/steinbaugh/bb8/branch/master/graph/badge.svg)](https://codecov.io/gh/steinbaugh/bb8)
 
-Personal development workspace utility package.
+Trusty sidekick for [R][] package development.
 
 
 ## Installation
@@ -16,7 +16,7 @@ This is an [R][] package.
 ```{r}
 source("https://bioconductor.org/biocLite.R")
 biocLite(
-    "mjsteinbaugh/devtools",
+    "steinbaugh/bb8",
     dependencies = c("Depends", "Imports", "Suggests")
 )
 ```
