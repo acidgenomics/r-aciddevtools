@@ -13,19 +13,19 @@ dev <- function() {
           "Matrix",
           "pbapply",
           "viridis",
-          # Package development ====
+          # Package development ================================================
           "devtools",
           "covr",
           "lintr",
           "testthat",
-          # RStudio core ====
+          # RStudio core =======================================================
           "googlesheets",
           "knitr",
           "pkgdown",
           "readxl",
           "rmarkdown",
           "stringr",
-          # Final NAMESPACE bootup ====
+          # Final NAMESPACE bootup =============================================
           "Biobase",
           "BiocInstaller",
           "S4Vectors",
