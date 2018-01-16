@@ -25,6 +25,7 @@ Suggests:
     basejump,
     covr,
     googlesheets,
+    jsonlite,
     knitr,
     lintr,
     pbapply,

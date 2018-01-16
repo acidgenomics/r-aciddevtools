@@ -8,7 +8,8 @@
 dev <- function() {
     # Order is important here
     packages <-
-        c("magrittr",
+        c("jsonlite",
+          "magrittr",
           "Matrix",
           "pbapply",
           "viridis",
