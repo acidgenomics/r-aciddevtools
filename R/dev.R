@@ -12,6 +12,7 @@ dev <- function() {
           "magrittr",
           "Matrix",
           "pbapply",
+          "scales",
           "viridis",
           # Package development ================================================
           "devtools",
