@@ -7,7 +7,8 @@
 dev()
 }
 \value{
-No return.
+Invisible character vector of packages attached specifically by
+this function call.
 }
 \description{
 Load Developer Environment
