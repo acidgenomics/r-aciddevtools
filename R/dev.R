@@ -8,9 +8,9 @@
 #'   this function call.
 #' @export
 dev <- function() {
-    deps <- desc_get_deps(path.package("bb8"))
+    deps <- desc_get_deps(find.package("bb8")[[1L]])
     packages <- deps %>%
-        .[.[["type"]] != "Depends", ] %>%
+        .[.[["type"]] != "Depends", , drop = FALSE] %>%
         .[["package"]]
 
     # Order of final packages to load is important
