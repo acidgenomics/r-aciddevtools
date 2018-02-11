@@ -43,7 +43,6 @@ dev <- function() {
         })
     attached <- unlist(attached)
 
-
     # Check Biocondcutor installation
     biocValid <- tryCatch(
         biocValid(silent = TRUE),
@@ -53,7 +52,7 @@ dev <- function() {
     )
 
     # Show NAMESPACE conflicts
-    tidyverse_conflicts()
+    show(tidyverse_conflicts())
 
     invisible(attached)
 }
