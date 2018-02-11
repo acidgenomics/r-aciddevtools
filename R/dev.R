@@ -15,13 +15,10 @@ dev <- function() {
 
     # Order of final packages to load is important
     final <- c(
-        "Biobase",
-        "BiocInstaller",
-        "S4Vectors",
-        "basejump",
-        "rlang",
         "tidyverse",
-        "assertive"
+        "rlang",
+        "assertive",
+        "basejump"
     )
 
     packages <- c(setdiff(packages, final), final)
