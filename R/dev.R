@@ -20,7 +20,8 @@ dev <- function() {
         "S4Vectors",
         "basejump",
         "rlang",
-        "tidyverse"
+        "tidyverse",
+        "assertive"
     )
 
     packages <- c(setdiff(packages, final), final)
