@@ -2,6 +2,7 @@
 #'
 #' @importFrom BiocInstaller biocValid
 #' @importFrom desc desc_get_deps
+#' @importFrom tidyverse tidyverse_conflicts
 #' @importFrom utils installed.packages
 #'
 #' @return Invisible character vector of packages attached specifically by
@@ -34,14 +35,25 @@ dev <- function() {
         X = packages,
         FUN = function(package) {
             if (!package %in% (.packages())) {
-                attachNamespace(package)
+                suppressPackageStartupMessages(
+                    attachNamespace(package)
+                )
                 package
             }
         })
     attached <- unlist(attached)
 
-    # Check that workspace is kosher
-    biocValid(silent = TRUE)
+
+    # Check Biocondcutor installation
+    biocValid <- tryCatch(
+        biocValid(silent = TRUE),
+        error = function(e) {
+            message("Bioconductor installation is not valid")
+        }
+    )
+
+    # Show NAMESPACE conflicts
+    tidyverse_conflicts()
 
     invisible(attached)
 }

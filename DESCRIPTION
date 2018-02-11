@@ -20,6 +20,7 @@ Imports:
     magrittr,
     readr,
     rmarkdown,
+    tidyverse,
     tools,
     utils
 Suggests:
@@ -40,7 +41,6 @@ Suggests:
     scales,
     SummarizedExperiment,
     testthat,
-    tidyverse,
     viridis,
     yaml
 Remotes:
