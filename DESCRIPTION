@@ -1,27 +1,31 @@
 Package: bb8
 Title: Trusty Sidekick for R Package Development
-Version: 0.0.1
-Authors@R: person("Michael", "Steinbaugh",
-                  email = "mike@steinbaugh.com",
-                  role = c("aut", "cre"))
+Version: 0.0.2
+Authors@R: person(
+    "Michael", "Steinbaugh",
+    email = "mike@steinbaugh.com",
+    role = c("aut", "cre"))
 Description: Personal package with additional devtools utilities.
 Depends:
     R (>= 3.4.1)
 License: MIT + file LICENSE
 Encoding: UTF-8
 URL: https://github.com/steinbaugh/bb8
-LazyData: true
+LazyData: TRUE
 Imports:
     BiocCheck,
     BiocInstaller,
+    desc,
     devtools,
     magrittr,
+    methods,
     readr,
     rmarkdown,
+    tidyverse,
     tools,
     utils
 Suggests:
-    AnnotationHub,
+    assertive,
     basejump,
     covr,
     googlesheets,
@@ -38,12 +42,11 @@ Suggests:
     scales,
     SummarizedExperiment,
     testthat,
-    tidyverse,
     viridis,
     yaml
 Remotes:
-    hadley/pkgdown,
     jimhester/lintr,
+    r-lib/pkgdown,
     steinbaugh/basejump
 biocViews:
     Infrastructure
