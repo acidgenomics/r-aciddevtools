@@ -1,56 +1,58 @@
 #' Load Developer Environment
 #'
 #' @importFrom BiocInstaller biocValid
+#' @importFrom desc desc_get_deps
+#' @importFrom tidyverse tidyverse_conflicts
 #' @importFrom utils installed.packages
 #'
-#' @return No return.
+#' @return Invisible character vector of packages attached specifically by
+#'   this function call.
 #' @export
 dev <- function() {
-    # Order is important here
-    packages <-
-        c("jsonlite",
-          "magrittr",
-          "Matrix",
-          "pbapply",
-          "scales",
-          "viridis",
-          # Package development ================================================
-          "devtools",
-          "covr",
-          "lintr",
-          "testthat",
-          # RStudio core =======================================================
-          "googlesheets",
-          "knitr",
-          "pkgdown",
-          "readxl",
-          "rmarkdown",
-          "stringr",
-          # Final NAMESPACE bootup =============================================
-          "Biobase",
-          "BiocInstaller",
-          "S4Vectors",
-          "basejump",
-          "tidyverse",
-          "rlang")
+    deps <- desc_get_deps(find.package("bb8")[[1L]])
+    packages <- deps %>%
+        .[.[["type"]] != "Depends", , drop = FALSE] %>%
+        .[["package"]]
+
+    # Order of final packages to load is important
+    final <- c(
+        "tidyverse",
+        "rlang",
+        "assertive",
+        "basejump"
+    )
+
+    packages <- c(setdiff(packages, final), final)
 
     # Stop on missing packages
-    notInstalled = setdiff(packages, rownames(installed.packages()))
+    notInstalled <- setdiff(packages, rownames(installed.packages()))
     if (length(notInstalled) > 0) {
-        stop(paste(
-            "Not installed:",
-            toString(notInstalled)
-        ), call. = FALSE)
+        stop(paste("Not installed:", toString(notInstalled)), call. = FALSE)
     }
 
     # Attach unloaded packages
-    lapply(seq_along(packages), function(a) {
-        if (!packages[[a]] %in% (.packages())) {
-            attachNamespace(packages[[a]])
-        }
-    })
-    invisible()
+    attached <- lapply(
+        X = packages,
+        FUN = function(package) {
+            if (!package %in% (.packages())) {
+                suppressPackageStartupMessages(
+                    attachNamespace(package)
+                )
+                package
+            }
+        })
+    attached <- unlist(attached)
 
-    # Check that workspace is kosher
-    biocValid(silent = TRUE)
+    # Check Biocondcutor installation
+    biocValid <- tryCatch(
+        biocValid(silent = TRUE),
+        error = function(e) {
+            message("Bioconductor installation is not valid")
+        }
+    )
+
+    # Show NAMESPACE conflicts
+    show(tidyverse_conflicts())
+
+    invisible(attached)
 }
