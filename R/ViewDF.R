@@ -7,7 +7,7 @@
 #'
 #' @return No return.
 #' @export
-ViewDF <- function(object) {
+viewDF <- function(object) {
     object %>%
         as.data.frame() %>%
         View()
