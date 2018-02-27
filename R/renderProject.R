@@ -1,5 +1,6 @@
 #' Render All RMarkdown Files in Working Directory
 #'
+#' @importFrom fs dir_create dir_ls path
 #' @importFrom rmarkdown render
 #'
 #' @param today Render to a subdirectory with today's date.
@@ -15,16 +16,14 @@ renderProject <- function(today = TRUE) {
     }
 
     if (isTRUE(today)) {
-        outputDir <- file.path(Sys.Date())
-        dir.create(outputDir, showWarnings = FALSE)
+        outputDir <- path(Sys.Date())
+        dir_create(outputDir)
     } else {
         outputDir <- getwd()
     }
 
     # Get the list of RMarkdown files
-    files <- list.files(pattern = "\\.Rmd$",
-                        full.names = TRUE,
-                        recursive = FALSE) %>%
+    files <- dir_ls(pattern = "\\.Rmd$") %>%
         # Ignore drafts
         .[!grepl("_draft\\.Rmd$", ., ignore.case = TRUE)] %>%
         # Ignore child chunk files
@@ -34,13 +33,16 @@ renderProject <- function(today = TRUE) {
         return(invisible())
     }
 
-    lapply(files, function(input) {
-        render(input,
-               clean = TRUE,
-               envir = new.env(),
-               knit_root_dir = getwd(),
-               output_dir = outputDir,
-               output_format = "all")
-    }) %>%
-        invisible()
+    invisible(lapply(
+        X = files,
+        FUN = function(input) {
+            render(
+                input,
+                clean = TRUE,
+                envir = new.env(),
+                knit_root_dir = getwd(),
+                output_dir = outputDir,
+                output_format = "all")
+        }
+    ))
 }
