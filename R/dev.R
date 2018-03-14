@@ -18,8 +18,7 @@ dev <- function() {
     final <- c(
         "tidyverse",
         "rlang",
-        "assertive",
-        "basejump"
+        "assertive"
     )
 
     packages <- c(setdiff(packages, final), final)
@@ -43,7 +42,7 @@ dev <- function() {
         })
     attached <- unlist(attached)
 
-    # Check Biocondcutor installation
+    # Check Bioconductor installation
     biocValid <- tryCatch(
         biocValid(silent = TRUE),
         error = function(e) {
