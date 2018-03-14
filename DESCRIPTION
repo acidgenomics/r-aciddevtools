@@ -27,7 +27,6 @@ Imports:
     utils
 Suggests:
     assertive,
-    basejump,
     BiocParallel,
     covr,
     googlesheets,
