@@ -34,7 +34,6 @@ Suggests:
     knitr,
     lintr,
     pbapply,
-    pkgdown,
     R.utils,
     RCurl,
     readxl,
@@ -47,7 +46,6 @@ Suggests:
     yaml
 Remotes:
     jimhester/lintr,
-    r-lib/pkgdown,
     steinbaugh/basejump
 biocViews:
     Infrastructure
