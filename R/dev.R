@@ -10,9 +10,9 @@
 #' }
 dev <- function() {
     deps <- find.package("bb8") %>%
-        .[[1L]] %>%
         desc_get_deps() %>%
-        .[, "package", drop = TRUE]
+        .[["package"]] %>%
+        setdiff("R")
 
     # Order of final deps to load is important
     final <- c(
@@ -21,7 +21,6 @@ dev <- function() {
         "rlang",
         "assertive"
     )
-
     deps <- c(setdiff(deps, final), final)
 
     # Stop on missing deps

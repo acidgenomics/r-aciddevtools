@@ -15,7 +15,6 @@ LazyData: TRUE
 Imports:
     BiocCheck,
     BiocInstaller,
-    basejump,
     desc,
     devtools,
     magrittr,
@@ -44,8 +43,6 @@ Suggests:
     testthat,
     viridis,
     yaml
-Remotes:
-    steinbaugh/basejump
 biocViews:
     Infrastructure
 Roxygen: list(markdown = TRUE)
