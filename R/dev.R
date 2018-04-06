@@ -9,35 +9,36 @@
 #' dev()
 #' }
 dev <- function() {
-    deps <- desc_get_deps(find.package("bb8")[[1L]])
-    packages <- deps %>%
-        .[.[["type"]] != "Depends", , drop = FALSE] %>%
-        .[["package"]]
+    deps <- find.package("bb8") %>%
+        .[[1L]] %>%
+        desc_get_deps() %>%
+        .[, "package", drop = TRUE]
 
-    # Order of final packages to load is important
+    # Order of final deps to load is important
     final <- c(
+        "Matrix",
         "tidyverse",
         "rlang",
         "assertive"
     )
 
-    packages <- c(setdiff(packages, final), final)
+    deps <- c(setdiff(deps, final), final)
 
-    # Stop on missing packages
-    notInstalled <- setdiff(packages, rownames(installed.packages()))
+    # Stop on missing deps
+    notInstalled <- setdiff(deps, rownames(installed.packages()))
     if (length(notInstalled) > 0) {
         stop(paste("Not installed:", toString(notInstalled)), call. = FALSE)
     }
 
-    # Attach unloaded packages
+    # Attach unloaded deps
     attached <- lapply(
-        X = packages,
-        FUN = function(package) {
-            if (!package %in% (.packages())) {
+        X = deps,
+        FUN = function(dep) {
+            if (!dep %in% (.packages())) {
                 suppressPackageStartupMessages(
-                    attachNamespace(package)
+                    attachNamespace(dep)
                 )
-                package
+                dep
             }
         })
     attached <- unlist(attached)
