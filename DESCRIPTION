@@ -1,6 +1,6 @@
 Package: bb8
 Title: Trusty Sidekick for R Package Development
-Version: 0.0.2
+Version: 0.0.3
 Authors@R: person(
     "Michael", "Steinbaugh",
     email = "mike@steinbaugh.com",
@@ -15,9 +15,9 @@ LazyData: TRUE
 Imports:
     BiocCheck,
     BiocInstaller,
+    basejump,
     desc,
     devtools,
-    fs,
     magrittr,
     methods,
     readr,
@@ -26,26 +26,25 @@ Imports:
     tools,
     utils
 Suggests:
+    Matrix,
+    R.utils,
+    RCurl,
+    SummarizedExperiment,
     assertive,
-    BiocParallel,
     covr,
     googlesheets,
     jsonlite,
     knitr,
-    lintr,
+    parallel,
     pbapply,
-    R.utils,
-    RCurl,
     readxl,
     rlang,
     roxygen2,
     scales,
-    SummarizedExperiment,
     testthat,
     viridis,
     yaml
 Remotes:
-    jimhester/lintr,
     steinbaugh/basejump
 biocViews:
     Infrastructure
