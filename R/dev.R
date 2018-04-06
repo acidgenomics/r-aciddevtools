@@ -1,13 +1,13 @@
 #' Load Developer Environment
 #'
-#' @importFrom BiocInstaller biocValid
-#' @importFrom desc desc_get_deps
-#' @importFrom tidyverse tidyverse_conflicts
-#' @importFrom utils installed.packages
-#'
 #' @return Invisible character vector of packages attached specifically by
 #'   this function call.
+#'
 #' @export
+#' @examples
+#' \dontrun{
+#' dev()
+#' }
 dev <- function() {
     deps <- desc_get_deps(find.package("bb8")[[1L]])
     packages <- deps %>%

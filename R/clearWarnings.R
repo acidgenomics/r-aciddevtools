@@ -1,7 +1,5 @@
 #' Clear Warnings
 #'
-#' @keywords internal
-#'
 #' @return No value.
 #' @export
 clearWarnings <- function() {

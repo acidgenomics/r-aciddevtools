@@ -6,6 +6,9 @@
 \usage{
 updatePackages()
 }
+\value{
+No value.
+}
 \description{
 Ensure that all \href{https://bioconductor.org}{Bioconductor},
 \href{https://cran.r-project.org}{CRAN}, and \href{https://github.com}{GitHub} packages
