@@ -13,5 +13,7 @@ No return.
 Open Working Directory in Finder
 }
 \examples{
+\dontrun{
 finder()
+}
 }

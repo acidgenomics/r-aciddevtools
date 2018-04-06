@@ -4,7 +4,7 @@
 \alias{readDataRaw}
 \title{Read CSV Files Inside \code{data-raw/} Directory}
 \usage{
-readDataRaw()
+readDataRaw(dir = "data-raw", ext = c("csv", "mtx", "tsv"))
 }
 \value{
 No value.
