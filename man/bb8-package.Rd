@@ -6,7 +6,7 @@
 \alias{bb8-package}
 \title{bb8}
 \description{
-Personal package with additional devtools utilities.
+Trusty Sidekick for R Package Development
 }
 \seealso{
 Useful links:
