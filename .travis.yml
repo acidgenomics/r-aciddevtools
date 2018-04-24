@@ -6,4 +6,38 @@ r: bioc-release
 cache: packages
 
 # Temporarily enable to cache R packages
-script: true
+# script: true
+
+bioc_packages:
+  - AnnotationHub
+  - BiocCheck
+  - BiocInstaller
+  - ensembldb
+  - SummarizedExperiment
+r_packages:
+  - covr
+  - devtools
+  - googlesheets
+  - knitr
+  - magrittr
+  - Matrix.utils
+  - pbapply
+  - R.utils
+  - RCurl
+  - readr
+  - readxl
+  - rlang
+  - rmarkdown
+  - roxygen2
+  - scales
+  - testthat
+  - tidyverse
+  - viridis
+  - yaml
+r_github_packages:
+  - hadley/pkgdown
+  - jimhester/lintr
+  - steinbaugh/basejump
+
+after_success:
+  - Rscript -e 'covr::codecov()'
