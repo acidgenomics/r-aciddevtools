@@ -1,49 +1,9 @@
 Package: bb8
-Title: Trusty Sidekick for R Package Development
-Version: 0.0.3
-Authors@R: person(
-    "Michael", "Steinbaugh",
-    email = "mike@steinbaugh.com",
-    role = c("aut", "cre"))
-Description: Personal package with additional devtools utilities.
+Title: TRAVIS BIOCONDUCTOR CACHE
+Version: 0.0.99
+Description: TRAVIS BIOCONDUCTOR CACHE
 Depends:
     R (>= 3.4)
-License: MIT + file LICENSE
-Encoding: UTF-8
-URL: https://github.com/steinbaugh/bb8
-LazyData: TRUE
 Imports:
     BiocCheck,
-    BiocInstaller,
-    desc,
-    devtools,
-    magrittr,
-    methods,
-    readr,
-    rmarkdown,
-    tidyverse,
-    tools,
-    utils
-Suggests:
-    Matrix,
-    R.utils,
-    RCurl,
-    SummarizedExperiment,
-    assertive,
-    covr,
-    googlesheets,
-    jsonlite,
-    knitr,
-    parallel,
-    pbapply,
-    readxl,
-    rlang,
-    roxygen2,
-    scales,
-    testthat,
-    viridis,
-    yaml
-biocViews:
-    Infrastructure
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.0.1
+    BiocInstaller
