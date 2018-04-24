@@ -3,9 +3,6 @@
 #' This function automatically loads raw CSVs using the readr package and
 #' saves the data as R binary data into the `data/` directory.
 #'
-#' @importFrom readr read_csv
-#' @importFrom tools file_path_sans_ext
-#'
 #' @return No value.
 #' @export
 readDataRaw <- function() {

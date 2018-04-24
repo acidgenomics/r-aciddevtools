@@ -6,8 +6,11 @@
 \usage{
 ViewDF(object)
 }
+\arguments{
+\item{object}{Object.}
+}
 \value{
-No return.
+No value.
 }
 \description{
 Utility function for quickly viewing an object as a \link{data.frame}.

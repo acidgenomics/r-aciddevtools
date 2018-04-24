@@ -1,7 +1,5 @@
 #' Render All RMarkdown Files in Working Directory
 #'
-#' @importFrom rmarkdown render
-#'
 #' @param today Render to a subdirectory with today's date.
 #'
 #' @return No value.

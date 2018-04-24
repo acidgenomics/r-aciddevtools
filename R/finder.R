@@ -7,7 +7,7 @@
 #' finder()
 finder <- function() {
     if (Sys.info()[1] != "Darwin") {
-        return(warning("'finder()' only supported on macOS"))
+        stop("'finder()' only supported on macOS")
     }
     system(paste("open", getwd()))
 }
