@@ -5,6 +5,6 @@
 #' @return No return.
 #' @export
 check <- function(...) {
-    check(...)
-    BiocCheck(getwd())
+    devtools::check(...)
+    BiocCheck(".")
 }
