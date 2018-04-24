@@ -35,4 +35,3 @@ biocLite("tidyverse/dplyr")  # GitHub
 \seealso{
 Modified variant of \code{rafalib::install_bioc()}.
 }
-\keyword{internal}

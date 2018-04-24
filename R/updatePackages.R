@@ -4,11 +4,11 @@
 #' [CRAN](https://cran.r-project.org), and [GitHub](https://github.com) packages
 #' are up to date.
 #'
-#' Internaly this is a wrapper for [devtools::update_packages()] that adds
+#' Internally, this is a wrapper for [devtools::update_packages()] that adds
 #' Bioconductor support.
 #'
+#' @return Library validity check.
 #' @export
-#' @return No value.
 updatePackages <- function() {
     # Update Bioconductor packages first
     biocLite()
@@ -18,5 +18,5 @@ updatePackages <- function() {
     update_packages(pkgs = TRUE)
 
     # Ensure safe developer environment
-    biocValid()
+    BiocInstaller::biocValid()
 }

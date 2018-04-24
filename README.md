@@ -15,6 +15,7 @@ This is an [R][] package.
 
 ```{r}
 source("https://bioconductor.org/biocLite.R")
+biocLite("devtools")
 biocLite(
     "steinbaugh/bb8",
     dependencies = c("Depends", "Imports", "Suggests")
