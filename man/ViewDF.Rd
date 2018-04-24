@@ -13,9 +13,9 @@ ViewDF(object)
 No value.
 }
 \description{
-Utility function for quickly viewing an object as a \link{data.frame}.
+Utility function for quickly viewing an object as a \code{data.frame}.
 }
 \details{
-This is particularly useful for opening S4 class \link{DataFrame} objects in
-RStudio using the nicer \link{data.frame} tabbed graphical interface.
+This is particularly useful for opening S4 class \code{DataFrame} objects in
+RStudio using the nicer \code{data.frame} tabbed graphical interface.
 }
