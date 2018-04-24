@@ -7,7 +7,7 @@
 updatePackages()
 }
 \value{
-Bioconductor installation validity check.
+Library validity check.
 }
 \description{
 Ensure that all \href{https://bioconductor.org}{Bioconductor},
@@ -15,6 +15,6 @@ Ensure that all \href{https://bioconductor.org}{Bioconductor},
 are up to date.
 }
 \details{
-Internaly this is a wrapper for \code{\link[devtools:update_packages]{devtools::update_packages()}} that adds
+Internally, this is a wrapper for \code{\link[devtools:update_packages]{devtools::update_packages()}} that adds
 Bioconductor support.
 }
