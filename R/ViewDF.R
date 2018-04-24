@@ -5,10 +5,10 @@
 #' This is particularly useful for opening S4 class [DataFrame] objects in
 #' RStudio using the nicer [data.frame] tabbed graphical interface.
 #'
-#' @return No return.
+#' @param object Object.
+#'
+#' @return No value.
 #' @export
 ViewDF <- function(object) {
-    object %>%
-        as.data.frame() %>%
-        View()
+    View(as.data.frame(object))
 }
