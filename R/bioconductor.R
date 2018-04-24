@@ -33,7 +33,7 @@ biocLite <- function(pkgs = NULL, ...) {
     internet <- try(
         source("https://bioconductor.org/biocLite.R"), silent = TRUE)
     if (!class(internet) == "try-error") {
-        biocLite(pkgs, ...)
+        BiocInstaller::biocLite(pkgs, ...)
     } else {
         stop("Connection to bioconductor.org failed")
     }

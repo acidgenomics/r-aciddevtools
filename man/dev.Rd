@@ -13,3 +13,8 @@ this function call.
 \description{
 Load Developer Environment
 }
+\examples{
+\dontrun{
+dev()
+}
+}

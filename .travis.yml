@@ -1,8 +1,8 @@
-# R for travis
+# Travis-CI configuration for Bioconductor packages
 # https://docs.travis-ci.com/user/languages/r
 
 language: r
-sudo: false
+r: bioc-release
 cache: packages
 warnings_are_errors: true
 

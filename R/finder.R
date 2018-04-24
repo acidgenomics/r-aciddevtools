@@ -4,10 +4,13 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' finder()
+#' }
 finder <- function() {
-    if (Sys.info()[1] != "Darwin") {
-        stop("'finder()' only supported on macOS")
+    if (Sys.info()[[1L]] == "Darwin") {
+        system(paste("open", getwd()))
+    } else {
+        stop("`finder()` is only supported on macOS")
     }
-    system(paste("open", getwd()))
 }

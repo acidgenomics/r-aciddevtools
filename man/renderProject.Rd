@@ -2,7 +2,7 @@
 % Please edit documentation in R/renderProject.R
 \name{renderProject}
 \alias{renderProject}
-\title{Render All RMarkdown Files in Working Directory}
+\title{Render All R Markdown Files in Working Directory}
 \usage{
 renderProject(today = TRUE)
 }
@@ -13,5 +13,5 @@ renderProject(today = TRUE)
 No value.
 }
 \description{
-Render All RMarkdown Files in Working Directory
+Render All R Markdown Files in Working Directory
 }

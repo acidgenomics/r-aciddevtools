@@ -2,43 +2,47 @@
 #'
 #' @return Invisible character vector of packages attached specifically by
 #'   this function call.
+#'
 #' @export
+#' @examples
+#' \dontrun{
+#' dev()
+#' }
 dev <- function() {
-    deps <- desc_get_deps(find.package("bb8")[[1L]])
-    packages <- deps %>%
-        .[.[["type"]] != "Depends", , drop = FALSE] %>%
-        .[["package"]]
+    deps <- find.package("bb8") %>%
+        desc_get_deps() %>%
+        .[["package"]] %>%
+        setdiff("R")
 
-    # Order of final packages to load is important
+    # Order of final deps to load is important
     final <- c(
+        "Matrix",
         "tidyverse",
         "rlang",
-        "assertive",
-        "basejump"
+        "assertive"
     )
+    deps <- c(setdiff(deps, final), final)
 
-    packages <- c(setdiff(packages, final), final)
-
-    # Stop on missing packages
-    notInstalled <- setdiff(packages, rownames(installed.packages()))
+    # Stop on missing deps
+    notInstalled <- setdiff(deps, rownames(installed.packages()))
     if (length(notInstalled) > 0) {
         stop(paste("Not installed:", toString(notInstalled)), call. = FALSE)
     }
 
-    # Attach unloaded packages
+    # Attach unloaded deps
     attached <- lapply(
-        X = packages,
-        FUN = function(package) {
-            if (!package %in% (.packages())) {
+        X = deps,
+        FUN = function(dep) {
+            if (!dep %in% (.packages())) {
                 suppressPackageStartupMessages(
-                    attachNamespace(package)
+                    attachNamespace(dep)
                 )
-                package
+                dep
             }
         })
     attached <- unlist(attached)
 
-    # Check Biocondcutor installation
+    # Check Bioconductor installation
     biocValid <- tryCatch(
         biocValid(silent = TRUE),
         error = function(e) {
