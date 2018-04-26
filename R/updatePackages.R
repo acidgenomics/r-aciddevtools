@@ -18,5 +18,5 @@ updatePackages <- function() {
     update_packages(pkgs = TRUE)
 
     # Ensure safe developer environment
-    BiocInstaller::biocValid()
+    biocValid()
 }
