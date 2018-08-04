@@ -13,7 +13,8 @@ check(...)
 No return.
 }
 \description{
-Check Package
+\code{check} automatically builds and checks a source package, using all
+known best practices. \code{check_built} checks an already built package.
 }
 \details{
 Passing \code{R CMD check} is essential if you want to submit your package
