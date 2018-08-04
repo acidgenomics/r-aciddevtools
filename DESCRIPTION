@@ -1,6 +1,6 @@
 Package: bb8
 Title: Trusty Sidekick for R Package Development
-Version: 0.0.3
+Version: 0.0.4
 Authors@R: person(
     "Michael", "Steinbaugh",
     email = "mike@steinbaugh.com",
