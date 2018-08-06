@@ -6,7 +6,7 @@
 #' @importFrom BiocCheck BiocCheck
 #' @importFrom BiocManager install valid
 #' @importFrom desc desc_get_deps
-#' @importFrom devtools build build_vignettes document install load_all
+#' @importFrom devtools build build_vignettes document load_all
 #'   update_packages
 #' @importFrom tidyverse tidyverse_conflicts
 #' @importFrom rmarkdown render

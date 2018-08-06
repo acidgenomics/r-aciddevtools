@@ -17,6 +17,6 @@ packageProject <- function(install = FALSE) {
 
     # Install the package
     if (isTRUE(install)) {
-        install()
+        devtools::install()
     }
 }

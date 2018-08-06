@@ -2,6 +2,8 @@
 #'
 #' Print vector to console quoted, with comma delims
 #'
+#' @param x Object.
+#'
 #' @return Console output.
 #' @export
 #'
