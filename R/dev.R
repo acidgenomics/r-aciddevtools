@@ -43,8 +43,8 @@ dev <- function() {
     attached <- unlist(attached)
 
     # Check Bioconductor installation
-    biocValid <- tryCatch(
-        biocValid(silent = TRUE),
+    tryCatch(
+        valid(),
         error = function(e) {
             message("Bioconductor installation is not valid")
         }
