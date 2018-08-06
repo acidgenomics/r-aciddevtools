@@ -6,6 +6,9 @@
 \usage{
 catVec(x)
 }
+\arguments{
+\item{x}{Object.}
+}
 \value{
 Console output.
 }
