@@ -11,12 +11,12 @@
 #' @export
 updatePackages <- function() {
     # Update Bioconductor packages first
-    biocLite()
+    install()
 
     # Now update packages from GitHub repos
     # `pkgs = TRUE` will update all packages without prompt
     update_packages(pkgs = TRUE)
 
     # Ensure safe developer environment
-    biocValid()
+    valid()
 }
