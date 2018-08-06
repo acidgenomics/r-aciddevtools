@@ -4,7 +4,7 @@
 #'
 #' @import methods
 #' @importFrom BiocCheck BiocCheck
-#' @importFrom BiocInstaller biocLite biocValid
+#' @importFrom BiocManager valid
 #' @importFrom desc desc_get_deps
 #' @importFrom devtools build build_vignettes document install load_all
 #'   update_packages
