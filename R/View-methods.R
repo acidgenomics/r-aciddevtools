@@ -4,7 +4,7 @@
 #' @name View
 #' @export
 #'
-#' @inherit utils::View
+#' @inheritParams utils::View
 NULL
 
 

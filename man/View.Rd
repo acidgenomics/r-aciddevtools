@@ -20,30 +20,6 @@ View(x, ...)
 \item{title}{title for viewer window.  Defaults to name of \code{x}
     prefixed by \code{Data:}.}
 }
-\value{
-Invisible \code{NULL}.  The functions puts up a window and returns
-  immediately: the window can be closed via its controls or menus.
-}
 \description{
-Invoke a spreadsheet-style data viewer on a matrix-like \R object.
-}
-\details{
-Object \code{x} is coerced (if possible) to a data frame, then
-  columns are converted to character using \code{\link{format.data.frame}}.  
-  The object is then viewed in a spreadsheet-like data viewer, a
-  read-only version of \code{\link{data.entry}}.
-
-  If there are row names on the data frame that are not \code{1:nrow},
-  they are displayed in a separate first column called \code{row.names}.
-
-  Objects with zero columns or zero rows are not accepted.
-
-  The array of cells can be navigated by the cursor keys and Home, End,
-  Page Up and Page Down (where supported by X11) as well as Enter
-  and Tab.
-#ifdef windows not active
-}
-\seealso{
-\code{\link{edit.data.frame}},
-  \code{\link{data.entry}}.
+Invoke a Data Viewer
 }
