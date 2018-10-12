@@ -1,13 +1,11 @@
 #' bb8
 #'
-#' Trusty Sidekick for R Package Development
+#' Trusty sidekick for R package development.
 #'
 #' @import methods
-#' @importFrom BiocCheck BiocCheck
 #' @importFrom BiocManager install valid
 #' @importFrom desc desc_get_deps
-#' @importFrom devtools build build_vignettes document load_all
-#'   update_packages
+#' @importFrom devtools update_packages
 #' @importFrom tidyverse tidyverse_conflicts
 #' @importFrom rmarkdown render
 #' @importFrom utils globalVariables installed.packages
