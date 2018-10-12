@@ -10,13 +10,13 @@
 #' @return Library validity check.
 #' @export
 updatePackages <- function() {
-    # Update Bioconductor packages first
-    install()
+    # Update Bioconductor packages first.
+    BiocManager::install()
 
-    # Now update packages from GitHub repos
-    # `pkgs = TRUE` will update all packages without prompt
-    update_packages(pkgs = TRUE)
+    # Now update packages from GitHub repos.
+    # `pkgs = TRUE` will update all packages without prompt.
+    devtools::update_packages(pkgs = TRUE)
 
-    # Ensure safe developer environment
-    valid()
+    # Ensure safe developer environment.
+    BiocManager::valid()
 }

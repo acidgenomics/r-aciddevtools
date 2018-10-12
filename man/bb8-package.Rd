@@ -6,7 +6,7 @@
 \alias{bb8-package}
 \title{bb8}
 \description{
-Trusty Sidekick for R Package Development
+Trusty sidekick for R package development.
 }
 \seealso{
 Useful links:
