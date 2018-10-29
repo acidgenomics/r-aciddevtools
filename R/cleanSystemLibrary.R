@@ -39,7 +39,7 @@ cleanSystemLibrary <- function() {
     # Check for packages built against a different point release.
     # (e.g. 3.5.1)
     version <- getRversion()
-    stopifnot(grepl("^\\d\\.\\d\\.\\d$", version))
+    assert_that(grepl("^\\d\\.\\d\\.\\d$", version))
     # (e.g. 3.5)
     version <- gsub("\\.\\d$", "", version)
     if (!all(grepl(

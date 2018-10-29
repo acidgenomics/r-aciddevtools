@@ -4,6 +4,7 @@
 #'
 #' @import methods
 #' @importFrom BiocManager install valid
+#' @importFrom assertthat assert_that
 #' @importFrom desc desc_get_deps
 #' @importFrom devtools update_packages
 #' @importFrom tidyverse tidyverse_conflicts
