@@ -3,7 +3,7 @@
 #' @param df `data.frame`.
 #' @seealso http://r-pkgs.had.co.nz/man.html
 tabular <- function(df) {
-    stopifnot(is.data.frame(df))
+    assert_that(is.data.frame(df))
     align <- function(x) {
         if (is.numeric(x)) {
             "r"
