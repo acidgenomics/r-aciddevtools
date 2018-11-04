@@ -16,6 +16,7 @@ LazyData: TRUE
 Imports:
     BiocManager,
     desc,
+    magrittr,
     tidyverse,
     utils
 Suggests:
