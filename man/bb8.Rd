@@ -2,7 +2,7 @@
 % Please edit documentation in R/bb8.R
 \name{bb8}
 \alias{bb8}
-\title{Load Developer Environment}
+\title{bb8}
 \usage{
 bb8()
 }
@@ -11,7 +11,7 @@ Invisible character vector of packages attached specifically by
 this function call.
 }
 \description{
-Load Developer Environment
+Trusty sidekick for R package development.
 }
 \examples{
 \dontrun{

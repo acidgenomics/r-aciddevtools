@@ -1,4 +1,6 @@
-#' Load Developer Environment
+#' bb8
+#'
+#' Trusty sidekick for R package development.
 #'
 #' @return Invisible character vector of packages attached specifically by
 #'   this function call.
@@ -50,8 +52,8 @@ bb8 <- function() {
         }
     )
 
-    # Show NAMESPACE conflicts
-    show(tidyverse_conflicts())
+    # Print NAMESPACE conflicts.
+    print(tidyverse_conflicts())
 
     invisible(attached)
 }
