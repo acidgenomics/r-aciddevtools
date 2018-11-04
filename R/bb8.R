@@ -6,15 +6,15 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' dev()
+#' bb8()
 #' }
-dev <- function() {
+bb8 <- function() {
     deps <- find.package("bb8") %>%
         desc_get_deps() %>%
         .[["package"]] %>%
         setdiff("R")
 
-    # Order of final deps to load is important
+    # Order of final deps to load is important.
     final <- c(
         "Matrix",
         "tidyverse",
@@ -23,13 +23,13 @@ dev <- function() {
     )
     deps <- c(setdiff(deps, final), final)
 
-    # Stop on missing deps
+    # Stop on missing deps.
     notInstalled <- setdiff(deps, rownames(installed.packages()))
     if (length(notInstalled) > 0) {
         stop(paste("Not installed:", toString(notInstalled)), call. = FALSE)
     }
 
-    # Attach unloaded deps
+    # Attach unloaded deps.
     attached <- lapply(
         X = deps,
         FUN = function(dep) {
@@ -42,7 +42,7 @@ dev <- function() {
         })
     attached <- unlist(attached)
 
-    # Check Bioconductor installation
+    # Check Bioconductor installation.
     tryCatch(
         valid(),
         error = function(e) {
