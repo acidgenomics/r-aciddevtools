@@ -6,22 +6,20 @@
 
 Trusty sidekick for [R][] package development.
 
-
 ## Installation
-
-This is an [R][] package.
 
 ### [Bioconductor][] method
 
-```{r}
-source("https://bioconductor.org/biocLite.R")
-biocLite("devtools")
-biocLite(
-    "steinbaugh/bb8",
-    dependencies = c("Depends", "Imports", "Suggests")
-)
+We recommend installing the package with [BiocManager][].
+
+```r
+if (!require("BiocManager")) {
+    install.packages("BiocManager")
+}
+BiocManager::install("remotes")
+BiocManager::install("steinbaugh/bb8")
 ```
 
-
 [Bioconductor]: https://bioconductor.org
+[BiocManager]: https://cran.r-project.org/package=BiocManager
 [R]: https://www.r-project.org
