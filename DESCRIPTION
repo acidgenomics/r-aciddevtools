@@ -1,31 +1,25 @@
 Package: bb8
 Title: Trusty Sidekick for R Package Development
-Version: 0.0.3
+Version: 0.0.4
+Date: 2018-10-29
 Authors@R: person(
     "Michael", "Steinbaugh",
     email = "mike@steinbaugh.com",
     role = c("aut", "cre"))
 Description: Personal package with additional devtools utilities.
 Depends:
-    R (>= 3.4)
+    R (>= 3.5)
 License: MIT + file LICENSE
 Encoding: UTF-8
 URL: https://github.com/steinbaugh/bb8
 LazyData: TRUE
 Imports:
-    BiocCheck,
-    BiocInstaller,
+    BiocManager,
     desc,
-    devtools,
     magrittr,
-    methods,
-    rmarkdown,
     tidyverse,
     utils
 Suggests:
-    R.utils,
-    RCurl,
-    SummarizedExperiment,
     assertive,
     covr,
     googlesheets,
@@ -33,12 +27,15 @@ Suggests:
     knitr,
     lintr,
     pbapply,
+    R.utils,
+    RCurl,
     readxl,
     rlang,
     roxygen2,
     scales,
+    SummarizedExperiment,
     testthat,
     viridis,
     yaml
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0.9000
