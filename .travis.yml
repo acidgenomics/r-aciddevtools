@@ -1,16 +1,10 @@
 # Travis-CI configuration for Bioconductor packages
 # https://docs.travis-ci.com/user/languages/r
 
+# Temporarily enable to cache R packages.
+# script: true
+
 language: r
 r: bioc-release
 cache: packages
 warnings_are_errors: true
-
-# Temporarily enable to cache R packages
-# script: true
-
-r_packages:
-  - covr
-
-after_success:
-  - Rscript -e 'covr::codecov()'
