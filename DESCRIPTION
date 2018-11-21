@@ -1,6 +1,6 @@
 Package: bb8
 Title: Trusty Sidekick for R Package Development
-Version: 0.0.5
+Version: 0.0.6
 Date: 2018-11-21
 Authors@R: person(
     "Michael", "Steinbaugh",
@@ -22,6 +22,7 @@ Suggests:
     lintr,
     magrittr,
     testthat,
+    patrick,
     assertthat,
     assertive,
     tidyselect,
