@@ -35,17 +35,6 @@ bb8 <- function() {
         })
     attached <- unlist(attached)
 
-    # Check Bioconductor installation.
-    tryCatch(
-        expr = BiocManager::valid(),
-        error = function(e) {
-            message("Bioconductor installation is not valid.")
-        }
-    )
-
-    # Print NAMESPACE conflicts.
-    print(tidyverse::tidyverse_conflicts())
-
     # Invisibly return information on attached packages.
     invisible(attached)
 }
