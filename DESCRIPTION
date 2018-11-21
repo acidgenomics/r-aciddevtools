@@ -11,27 +11,23 @@ Depends: R (>= 3.5)
 License: MIT + file LICENSE
 Encoding: UTF-8
 URL: https://github.com/steinbaugh/bb8/
-Imports:
-    BiocManager,
-    desc,
-    magrittr,
-    tidyverse,
-    utils
+Imports: desc, utils
 Suggests:
-    IRanges,
     R.utils,
-    RCurl,
+    tools,
+    scales,
     SummarizedExperiment,
-    assertive,
+    testthat,
     assertthat,
-    covr,
+    assertive,
     devtools,
+    covr,
     knitr,
     lintr,
+    magrittr,
+    tidyselect,
     rlang,
-    roxygen2,
-    scales,
-    testthat,
-    tidyselect
+    BiocManager,
+    tidyverse
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
