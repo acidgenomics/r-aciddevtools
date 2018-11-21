@@ -27,7 +27,6 @@ Suggests:
     tidyselect,
     rlang,
     devtools,
-    BiocManager,
     tidyverse
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
