@@ -7,12 +7,10 @@ Authors@R: person(
     email = "mike@steinbaugh.com",
     role = c("aut", "cre"))
 Description: Personal package with additional devtools utilities.
-Depends:
-    R (>= 3.5)
+Depends: R (>= 3.5)
 License: MIT + file LICENSE
 Encoding: UTF-8
-URL: https://github.com/steinbaugh/bb8
-LazyData: TRUE
+URL: https://github.com/steinbaugh/bb8/
 Imports:
     BiocManager,
     desc,
@@ -20,23 +18,19 @@ Imports:
     tidyverse,
     utils
 Suggests:
+    IRanges,
+    R.utils,
+    RCurl,
+    SummarizedExperiment,
     assertive,
     assertthat,
     covr,
-    googlesheets,
-    jsonlite,
+    devtools,
     knitr,
     lintr,
-    pbapply,
-    R.utils,
-    RCurl,
-    readxl,
     rlang,
     roxygen2,
     scales,
-    SummarizedExperiment,
-    testthat,
-    viridis,
-    yaml
+    testthat
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
