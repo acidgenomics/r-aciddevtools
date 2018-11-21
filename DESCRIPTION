@@ -1,7 +1,7 @@
 Package: bb8
 Title: Trusty Sidekick for R Package Development
-Version: 0.0.4
-Date: 2018-10-29
+Version: 0.0.5
+Date: 2018-11-21
 Authors@R: person(
     "Michael", "Steinbaugh",
     email = "mike@steinbaugh.com",
@@ -21,6 +21,7 @@ Imports:
     utils
 Suggests:
     assertive,
+    assertthat,
     covr,
     googlesheets,
     jsonlite,
@@ -38,4 +39,4 @@ Suggests:
     viridis,
     yaml
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.0.9000
+RoxygenNote: 6.1.1
