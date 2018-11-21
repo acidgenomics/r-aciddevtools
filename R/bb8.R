@@ -11,49 +11,41 @@
 #' bb8()
 #' }
 bb8 <- function() {
-    deps <- find.package("bb8") %>%
-        desc_get_deps() %>%
-        .[["package"]] %>%
-        setdiff("R")
-
-    # Order of final deps to load is important.
-    final <- c(
-        "Matrix",
-        "tidyverse",
-        "rlang",
-        "assertive"
-    )
-    deps <- c(setdiff(deps, final), final)
+    path <- find.package("bb8")
+    deps <- desc_get_deps(path)
+    # Note that we're only attaching the suggested packages here.
+    # Order is important. Note that the last item specified in "Suggests" in
+    # DESCRIPTION file will take priority in the NAMESPACE.
+    pkgs <- deps[deps[["type"]] == "Suggests", "package", drop = TRUE]
 
     # Stop on missing deps.
-    notInstalled <- setdiff(deps, rownames(installed.packages()))
-    if (length(notInstalled) > 0) {
+    notInstalled <- setdiff(pkgs, rownames(installed.packages()))
+    if (length(notInstalled) > 0L) {
         stop(paste("Not installed:", toString(notInstalled)), call. = FALSE)
     }
 
     # Attach unloaded deps.
     attached <- lapply(
-        X = deps,
-        FUN = function(dep) {
-            if (!dep %in% (.packages())) {
-                suppressPackageStartupMessages(
-                    attachNamespace(dep)
-                )
-                dep
+        X = pkgs,
+        FUN = function(pkg) {
+            if (!pkg %in% (.packages())) {
+                suppressPackageStartupMessages(attachNamespace(pkg))
+                pkg
             }
         })
     attached <- unlist(attached)
 
     # Check Bioconductor installation.
     tryCatch(
-        valid(),
+        expr = BiocManager::valid(),
         error = function(e) {
-            message("Bioconductor installation is not valid")
+            message("Bioconductor installation is not valid.")
         }
     )
 
     # Print NAMESPACE conflicts.
-    print(tidyverse_conflicts())
+    print(tidyverse::tidyverse_conflicts())
 
+    # Invisibly return information on attached packages.
     invisible(attached)
 }
