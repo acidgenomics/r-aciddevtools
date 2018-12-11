@@ -23,11 +23,12 @@ Suggests:
     magrittr,
     testthat,
     patrick,
-    assertthat,
-    assertive,
     tidyselect,
     rlang,
+    goalie,
     devtools,
     tidyverse
+Remotes:
+    steinbaugh/goalie@develop
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
