@@ -1,7 +1,7 @@
 Package: bb8
 Title: Trusty Sidekick for R Package Development
 Version: 0.0.6
-Date: 2018-11-21
+Date: 2019-02-21
 Authors@R: person(
     "Michael", "Steinbaugh",
     email = "mike@steinbaugh.com",
@@ -29,6 +29,6 @@ Suggests:
     devtools,
     tidyverse
 Remotes:
-    steinbaugh/goalie@develop
+    steinbaugh/goalie
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
