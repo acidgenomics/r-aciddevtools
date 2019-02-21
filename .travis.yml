@@ -1,18 +1,12 @@
-# Travis-CI configuration for Bioconductor packages
-#
-# See also:
-# - https://docs.travis-ci.com/user/languages/r
-# - https://github.com/steinbaugh/basejump/blob/master/.travis.yml
-
 language: r
 cache: packages
 
 matrix:
   include:
     - os: linux
-      r: bioc-release
+      r: release
     - os: osx
-      r: bioc-release
+      r: release
 
 branches:
   only:
@@ -24,15 +18,12 @@ env:
 
 r_packages:
   - covr
-bioc_packages:
-  - BiocCheck
 github_packages:
   - steinbaugh/lintr
 
 after_success:
-  - R CMD BiocCheck .
-  - test $TRAVIS_OS_NAME = 'linux' && $TRAVIS_R_VERSION_STRING = 'bioc-release' && Rscript -e 'lintr::lint_package()'
-  - test $TRAVIS_OS_NAME = 'linux' && $TRAVIS_R_VERSION_STRING = 'bioc-release' && Rscript -e 'covr::codecov()'
+  - test $TRAVIS_OS_NAME = 'linux' && $TRAVIS_R_VERSION_STRING = 'release' && Rscript -e 'lintr::lint_package()'
+  - test $TRAVIS_OS_NAME = 'linux' && $TRAVIS_R_VERSION_STRING = 'release' && Rscript -e 'covr::codecov()'
 
 notifications:
   email:

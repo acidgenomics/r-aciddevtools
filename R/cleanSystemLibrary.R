@@ -19,7 +19,7 @@ cleanSystemLibrary <- function() {
     x <- installed.packages()
 
     # Subset information on base packages.
-    base <- x[which(x[, "Priority"] == "base"), ]
+    base <- x[which(x[, "Priority"] == "base"), , drop = FALSE]
 
     # Expect a single system library.
     syslib <- unique(base[, "LibPath"])
