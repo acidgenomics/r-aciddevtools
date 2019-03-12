@@ -2,6 +2,7 @@
 #'
 #' @export
 #'
+#' @inheritParams params
 #' @param pattern `character(1)`.
 #'   Pattern string.
 #' @param replacement `character(1)`.
