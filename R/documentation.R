@@ -1,27 +1,27 @@
 #' Parse R documentation
 #'
-#' Modified version of `tools:::.Rd_get_metadata` that keeps whitespace and
+#' Modified version of `tools:::.Rd_get_metadata()` that keeps whitespace and
 #' returns `character` instead of `matrix`.
 #'
 #' @export
 #'
 #' @param object `Rd`.
-#'   R documentation, returned from `tools::Rd_db`.
+#'   R documentation, returned from [tools::Rd_db()]
 #' @param tag `character(1)`.
 #'   Desired metadata type.
 #'
 #'   These types are supported:
 #'
-#'   - "`title`".
-#'   - "`description`".
-#'   - "`usage`".
-#'   - "`arguments`".
-#'   - "`value`".
-#'   - "`references`".
-#'   - "`seealso`".
-#'   - "`examples`".
+#'   - `title`.
+#'   - `description`.
+#'   - `usage`.
+#'   - `arguments`.
+#'   - `value`.
+#'   - `references`.
+#'   - `seealso`.
+#'   - `examples`.
 #'
-#' @seealso `tools::Rd_db`.
+#' @seealso [tools::Rd_db()].
 #'
 #' @examples
 #' db <- tools::Rd_db("base")
@@ -162,6 +162,7 @@ saveRdExamples <- function(
             }
 
             # Save to an R script.
+            # FIXME Include this support in brio.
             path <- file.path(dir, paste0(Rd, ".R"))
             unlink(path)
             write_lines(x = x, path = path)
@@ -178,7 +179,8 @@ saveRdExamples <- function(
     names(paths) <- names
 
     message(paste0(
-        "Saved ", length(paths), " Rd examples from ", package, " to ", dir, "."
+        "Saved ", length(paths), " Rd examples from ",
+        package, " to ", dir, "."
     ))
 
     # Return file paths of saved R scripts.
