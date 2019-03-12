@@ -6,12 +6,12 @@
 printComment <- function(
     ...,
     prefix = c(
-        "# >",
         "#",
-        "#' >",
+        "# >",
         "#'",
-        "## >",
-        "##"
+        "#' >",
+        "##",
+        "## >"
     )
 ) {
     prefix <- match.arg(prefix)
