@@ -13,9 +13,6 @@ Pattern string.}
 \item{replacement}{\code{character(1)}.
 Replacement string.}
 
-\item{dir}{\code{character(1)}.
-Directory path.}
-
 \item{recursive}{\code{logical(1)}.
 Search recursively?}
 }

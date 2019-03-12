@@ -3,7 +3,8 @@
 #' @export
 #'
 #' @param ... Passthrough to `print()`.
-#' @param prefix Comment prefix to use.
+#' @param prefix Comment prefix to use. RStudio, roxygen, and ESS prefixes
+#'   are supported.
 #'
 #' @return Console output.
 printComment <- function(

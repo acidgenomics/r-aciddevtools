@@ -6,8 +6,6 @@
 #'   Pattern string.
 #' @param replacement `character(1)`.
 #'   Replacement string.
-#' @param dir  `character(1)`.
-#'   Directory path.
 #' @param recursive  `logical(1)`.
 #'   Search recursively?
 #'
