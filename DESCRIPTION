@@ -1,34 +1,31 @@
 Package: bb8
-Title: Trusty Sidekick for R Package Development
+Title: Trusty sidekick for R package development
+Description: Personal package with additional devtools utilities.
 Version: 0.0.6
-Date: 2019-02-21
+Date: 2019-02-24
 Authors@R: person(
     "Michael", "Steinbaugh",
     email = "mike@steinbaugh.com",
     role = c("aut", "cre"))
-Description: Personal package with additional devtools utilities.
 Depends: R (>= 3.5)
 License: MIT + file LICENSE
 Encoding: UTF-8
 URL: https://github.com/steinbaugh/bb8/
-Imports: desc, utils
-Suggests:
-    R.utils,
-    tools,
-    scales,
-    SummarizedExperiment,
-    covr,
-    knitr,
-    lintr,
-    magrittr,
-    testthat,
-    patrick,
-    tidyselect,
-    rlang,
+Imports:
+    basejump,
+    desc,
     goalie,
-    devtools,
-    tidyverse
+    methods,
+    tools,
+    utils
+Suggests:
+    SummarizedExperiment,
+    R.utils, scales,
+    covr, knitr, lintr, magrittr,
+    testthat, patrick,
+    rlang, tidyselect, devtools, tidyselect, tidyverse
 Remotes:
+    steinbaugh/basejump,
     steinbaugh/goalie
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
