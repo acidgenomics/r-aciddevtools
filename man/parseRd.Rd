@@ -8,25 +8,25 @@ parseRd(object, tag)
 }
 \arguments{
 \item{object}{\code{Rd}.
-R documentation, returned from \code{tools::Rd_db}.}
+R documentation, returned from \code{\link[tools:Rd_db]{tools::Rd_db()}}}
 
 \item{tag}{\code{character(1)}.
 Desired metadata type.
 
 These types are supported:
 \itemize{
-\item "\code{title}".
-\item "\code{description}".
-\item "\code{usage}".
-\item "\code{arguments}".
-\item "\code{value}".
-\item "\code{references}".
-\item "\code{seealso}".
-\item "\code{examples}".
+\item \code{title}.
+\item \code{description}.
+\item \code{usage}.
+\item \code{arguments}.
+\item \code{value}.
+\item \code{references}.
+\item \code{seealso}.
+\item \code{examples}.
 }}
 }
 \description{
-Modified version of \code{tools:::.Rd_get_metadata} that keeps whitespace and
+Modified version of \code{tools:::.Rd_get_metadata()} that keeps whitespace and
 returns \code{character} instead of \code{matrix}.
 }
 \examples{
@@ -40,5 +40,5 @@ examples <- parseRd(Rd, tag = "examples")
 print(examples)
 }
 \seealso{
-\code{tools::Rd_db}.
+\code{\link[tools:Rd_db]{tools::Rd_db()}}.
 }
