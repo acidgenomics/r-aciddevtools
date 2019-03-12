@@ -16,6 +16,7 @@ Imports:
     desc,
     goalie,
     methods,
+    pryr,
     readr,
     tools,
     utils
