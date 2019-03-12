@@ -9,7 +9,8 @@ printComment(..., prefix = c("#", "# >", "#'", "#' >", "##", "## >"))
 \arguments{
 \item{...}{Passthrough to \code{print()}.}
 
-\item{prefix}{Comment prefix to use.}
+\item{prefix}{Comment prefix to use. RStudio, roxygen, and ESS prefixes
+are supported.}
 }
 \value{
 Console output.

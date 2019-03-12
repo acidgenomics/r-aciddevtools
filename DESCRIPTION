@@ -16,6 +16,7 @@ Imports:
     desc,
     goalie,
     methods,
+    readr,
     tools,
     utils
 Suggests:
@@ -23,7 +24,7 @@ Suggests:
     R.utils, scales,
     covr, knitr, lintr, magrittr,
     testthat, patrick,
-    rlang, tidyselect, devtools, tidyselect, tidyverse
+    rlang, tidyselect, devtools, tidyverse
 Remotes:
     steinbaugh/basejump,
     steinbaugh/goalie

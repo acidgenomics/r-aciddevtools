@@ -2,15 +2,19 @@
 % Please edit documentation in R/finder.R
 \name{finder}
 \alias{finder}
-\title{Open Finder to the current directory.}
+\title{Open Finder to the current directory}
 \usage{
 finder(path = ".")
 }
 \arguments{
-\item{path}{File path.}
+\item{path}{\code{character(1)}.
+File path.}
+}
+\value{
+Opens window. No return.
 }
 \description{
-Open Finder to the current directory.
+Open Finder to the current directory
 }
 \note{
 macOS only.

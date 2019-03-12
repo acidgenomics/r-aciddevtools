@@ -1,9 +1,6 @@
 #' Print (cat) a vector
-#'
 #' @export
-#'
-#' @param x Object.
-#'
+#' @inheritParams params
 #' @return Console output.
 catVec <- function(x) {
     x <- paste0("\"", x, "\"")
