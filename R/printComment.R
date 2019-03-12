@@ -1,8 +1,11 @@
 #' Print as comment
+#'
 #' @export
+#'
 #' @param ... Passthrough to `print()`.
 #' @param prefix Comment prefix to use.
 #'
+#' @return Console output.
 printComment <- function(
     ...,
     prefix = c(
