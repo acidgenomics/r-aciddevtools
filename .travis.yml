@@ -7,6 +7,8 @@ matrix:
       r: release
     - os: osx
       r: release
+  allow_failures:
+    - os: osx
 
 branches:
   only:
