@@ -15,7 +15,7 @@ if (!require("BiocManager")) {
     install.packages("BiocManager")
 }
 BiocManager::install("remotes")
-BiocManager::install("steinbaugh/bb8")
+BiocManager::install("acidgenomics/bb8")
 ```
 
 [Bioconductor]: https://bioconductor.org
