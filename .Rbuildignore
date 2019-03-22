@@ -1,4 +1,10 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.git$
+^\.lintr$
 ^\.travis\.yml$
+^\appveyor\.yml$
 ^CONTRIBUTING\.md$
+^docs$
+^pkgdown$
+^_pkgdown\.yml$

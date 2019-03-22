@@ -1,32 +1,42 @@
 Package: bb8
-Title: Trusty Sidekick for R Package Development
-Version: 0.0.5
-Date: 2018-11-21
-Authors@R: person(
-    "Michael", "Steinbaugh",
-    email = "mike@steinbaugh.com",
-    role = c("aut", "cre"))
+Title: Trusty sidekick for R package development
 Description: Personal package with additional devtools utilities.
+Version: 0.0.7
+Date: 2019-03-22
+Authors@R: c(
+    person(
+        "Michael", "Steinbaugh",
+        email = "mike@steinbaugh.com",
+        role = c("aut", "cre"),
+        comment = c(ORCID = "0000-0002-2403-2221")
+    ),
+    person(
+        given = "Acid Genomics",
+        role = c("cph", "fnd")
+    ))
 Depends: R (>= 3.5)
 License: MIT + file LICENSE
 Encoding: UTF-8
-URL: https://github.com/steinbaugh/bb8/
-Imports: desc, utils
-Suggests:
-    R.utils,
+URL:
+    https://bb8.acidgenomics.com/,
+    https://github.com/acidgenomics/bb8/
+Imports:
+    basejump,
+    desc,
+    goalie,
+    methods,
+    pryr,
+    readr,
     tools,
-    scales,
+    utils
+Suggests:
     SummarizedExperiment,
-    covr,
-    knitr,
-    lintr,
-    magrittr,
-    testthat,
-    assertthat,
-    assertive,
-    tidyselect,
-    rlang,
-    devtools,
-    tidyverse
+    R.utils, scales,
+    covr, knitr, lintr, magrittr,
+    testthat, patrick,
+    rlang, tidyselect, devtools, tidyverse
+Remotes:
+    acidgenomics/basejump,
+    acidgenomics/goalie
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1

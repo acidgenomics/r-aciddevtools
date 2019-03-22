@@ -13,6 +13,7 @@
 bb8 <- function() {
     path <- find.package("bb8")
     deps <- desc_get_deps(path)
+
     # Note that we're only attaching the suggested packages here.
     # Order is important. Note that the last item specified in "Suggests" in
     # DESCRIPTION file will take priority in the NAMESPACE.
