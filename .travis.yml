@@ -9,6 +9,7 @@ matrix:
       r: release
   allow_failures:
     - os: osx
+  fast_finish: true
 
 branches:
   only:
@@ -21,7 +22,7 @@ env:
 r_packages:
   - covr
 github_packages:
-  - steinbaugh/lintr
+  - acidgenomics/lintr
 
 after_success:
   - test $TRAVIS_OS_NAME = 'linux' && $TRAVIS_R_VERSION_STRING = 'release' && Rscript -e 'lintr::lint_package()'
