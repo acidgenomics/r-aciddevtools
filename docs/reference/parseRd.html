@@ -34,7 +34,7 @@
   
 <meta property="og:title" content="Parse R documentation — parseRd" />
 
-<meta property="og:description" content="Modified version of tools:::.Rd_get_metadata that keeps whitespace and
+<meta property="og:description" content="Modified version of tools:::.Rd_get_metadata() that keeps whitespace and
 returns character instead of matrix." />
 <meta name="twitter:card" content="summary" />
 
@@ -66,7 +66,7 @@ returns character instead of matrix." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bb8</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.7</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@ returns character instead of matrix." />
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/steinbaugh/bb8">
+  <a href="https://github.com/acidgenomics/bb8">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -103,13 +103,13 @@ returns character instead of matrix." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Parse R documentation</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/bb8/blob/master/R/documentation.R'><code>R/documentation.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/bb8/blob/master/R/parseRd.R'><code>R/parseRd.R</code></a></small>
     <div class="hidden name"><code>parseRd.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Modified version of <code>tools:::.Rd_get_metadata</code> that keeps whitespace and
+    <p>Modified version of <code>tools:::.Rd_get_metadata()</code> that keeps whitespace and
 returns <code>character</code> instead of <code>matrix</code>.</p>
     
     </div>
@@ -122,28 +122,28 @@ returns <code>character</code> instead of <code>matrix</code>.</p>
     <tr>
       <th>object</th>
       <td><p><code>Rd</code>.
-R documentation, returned from <code><a href='https://www.rdocumentation.org/packages/tools/topics/Rdutils'>tools::Rd_db</a></code>.</p></td>
+R documentation, returned from <code><a href='https://www.rdocumentation.org/packages/tools/topics/Rdutils'>tools::Rd_db()</a></code></p></td>
     </tr>
     <tr>
       <th>tag</th>
       <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
 Desired metadata type.</p>
 <p>These types are supported:</p><ul>
-<li><p>"<code>title</code>".</p></li>
-<li><p>"<code>description</code>".</p></li>
-<li><p>"<code>usage</code>".</p></li>
-<li><p>"<code>arguments</code>".</p></li>
-<li><p>"<code>value</code>".</p></li>
-<li><p>"<code>references</code>".</p></li>
-<li><p>"<code>seealso</code>".</p></li>
-<li><p>"<code>examples</code>".</p></li>
+<li><p><code>title</code>.</p></li>
+<li><p><code>description</code>.</p></li>
+<li><p><code>usage</code>.</p></li>
+<li><p><code>arguments</code>.</p></li>
+<li><p><code>value</code>.</p></li>
+<li><p><code>references</code>.</p></li>
+<li><p><code>seealso</code>.</p></li>
+<li><p><code>examples</code>.</p></li>
 </ul></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/tools/topics/Rdutils'>tools::Rd_db</a></code>.</p></div>
+    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/tools/topics/Rdutils'>tools::Rd_db()</a></code>.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -164,7 +164,24 @@ Desired metadata type.</p>
 #&gt; [11,] 10     -none- list
 #&gt; [12,] 10     -none- list
 #&gt; [13,] 11     -none- list
-#&gt; [14,] 16     -none- list</div><div class='input'><span class='fu'><a href='RdTags.html'>RdTags</a></span>(<span class='no'>Rd</span>)</div><div class='output co'>#&gt; <span class='error'>Error in assert(is(object, "Rd")): could not find function "assert"</span></div><div class='input'><span class='no'>examples</span> <span class='kw'>&lt;-</span> <span class='fu'>parseRd</span>(<span class='no'>Rd</span>, <span class='kw'>tag</span> <span class='kw'>=</span> <span class='st'>"examples"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in assert(is(object, "Rd"), isString(tag)): could not find function "assert"</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>examples</span>)</div><div class='output co'>#&gt; <span class='error'>Error in print(examples): object 'examples' not found</span></div></pre>
+#&gt; [14,] 16     -none- list</div><div class='input'><span class='fu'><a href='RdTags.html'>RdTags</a></span>(<span class='no'>Rd</span>)</div><div class='output co'>#&gt;  [1] "title"       "name"        "alias"       "alias"       "alias"      
+#&gt;  [6] "alias"       "keyword"     "description" "usage"       "arguments"  
+#&gt; [11] "value"       "references"  "seealso"     "examples"   </div><div class='input'><span class='no'>examples</span> <span class='kw'>&lt;-</span> <span class='fu'>parseRd</span>(<span class='no'>Rd</span>, <span class='kw'>tag</span> <span class='kw'>=</span> <span class='st'>"examples"</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>examples</span>)</div><div class='output co'>#&gt;  [1] "ma &lt;- matrix(1:12, 3, 4)"                                        
+#&gt;  [2] "nrow(ma)   # 3"                                                  
+#&gt;  [3] "ncol(ma)   # 4"                                                  
+#&gt;  [4] ""                                                                
+#&gt;  [5] "ncol(array(1:24, dim = 2:4)) # 3, the second dimension"          
+#&gt;  [6] "NCOL(1:12) # 1"                                                  
+#&gt;  [7] "NROW(1:12) # 12"                                                 
+#&gt;  [8] ""                                                                
+#&gt;  [9] "## as.matrix() produces 1-column matrices from 0-length vectors,"
+#&gt; [10] "## and so does cbind() :"                                        
+#&gt; [11] "dim(as.matrix(numeric())) # 0 1"                                 
+#&gt; [12] "dim(    cbind(numeric())) # ditto"                               
+#&gt; [13] "## consequently, NCOL(.) gives 1, too :"                         
+#&gt; [14] "NCOL(numeric()) # 1 and hence"                                   
+#&gt; [15] "NCOL(NULL)      # 1"                                             </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -181,7 +198,7 @@ Desired metadata type.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='/'>Michael Steinbaugh</a>.</p>
+  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>, <a href='https://acidgenomics.com/'>Acid Genomics</a>.</p>
 </div>
 
 <div class="pkgdown">

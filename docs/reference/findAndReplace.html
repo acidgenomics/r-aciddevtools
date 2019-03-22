@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>R documentation table — tabular • bb8</title>
+<title>Find and replace across a directory. — findAndReplace • bb8</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="R documentation table — tabular" />
+<meta property="og:title" content="Find and replace across a directory. — findAndReplace" />
 
-<meta property="og:description" content="R documentation table" />
+<meta property="og:description" content="Find and replace across a directory." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -101,35 +101,47 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>R documentation table</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/bb8/blob/master/R/tabular.R'><code>R/tabular.R</code></a></small>
-    <div class="hidden name"><code>tabular.Rd</code></div>
+    <h1>Find and replace across a directory.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/bb8/blob/master/R/findAndReplace.R'><code>R/findAndReplace.R</code></a></small>
+    <div class="hidden name"><code>findAndReplace.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>R documentation table</p>
+    <p>Find and replace across a directory.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>tabular</span>(<span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>findAndReplace</span>(<span class='no'>pattern</span>, <span class='no'>replacement</span>, <span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p><code>data.frame</code>.</p></td>
+      <th>pattern</th>
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
+Pattern string.</p></td>
+    </tr>
+    <tr>
+      <th>replacement</th>
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
+Replacement string.</p></td>
+    </tr>
+    <tr>
+      <th>dir</th>
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
+Directory path.</p></td>
+    </tr>
+    <tr>
+      <th>recursive</th>
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/logical'>logical(1)</a></code>.
+Search recursively?</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Console output.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>http://r-pkgs.had.co.nz/man.html</p></div>
+    <p>Invisibly return file paths.</p>
     
 
   </div>
@@ -139,8 +151,6 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#see-also">See also</a></li>
           </ul>
 
   </div>
