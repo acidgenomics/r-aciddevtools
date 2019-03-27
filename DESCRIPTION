@@ -1,8 +1,8 @@
 Package: bb8
 Title: Trusty sidekick for R package development
 Description: Personal package with additional devtools utilities.
-Version: 0.0.7
-Date: 2019-03-22
+Version: 0.0.8
+Date: 2019-03-27
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -21,14 +21,9 @@ URL:
     https://bb8.acidgenomics.com/,
     https://github.com/acidgenomics/bb8/
 Imports:
-    basejump,
-    desc,
     goalie,
-    methods,
-    pryr,
-    readr,
-    tools,
-    utils
+    desc, pryr, readr,
+    methods, tools, utils
 Suggests:
     SummarizedExperiment,
     R.utils, scales,
@@ -36,7 +31,6 @@ Suggests:
     testthat, patrick,
     rlang, tidyselect, devtools, tidyverse
 Remotes:
-    acidgenomics/basejump,
     acidgenomics/goalie
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1

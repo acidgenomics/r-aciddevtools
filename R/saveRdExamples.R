@@ -32,9 +32,10 @@ saveRdExamples <- function(
 ) {
     assert(
         isAny(Rd, classes = c("character", "NULL")),
-        isString(package)
+        isString(package),
+        isString(dir)
     )
-    dir <- initDir(dir)
+    dir.create(dir, showWarnings = FALSE, recursive = TRUE)
 
     # Get a database of the Rd files available in the requested package.
     db <- Rd_db(package)

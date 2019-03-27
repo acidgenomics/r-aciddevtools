@@ -2,20 +2,27 @@
 % Please edit documentation in R/package.R
 \docType{package}
 \name{bb8-package}
-\title{bb8
-Trusty sidekick for R package development
-Personal package with additional devtools utilities.}
+\title{bb8}
 \description{
+Trusty sidekick for R package development
+}
+\details{
 Personal package with additional devtools utilities.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/steinbaugh/bb8/}
+  \item \url{https://bb8.acidgenomics.com/}
+  \item \url{https://github.com/acidgenomics/bb8/}
 }
 
 }
 \author{
-\strong{Maintainer}: Michael Steinbaugh \email{mike@steinbaugh.com}
+\strong{Maintainer}: Michael Steinbaugh \email{mike@steinbaugh.com} (0000-0002-2403-2221)
+
+Other contributors:
+\itemize{
+  \item Acid Genomics [copyright holder, funder]
+}
 
 }
