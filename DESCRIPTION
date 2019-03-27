@@ -21,7 +21,7 @@ URL:
     https://bb8.acidgenomics.com/,
     https://github.com/acidgenomics/bb8/
 Imports:
-    goalie,
+    goalie (>= 0.2.12),
     desc, pryr, readr,
     methods, tools, utils
 Suggests:
