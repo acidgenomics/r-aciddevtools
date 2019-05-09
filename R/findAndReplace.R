@@ -17,12 +17,12 @@ findAndReplace <- function(
     dir = ".",
     recursive = FALSE
 ) {
-    files <- list.files(
+    files <- sort(list.files(
         path = dir,
         pattern = "(r|R)$",
         full.names = TRUE,
         recursive = recursive
-    )
+    ))
     invisible(parallel::mclapply(
         X = files,
         FUN = function(file) {
