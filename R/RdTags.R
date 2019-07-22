@@ -21,7 +21,7 @@ RdTags <- function(object) {  # nolint
     if (length(tags) == 0L) {
         tags <- character()
     } else {
-        # Remove the leading "\\" backslashes.
+        ## Remove the leading "\\" backslashes.
         tags <- gsub("^\\\\", "", tags)
     }
     tags
