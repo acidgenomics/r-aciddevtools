@@ -41,14 +41,14 @@ parseRd <- function(object, tag) {
     tags <- RdTags(object)
     assert(isSubset(x = tag, y = tags))
 
-    # Get the metadata that matches the requested tag.
+    ## Get the metadata that matches the requested tag.
     data <- object[tags == tag]
     data <- unlist(data)
 
-    # Strip trailing newlines and superfluous whitespace.
+    ## Strip trailing newlines and superfluous whitespace.
     data <- trimws(data, which = "right")
 
-    # Strip leading and trailing carriage returns, if present.
+    ## Strip leading and trailing carriage returns, if present.
     if (data[[1L]] == "") {
         data <- data[-1L]
     }

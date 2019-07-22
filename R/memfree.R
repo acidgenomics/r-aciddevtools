@@ -28,7 +28,7 @@ memfree <- function() {
 
 
 
-# utils:::format.object_size()
+## utils:::format.object_size()
 .format.object_size <- function(
     x,
     units = "b",

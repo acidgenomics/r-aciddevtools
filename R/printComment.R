@@ -20,7 +20,7 @@ printComment <- function(
 ) {
     prefix <- match.arg(prefix)
     out <- capture.output(print(...))
-    # Prepend the prefix to print return.
+    ## Prepend the prefix to print return.
     out <- paste(prefix, out)
     cat(out, sep = "\n")
 }
