@@ -22,7 +22,7 @@ bb8 <- function() {
     ## Stop on missing deps.
     notInstalled <- setdiff(pkgs, rownames(installed.packages()))
     if (length(notInstalled) > 0L) {
-        stop(paste("Not installed:", toString(notInstalled)), call. = FALSE)
+        stop(paste("Not installed:", toString(notInstalled)))
     }
 
     ## Attach unloaded deps.
