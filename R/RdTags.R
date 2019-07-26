@@ -10,6 +10,8 @@
 #' db <- tools::Rd_db("base")
 #' Rd <- db[["nrow.Rd"]]
 #' RdTags(Rd)
+
+## Updated 2019-07-26.
 RdTags <- function(object) {  # nolint
     assert(is(object, "Rd"))
     tags <- vapply(

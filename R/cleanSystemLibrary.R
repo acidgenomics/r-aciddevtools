@@ -15,6 +15,8 @@
 #'
 #' @examples
 #' cleanSystemLibrary()
+
+## Updated 2019-07-26.
 cleanSystemLibrary <- function() {
     x <- installed.packages()
 

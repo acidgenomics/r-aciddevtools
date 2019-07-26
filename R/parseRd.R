@@ -32,6 +32,8 @@
 #' RdTags(Rd)
 #' examples <- parseRd(Rd, tag = "examples")
 #' print(examples)
+
+## Updated 2019-07-26.
 parseRd <- function(object, tag) {
     assert(
         is(object, "Rd"),

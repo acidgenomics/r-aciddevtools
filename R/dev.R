@@ -1,16 +1,13 @@
-#' bb8
-#'
-#' Trusty sidekick for R package development.
-#'
+#' Attach developer packages
+#' @export
 #' @return Invisible character vector of packages attached specifically by
 #'   this function call.
-#'
-#' @export
 #' @examples
-#' \dontrun{
-#' bb8()
-#' }
-bb8 <- function() {
+#' ## Load the developer environment.
+#' ## > bb8()
+
+## Updated 2019-07-26.
+dev <- function() {
     path <- find.package("bb8")
     deps <- desc_get_deps(path)
 

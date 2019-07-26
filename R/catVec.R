@@ -2,6 +2,8 @@
 #' @export
 #' @inheritParams params
 #' @return Console output.
+
+## Updated 2019-07-26.
 catVec <- function(x) {
     x <- paste0("\"", x, "\"")
     x <- paste(x, collapse = ",\n")
