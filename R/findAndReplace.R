@@ -11,18 +11,20 @@
 #'   Search recursively?
 #'
 #' @return Invisibly return file paths.
+
+## Updated 2019-07-26.
 findAndReplace <- function(
     pattern,
     replacement,
     dir = ".",
     recursive = FALSE
 ) {
-    files <- list.files(
+    files <- sort(list.files(
         path = dir,
         pattern = "(r|R)$",
         full.names = TRUE,
         recursive = recursive
-    )
+    ))
     invisible(parallel::mclapply(
         X = files,
         FUN = function(file) {
@@ -36,4 +38,3 @@ findAndReplace <- function(
         }
     ))
 }
-

@@ -13,22 +13,31 @@
 #' - https://stackoverflow.com/a/29787527
 #' - https://stat.ethz.ch/R-manual/R-devel/library/base/html/Memory-limits.html
 #' - http://adv-r.had.co.nz/memory.html
+
+## Updated 2019-07-26.
 memfree <- function() {
     message("Running garbage collection first with base::gc().")
     print(gc(verbose = TRUE, full = TRUE))
-    mem_used <- capture.output(print(mem_used()))
-    mem_free <- .format.object_size(as.numeric(
-        system("awk '/MemFree/ {print $2}' /proc/meminfo", intern = TRUE)
-    ), "auto")
+    memUsed <- capture.output(print(mem_used()))
+    memFree <- .format.object_size(
+        as.numeric(
+            system("awk '/MemFree/ {print $2}' /proc/meminfo", intern = TRUE)
+        ),
+        "auto"
+    )
     message(paste0(
-        "Memory used: ", mem_used, " (pryr::mem_used)\n",
-        "Memory free: ", mem_free, " (awk MemFree)"
+        "Memory used: ", memUsed, " (pryr::mem_used)\n",
+        "Memory free: ", memFree, " (awk MemFree)"
     ))
 }
 
 
 
-# utils:::format.object_size()
+## @seealso `utils:::format.object_size()`
+## Updated 2019-07-26.
+
+## nolint start
+
 .format.object_size <- function(
     x,
     units = "b",
@@ -74,5 +83,7 @@ memfree <- function() {
     unit <- units_map[power + 1L]
     if (power == 0 && standard == "legacy")
         unit <- "bytes"
-    paste(round(x/base^power, digits = digits), unit)
+    paste(round(x / base ^ power, digits = digits), unit)
 }
+
+## nolint end

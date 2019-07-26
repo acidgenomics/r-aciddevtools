@@ -1,31 +1,28 @@
-#' bb8
-#'
-#' Trusty sidekick for R package development.
-#'
+#' Attach developer packages
+#' @export
 #' @return Invisible character vector of packages attached specifically by
 #'   this function call.
-#'
-#' @export
 #' @examples
-#' \dontrun{
-#' bb8()
-#' }
-bb8 <- function() {
+#' ## Load the developer environment.
+#' ## > bb8()
+
+## Updated 2019-07-26.
+dev <- function() {
     path <- find.package("bb8")
     deps <- desc_get_deps(path)
 
-    # Note that we're only attaching the suggested packages here.
-    # Order is important. Note that the last item specified in "Suggests" in
-    # DESCRIPTION file will take priority in the NAMESPACE.
+    ## Note that we're only attaching the suggested packages here.
+    ## Order is important. Note that the last item specified in "Suggests" in
+    ## DESCRIPTION file will take priority in the NAMESPACE.
     pkgs <- deps[deps[["type"]] == "Suggests", "package", drop = TRUE]
 
-    # Stop on missing deps.
+    ## Stop on missing deps.
     notInstalled <- setdiff(pkgs, rownames(installed.packages()))
     if (length(notInstalled) > 0L) {
-        stop(paste("Not installed:", toString(notInstalled)), call. = FALSE)
+        stop(paste("Not installed:", toString(notInstalled)))
     }
 
-    # Attach unloaded deps.
+    ## Attach unloaded deps.
     attached <- lapply(
         X = pkgs,
         FUN = function(pkg) {
@@ -36,6 +33,6 @@ bb8 <- function() {
         })
     attached <- unlist(attached)
 
-    # Invisibly return information on attached packages.
+    ## Invisibly return information on attached packages.
     invisible(attached)
 }
