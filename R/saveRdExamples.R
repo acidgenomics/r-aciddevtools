@@ -71,7 +71,6 @@ saveRdExamples <- function(
             }
 
             ## Save to an R script.
-            ## FIXME Include this support in brio.
             path <- file.path(dir, paste0(Rd, ".R"))
             unlink(path)
             write_lines(x = x, path = path)
