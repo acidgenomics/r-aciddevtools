@@ -38,4 +38,3 @@ findAndReplace <- function(
         }
     ))
 }
-
