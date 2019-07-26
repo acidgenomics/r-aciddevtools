@@ -4,7 +4,7 @@
 \alias{printComment}
 \title{Print as comment}
 \usage{
-printComment(..., prefix = c("#", "# >", "#'", "#' >", "##", "## >"))
+printComment(..., prefix = c("##", "## >", "#'", "#' >", "#", "# >"))
 }
 \arguments{
 \item{...}{Passthrough to \code{print()}.}

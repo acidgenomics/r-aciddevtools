@@ -25,6 +25,8 @@
 #'
 #' ## Clean up.
 #' unlink("example", recursive = TRUE)
+
+## Updated 2019-07-26.
 saveRdExamples <- function(
     Rd = NULL,  # nolint
     package,
@@ -37,19 +39,19 @@ saveRdExamples <- function(
     )
     dir.create(dir, showWarnings = FALSE, recursive = TRUE)
 
-    # Get a database of the Rd files available in the requested package.
+    ## Get a database of the Rd files available in the requested package.
     db <- Rd_db(package)
     names(db) <- gsub("\\.Rd", "", names(db))
 
-    # If no Rd file is specified, save everything in package.
+    ## If no Rd file is specified, save everything in package.
     if (is.null(Rd)) {
         Rd <- names(db)  # nolint
     }
 
-    # Check that the requiested function(s) are valid.
+    ## Check that the requiested function(s) are valid.
     assert(isSubset(Rd, names(db)))
 
-    # Parse the Rd files and return the working examples as a character.
+    ## Parse the Rd files and return the working examples as a character.
     list <- mapply(
         Rd = Rd,
         MoreArgs = list(
@@ -62,14 +64,13 @@ saveRdExamples <- function(
                 error = function(e) character()
             )
 
-            # Early return if there are no examples.
+            ## Early return if there are no examples.
             if (length(x) == 0L) {
                 message(paste0("Skipped ", Rd, "."))
                 return(invisible())
             }
 
-            # Save to an R script.
-            # FIXME Include this support in brio.
+            ## Save to an R script.
             path <- file.path(dir, paste0(Rd, ".R"))
             unlink(path)
             write_lines(x = x, path = path)
@@ -79,7 +80,7 @@ saveRdExamples <- function(
         USE.NAMES = TRUE
     )
 
-    # Coerce to character and remove NULL items.
+    ## Coerce to character and remove NULL items.
     paths <- Filter(Negate(is.null), list)
     names <- names(paths)
     paths <- as.character(paths)
@@ -90,6 +91,6 @@ saveRdExamples <- function(
         package, " to ", dir, "."
     ))
 
-    # Return file paths of saved R scripts.
+    ## Return file paths of saved R scripts.
     invisible(paths)
 }
