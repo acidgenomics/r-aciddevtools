@@ -7,15 +7,17 @@
 #'   are supported.
 #'
 #' @return Console output.
+
+## Updated 2019-07-26.
 printComment <- function(
     ...,
     prefix = c(
-        "#",
-        "# >",
+        "##",
+        "## >",
         "#'",
         "#' >",
-        "##",
-        "## >"
+        "#",
+        "# >"
     )
 ) {
     prefix <- match.arg(prefix)

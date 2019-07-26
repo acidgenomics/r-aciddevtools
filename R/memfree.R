@@ -13,6 +13,8 @@
 #' - https://stackoverflow.com/a/29787527
 #' - https://stat.ethz.ch/R-manual/R-devel/library/base/html/Memory-limits.html
 #' - http://adv-r.had.co.nz/memory.html
+
+## Updated 2019-07-26.
 memfree <- function() {
     message("Running garbage collection first with base::gc().")
     print(gc(verbose = TRUE, full = TRUE))
@@ -29,6 +31,7 @@ memfree <- function() {
 
 
 ## utils:::format.object_size()
+## Updated 2019-07-26.
 .format.object_size <- function(
     x,
     units = "b",

@@ -6,3 +6,5 @@
 ^doc(s)?$
 ^pkgdown$
 ^vignettes/\.$
+^.*\.Rproj$
+^\.Rproj\.user$

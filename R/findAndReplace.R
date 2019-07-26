@@ -11,6 +11,8 @@
 #'   Search recursively?
 #'
 #' @return Invisibly return file paths.
+
+## Updated 2019-07-26.
 findAndReplace <- function(
     pattern,
     replacement,

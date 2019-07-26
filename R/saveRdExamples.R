@@ -25,6 +25,8 @@
 #'
 #' ## Clean up.
 #' unlink("example", recursive = TRUE)
+
+## Updated 2019-07-26.
 saveRdExamples <- function(
     Rd = NULL,  # nolint
     package,

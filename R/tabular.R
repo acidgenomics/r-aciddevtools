@@ -6,6 +6,8 @@
 #' @export
 #'
 #' @seealso http://r-pkgs.had.co.nz/man.html
+
+## Updated 2019-07-26.
 tabular <- function(x) {
     assert(is.data.frame(x))
     align <- function(x) {
