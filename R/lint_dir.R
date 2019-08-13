@@ -20,6 +20,7 @@ lint_dir <- function(path = ".", recursive = FALSE) {
     lapply(
         X = files,
         FUN = function(file) {
+            message(file)
             lintr::lint(file)
         }
     )
