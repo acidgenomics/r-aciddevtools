@@ -25,10 +25,8 @@ memfree <- function() {
         ),
         "auto"
     )
-    message(paste0(
-        "Memory used: ", memUsed, " (pryr::mem_used)\n",
-        "Memory free: ", memFree, " (awk MemFree)"
-    ))
+    message(sprintf("Memory used: %d, via 'pryr::mem_used'.", memUsed))
+    message(sprintf("Memory free: %d, via 'awk MemFree'.", memFree))
 }
 
 
