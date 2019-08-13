@@ -4,14 +4,17 @@
 \alias{lint_dir}
 \title{Lint a directory}
 \usage{
-lint_dir(dir, recursive = FALSE)
+lint_dir(path = ".", recursive = FALSE)
 }
 \arguments{
-\item{dir}{\code{character(1)}.
+\item{path}{\code{character(1)}.
 Directory path.}
 
 \item{recursive}{\code{logical(1)}.
 Search recursively.}
+}
+\value{
+Lintr checks.
 }
 \description{
 Lint a directory
