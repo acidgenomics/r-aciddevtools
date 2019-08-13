@@ -3,17 +3,20 @@
 #' @export
 #' @note Updated 2019-08-05.
 #'
-#' @param dir `character(1)`.
+#' @param path `character(1)`.
 #'   Directory path.
 #' @param recursive `logical(1)`.
 #'   Search recursively.
-lint_dir <- function(dir, recursive = FALSE) {
+#'
+#' @return Lintr checks.
+lint_dir <- function(path = ".", recursive = FALSE) {
     requireNamespace("lintr")
-    files <- list.files(
-        path = dir,
+    files <- sort(list.files(
+        path = path,
         pattern = "*.R",
+        full.names = TRUE,
         recursive = recursive
-    )
+    ))
     lapply(
         X = files,
         FUN = function(file) {
