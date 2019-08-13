@@ -19,7 +19,7 @@ dev <- function() {
     ## Stop on missing deps.
     notInstalled <- setdiff(pkgs, rownames(installed.packages()))
     if (length(notInstalled) > 0L) {
-        stop(paste("Not installed:", toString(notInstalled)))
+        stop(sprintf("Not installed: %s.", toString(notInstalled)))
     }
 
     ## Attach unloaded deps.
