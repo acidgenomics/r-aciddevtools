@@ -17,11 +17,11 @@ lint_dir <- function(path = ".", recursive = FALSE) {
         full.names = TRUE,
         recursive = recursive
     ))
-    lapply(
+    invisible(lapply(
         X = files,
         FUN = function(file) {
             message(file)
             lintr::lint(file)
         }
-    )
+    ))
 }
