@@ -66,7 +66,7 @@ saveRdExamples <- function(
 
             ## Early return if there are no examples.
             if (length(x) == 0L) {
-                message(paste0("Skipped ", Rd, "."))
+                message(sprintf("Skipped '%s'.", Rd))
                 return(invisible())
             }
 
@@ -86,9 +86,9 @@ saveRdExamples <- function(
     paths <- as.character(paths)
     names(paths) <- names
 
-    message(paste0(
-        "Saved ", length(paths), " Rd examples from ",
-        package, " to ", dir, "."
+    message(sprintf(
+        fmt = "Saved %d Rd examples from %s to '%s'.",
+        length(paths), package, dir
     ))
 
     ## Return file paths of saved R scripts.
