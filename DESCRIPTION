@@ -1,7 +1,7 @@
 Package: bb8
 Title: Trusty sidekick for R package development
 Description: Personal package with additional devtools utilities.
-Version: 0.1.1
+Version: 0.1.0
 Date: 2019-08-13
 Authors@R: c(
     person(
