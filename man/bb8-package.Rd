@@ -2,6 +2,8 @@
 % Please edit documentation in R/package.R
 \docType{package}
 \name{bb8-package}
+\alias{bb8}
+\alias{bb8-package}
 \title{bb8}
 \description{
 Trusty sidekick for R package development

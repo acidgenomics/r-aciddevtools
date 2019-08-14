@@ -4,7 +4,11 @@
 \alias{dev}
 \title{Attach developer packages}
 \usage{
-dev()
+dev(quiet = TRUE)
+}
+\arguments{
+\item{quiet}{\code{logical(1)}.
+Load packages quietly.}
 }
 \value{
 Invisible character vector of packages attached specifically by
@@ -12,6 +16,9 @@ this function call.
 }
 \description{
 Attach developer packages
+}
+\note{
+Updated 2019-08-13.
 }
 \examples{
 ## Load the developer environment.

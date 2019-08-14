@@ -1,13 +1,18 @@
 #' Attach developer packages
+#'
 #' @export
+#' @note Updated 2019-08-13.
+#'
+#' @param quiet `logical(1)`.
+#'   Load packages quietly.
+#'
 #' @return Invisible character vector of packages attached specifically by
 #'   this function call.
+#'
 #' @examples
 #' ## Load the developer environment.
 #' ## > bb8()
-
-## Updated 2019-07-26.
-dev <- function() {
+dev <- function(quiet = TRUE) {
     path <- find.package("bb8")
     deps <- desc_get_deps(path)
 
@@ -19,7 +24,7 @@ dev <- function() {
     ## Stop on missing deps.
     notInstalled <- setdiff(pkgs, rownames(installed.packages()))
     if (length(notInstalled) > 0L) {
-        stop(paste("Not installed:", toString(notInstalled)))
+        stop(sprintf("Not installed: %s.", toString(notInstalled)))
     }
 
     ## Attach unloaded deps.
@@ -27,7 +32,13 @@ dev <- function() {
         X = pkgs,
         FUN = function(pkg) {
             if (!pkg %in% (.packages())) {
-                suppressPackageStartupMessages(attachNamespace(pkg))
+                if (isTRUE(quiet)) {
+                    suppressPackageStartupMessages(
+                        attachNamespace(pkg)
+                    )
+                } else {
+                    attachNamespace(pkg)
+                }
                 pkg
             }
         })
