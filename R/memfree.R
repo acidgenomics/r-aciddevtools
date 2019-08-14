@@ -1,8 +1,8 @@
 #' Get free memory statistics.
 #'
-#' @note Currently this only works for Linux.
-#'
 #' @export
+#' @note Currently this only works for Linux.
+#' @note Updated 2019-08-13.
 #'
 #' @seealso
 #' - `help(topic = "Memory", package = "base")`.
@@ -13,8 +13,6 @@
 #' - https://stackoverflow.com/a/29787527
 #' - https://stat.ethz.ch/R-manual/R-devel/library/base/html/Memory-limits.html
 #' - http://adv-r.had.co.nz/memory.html
-
-## Updated 2019-07-26.
 memfree <- function() {
     message("Running garbage collection first with base::gc().")
     print(gc(verbose = TRUE, full = TRUE))
@@ -30,9 +28,6 @@ memfree <- function() {
 }
 
 
-
-## @seealso `utils:::format.object_size()`
-## Updated 2019-07-26.
 
 ## nolint start
 

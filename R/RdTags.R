@@ -3,6 +3,7 @@
 #' Modified version of the unexported `tools:::RdTags` function.
 #'
 #' @export
+#' @note Updated 2019-08-13.
 #'
 #' @inheritParams parseRd
 #'
@@ -10,10 +11,8 @@
 #' db <- tools::Rd_db("base")
 #' Rd <- db[["nrow.Rd"]]
 #' RdTags(Rd)
-
-## Updated 2019-07-26.
 RdTags <- function(object) {  # nolint
-    assert(is(object, "Rd"))
+    stopifnot(is(object, "Rd"))
     tags <- vapply(
         X = object,
         FUN = attr,

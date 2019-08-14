@@ -1,6 +1,5 @@
 #' @importFrom BiocManager install
 #' @importFrom desc desc_get_deps desc_get_remotes
-#' @importFrom goalie assert isAny isString isSubset
 #' @importFrom methods is
 #' @importFrom pryr mem_used
 #' @importFrom readr write_lines

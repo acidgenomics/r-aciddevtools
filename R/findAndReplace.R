@@ -1,6 +1,7 @@
 #' Find and replace across a directory.
 #'
 #' @export
+#' @note Updated 2019-08-13.
 #'
 #' @inheritParams params
 #' @param pattern `character(1)`.
@@ -11,8 +12,6 @@
 #'   Search recursively?
 #'
 #' @return Invisibly return file paths.
-
-## Updated 2019-07-26.
 findAndReplace <- function(
     pattern,
     replacement,

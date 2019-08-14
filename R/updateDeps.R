@@ -10,7 +10,7 @@
 #'
 #' @return `BiocManager::install()` call if packages need an update.
 updateDeps <- function(pkg = ".") {
-    assert(file.exists(file.path(pkg, "DESCRIPTION")))
+    stopifnot(file.exists(file.path(pkg, "DESCRIPTION")))
     ## Get dependency versions.
     deps <- desc_get_deps(pkg)
     ## Drop base R.

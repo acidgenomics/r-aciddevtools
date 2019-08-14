@@ -1,15 +1,15 @@
 #' R documentation table
 #'
+#' @export
+#' @note Updated 2019-08-13.
+#'
 #' @param x `data.frame`.
 #'
 #' @return Console output.
-#' @export
 #'
 #' @seealso http://r-pkgs.had.co.nz/man.html
-
-## Updated 2019-07-26.
 tabular <- function(x) {
-    assert(is.data.frame(x))
+    stopifnot(is.data.frame(x))
     align <- function(x) {
         if (is.numeric(x)) {
             "r"
