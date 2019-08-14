@@ -13,7 +13,6 @@ updateDeps <- function(pkg = ".") {
     assert(file.exists(file.path(pkg, "DESCRIPTION")))
     ## Get dependency versions.
     deps <- desc_get_deps(pkg)
-    rownames(deps) <- deps[["package"]]
     ## Drop base R.
     keep <- deps[["package"]] != "R"
     deps <- deps[keep, , drop = FALSE]
@@ -23,10 +22,20 @@ updateDeps <- function(pkg = ".") {
     deps[["version"]] <- sub("^>= ", "", deps[["version"]])
     colnames(deps)[colnames(deps) == "version"] <- "required"
     ## Get current installed versions.
-    current <- installed.packages()[, "Version", drop = FALSE]
+    current <- installed.packages()[, c("Package", "Version"), drop = FALSE]
+    colnames(current)[colnames(current) == "Package"] <- "package"
     colnames(current)[colnames(current) == "Version"] <- "current"
-    current <- current[rownames(deps), , drop = FALSE]
-    deps <- cbind(deps, current)
+    ## Create an index column so merge operation doesn't resort.
+    deps[["idx"]] <- seq_len(nrow(deps))
+    deps <- merge(
+        x = deps,
+        y = current,
+        by = "package",
+        all.x = TRUE,
+        sort = FALSE
+    )
+    deps <- deps[order(deps[["idx"]]), , drop = FALSE]
+    deps[["idx"]] <- NULL
     ## Get a logical vector of which packages pass requirement.
     ok <- mapply(
         e1 = package_version(deps[["current"]]),
