@@ -41,7 +41,7 @@ updateDeps <- function(pkg = ".") {
         x = deps[["current"]],
         y = deps[["required"]],
         FUN = function(x, y) {
-            if (is.na(y)) return(FALSE)
+            if (is.na(x)) return(FALSE)
             x <- package_version(x)
             y <- package_version(y)
             x >= y
