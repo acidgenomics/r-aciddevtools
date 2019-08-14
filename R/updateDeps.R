@@ -38,9 +38,14 @@ updateDeps <- function(pkg = ".") {
     deps[["idx"]] <- NULL
     ## Get a logical vector of which packages pass requirement.
     ok <- mapply(
-        e1 = package_version(deps[["current"]]),
-        e2 = package_version(deps[["required"]]),
-        FUN = `>=`,
+        x = deps[["current"]],
+        y = deps[["required"]],
+        FUN = function(x, y) {
+            if (is.na(y)) return(FALSE)
+            x <- package_version(x)
+            y <- package_version(y)
+            x >= y
+        },
         SIMPLIFY = TRUE,
         USE.NAMES = TRUE
     )
