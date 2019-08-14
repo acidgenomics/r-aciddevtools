@@ -7,7 +7,7 @@
 #'
 #' @return `BiocManager::install()` call if packages need an update.
 updateDeps <- function(pkg = ".") {
-    stopifnot(file.exists(file.path(pkg, "DESCRIPTION")))
+    assert(file.exists(file.path(pkg, "DESCRIPTION")))
     ## Get dependency versions.
     deps <- desc_get_deps(pkg)
     rownames(deps) <- deps[["package"]]
@@ -45,7 +45,5 @@ updateDeps <- function(pkg = ".") {
         table = deps[["package"]]
     ))
     deps[["package"]][match] <- remotes[match]
-    ## Using BiocManager to perform installs.
-    requireNamespace("BiocManager", quietly = TRUE)
-    BiocManager::install(pkgs = deps[["package"]], update = FALSE, ask = FALSE)
+    install(pkgs = deps[["package"]], update = FALSE, ask = FALSE)
 }

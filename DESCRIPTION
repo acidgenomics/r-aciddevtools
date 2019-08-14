@@ -1,8 +1,8 @@
 Package: bb8
 Title: Trusty sidekick for R package development
 Description: Personal package with additional devtools utilities.
-Version: 0.0.9
-Date: 2019-07-26
+Version: 0.1.0
+Date: 2019-08-13
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -14,37 +14,39 @@ Authors@R: c(
         given = "Acid Genomics",
         role = c("cph", "fnd")
     ))
-Depends: R (>= 3.6.1)
+Depends: R (>= 3.5)
 License: MIT + file LICENSE
 Encoding: UTF-8
 URL:
     https://bb8.acidgenomics.com/,
     https://github.com/acidgenomics/bb8/
 Imports:
-    goalie (>= 0.2.19),
-    desc (>= 1.2.0),
-    pryr (>= 0.1.4),
-    readr (>= 1.3.1),
+    BiocManager,
+    desc (>= 1.2),
+    goalie (>= 0.3.5),
+    pryr (>= 0.1),
+    readr (>= 1.3),
     methods,
+    stats,
     tools,
     utils
 Suggests:
-    Rcpp (>= 1.0.2),
-    rlang (>= 0.4.0),
-    R.utils (>= 2.9.0),
+    SummarizedExperiment,
+    SingleCellExperiment,
+    Rcpp (>= 1.0),
+    rlang (>= 0.4),
+    R.utils (>= 2.9),
     magrittr (>= 1.5),
-    scales (>= 1.0.0),
-    SummarizedExperiment (>= 1.14.0),
-    SingleCellExperiment (>= 1.6.0),
-    devtools (>= 2.1.0),
+    scales (>= 1.0),
+    devtools (>= 2.1),
     knitr (>= 1.23),
     lintr (>= 1.0.3.9000),
     pkgdown (>= 1.3.0.9100),
-    covr (>= 3.2.1),
-    testthat (>= 2.2.1),
+    covr (>= 3.2),
+    testthat (>= 2.2),
     patrick (>= 0.0.1),
-    tidyselect (>= 0.2.5),
-    tidyverse (>= 1.2.1)
+    tidyselect (>= 0.2),
+    tidyverse (>= 1.2)
 Remotes:
     acidgenomics/goalie
 Roxygen: list(markdown = TRUE)

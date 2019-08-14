@@ -9,19 +9,23 @@
 #'   Search recursively.
 #'
 #' @return Lintr checks.
-lint_dir <- function(path = ".", recursive = FALSE) {
-    requireNamespace("lintr")
-    files <- sort(list.files(
-        path = path,
-        pattern = "*.R",
-        full.names = TRUE,
-        recursive = recursive
-    ))
-    invisible(lapply(
-        X = files,
-        FUN = function(file) {
-            message(file)
-            lintr::lint(file)
-        }
-    ))
-}
+lint_dir <-  # nolint
+    function(
+        path = ".",
+        recursive = FALSE
+    ) {
+        requireNamespace("lintr")
+        files <- sort(list.files(
+            path = path,
+            pattern = "*.R",
+            full.names = TRUE,
+            recursive = recursive
+        ))
+        invisible(lapply(
+            X = files,
+            FUN = function(file) {
+                message(file)
+                lintr::lint(file)
+            }
+        ))
+    }

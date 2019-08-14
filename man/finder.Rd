@@ -18,4 +18,6 @@ Open Finder to the current directory
 }
 \note{
 macOS only.
+
+Updated 2019-08-13.
 }
