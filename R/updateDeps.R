@@ -2,6 +2,9 @@
 #'
 #' Supports Bioconductor, CRAN, and GitHub packages via BiocManager.
 #'
+#' @export
+#' @note Updated 2019-08-13.
+#'
 #' @param pkg `character(1)`.
 #'   Package path. Must contain a `DESCRIPTION` file.
 #'
