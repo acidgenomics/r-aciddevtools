@@ -16,3 +16,6 @@ Package path. Must contain a \code{DESCRIPTION} file.}
 \description{
 Supports Bioconductor, CRAN, and GitHub packages via BiocManager.
 }
+\note{
+Updated 2019-08-13.
+}
