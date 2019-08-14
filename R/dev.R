@@ -12,7 +12,7 @@
 #' @examples
 #' ## Load the developer environment.
 #' ## > bb8()
-dev <- function(quiet = FALSE) {
+dev <- function(quiet = TRUE) {
     path <- find.package("bb8")
     deps <- desc_get_deps(path)
 
