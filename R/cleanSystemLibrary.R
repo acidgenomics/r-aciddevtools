@@ -9,14 +9,13 @@
 #' Determine whether a user has installed packages into the system library.
 #'
 #' @export
+#' @note Updated 2019-08-13.
 #'
 #' @return `logical(1)`.
 #' Is the system library clean?
 #'
 #' @examples
 #' cleanSystemLibrary()
-
-## Updated 2019-07-26.
 cleanSystemLibrary <- function() {
     x <- installed.packages()
 
@@ -40,7 +39,7 @@ cleanSystemLibrary <- function() {
     ## Check for packages built against a different point release.
     ## (e.g. 3.5.1)
     version <- getRversion()
-    assert(grepl("^\\d\\.\\d\\.\\d$", version))
+    stopifnot(all(grepl("^\\d\\.\\d\\.\\d$", version)))
     ## (e.g. 3.5)
     version <- gsub("\\.\\d$", "", version)
     if (!all(grepl(

@@ -1,12 +1,16 @@
 #' Fibonacci sequence
-#' @note Updated 2019-07-26.
+#'
 #' @export
+#' @note Updated 2019-07-26.
+#'
 #' @param len `integer(1)`.
+#'
 #' @return `integer`.
+#'
 #' @examples
 #' fibonacciSequence(8L)
 fibonacciSequence <- function(len) {
-    assert(is.integer(len) && length(len) == 1L)
+    stopifnot(is.integer(len), identical(length(len), 1L))
     x <- numeric(len)
     x[1L] <- 1L  # nolint
     x[2L] <- 1L  # nolint

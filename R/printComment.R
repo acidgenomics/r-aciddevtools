@@ -1,14 +1,13 @@
 #' Print as comment
 #'
 #' @export
+#' @note Updated 2019-08-13.
 #'
 #' @param ... Passthrough to `print()`.
 #' @param prefix Comment prefix to use. RStudio, roxygen, and ESS prefixes
 #'   are supported.
 #'
 #' @return Console output.
-
-## Updated 2019-07-26.
 printComment <- function(
     ...,
     prefix = c(
@@ -22,7 +21,6 @@ printComment <- function(
 ) {
     prefix <- match.arg(prefix)
     out <- capture.output(print(...))
-    ## Prepend the prefix to print return.
     out <- paste(prefix, out)
     cat(out, sep = "\n")
 }

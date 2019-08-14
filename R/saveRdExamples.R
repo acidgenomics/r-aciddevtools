@@ -5,6 +5,7 @@
 #' requests in a single call.
 #'
 #' @export
+#' @note Updated 2019-08-13.
 #'
 #' @inheritParams params
 #' @param Rd `character` or `NULL`.
@@ -25,17 +26,15 @@
 #'
 #' ## Clean up.
 #' unlink("example", recursive = TRUE)
-
-## Updated 2019-07-26.
 saveRdExamples <- function(
     Rd = NULL,  # nolint
     package,
     dir = "."
 ) {
-    assert(
-        isAny(Rd, classes = c("character", "NULL")),
-        isString(package),
-        isString(dir)
+    stopifnot(
+        is.character(Rd) || is.null(Rd),
+        is.character(package) && identical(length(package), 1L),
+        is.character(dir) && identical(length(dir), 1L)
     )
     dir.create(dir, showWarnings = FALSE, recursive = TRUE)
 
@@ -49,7 +48,7 @@ saveRdExamples <- function(
     }
 
     ## Check that the requiested function(s) are valid.
-    assert(isSubset(Rd, names(db)))
+    stopifnot(all(Rd %in% names(db)))
 
     ## Parse the Rd files and return the working examples as a character.
     list <- mapply(
