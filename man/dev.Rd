@@ -4,7 +4,7 @@
 \alias{dev}
 \title{Attach developer packages}
 \usage{
-dev(quiet = FALSE)
+dev(quiet = TRUE)
 }
 \arguments{
 \item{quiet}{\code{logical(1)}.
