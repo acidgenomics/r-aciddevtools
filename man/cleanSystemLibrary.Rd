@@ -13,6 +13,9 @@ Is the system library clean?
 \description{
 Determine whether a user has installed packages into the system library.
 }
+\note{
+Updated 2019-08-13.
+}
 \examples{
 cleanSystemLibrary()
 }

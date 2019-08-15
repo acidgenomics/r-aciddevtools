@@ -15,6 +15,9 @@ Console output.
 \description{
 R documentation table
 }
+\note{
+Updated 2019-08-13.
+}
 \seealso{
 http://r-pkgs.had.co.nz/man.html
 }

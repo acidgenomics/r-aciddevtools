@@ -4,11 +4,13 @@
 \alias{updateDeps}
 \title{Update outdated dependencies}
 \usage{
-updateDeps(pkg = ".")
+updateDeps(pkg = ".", verbose = FALSE)
 }
 \arguments{
 \item{pkg}{\code{character(1)}.
 Package path. Must contain a \code{DESCRIPTION} file.}
+
+\item{verbose}{\code{logical(1)}.}
 }
 \value{
 \code{BiocManager::install()} call if packages need an update.

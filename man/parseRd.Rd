@@ -29,6 +29,9 @@ These types are supported:
 Modified version of \code{tools:::.Rd_get_metadata()} that keeps whitespace and
 returns \code{character} instead of \code{matrix}.
 }
+\note{
+Updated 2019-08-13.
+}
 \examples{
 db <- tools::Rd_db("base")
 head(names(db))

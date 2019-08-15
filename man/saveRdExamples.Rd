@@ -26,6 +26,9 @@ Parse the documentation for a function and save the working examples to an R
 script. Note that the \code{f} argument is parameterized and can handle multiple
 requests in a single call.
 }
+\note{
+Updated 2019-08-13.
+}
 \examples{
 saveRdExamples(
     Rd = c("do.call", "droplevels"),

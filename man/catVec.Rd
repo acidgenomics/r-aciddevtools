@@ -15,3 +15,6 @@ Console output.
 \description{
 Print (cat) a vector
 }
+\note{
+Updated 2019-08-13.
+}
