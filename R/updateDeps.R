@@ -64,5 +64,5 @@ updateDeps <- function(pkg = ".") {
     deps[["package"]][match] <- remotes[match]
     pkgs <- deps[["package"]]
     message(sprintf("Updating packages: %s.", toString(pkgs)))
-    install(pkgs = pkgs, ask = FALSE)
+    BiocManager::install(pkgs = pkgs, ask = FALSE)
 }
