@@ -7,12 +7,20 @@
 #'
 #' @param pkg `character(1)`.
 #'   Package path. Must contain a `DESCRIPTION` file.
+#' @param verbose `logical(1)`.
+#"   Enable verbose debugging.
 #'
 #' @return `BiocManager::install()` call if packages need an update.
-updateDeps <- function(pkg = ".") {
-    stopifnot(file.exists(file.path(pkg, "DESCRIPTION")))
+updateDeps <- function(pkg = ".", verbose = FALSE) {
+    stopifnot(
+        file.exists(file.path(pkg, "DESCRIPTION")),
+        is.logical(verbose) && identical(length(verbose), 1L)
+    )
     ## Get dependency versions.
     deps <- desc_get_deps(pkg)
+    if (isTRUE(verbose)) {
+        print(deps)
+    }
     ## Drop base R.
     keep <- deps[["package"]] != "R"
     deps <- deps[keep, , drop = FALSE]
@@ -25,6 +33,9 @@ updateDeps <- function(pkg = ".") {
     current <- installed.packages()[, c("Package", "Version"), drop = FALSE]
     colnames(current)[colnames(current) == "Package"] <- "package"
     colnames(current)[colnames(current) == "Version"] <- "current"
+    if (isTRUE(verbose)) {
+        print(current)
+    }
     ## Create an index column so merge operation doesn't resort.
     deps[["idx"]] <- seq_len(nrow(deps))
     deps <- merge(
@@ -34,6 +45,9 @@ updateDeps <- function(pkg = ".") {
         all.x = TRUE,
         sort = FALSE
     )
+    if (isTRUE(verbose)) {
+        print(deps)
+    }
     deps <- deps[order(deps[["idx"]]), , drop = FALSE]
     deps[["idx"]] <- NULL
     ## Get a logical vector of which packages pass requirement.
@@ -49,6 +63,9 @@ updateDeps <- function(pkg = ".") {
         SIMPLIFY = TRUE,
         USE.NAMES = TRUE
     )
+    if (isTRUE(verbose)) {
+        print(ok)
+    }
     ## Filter dependencies by which packages need an update.
     deps <- deps[!ok, , drop = FALSE]
     if (identical(nrow(deps), 0L)) {
@@ -57,10 +74,16 @@ updateDeps <- function(pkg = ".") {
     }
     ## Rename package in data frame to remote name, if necessary.
     remotes <- desc_get_remotes()
+    if (isTRUE(verbose)) {
+        print(remotes)
+    }
     match <- na.omit(match(
         x = basename(remotes),
         table = deps[["package"]]
     ))
+    if (isTRUE(verbose)) {
+        print(match)
+    }
     deps[["package"]][match] <- remotes[match]
     pkgs <- deps[["package"]]
     message(sprintf("Updating packages: %s.", toString(pkgs)))

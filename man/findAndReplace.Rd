@@ -25,3 +25,6 @@ Invisibly return file paths.
 \description{
 Find and replace across a directory.
 }
+\note{
+Updated 2019-08-13.
+}
