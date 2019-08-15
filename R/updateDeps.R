@@ -62,5 +62,7 @@ updateDeps <- function(pkg = ".") {
         table = deps[["package"]]
     ))
     deps[["package"]][match] <- remotes[match]
-    install(pkgs = deps[["package"]], update = FALSE, ask = FALSE)
+    pkgs <- deps[["package"]]
+    message(printf("Updating packages: %s.", toString(pkgs)))
+    install(pkgs = pkgs, ask = FALSE)
 }
