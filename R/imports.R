@@ -1,5 +1,5 @@
 #' @importFrom BiocManager install
-#' @importFrom desc desc_get_deps desc_get_remotes
+#' @importFrom desc desc_get_deps desc_get_field desc_get_remotes
 #' @importFrom methods is
 #' @importFrom pryr mem_used
 #' @importFrom readr write_lines
