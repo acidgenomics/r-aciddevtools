@@ -53,11 +53,8 @@ updateDeps <- function(pkg = ".", verbose = FALSE) {
         }
         deps[["package"]] <- table
     }
-    if (isTRUE(verbose)) {
-        print(deps)
-    }
     ## Get a logical vector of which packages pass requirement.
-    ok <- mapply(
+    deps[["pass"]] <- mapply(
         x = as.character(deps[["current"]]),
         y = as.character(deps[["required"]]),
         FUN = function(x, y) {
@@ -69,12 +66,11 @@ updateDeps <- function(pkg = ".", verbose = FALSE) {
         SIMPLIFY = TRUE,
         USE.NAMES = FALSE
     )
-    names(ok) <- basename(deps[["package"]])
-    if (isTRUE(verbose) && !all(ok)) {
-        print(ok)
+    if (isTRUE(verbose)) {
+        print(deps)
     }
     ## Filter dependencies by which packages need an update.
-    deps <- deps[!ok, , drop = FALSE]
+    deps <- deps[!deps[["pass"]], , drop = FALSE]
     if (identical(nrow(deps), 0L)) {
         message("All dependencies are up-to-date.")
         return(invisible())
