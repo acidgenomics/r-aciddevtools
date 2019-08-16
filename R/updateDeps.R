@@ -3,7 +3,7 @@
 #' Supports Bioconductor, CRAN, and GitHub packages via BiocManager.
 #'
 #' @export
-#' @note Updated 2019-08-13.
+#' @note Updated 2019-08-15.
 #'
 #' @param pkg `character(1)`.
 #'   Package path. Must contain a `DESCRIPTION` file.
@@ -18,9 +18,6 @@ updateDeps <- function(pkg = ".", verbose = FALSE) {
     )
     ## Get dependency versions.
     deps <- desc_get_deps(pkg)
-    if (isTRUE(verbose)) {
-        print(deps)
-    }
     ## Drop base R.
     keep <- deps[["package"]] != "R"
     deps <- deps[keep, , drop = FALSE]
@@ -33,9 +30,6 @@ updateDeps <- function(pkg = ".", verbose = FALSE) {
     current <- installed.packages()[, c("Package", "Version"), drop = FALSE]
     colnames(current)[colnames(current) == "Package"] <- "package"
     colnames(current)[colnames(current) == "Version"] <- "current"
-    if (isTRUE(verbose)) {
-        print(current)
-    }
     ## Create an index column so merge operation doesn't resort.
     deps[["idx"]] <- seq_len(nrow(deps))
     deps <- merge(
@@ -45,11 +39,23 @@ updateDeps <- function(pkg = ".", verbose = FALSE) {
         all.x = TRUE,
         sort = FALSE
     )
+    deps <- deps[order(deps[["idx"]]), , drop = FALSE]
+    deps[["idx"]] <- NULL
+    ## Rename package in data frame to remote name, if necessary.
+    remotes <- desc_get_remotes(pkg)
+    if (length(remotes) > 0L) {
+        x <- remotes
+        table <- deps[["package"]]
+        match <- match(x = basename(x), table = table)
+        for (i in seq_along(match)) {
+            if (is.na(match[i])) next
+            table[match[i]] <- remotes[i]
+        }
+        deps[["package"]] <- table
+    }
     if (isTRUE(verbose)) {
         print(deps)
     }
-    deps <- deps[order(deps[["idx"]]), , drop = FALSE]
-    deps[["idx"]] <- NULL
     ## Get a logical vector of which packages pass requirement.
     ok <- mapply(
         x = deps[["current"]],
@@ -72,20 +78,7 @@ updateDeps <- function(pkg = ".", verbose = FALSE) {
         message("All dependencies are up-to-date.")
         return(invisible())
     }
-    ## Rename package in data frame to remote name, if necessary.
-    remotes <- desc_get_remotes()
-    if (isTRUE(verbose)) {
-        print(remotes)
-    }
-    match <- na.omit(match(
-        x = basename(remotes),
-        table = deps[["package"]]
-    ))
-    if (isTRUE(verbose)) {
-        print(match)
-    }
-    deps[["package"]][match] <- remotes[match]
     pkgs <- deps[["package"]]
     message(sprintf("Updating packages: %s.", toString(pkgs)))
-    BiocManager::install(pkgs = pkgs, ask = FALSE)
+    install(pkgs = pkgs, ask = FALSE)
 }
