@@ -4,13 +4,11 @@
 \alias{updateDeps}
 \title{Update outdated dependencies}
 \usage{
-updateDeps(pkg = ".", verbose = FALSE)
+updateDeps(pkg = ".")
 }
 \arguments{
 \item{pkg}{\code{character(1)}.
 Package path. Must contain a \code{DESCRIPTION} file.}
-
-\item{verbose}{\code{logical(1)}.}
 }
 \value{
 \code{BiocManager::install()} call if packages need an update.
@@ -19,5 +17,5 @@ Package path. Must contain a \code{DESCRIPTION} file.}
 Supports Bioconductor, CRAN, and GitHub packages via BiocManager.
 }
 \note{
-Updated 2019-08-13.
+Updated 2019-08-15.
 }

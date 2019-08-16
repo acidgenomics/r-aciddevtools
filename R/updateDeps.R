@@ -7,15 +7,12 @@
 #'
 #' @param pkg `character(1)`.
 #'   Package path. Must contain a `DESCRIPTION` file.
-#' @param verbose `logical(1)`.
-#"   Enable verbose debugging.
 #'
 #' @return `BiocManager::install()` call if packages need an update.
-updateDeps <- function(pkg = ".", verbose = FALSE) {
-    stopifnot(
-        file.exists(file.path(pkg, "DESCRIPTION")),
-        is.logical(verbose) && identical(length(verbose), 1L)
-    )
+updateDeps <- function(pkg = ".") {
+    stopifnot(file.exists(file.path(pkg, "DESCRIPTION")))
+    pkgname <- desc_get_field(file = pkg, key = "Package")
+    message(sprintf("Checking %s dependencies.", pkgname))
     ## Get dependency versions.
     deps <- desc_get_deps(pkg)
     ## Drop base R.
@@ -66,16 +63,19 @@ updateDeps <- function(pkg = ".", verbose = FALSE) {
         SIMPLIFY = TRUE,
         USE.NAMES = FALSE
     )
-    if (isTRUE(verbose)) {
-        print(deps)
+    if (!all(deps[["pass"]])) {
+        message(paste(
+            capture.output(print(deps, row.names = FALSE)),
+            collapse = "\n"
+        ))
     }
     ## Filter dependencies by which packages need an update.
     deps <- deps[!deps[["pass"]], , drop = FALSE]
     if (identical(nrow(deps), 0L)) {
-        message("All dependencies are up-to-date.")
+        message(sprintf("All %s dependencies are up-to-date.", pkgname))
         return(invisible())
     }
     pkgs <- deps[["package"]]
-    message(sprintf("Updating packages: %s.", toString(pkgs)))
+    message(sprintf("Updating %s dependencies: %s.", pkgname, toString(pkgs)))
     install(pkgs = pkgs, ask = FALSE)
 }
