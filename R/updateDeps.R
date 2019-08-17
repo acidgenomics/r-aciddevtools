@@ -7,9 +7,14 @@
 #'
 #' @param pkg `character(1)`.
 #'   Package path. Must contain a `DESCRIPTION` file.
+#' @param type `character`.
+#'   Dependency type.
 #'
 #' @return `BiocManager::install()` call if packages need an update.
-updateDeps <- function(pkg = ".") {
+updateDeps <- function(
+    pkg = ".",
+    type = c("Depends", "Imports")
+) {
     stopifnot(file.exists(file.path(pkg, "DESCRIPTION")))
     pkgname <- desc_get_field(file = pkg, key = "Package")
     message(sprintf("Checking %s dependencies.", pkgname))
@@ -17,6 +22,9 @@ updateDeps <- function(pkg = ".") {
     deps <- desc_get_deps(pkg)
     ## Drop base R.
     keep <- deps[["package"]] != "R"
+    deps <- deps[keep, , drop = FALSE]
+    ## Keep only requested dependency types.
+    keep <- deps[["type"]] %in% type
     deps <- deps[keep, , drop = FALSE]
     ## Only keep dependencies with a suggested minimum version.
     keep <- grepl("^>= ", deps[["version"]])
