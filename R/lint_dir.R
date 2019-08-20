@@ -14,7 +14,7 @@ lint_dir <-  # nolint
         path = ".",
         recursive = FALSE
     ) {
-        requireNamespace("lintr", quietly = TRUE)
+        stopifnot(requireNamespace("lintr", quietly = TRUE))
         files <- sort(list.files(
             path = path,
             pattern = "*.R",
