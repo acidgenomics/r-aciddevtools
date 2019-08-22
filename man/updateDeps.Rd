@@ -11,7 +11,7 @@ updateDeps(pkg = ".", type = c("Depends", "Imports"))
 Package path. Must contain a \code{DESCRIPTION} file.}
 
 \item{type}{\code{character}.
-Package type.}
+Dependency type.}
 }
 \value{
 \code{BiocManager::install()} call if packages need an update.
