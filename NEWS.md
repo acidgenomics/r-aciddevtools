@@ -1,3 +1,7 @@
+## bb8 0.1.2 (2019-08-22)
+
+- Improved `updateDeps` handling for Rcheck on Travis CI.
+
 ## bb8 0.1.1 (2019-08-13)
 
 - Removed goalie dependency.
