@@ -85,5 +85,5 @@ updateDeps <- function(
     }
     pkgs <- deps[["package"]]
     message(sprintf("Updating %s dependencies: %s.", pkgname, toString(pkgs)))
-    install(pkgs = pkgs, ask = FALSE)
+    install(pkgs = pkgs, update = FALSE, ask = FALSE)
 }
