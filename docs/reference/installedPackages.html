@@ -127,17 +127,26 @@ Bioconductor, or from a remote (i.e. GitHub, GitLab) install.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Updated 2019-10-17.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'>
+<ul>
+<li><p><code><a href='https://rdrr.io/pkg/sessioninfo/man/package_info.html'>sessioninfo::package_info()</a></code>.</p></li>
+<li><p><code><a href='https://rdrr.io/r/utils/installed.packages.html'>utils::installed.packages()</a></code>.</p></li>
+</ul>
+</div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>installedPackages</span>()
-<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span>(<span class='no'>x</span><span class='kw'>[[</span><span class='st'>"source"</span>]], <span class='kw'>useNA</span> <span class='kw'>=</span> <span class='st'>"ifany"</span>)</div><div class='output co'>#&gt; 
-#&gt; Bioconductor         CRAN       GitHub         &lt;NA&gt; 
-#&gt;          138          639           22           22 </div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span>(<span class='no'>x</span><span class='kw'>[[</span><span class='st'>"source"</span>]])</div><div class='output co'>#&gt; 
+#&gt; Bioconductor         CRAN       GitHub        local 
+#&gt;          138          639           22           21 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#note">Note</a></li>
+      <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
