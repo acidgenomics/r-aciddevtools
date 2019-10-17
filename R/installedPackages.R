@@ -6,6 +6,10 @@
 #' @export
 #' @note Updated 2019-10-17.
 #'
+#' @seealso
+#' - `sessioninfo::package_info()`.
+#' - `utils::installed.packages()`.
+#'
 #' @examples
 #' x <- installedPackages()
 #' table(x[["source"]])
