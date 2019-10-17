@@ -6,9 +6,13 @@
 #' @export
 #' @note Updated 2019-10-17.
 #'
+#' @seealso
+#' - `sessioninfo::package_info()`.
+#' - `utils::installed.packages()`.
+#'
 #' @examples
 #' x <- installedPackages()
-#' table(x[["source"]], useNA = "ifany")
+#' table(x[["source"]])
 installedPackages <- function() {
     data <- as.data.frame(installed.packages())
     colnames(data) <- camelCase(colnames(data))
@@ -47,7 +51,9 @@ installedPackages <- function() {
             } else if (isTRUE(isBioconductor(desc))) {
                 "Bioconductor"
             } else {
-                NA_character_
+                ## Using "local" instead of `NA_character_` matches the
+                ## return of `sessioninfo::session_info()`.
+                "local"
             }
         },
         FUN.VALUE = character(1L)
