@@ -15,5 +15,11 @@ Updated 2019-10-17.
 }
 \examples{
 x <- installedPackages()
-table(x[["source"]], useNA = "ifany")
+table(x[["source"]])
+}
+\seealso{
+\itemize{
+\item \code{sessioninfo::package_info()}.
+\item \code{utils::installed.packages()}.
+}
 }
