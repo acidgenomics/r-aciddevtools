@@ -1,0 +1,58 @@
+#' Find installed packages
+#'
+#' Includes "source" column, indicating whether package is from CRAN,
+#' Bioconductor, or from a remote (i.e. GitHub, GitLab) install.
+#'
+#' @export
+#' @note Updated 2019-10-17.
+#'
+#' @examples
+#' x <- installedPackages()
+#' table(x[["source"]], useNA = "ifany")
+installedPackages <- function() {
+    data <- as.data.frame(installed.packages())
+    colnames(data) <- camelCase(colnames(data))
+    pkgs <- data[["package"]]
+    ## Run this check after looking for remote installs, which may contain
+    ## draft biocViews info, even though the package isn't on Bioconductor yet.
+    isBioconductor <- function(desc) {
+        ## Look for canonical Bioconductor Git.
+        ok <- grepl(
+            pattern = "^https://git\\.bioconductor\\.org",
+            x = desc[["git_url"]]
+        )
+        if (isTRUE(ok)) return(TRUE)
+        ok <- !is.null(desc[["biocViews"]])
+        if (isTRUE(ok)) return(TRUE)
+        FALSE
+    }
+    isCRAN <- function(desc) {
+        identical(desc[["Repository"]], "CRAN")
+    }
+    isGitHub <- function(desc) {
+        identical(tolower(desc[["RemoteType"]]), "github")
+    }
+    isGitLab <- function(desc) {
+        identical(tolower(desc[["RemoteType"]]), "gitlab")
+    }
+    source <- vapply(
+        X = pkgs,
+        FUN = function(pkg) {
+            desc <- packageDescription(pkg)
+            if (isTRUE(isCRAN(desc))) {
+                "CRAN"
+            } else if (isTRUE(isGitHub(desc))) {
+                "GitHub"
+            } else if (isTRUE(isGitLab(desc))) {
+                "GitLab"
+            } else if (isTRUE(isBioconductor(desc))) {
+                "Bioconductor"
+            } else {
+                NA_character_
+            }
+        },
+        FUN.VALUE = character(1L)
+    )
+    data[["source"]] <- as.factor(source)
+    data
+}
