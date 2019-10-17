@@ -4,8 +4,10 @@
 #' @importFrom pryr mem_used
 #' @importFrom readr write_lines
 #' @importFrom stats na.omit
+#' @importFrom syntactic camelCase
 #' @importFrom tools Rd_db
 #' @importFrom utils capture.output globalVariables installed.packages
+#'   packageDescription
 NULL
 
 globalVariables(".")
