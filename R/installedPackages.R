@@ -16,7 +16,6 @@ installedPackages <- function() {
     ## Run this check after looking for remote installs, which may contain
     ## draft biocViews info, even though the package isn't on Bioconductor yet.
     isBioconductor <- function(desc) {
-        ## Look for canonical Bioconductor Git.
         ok <- grepl(
             pattern = "^https://git\\.bioconductor\\.org",
             x = desc[["git_url"]]
