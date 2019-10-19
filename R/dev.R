@@ -1,7 +1,7 @@
 #' Attach developer packages
 #'
 #' @export
-#' @note Updated 2019-08-13.
+#' @note Updated 2019-10-19.
 #'
 #' @param quiet `logical(1)`.
 #'   Load packages quietly.
@@ -11,22 +11,35 @@
 #'
 #' @examples
 #' ## Load the developer environment.
-#' ## > bb8()
+#' ## > dev()
 dev <- function(quiet = TRUE) {
-    path <- find.package("bb8")
-    deps <- desc_get_deps(path)
-
-    ## Note that we're only attaching the suggested packages here.
-    ## Order is important. Note that the last item specified in "Suggests" in
-    ## DESCRIPTION file will take priority in the NAMESPACE.
-    pkgs <- deps[deps[["type"]] == "Suggests", "package", drop = TRUE]
-
+    stopifnot(requireNamespace("utils", quietly = TRUE))
+    ## Order is important here.
+    pkgs <- c(
+        "SummarizedExperiment",
+        "SingleCellExperiment",
+        "Rcpp",
+        "rlang",
+        "R.utils",
+        "magrittr",
+        "scales",
+        "devtools",
+        "knitr",
+        "lintr",
+        "pkgdown",
+        "covr",
+        "testthat",
+        "patrick",
+        "basejump",
+        "tidyselect",
+        "tidyverse"
+    )
     ## Stop on missing deps.
-    notInstalled <- setdiff(pkgs, rownames(installed.packages()))
+    installed <- utils::installed.packages()[["Package"]]
+    notInstalled <- setdiff(pkgs, installed)
     if (length(notInstalled) > 0L) {
         stop(sprintf("Not installed: %s.", toString(notInstalled)))
     }
-
     ## Attach unloaded deps.
     attached <- lapply(
         X = pkgs,
@@ -43,7 +56,6 @@ dev <- function(quiet = TRUE) {
             }
         })
     attached <- unlist(attached)
-
     ## Invisibly return information on attached packages.
     invisible(attached)
 }
