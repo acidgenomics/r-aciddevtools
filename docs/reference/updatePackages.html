@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>R documentation table — tabular • bb8</title>
+<title>Update all installed packages — updatePackages • bb8</title>
 
 
 <!-- jquery -->
@@ -37,8 +37,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="R documentation table — tabular" />
-<meta property="og:description" content="R documentation table" />
+<meta property="og:title" content="Update all installed packages — updatePackages" />
+<meta property="og:description" content="Update all installed packages" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -110,44 +110,38 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>R documentation table</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/bb8/blob/master/R/tabular.R'><code>R/tabular.R</code></a></small>
-    <div class="hidden name"><code>tabular.Rd</code></div>
+    <h1>Update all installed packages</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/bb8/blob/master/R/updatePackages.R'><code>R/updatePackages.R</code></a></small>
+    <div class="hidden name"><code>updatePackages.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>R documentation table</p>
+    <p>Update all installed packages</p>
     </div>
 
-    <pre class="usage"><span class='fu'>tabular</span>(<span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>updatePackages</span>()</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p><code>data.frame</code>.</p></td>
-    </tr>
-    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Console output.</p>
+    <p>Invisible <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>.
+Whether installation passes Bioconductor validity checks.
+See <code><a href='https://rdrr.io/pkg/BiocManager/man/valid.html'>BiocManager::valid()</a></code> for details.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-08-13.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <p>Conflicts with <code><a href='https://rdrr.io/r/stats/update.html'>stats::update()</a></code>.</p>
+<p>Updated 2019-10-19.</p>
 
-    <div class='dont-index'><p>http://r-pkgs.had.co.nz/man.html</p></div>
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>## > update()
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
       <li><a href="#note">Note</a></li>
-      <li><a href="#see-also">See also</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
