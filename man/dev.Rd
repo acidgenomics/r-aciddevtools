@@ -18,9 +18,9 @@ this function call.
 Attach developer packages
 }
 \note{
-Updated 2019-08-13.
+Updated 2019-10-19.
 }
 \examples{
 ## Load the developer environment.
-## > bb8()
+## > dev()
 }

@@ -20,5 +20,11 @@ Dependency type.}
 Supports Bioconductor, CRAN, and GitHub packages via BiocManager.
 }
 \note{
-Updated 2019-08-15.
+Updated 2019-10-19.
+}
+\seealso{
+\itemize{
+\item desc package.
+\item \code{utils::packageDescription()}.
+}
 }

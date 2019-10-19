@@ -4,7 +4,7 @@
 #' Bioconductor, or from a remote (i.e. GitHub, GitLab) install.
 #'
 #' @export
-#' @note Updated 2019-10-17.
+#' @note Updated 2019-10-19.
 #'
 #' @seealso
 #' - `sessioninfo::package_info()`.
@@ -14,8 +14,12 @@
 #' x <- installedPackages()
 #' table(x[["source"]])
 installedPackages <- function() {
-    data <- as.data.frame(installed.packages())
-    colnames(data) <- camelCase(colnames(data))
+    stopifnot(
+        requireNamespace("syntactic", quietly = TRUE),
+        requireNamespace("utils", quietly = TRUE)
+    )
+    data <- as.data.frame(utils::installed.packages())
+    colnames(data) <- syntactic::camelCase(colnames(data))
     pkgs <- data[["package"]]
     ## Run this check after looking for remote installs, which may contain
     ## draft biocViews info, even though the package isn't on Bioconductor yet.
@@ -42,7 +46,7 @@ installedPackages <- function() {
     source <- vapply(
         X = pkgs,
         FUN = function(pkg) {
-            desc <- packageDescription(pkg)
+            desc <- utils::packageDescription(pkg)
             if (isTRUE(isCRAN(desc))) {
                 "CRAN"
             } else if (isTRUE(isGitHub(desc))) {

@@ -11,6 +11,10 @@
 #' @examples
 #' ## > update()
 updatePackages <- function() {
+    stopifnot(
+        requireNamespace("BiocManager", quietly = TRUE),
+        requireNamespace("remotes", quietly = TRUE),
+    )
     remotes::update_packages(
         packages = TRUE,
         dependencies = TRUE,

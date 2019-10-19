@@ -9,7 +9,7 @@
 #' Determine whether a user has installed packages into the system library.
 #'
 #' @export
-#' @note Updated 2019-08-13.
+#' @note Updated 2019-10-19.
 #'
 #' @return `logical(1)`.
 #' Is the system library clean?
@@ -17,25 +17,22 @@
 #' @examples
 #' cleanSystemLibrary()
 cleanSystemLibrary <- function() {
-    x <- installed.packages()
-
+    stopifnot(requireNamespace("utils", quietly = TRUE))
+    x <- utils::installed.packages()
     ## Subset information on base packages.
     base <- x[which(x[, "Priority"] == "base"), , drop = FALSE]
-
     ## Expect a single system library.
     syslib <- unique(base[, "LibPath"])
     if (!identical(length(syslib), 1L)) {
         message("Detected multiple system libraries")
         return(FALSE)
     }
-
     ## Subset packages in the system library.
     system <- x[which(x[, "LibPath"] == syslib), ]
     if (any(is.na(system[, "Priority"]))) {
         message("Detected user-installed packages in system library")
         return(FALSE)
     }
-
     ## Check for packages built against a different point release.
     ## (e.g. 3.5.1)
     version <- getRversion()
@@ -49,7 +46,6 @@ cleanSystemLibrary <- function() {
         message("Detected packages built against a different release")
         return(FALSE)
     }
-
     TRUE
 }
 

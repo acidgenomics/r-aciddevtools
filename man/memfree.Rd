@@ -12,7 +12,7 @@ Get free memory statistics.
 \note{
 Currently this only works for Linux.
 
-Updated 2019-08-13.
+Updated 2019-10-19.
 }
 \seealso{
 \itemize{
