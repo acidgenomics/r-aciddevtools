@@ -10,7 +10,7 @@
 #'
 #' @examples
 #' ## > update()
-update <- function() {
+updatePackages <- function() {
     remotes::update_packages(
         packages = TRUE,
         dependencies = TRUE,
