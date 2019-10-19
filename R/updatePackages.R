@@ -9,12 +9,10 @@
 #'   See [BiocManager::valid()] for details.
 #'
 #' @examples
-#' ## > update()
+#' ## > updatePackages()
 updatePackages <- function() {
-    stopifnot(
-        requireNamespace("BiocManager", quietly = TRUE),
-        requireNamespace("remotes", quietly = TRUE),
-    )
+    stopifnot(requireNamespace("BiocManager", quietly = TRUE))
+    stopifnot(requireNamespace("remotes", quietly = TRUE))
     remotes::update_packages(
         packages = TRUE,
         dependencies = TRUE,
