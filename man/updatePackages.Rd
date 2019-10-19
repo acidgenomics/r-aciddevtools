@@ -20,5 +20,5 @@ Conflicts with \code{stats::update()}.
 Updated 2019-10-19.
 }
 \examples{
-## > update()
+## > updatePackages()
 }
