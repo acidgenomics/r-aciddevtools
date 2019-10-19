@@ -32,9 +32,6 @@
 #' @param lib `character`.
 #'   Destination library directory paths.
 #'   Defaults to the first element of [`.libPaths()`][base::libPaths].
-#' @param repos `character`.
-#'   The base URL(s) of the repositories to use. Defaults to Bioconductor, but
-#'   CRAN (`"https://cloud.r-project.org"`) or MRAN archive can be used.
 #' @param type `character(1)`.
 #'   Type of package to download and install. `"source"` is recommended by
 #'   default, but `"binary"` can be used on macOS or Windows to install
@@ -56,7 +53,6 @@ install <- function(
     configureVars = getOption("configure.vars"),
     dependencies = TRUE,
     lib = .libPaths()[[1L]],
-    repos = BiocManager::repositories(),
     type = getOption("pkgType")
 ) {
     stopifnot(
@@ -87,7 +83,6 @@ install <- function(
                     configure.args = configureArgs,
                     configure.vars = configureVars,
                     dependencies = dependencies,
-                    repos = repos,
                     type = type
                 )
             )

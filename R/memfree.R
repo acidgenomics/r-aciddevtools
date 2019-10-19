@@ -2,7 +2,7 @@
 #'
 #' @export
 #' @note Currently this only works for Linux.
-#' @note Updated 2019-08-13.
+#' @note Updated 2019-10-19.
 #'
 #' @seealso
 #' - `help(topic = "Memory", package = "base")`.
@@ -14,17 +14,20 @@
 #' - https://stat.ethz.ch/R-manual/R-devel/library/base/html/Memory-limits.html
 #' - http://adv-r.had.co.nz/memory.html
 memfree <- function() {
-    message("Running garbage collection first with base::gc().")
-    print(gc(verbose = TRUE, full = TRUE))
-    memUsed <- capture.output(print(mem_used()))
-    memFree <- .format.object_size(
-        as.numeric(
-            system("awk '/MemFree/ {print $2}' /proc/meminfo", intern = TRUE)
-        ),
-        "auto"
+    stopifnot(
+        identical(R.Version()$os, "linux-gnu"),  # nolint
+        requireNamespace("pryr", quietly = TRUE),
+        requireNamespace("utils", quietly = TRUE)
     )
-    message(sprintf("Memory used: %d, via 'pryr::mem_used'.", memUsed))
-    message(sprintf("Memory free: %d, via 'awk MemFree'.", memFree))
+    message("Running garbage collection first with 'base::gc()'.")
+    print(gc(verbose = TRUE, full = TRUE))
+    memUsed <- utils::capture.output(print(pryr::mem_used()))
+    memFree <- system("awk '/MemFree/ {print $2}' /proc/meminfo", intern = TRUE)
+    memFree <- .format.object_size(as.numeric(memFree), "auto")
+    message(
+        sprintf("Memory used: %d, via 'pryr::mem_used'.", memUsed), "\n",
+        sprintf("Memory free: %d, via 'awk MemFree'.", memFree)
+    )
 }
 
 

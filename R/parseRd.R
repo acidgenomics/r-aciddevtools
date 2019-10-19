@@ -35,20 +35,17 @@
 #' print(examples)
 parseRd <- function(object, tag) {
     stopifnot(
-        is(object, "Rd"),
+        requireNamespace("methods", quietly = TRUE),
+        methods::is(object, "Rd"),
         is.character(tag) && identical(length(tag), 1L)
     )
-
     tags <- RdTags(object)
     stopifnot(all(tag %in% tags))
-
     ## Get the metadata that matches the requested tag.
     data <- object[tags == tag]
     data <- unlist(data)
-
     ## Strip trailing newlines and superfluous whitespace.
     data <- trimws(data, which = "right")
-
     ## Strip leading and trailing carriage returns, if present.
     if (data[[1L]] == "") {
         data <- data[-1L]
@@ -56,6 +53,5 @@ parseRd <- function(object, tag) {
     if (data[[length(data)]] == "") {
         data <- data[-length(data)]
     }
-
     data
 }

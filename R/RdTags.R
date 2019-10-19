@@ -3,7 +3,7 @@
 #' Modified version of the unexported `tools:::RdTags` function.
 #'
 #' @export
-#' @note Updated 2019-08-13.
+#' @note Updated 2019-10-19.
 #'
 #' @inheritParams parseRd
 #'
@@ -12,7 +12,10 @@
 #' Rd <- db[["nrow.Rd"]]
 #' RdTags(Rd)
 RdTags <- function(object) {  # nolint
-    stopifnot(is(object, "Rd"))
+    stopifnot(
+        requireNamespace("methods", quietly = TRUE),
+        methods::is(object, "Rd")
+    )
     tags <- vapply(
         X = object,
         FUN = attr,

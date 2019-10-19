@@ -5,7 +5,7 @@
 #' requests in a single call.
 #'
 #' @export
-#' @note Updated 2019-08-13.
+#' @note Updated 2019-10-19.
 #'
 #' @inheritParams params
 #' @param Rd `character` or `NULL`.
@@ -32,24 +32,22 @@ saveRdExamples <- function(
     dir = "."
 ) {
     stopifnot(
+        requireNamespace("readr", quietly = TRUE),
+        requireNamespace("tools", quietly = TRUE),
         is.character(Rd) || is.null(Rd),
         is.character(package) && identical(length(package), 1L),
         is.character(dir) && identical(length(dir), 1L)
     )
     dir.create(dir, showWarnings = FALSE, recursive = TRUE)
-
     ## Get a database of the Rd files available in the requested package.
-    db <- Rd_db(package)
+    db <- tools::Rd_db(package)
     names(db) <- gsub("\\.Rd", "", names(db))
-
     ## If no Rd file is specified, save everything in package.
     if (is.null(Rd)) {
         Rd <- names(db)  # nolint
     }
-
     ## Check that the requiested function(s) are valid.
     stopifnot(all(Rd %in% names(db)))
-
     ## Parse the Rd files and return the working examples as a character.
     list <- mapply(
         Rd = Rd,
@@ -62,34 +60,29 @@ saveRdExamples <- function(
                 expr = parseRd(db[[Rd]], tag = "examples"),
                 error = function(e) character()
             )
-
             ## Early return if there are no examples.
             if (length(x) == 0L) {
                 message(sprintf("Skipped '%s'.", Rd))
                 return(invisible())
             }
-
             ## Save to an R script.
             path <- file.path(dir, paste0(Rd, ".R"))
             unlink(path)
-            write_lines(x = x, path = path)
+            readr::write_lines(x = x, path = path)
             path
         },
         SIMPLIFY = FALSE,
         USE.NAMES = TRUE
     )
-
     ## Coerce to character and remove NULL items.
     paths <- Filter(Negate(is.null), list)
     names <- names(paths)
     paths <- as.character(paths)
     names(paths) <- names
-
     message(sprintf(
         fmt = "Saved %d Rd examples from %s to '%s'.",
         length(paths), package, dir
     ))
-
     ## Return file paths of saved R scripts.
     invisible(paths)
 }
