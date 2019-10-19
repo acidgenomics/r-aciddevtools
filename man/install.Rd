@@ -6,8 +6,7 @@
 \usage{
 install(pkgs, configureArgs = getOption("configure.args"),
   configureVars = getOption("configure.vars"), dependencies = TRUE,
-  lib = .libPaths()[[1L]], repos = BiocManager::repositories(),
-  type = getOption("pkgType"))
+  lib = .libPaths()[[1L]], type = getOption("pkgType"))
 }
 \arguments{
 \item{pkgs}{\code{character}.
@@ -44,10 +43,6 @@ these packages depend on/link to/import/suggest.
 \item{lib}{\code{character}.
 Destination library directory paths.
 Defaults to the first element of \code{\link[base:libPaths]{.libPaths()}}.}
-
-\item{repos}{\code{character}.
-The base URL(s) of the repositories to use. Defaults to Bioconductor, but
-CRAN (\code{"https://cloud.r-project.org"}) or MRAN archive can be used.}
 
 \item{type}{\code{character(1)}.
 Type of package to download and install. \code{"source"} is recommended by
