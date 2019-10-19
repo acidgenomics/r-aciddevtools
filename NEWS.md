@@ -1,3 +1,10 @@
+## bb8 0.1.5 (2019-10-19)
+
+- Added `install`, which wraps `BiocManager::install` with some improved
+  defaults for Mike's usage.
+- Added `updatePackages`, which wraps `BiocManager::install` and
+  `remotes::update_packages` with some improved defaults.
+
 ## bb8 0.1.4 (2019-10-17)
 
 - Removed `lint_dir`, which is now exported in lintr package.
