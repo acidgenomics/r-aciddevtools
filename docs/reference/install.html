@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Save R documentation examples — saveRdExamples • bb8</title>
+<title>Install packages from Bioconductor, CRAN, or a Git remote — install • bb8</title>
 
 
 <!-- jquery -->
@@ -37,10 +37,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Save R documentation examples — saveRdExamples" />
-<meta property="og:description" content="Parse the documentation for a function and save the working examples to an R
-script. Note that the f argument is parameterized and can handle multiple
-requests in a single call." />
+<meta property="og:title" content="Install packages from Bioconductor, CRAN, or a Git remote — install" />
+<meta property="og:description" content="Install packages from Bioconductor, CRAN, or a Git remote" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -112,56 +110,92 @@ requests in a single call." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Save R documentation examples</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/bb8/blob/master/R/saveRdExamples.R'><code>R/saveRdExamples.R</code></a></small>
-    <div class="hidden name"><code>saveRdExamples.Rd</code></div>
+    <h1>Install packages from Bioconductor, CRAN, or a Git remote</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/bb8/blob/master/R/install.R'><code>R/install.R</code></a></small>
+    <div class="hidden name"><code>install.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Parse the documentation for a function and save the working examples to an R
-script. Note that the <code>f</code> argument is parameterized and can handle multiple
-requests in a single call.</p>
+    <p>Install packages from Bioconductor, CRAN, or a Git remote</p>
     </div>
 
-    <pre class="usage"><span class='fu'>saveRdExamples</span>(<span class='kw'>Rd</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>package</span>, <span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"."</span>)</pre>
+    <pre class="usage"><span class='fu'>install</span>(<span class='no'>pkgs</span>, <span class='kw'>configureArgs</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"configure.args"</span>),
+  <span class='kw'>configureVars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"configure.vars"</span>), <span class='kw'>dependencies</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>lib</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/libPaths.html'>.libPaths</a></span>()<span class='kw'>[[</span><span class='fl'>1L</span>]], <span class='kw'>repos</span> <span class='kw'>=</span> <span class='kw pkg'>BiocManager</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocManager/man/repositories.html'>repositories</a></span>(),
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"pkgType"</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>Rd</th>
-      <td><p><code>character</code> or <code>NULL</code>.
-R documentation name(s) from which to parse and save the working examples.
-If <code>NULL</code>, all documentation files containing examples will be saved.</p></td>
+      <th>pkgs</th>
+      <td><p><code>character</code>.
+Package names to install.
+Package names containing a "/" are treated as GitHub repositories and
+installed using <code><a href='https://rdrr.io/pkg/remotes/man/install_github.html'>remotes::install_github()</a></code>.</p></td>
     </tr>
     <tr>
-      <th>package</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
-Package name.</p></td>
+      <th>configureArgs, configureVars</th>
+      <td><p><code>character</code> or named <code>list</code>.
+<em>Used only for source installs.</em> If a character vector with no names is
+supplied, the elements are concatenated into a single string (separated by
+a space) and used as the value for the <code>--configure-args</code> or
+<code>configure-vars</code> flag in the call to <code>R CMD INSTALL</code>. If the character
+vector has names, these are assumed to identify values for
+<code>--configure-args</code> or <code>--configure-vars</code> for individual packages. This
+allows one to specify settings for an entire collection of packages which
+will be used if any of those packages are to be installed.</p>
+<p>A named list can be used also to the same effect, and that allows
+multi-element character strings for each package which are concatenated to
+a single string to be used as the value for <code>--configure-args</code> and/or
+<code>--configure-vars</code>.</p></td>
     </tr>
     <tr>
-      <th>dir</th>
+      <th>dependencies</th>
+      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>, <code>character</code>, or <code>NA</code>.</p><ul>
+<li><p><code>TRUE</code>/<code>FALSE</code> indicating whether to install uninstalled packages which
+these packages depend on/link to/import/suggest.</p></li>
+<li><p>Can pass a <code>character</code> vector, a subset of
+<code><a href='https://rdrr.io/r/base/c.html'>c("Depends", "Imports", " LinkingTo", "Suggests", "Enhances")</a></code>.</p></li>
+<li><p>Can pass <code>NA</code>, the default for
+<code><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages()</a></code>, which means
+<code><a href='https://rdrr.io/r/base/c.html'>c("Depends", "Imports", "LinkingTo")</a></code>.</p></li>
+</ul></td>
+    </tr>
+    <tr>
+      <th>lib</th>
+      <td><p><code>character</code>.
+Destination library directory paths.
+Defaults to the first element of <code><a href='https://rdrr.io/r/base/libPaths.html'>.libPaths()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>repos</th>
+      <td><p><code>character</code>.
+The base URL(s) of the repositories to use. Defaults to Bioconductor, but
+CRAN (<code>"https://cloud.r-project.org"</code>) or MRAN archive can be used.</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
       <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
-Directory path.</p></td>
+Type of package to download and install. <code>"source"</code> is recommended by
+default, but <code>"binary"</code> can be used on macOS or Windows to install
+pre-built binaries from CRAN or Bioconductor.</p>
+<p>Note that installing from source requires the correct GCC and GNU Fortran
+binaries to be installed, and Apple LLVM/Clang compilers should not be used
+on macOS. Refer to <a href='macOS development tools'>macOS development tools</a> for details.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Invisible <code>character</code>.
-File path(s).</p>
+    <p>Invisible <code>NULL</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-08-13.</p>
+    <p>Updated 2019-10-19.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>saveRdExamples</span>(
-    <span class='kw'>Rd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"do.call"</span>, <span class='st'>"droplevels"</span>),
-    <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"base"</span>,
-    <span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"example"</span>
-)</div><div class='output co'>#&gt; <span class='message'>Saved 2 Rd examples from base to 'example'.</span></div><div class='input'>
-<span class='co'>## Clean up.</span>
-<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"example"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
+    <pre class="examples"><div class='input'>## > install(pkgs = c("DESeq2", "edgeR"))
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
