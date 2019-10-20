@@ -17,5 +17,5 @@ Alias for \code{\link[=setwd]{setwd()}} function.
 Updated 2019-10-19.
 }
 \examples{
-cd("~")
+## > cd("~")
 }
