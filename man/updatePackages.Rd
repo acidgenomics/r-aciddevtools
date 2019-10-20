@@ -7,7 +7,7 @@
 updatePackages()
 }
 \value{
-Invisible \code{logical(1)}.
+Invisible \code{TRUE} or console output.
 Whether installation passes Bioconductor validity checks.
 See \code{\link[BiocManager:valid]{BiocManager::valid()}} for details.
 }

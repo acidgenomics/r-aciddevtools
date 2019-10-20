@@ -4,7 +4,7 @@
 #' @note Conflicts with `stats::update()`.
 #' @note Updated 2019-10-19.
 #'
-#' @return Invisible `logical(1)`.
+#' @return Invisible `TRUE` or console output.
 #'   Whether installation passes Bioconductor validity checks.
 #'   See [BiocManager::valid()] for details.
 #'
@@ -27,5 +27,9 @@ updatePackages <- function() {
         checkBuilt = TRUE
     )
     out <- BiocManager::valid()
-    invisible(out)
+    if (isTRUE(out)) {
+        invisible(TRUE)
+    } else {
+        out
+    }
 }
