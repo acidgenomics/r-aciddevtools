@@ -4,7 +4,7 @@
 #' view S4 DataFrame objects.
 #'
 #' @export
-#' @note Updated 2019-10-19.
+#' @note Updated 2019-10-20.
 #'
 #' @inheritParams params
 #'
@@ -13,8 +13,8 @@
 #'   In RStudio, this will open a tabbed window.
 #'
 #' @examples
-#' view(mtcars)
-view <- function(object) {
+#' view2(mtcars)
+view2 <- function(object) {
     stopifnot(requireNamespace("methods", quietly = TRUE))
     ## Coerce S4 object, if applicable.
     if (methods::is(object, "DataFrame")) {
