@@ -58,13 +58,37 @@ available <- function() {
 
 
 
-## basejump ====================================================================
+## brio ========================================================================
+#' @rdname reexports
+#' @usage NULL
+#' @export
+export <- function(...) {
+    stopifnot(requireNamespace("brio", quietly = TRUE))
+    brio::export(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+import <- function(...) {
+    stopifnot(requireNamespace("brio", quietly = TRUE))
+    brio::import(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+loadData <- function(...) {
+    stopifnot(requireNamespace("brio", quietly = TRUE))
+    brio::loadData(...)
+}
+
 #' @rdname reexports
 #' @usage NULL
 #' @export
 saveData <- function(...) {
-    stopifnot(requireNamespace("basejump", quietly = TRUE))
-    basejump::saveData(...)
+    stopifnot(requireNamespace("brio", quietly = TRUE))
+    brio::saveData(...)
 }
 
 
@@ -177,6 +201,7 @@ lint_package <- function(...) {
 #' @usage NULL
 #' @export
 build_articles <- function(...) {
+    stopifnot(requireNamespace("pkgdown", quietly = TRUE))
     pkgdown::build_articles(...)
 }
 
@@ -184,6 +209,7 @@ build_articles <- function(...) {
 #' @usage NULL
 #' @export
 build_home <- function(...) {
+    stopifnot(requireNamespace("pkgdown", quietly = TRUE))
     pkgdown::build_home(...)
 }
 
@@ -191,6 +217,7 @@ build_home <- function(...) {
 #' @usage NULL
 #' @export
 build_news <- function(...) {
+    stopifnot(requireNamespace("pkgdown", quietly = TRUE))
     pkgdown::build_news(...)
 }
 
@@ -198,6 +225,7 @@ build_news <- function(...) {
 #' @usage NULL
 #' @export
 build_reference <- function(...) {
+    stopifnot(requireNamespace("pkgdown", quietly = TRUE))
     pkgdown::build_reference(...)
 }
 
@@ -205,6 +233,7 @@ build_reference <- function(...) {
 #' @usage NULL
 #' @export
 build_reference_index <- function(...) {
+    stopifnot(requireNamespace("pkgdown", quietly = TRUE))
     pkgdown::build_reference_index(...)
 }
 
@@ -241,11 +270,39 @@ render <- function(...) {
 
 
 
+## syntactic ===================================================================
+#' @rdname reexports
+#' @usage NULL
+#' @export
+camelCase <- function(...) {
+    stopifnot(requireNamespace("syntactic", quietly = TRUE))
+    syntactic::camelCase(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+makeNames <- function(...) {
+    stopifnot(requireNamespace("syntactic", quietly = TRUE))
+    syntactic::makeNames(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+snakeCase <- function(...) {
+    stopifnot(requireNamespace("syntactic", quietly = TRUE))
+    syntactic::snakeCase(...)
+}
+
+
+
 ## usethis =====================================================================
 #' @rdname reexports
 #' @usage NULL
 #' @export
 use_data <- function(..., overwrite = TRUE) {
+    stopifnot(requireNamespace("usethis", quietly = TRUE))
     usethis::use_data(..., overwrite = overwrite)
 }
 
@@ -266,6 +323,13 @@ check <- function() {
 devinstall <- function(..., dependencies = FALSE) {
     stopifnot(requireNamespace("devtools", quietly = TRUE))
     devtools::install(..., dependencies = dependencies)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+doc <- function(...) {
+    document(...)
 }
 
 
