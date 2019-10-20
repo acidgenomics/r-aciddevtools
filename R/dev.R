@@ -35,7 +35,7 @@ dev <- function(quiet = TRUE) {
         "tidyverse"
     )
     ## Stop on missing deps.
-    installed <- utils::installed.packages()[["Package"]]
+    installed <- rownames(utils::installed.packages())
     notInstalled <- setdiff(pkgs, installed)
     if (length(notInstalled) > 0L) {
         stop(sprintf("Not installed: %s.", toString(notInstalled)))
