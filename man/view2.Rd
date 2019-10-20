@@ -6,6 +6,9 @@
 \usage{
 view2(object)
 }
+\arguments{
+\item{object}{Object.}
+}
 \value{
 Invisible \code{NULL}.
 This function puts up a window and returns immediately.
@@ -19,5 +22,5 @@ view S4 DataFrame objects.
 Updated 2019-10-20.
 }
 \examples{
-view2(mtcars)
+## > view2(mtcars)
 }

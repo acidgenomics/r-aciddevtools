@@ -5,6 +5,8 @@
 \alias{BiocCheck}
 \alias{valid}
 \alias{available}
+\alias{export}
+\alias{import}
 \alias{loadData}
 \alias{saveData}
 \alias{report}
@@ -24,10 +26,13 @@
 \alias{build_site}
 \alias{rcmdcheck}
 \alias{render}
+\alias{camelCase}
+\alias{makeNames}
+\alias{snakeCase}
 \alias{use_data}
 \alias{check}
-\alias{doc}
 \alias{devinstall}
+\alias{doc}
 \title{Reexported functions}
 \description{
 Intended for use inside Rprofile internal env.
