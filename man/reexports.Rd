@@ -5,6 +5,7 @@
 \alias{BiocCheck}
 \alias{valid}
 \alias{available}
+\alias{loadData}
 \alias{saveData}
 \alias{report}
 \alias{build}
@@ -25,6 +26,7 @@
 \alias{render}
 \alias{use_data}
 \alias{check}
+\alias{doc}
 \alias{devinstall}
 \title{Reexported functions}
 \description{

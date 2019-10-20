@@ -15,9 +15,12 @@
 #' @examples
 #' view2(mtcars)
 view2 <- function(object) {
-    stopifnot(requireNamespace("methods", quietly = TRUE))
+    stopifnot(
+        requireNamespace("goalie", quietly = TRUE),
+        requireNamespace("methods", quietly = TRUE)
+    )
     ## Coerce S4 object, if applicable.
-    if (methods::is(object, "DataFrame")) {
+    if (goalie::isAny(object, c("DataFrame", "GRanges"))) {
         object <- as.data.frame(object)
     }
     if (!isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY")))) {
