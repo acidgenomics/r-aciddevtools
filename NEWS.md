@@ -1,9 +1,13 @@
-## bb8 0.1.5 (2019-10-19)
+## bb8 0.2.0 (2019-10-20)
 
 - Added `install`, which wraps `BiocManager::install` with some improved
   defaults for Mike's usage.
 - Added `updatePackages`, which wraps `BiocManager::install` and
   `remotes::update_packages` with some improved defaults.
+- Rexporting additional useful functions that get loaded by default in an
+  interactive R session. See Mike's corresponding `Rprofile` dotfile.
+- Package doesn't load any other additional packages as dependencies, to keep
+  loading super fast in a new R session.
 
 ## bb8 0.1.4 (2019-10-17)
 
