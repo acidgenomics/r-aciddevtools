@@ -24,9 +24,11 @@ Suggests:
     BiocCheck,
     BiocManager,
     available,
+    brio,
     covr,
     desc,
     devtools,
+    goalie,
     lintr,
     methods,
     parallel,
@@ -41,6 +43,8 @@ Suggests:
     usethis,
     utils
 Remotes:
+    acidgenomics/brio,
+    acidgenomics/goalie,
     acidgenomics/syntactic
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1

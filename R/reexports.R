@@ -58,13 +58,21 @@ available <- function() {
 
 
 
-## basejump ====================================================================
+## brio ========================================================================
+#' @rdname reexports
+#' @usage NULL
+#' @export
+loadData <- function(...) {
+    stopifnot(requireNamespace("brio", quietly = TRUE))
+    brio::loadData(...)
+}
+
 #' @rdname reexports
 #' @usage NULL
 #' @export
 saveData <- function(...) {
-    stopifnot(requireNamespace("basejump", quietly = TRUE))
-    basejump::saveData(...)
+    stopifnot(requireNamespace("brio", quietly = TRUE))
+    brio::saveData(...)
 }
 
 
@@ -258,6 +266,13 @@ use_data <- function(..., overwrite = TRUE) {
 check <- function() {
     rcmdcheck()
     BiocCheck()
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+doc <- function(...) {
+    document(...)
 }
 
 #' @rdname reexports
