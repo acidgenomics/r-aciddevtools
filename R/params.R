@@ -7,6 +7,7 @@
 #'   Directory path.
 #' @param path `character(1)`.
 #'   File path.
+#' @param object Object.
 #' @param x Object.
 #' @param ... Additional arguments.
 #'

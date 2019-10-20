@@ -13,7 +13,7 @@
 #'   In RStudio, this will open a tabbed window.
 #'
 #' @examples
-#' view2(mtcars)
+#' ## > view2(mtcars)
 view2 <- function(object) {
     stopifnot(
         requireNamespace("goalie", quietly = TRUE),
