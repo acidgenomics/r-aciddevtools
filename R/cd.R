@@ -8,7 +8,7 @@
 #' @inheritParams params
 #'
 #' @examples
-#' cd("~")
+#' ## > cd("~")
 cd <- function(dir) {
     setwd(dir)
 }
