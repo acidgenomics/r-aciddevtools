@@ -22,7 +22,7 @@ view <- function(object) {
     }
     if (!isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY")))) {
         stopifnot(requireNamespace("utils", quietly = TRUE))
-        View <- utils::View
+        View <- utils::View  # nolint
     }
     View(object)
 }

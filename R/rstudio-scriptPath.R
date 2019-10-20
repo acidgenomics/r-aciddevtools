@@ -12,7 +12,7 @@ scriptPath <- function() {
         isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY"))),
         requireNamespace("rstudioapi", quietly = TRUE)
     )
-    x <- rstudioapi::getSourceEditorContext()$path
+    x <- rstudioapi::getSourceEditorContext()[["path"]]
     x <- normalizePath(x)
     x
 }

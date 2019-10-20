@@ -1,3 +1,7 @@
+## nolint start
+
+
+
 #' Reexported functions
 #'
 #' Intended for use inside Rprofile internal env.
@@ -265,3 +269,7 @@ valid <- function(...) {
     stopifnot(requireNamespace("BiocManager", quietly = TRUE))
     BiocManager::valid(...)
 }
+
+
+
+## nolint end
