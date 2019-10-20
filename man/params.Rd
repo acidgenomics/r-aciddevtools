@@ -10,6 +10,8 @@ Directory path.}
 \item{path}{\code{character(1)}.
 File path.}
 
+\item{object}{Object.}
+
 \item{x}{Object.}
 
 \item{...}{Additional arguments.}

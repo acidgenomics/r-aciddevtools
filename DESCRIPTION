@@ -23,24 +23,32 @@ URL:
 Suggests:
     BiocCheck,
     BiocManager,
+    DT,
     available,
+    brio,
     covr,
     desc,
     devtools,
+    goalie,
     lintr,
     methods,
     parallel,
+    patrick,
     pkgdown,
     pryr,
     rcmdcheck,
     readr,
     remotes,
     rmarkdown,
+    rstudioapi,
     syntactic,
+    testthat,
     tools,
     usethis,
     utils
 Remotes:
+    acidgenomics/brio,
+    acidgenomics/goalie,
     acidgenomics/syntactic
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1

@@ -6,9 +6,7 @@ Trusty sidekick for [R][] package development.
 
 ## Installation
 
-### [Bioconductor][] method
-
-We recommend installing the package with [BiocManager][].
+This package is intended for internal use and will not be published on [CRAN][].
 
 ```r
 if (!require("BiocManager")) {
@@ -18,6 +16,5 @@ BiocManager::install("remotes")
 BiocManager::install("acidgenomics/bb8")
 ```
 
-[Bioconductor]: https://bioconductor.org
-[BiocManager]: https://cran.r-project.org/package=BiocManager
-[R]: https://www.r-project.org
+[cran]: https://cran.r-project.org/
+[r]: https://www.r-project.org/
