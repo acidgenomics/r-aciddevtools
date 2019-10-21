@@ -169,8 +169,8 @@ run_examples <- function(
 #' @export
 test <- function(...) {
     stopifnot(requireNamespace("devtools", quietly = TRUE))
-    requireNamespace("testthat")
-    requireNamespace("patrick")
+    require("testthat")
+    require("patrick")
     devtools::test(...)
 }
 
