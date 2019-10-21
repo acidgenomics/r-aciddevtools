@@ -316,8 +316,13 @@ use_data <- function(..., overwrite = TRUE) {
 #' @usage NULL
 #' @export
 check <- function(path = ".") {
+    stopifnot(requireNamespace("desc", quietly = TRUE))
     rcmdcheck(path)
-    BiocCheck(path)
+    ## Only run BiocCheck if we detect "biocViews" in DESCRIPTION.
+    ok <- !is.na(unname(desc::desc_get(keys = "biocViews", file = path)))
+    if (isTRUE(ok)) {
+        BiocCheck(path)
+    }
 }
 
 #' @rdname reexports
