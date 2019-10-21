@@ -20,7 +20,7 @@ NULL
 #' @rdname reexports
 #' @usage NULL
 #' @export
-BiocCheck <- function(package = ".", ...) {
+BiocCheck <- function(package = ".") {
     stopifnot(requireNamespace("BiocCheck", quietly = TRUE))
     BiocCheck::BiocCheck(
         package = package,
@@ -29,8 +29,7 @@ BiocCheck <- function(package = ".", ...) {
         `no-check-coding-practices` = TRUE,
         `no-check-remotes` = TRUE,
         `no-check-version-num` = TRUE,
-        `no-check-vignettes` = TRUE,
-        ...
+        `no-check-vignettes` = TRUE
     )
 }
 
@@ -40,9 +39,9 @@ BiocCheck <- function(package = ".", ...) {
 #' @rdname reexports
 #' @usage NULL
 #' @export
-valid <- function(...) {
+valid <- function() {
     stopifnot(requireNamespace("BiocManager", quietly = TRUE))
-    BiocManager::valid(...)
+    BiocManager::valid()
 }
 
 
@@ -252,9 +251,13 @@ build_site <- function(..., devel = FALSE, preview = FALSE) {
 #' @rdname reexports
 #' @usage NULL
 #' @export
-rcmdcheck <- function(...) {
+rcmdcheck <- function(path = ".") {
     stopifnot(requireNamespace("rcmdcheck", quietly = TRUE))
-    rcmdcheck::rcmdcheck(...)
+    rcmdcheck::rcmdcheck(
+        path = path,
+        args = c("--no-manual"),
+        error_on = "note"
+    )
 }
 
 
@@ -312,9 +315,9 @@ use_data <- function(..., overwrite = TRUE) {
 #' @rdname reexports
 #' @usage NULL
 #' @export
-check <- function() {
-    rcmdcheck()
-    BiocCheck()
+check <- function(path = ".") {
+    rcmdcheck(path)
+    BiocCheck(path)
 }
 
 #' @rdname reexports
