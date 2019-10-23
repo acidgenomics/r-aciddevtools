@@ -4,6 +4,7 @@
 - `updateDeps`: Now attempts to update "Enhances", "LinkingTo", and "Suggests"
   by default.
 - Consistently using `system2` instead of `system` internally.
+- Added `getPackageVersion`, which gets current version of a GitHub package.
 
 ## bb8 0.2.0 (2019-10-20)
 

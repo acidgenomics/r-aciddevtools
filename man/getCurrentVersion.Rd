@@ -17,5 +17,5 @@ Get current version of package from GitHub
 Updated 2019-10-23.
 }
 \examples{
-getCurrentVersion(repo = "acidgenomics/bb8").
+getCurrentVersion(repo = "acidgenomics/bb8")
 }
