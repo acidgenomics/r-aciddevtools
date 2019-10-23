@@ -2,18 +2,23 @@
 % Please edit documentation in R/kill.R
 \name{kill}
 \alias{kill}
-\title{Kill current R session}
+\title{Kill R session}
 \usage{
-kill()
+kill(pid = Sys.getpid())
+}
+\arguments{
+\item{pid}{\code{integer(1)}.
+Process ID.}
 }
 \description{
-Kill current R session
+Kill R session
 }
 \note{
-Updated 2019-10-22.
+Updated 2019-10-23.
 }
 \examples{
 ## > kill()
+## > killAll()
 }
 \seealso{
 \itemize{
@@ -23,8 +28,8 @@ Updated 2019-10-22.
 
 Useful kill commands in shell:
 \itemize{
-\item \code{kill -WINCH <PID>}.
-\item \code{pkill rsession}.
 \item \code{pgrep rsession}.
+\item \code{pkill rsession}.
+\item \code{kill -WINCH <PID>}.
 }
 }
