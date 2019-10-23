@@ -1,3 +1,10 @@
+## bb8 0.2.1 (2019-10-23)
+
+- Added `killAll` function, which calls `pkill rsession` internally.
+- `updateDeps`: Now attempts to update "Enhances", "LinkingTo", and "Suggests"
+  by default.
+- Consistently using `system2` instead of `system` internally.
+
 ## bb8 0.2.0 (2019-10-20)
 
 - Added `install`, which wraps `BiocManager::install` with some improved
