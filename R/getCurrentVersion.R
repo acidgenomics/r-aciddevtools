@@ -7,7 +7,7 @@
 #'   GitHub repository ("<user>/<package>").
 #'
 #' @examples
-#' getCurrentVersion(repo = "acidgenomics/bb8").
+#' getCurrentVersion(repo = "acidgenomics/bb8")
 getCurrentVersion <- function(repo) {
     url <- paste0("https://github.com/", repo, "/releases/latest")
     x <- readLines(url)
