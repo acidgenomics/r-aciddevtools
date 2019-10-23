@@ -2,9 +2,12 @@
 % Please edit documentation in R/kill.R
 \name{kill}
 \alias{kill}
+\alias{killAll}
 \title{Kill R session}
 \usage{
 kill(pid = Sys.getpid())
+
+killAll()
 }
 \arguments{
 \item{pid}{\code{integer(1)}.

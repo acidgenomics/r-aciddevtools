@@ -30,7 +30,7 @@ kill <- function(pid = Sys.getpid()) {
 
 
 
-#' @rdname killAll
+#' @rdname kill
 #' @export
 killAll <- function() {
     system2(command = "pkill", args = "rsession")

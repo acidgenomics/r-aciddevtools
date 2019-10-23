@@ -4,14 +4,16 @@
 \alias{updateDeps}
 \title{Update outdated dependencies}
 \usage{
-updateDeps(pkg = ".", type = c("Depends", "Imports"))
+updateDeps(pkg = ".", type = c("Depends", "Imports", "LinkingTo",
+  "Suggests", "Enhances"))
 }
 \arguments{
 \item{pkg}{\code{character(1)}.
 Package path. Must contain a \code{DESCRIPTION} file.}
 
 \item{type}{\code{character}.
-Dependency type.}
+Dependency type.
+See \code{utils::install.packages()} for details.}
 }
 \value{
 \code{BiocManager::install()} call if packages need an update.
@@ -19,8 +21,11 @@ Dependency type.}
 \description{
 Supports Bioconductor, CRAN, and GitHub packages via BiocManager.
 }
+\details{
+This is used by \href{https://github.com/acidgenomics/Rcheck}{Rcheck} for continuous integration (CI) testing.
+}
 \note{
-Updated 2019-10-19.
+Updated 2019-10-23.
 }
 \seealso{
 \itemize{
