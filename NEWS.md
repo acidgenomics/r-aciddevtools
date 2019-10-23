@@ -5,6 +5,7 @@
   by default.
 - Consistently using `system2` instead of `system` internally.
 - Added `getPackageVersion`, which gets current version of a GitHub package.
+- Added `isInstalled`, which checks against `installed.packages` return.
 
 ## bb8 0.2.0 (2019-10-20)
 
