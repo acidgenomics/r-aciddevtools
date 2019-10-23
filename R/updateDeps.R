@@ -2,13 +2,18 @@
 #'
 #' Supports Bioconductor, CRAN, and GitHub packages via BiocManager.
 #'
+#' This is used by [Rcheck][] for continuous integration (CI) testing.
+#'
+#' [Rcheck]: https://github.com/acidgenomics/Rcheck
+#'
 #' @export
-#' @note Updated 2019-10-19.
+#' @note Updated 2019-10-23.
 #'
 #' @param pkg `character(1)`.
 #'   Package path. Must contain a `DESCRIPTION` file.
 #' @param type `character`.
 #'   Dependency type.
+#'   See `utils::install.packages()` for details.
 #'
 #' @seealso
 #' - desc package.
@@ -17,7 +22,13 @@
 #' @return `BiocManager::install()` call if packages need an update.
 updateDeps <- function(
     pkg = ".",
-    type = c("Depends", "Imports")
+    type = c(
+        "Depends",
+        "Imports",
+        "LinkingTo",
+        "Suggests",
+        "Enhances"
+    )
 ) {
     stopifnot(
         requireNamespace("BiocManager", quietly = TRUE),
