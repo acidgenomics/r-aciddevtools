@@ -50,9 +50,9 @@ valid <- function() {
 #' @rdname reexports
 #' @usage NULL
 #' @export
-available <- function() {
+available <- function(name) {
     stopifnot(requireNamespace("available", quietly = TRUE))
-    available::available()
+    available::available(name = name, browse = FALSE)
 }
 
 

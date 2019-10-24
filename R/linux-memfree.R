@@ -22,7 +22,14 @@ memfree <- function() {
     message("Running garbage collection first with 'base::gc()'.")
     print(gc(verbose = TRUE, full = TRUE))
     memUsed <- utils::capture.output(print(pryr::mem_used()))
-    memFree <- system("awk '/MemFree/ {print $2}' /proc/meminfo", intern = TRUE)
+    memFree <- system2(
+        command = "awk",
+        args = c(
+            "'/MemFree/ {print $2}'",
+            "/proc/meminfo"
+        ),
+        stdout = TRUE
+    )
     memFree <- .format.object_size(as.numeric(memFree), "auto")
     message(
         sprintf("Memory used: %d, via 'pryr::mem_used'.", memUsed), "\n",
