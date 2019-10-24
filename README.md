@@ -6,15 +6,15 @@ Trusty sidekick for [R][] package development.
 
 ## Installation
 
-This package is intended for internal use and will not be published on [CRAN][].
+This is an [R][] package.
 
 ```r
-if (!require("BiocManager")) {
-    install.packages("BiocManager")
+if (!requireNamespace("remotes", quietly = TRUE)) {
+    install.packages("remotes")
 }
-BiocManager::install("remotes")
-BiocManager::install("acidgenomics/bb8")
+Sys.setenv(R_REMOTES_UPGRADE = "always")
+## Set `GITHUB_PAT` in `~/.Renviron` if you get a rate limit error.
+remotes::install_github("acidgenomics/bb8")
 ```
 
-[cran]: https://cran.r-project.org/
 [r]: https://www.r-project.org/
