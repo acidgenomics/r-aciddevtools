@@ -296,6 +296,14 @@ camelCase <- function(...) {
 #' @rdname reexports
 #' @usage NULL
 #' @export
+kebabCase <- function(...) {
+    stopifnot(requireNamespace("syntactic", quietly = TRUE))
+    syntactic::kebabCase(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
 makeNames <- function(...) {
     stopifnot(requireNamespace("syntactic", quietly = TRUE))
     syntactic::makeNames(...)

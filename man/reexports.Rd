@@ -28,6 +28,7 @@
 \alias{rcmdcheck}
 \alias{render}
 \alias{camelCase}
+\alias{kebabCase}
 \alias{makeNames}
 \alias{snakeCase}
 \alias{test_file}
