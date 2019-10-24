@@ -18,6 +18,7 @@
 \alias{test}
 \alias{lint_dir}
 \alias{lint_package}
+\alias{with_parameters_test_that}
 \alias{build_articles}
 \alias{build_home}
 \alias{build_news}
@@ -29,6 +30,7 @@
 \alias{camelCase}
 \alias{makeNames}
 \alias{snakeCase}
+\alias{test_file}
 \alias{use_data}
 \alias{check}
 \alias{devinstall}

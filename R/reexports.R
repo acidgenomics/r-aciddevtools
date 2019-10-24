@@ -195,6 +195,17 @@ lint_package <- function(...) {
 
 
 
+## patrick =====================================================================
+#' @rdname reexports
+#' @usage NULL
+#' @export
+with_parameters_test_that <- function(...) {
+    stopifnot(requireNamespace("patrick", quietly = TRUE))
+    patrick::with_parameters_test_that(...)
+}
+
+
+
 ## pkgdown =====================================================================
 #' @rdname reexports
 #' @usage NULL
@@ -296,6 +307,17 @@ makeNames <- function(...) {
 snakeCase <- function(...) {
     stopifnot(requireNamespace("syntactic", quietly = TRUE))
     syntactic::snakeCase(...)
+}
+
+
+
+## testthat ====================================================================
+#' @rdname reexports
+#' @usage NULL
+#' @export
+test_file <- function(...) {
+    stopifnot(requireNamespace("testthat", quietly = TRUE))
+    testthat::test_file(...)
 }
 
 
