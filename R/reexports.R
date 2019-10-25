@@ -206,6 +206,17 @@ with_parameters_test_that <- function(...) {
 
 
 
+## pryr ========================================================================
+#' @rdname reexports
+#' @usage NULL
+#' @export
+object_size <- function(...) {
+    stopifnot(requireNamespace("pryr", quietly = TRUE))
+    pryr::object_size(...)
+}
+
+
+
 ## pkgdown =====================================================================
 #' @rdname reexports
 #' @usage NULL
@@ -269,6 +280,41 @@ rcmdcheck <- function(path = ".") {
         args = c("--no-manual"),
         error_on = "note"
     )
+}
+
+
+
+## reticulate ==================================================================
+#' @rdname reexports
+#' @usage NULL
+#' @export
+py_config <- function(...) {
+    stopifnot(requireNamespace("reticulate", quietly = TRUE))
+    reticulate::py_config(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+py_module_available <- function(...) {
+    stopifnot(requireNamespace("reticulate", quietly = TRUE))
+    reticulate::py_module_available(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+use_virtualenv <- function(...) {
+    stopifnot(requireNamespace("reticulate", quietly = TRUE))
+    reticulate::use_virtualenv(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+virtualenv_list <- function(...) {
+    stopifnot(requireNamespace("reticulate", quietly = TRUE))
+    reticulate::virtualenv_list(...)
 }
 
 
