@@ -19,6 +19,7 @@
 \alias{lint_dir}
 \alias{lint_package}
 \alias{with_parameters_test_that}
+\alias{object_size}
 \alias{build_articles}
 \alias{build_home}
 \alias{build_news}
@@ -26,6 +27,10 @@
 \alias{build_reference_index}
 \alias{build_site}
 \alias{rcmdcheck}
+\alias{py_config}
+\alias{py_module_available}
+\alias{use_virtualenv}
+\alias{virtualenv_list}
 \alias{render}
 \alias{camelCase}
 \alias{kebabCase}

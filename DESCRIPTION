@@ -2,7 +2,7 @@ Package: bb8
 Title: Trusty sidekick for R package development
 Description: Personal package with additional devtools utilities.
 Version: 0.2.1.9000
-Date: 2019-10-24
+Date: 2019-10-25
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -39,6 +39,7 @@ Suggests:
     rcmdcheck,
     readr,
     remotes,
+    reticulate,
     rmarkdown,
     rstudioapi,
     syntactic,
