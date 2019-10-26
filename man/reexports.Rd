@@ -18,6 +18,10 @@
 \alias{test}
 \alias{lint_dir}
 \alias{lint_package}
+\alias{\%<>\%}
+\alias{\%$\%}
+\alias{\%>\%}
+\alias{\%T>\%}
 \alias{with_parameters_test_that}
 \alias{object_size}
 \alias{build_articles}
