@@ -195,6 +195,41 @@ lint_package <- function(...) {
 
 
 
+## magrittr ====================================================================
+#' @rdname reexports
+#' @usage NULL
+#' @export
+`%<>%` <- function(...) {
+    stopifnot(requireNamespace("magrittr", quietly = TRUE))
+    magrittr::`%<>%`
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+`%$%` <- function(...) {
+    stopifnot(requireNamespace("magrittr", quietly = TRUE))
+    magrittr::`%$%`
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+`%>%` <- function(...) {
+    stopifnot(requireNamespace("magrittr", quietly = TRUE))
+    magrittr::`%>%`
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+`%T>%` <- function(...) {
+    stopifnot(requireNamespace("magrittr", quietly = TRUE))
+    magrittr::`%T>%`
+}
+
+
+
 ## patrick =====================================================================
 #' @rdname reexports
 #' @usage NULL
