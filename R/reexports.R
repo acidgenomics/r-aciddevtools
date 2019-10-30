@@ -96,6 +96,22 @@ saveData <- function(...) {
 #' @rdname reexports
 #' @usage NULL
 #' @export
+package_coverage <- function(...) {
+    stopifnot(requireNamespace("covr", quietly = TRUE))
+    covr::package_coverage(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+percent_coverage <- function(...) {
+    stopifnot(requireNamespace("covr", quietly = TRUE))
+    covr::percent_coverage(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
 report <- function(...) {
     stopifnot(
         requireNamespace("DT", quietly = TRUE),

@@ -9,6 +9,8 @@
 \alias{import}
 \alias{loadData}
 \alias{saveData}
+\alias{package_coverage}
+\alias{percent_coverage}
 \alias{report}
 \alias{build}
 \alias{build_vignettes}
