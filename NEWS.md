@@ -1,3 +1,7 @@
+## bb8 0.2.2 (2019-10-30)
+
+- Added more useful interactive reexports, including pipes.
+
 ## bb8 0.2.1 (2019-10-23)
 
 - Added `killAll` function, which calls `pkill rsession` internally.

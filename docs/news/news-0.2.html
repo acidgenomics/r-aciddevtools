@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bb8</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -112,9 +112,9 @@
       
     </div>
 
-    <div id="bb8-0-2-0-2019-10-20" class="section level2">
+    <div id="bb8-020-2019-10-20" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bb8-0-2-0-2019-10-20" class="anchor"></a>bb8 0.2.0 (2019-10-20)</h2>
+<a href="#bb8-020-2019-10-20" class="anchor"></a>bb8 0.2.0 (2019-10-20)</h2>
 <ul>
 <li>Added <code>install</code>, which wraps <code><a href="https://rdrr.io/pkg/BiocManager/man/install.html">BiocManager::install</a></code> with some improved defaults for Mike’s usage.</li>
 <li>Added <code>updatePackages</code>, which wraps <code><a href="https://rdrr.io/pkg/BiocManager/man/install.html">BiocManager::install</a></code> and <code><a href="https://rdrr.io/pkg/remotes/man/update_packages.html">remotes::update_packages</a></code> with some improved defaults.</li>
@@ -122,15 +122,23 @@
 <li>Package doesn’t load any other additional packages as dependencies, to keep loading super fast in a new R session.</li>
 </ul>
 </div>
-    <div id="bb8-0-2-1-2019-10-23" class="section level2">
+    <div id="bb8-021-2019-10-23" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bb8-0-2-1-2019-10-23" class="anchor"></a>bb8 0.2.1 (2019-10-23)</h2>
+<a href="#bb8-021-2019-10-23" class="anchor"></a>bb8 0.2.1 (2019-10-23)</h2>
 <ul>
 <li>Added <code>killAll</code> function, which calls <code>pkill rsession</code> internally.</li>
 <li>
 <code>updateDeps</code>: Now attempts to update “Enhances”, “LinkingTo”, and “Suggests” by default.</li>
 <li>Consistently using <code>system2</code> instead of <code>system</code> internally.</li>
 <li>Added <code>getPackageVersion</code>, which gets current version of a GitHub package.</li>
+<li>Added <code>isInstalled</code>, which checks against <code>installed.packages</code> return.</li>
+</ul>
+</div>
+    <div id="bb8-022-2019-10-30" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bb8-022-2019-10-30" class="anchor"></a>bb8 0.2.2 (2019-10-30)</h2>
+<ul>
+<li>Added more useful interactive reexports, including pipes.</li>
 </ul>
 </div>
   </div>
@@ -139,8 +147,9 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#bb8-0-2-0-2019-10-20">0.2.0</a></li>
-        <li><a href="#bb8-0-2-1-2019-10-23">0.2.1</a></li>
+        <li><a href="#bb8-020-2019-10-20">0.2.0</a></li>
+        <li><a href="#bb8-021-2019-10-23">0.2.1</a></li>
+        <li><a href="#bb8-022-2019-10-30">0.2.2</a></li>
       </ul>
     </div>
   </div>
