@@ -2,13 +2,15 @@
 #'
 #' @export
 #' @note Only works on macOS.
-#' @note Updated 2019-10-19.
+#' @note Updated 2019-10-30.
 #'
 #' @inheritParams params
 #'
 #' @examples
-#' x <- "hello world"
+#' if (identical(Sys.info()[[1L]], "Darwin")) {
+#'     x <- "hello world"
 #' pbcopy(x)
+#' }
 pbcopy <- function(x) {
     stopifnot(
         identical(Sys.info()[[1L]], "Darwin"),

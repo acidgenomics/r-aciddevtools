@@ -15,9 +15,11 @@ Copy to clipboard
 \note{
 Only works on macOS.
 
-Updated 2019-10-19.
+Updated 2019-10-30.
 }
 \examples{
-x <- "hello world"
+if (identical(Sys.info()[[1L]], "Darwin")) {
+    x <- "hello world"
 pbcopy(x)
+}
 }
