@@ -192,6 +192,17 @@ test <- function(...) {
 
 
 
+## gh ==========================================================================
+#' @rdname reexports
+#' @usage NULL
+#' @export
+gh <- function(...) {
+    stopifnot(requireNamespace("gh", quietly = TRUE))
+    gh::gh(...)
+}
+
+
+
 ## lintr =======================================================================
 #' @rdname reexports
 #' @usage NULL
@@ -207,6 +218,17 @@ lint_dir <- function(...) {
 lint_package <- function(...) {
     stopifnot(requireNamespace("lintr", quietly = TRUE))
     lintr::lint_package(...)
+}
+
+
+
+## lookup ======================================================================
+#' @rdname reexports
+#' @usage NULL
+#' @export
+lookup <- function(...) {
+    stopifnot(requireNamespace("lookup", quietly = TRUE))
+    lookup::lookup(...)
 }
 
 
@@ -331,6 +353,73 @@ rcmdcheck <- function(path = ".") {
         args = c("--no-manual"),
         error_on = "note"
     )
+}
+
+
+
+## remotes =====================================================================
+#' @rdname reexports
+#' @usage NULL
+#' @export
+download_version <- function(...) {
+    stopifnot(requireNamespace("remotes", quietly = TRUE))
+    remotes::download_version(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+install_bioc <- function(...) {
+    stopifnot(requireNamespace("remotes", quietly = TRUE))
+    remotes::install_bioc(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+install_bitbucket <- function(...) {
+    stopifnot(requireNamespace("remotes", quietly = TRUE))
+    remotes::install_bitbucket(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+install_deps <- function(...) {
+    stopifnot(requireNamespace("remotes", quietly = TRUE))
+    remotes::install_deps(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+install_git <- function(...) {
+    stopifnot(requireNamespace("remotes", quietly = TRUE))
+    remotes::install_git(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+install_github <- function(...) {
+    stopifnot(requireNamespace("remotes", quietly = TRUE))
+    remotes::install_github(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+install_gitlab <- function(...) {
+    stopifnot(requireNamespace("remotes", quietly = TRUE))
+    remotes::install_gitlab(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+install_url <- function(...) {
+    stopifnot(requireNamespace("remotes", quietly = TRUE))
+    remotes::install_url(...)
 }
 
 
