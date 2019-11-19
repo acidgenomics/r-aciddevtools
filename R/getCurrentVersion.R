@@ -1,10 +1,10 @@
 #' Get current version of package from GitHub
 #'
 #' @export
-#' @note Updated 2019-10-23.
+#' @note Updated 2019-11-19.
 #'
 #' @param repo `character(1)`.
-#'   GitHub repository ("<user>/<package>").
+#'   GitHub repository ("user/package").
 #'
 #' @examples
 #' getCurrentVersion(repo = "acidgenomics/bb8")

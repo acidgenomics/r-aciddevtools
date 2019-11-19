@@ -31,8 +31,8 @@ Updated 2019-10-23.
 
 Useful kill commands in shell:
 \itemize{
-\item \code{pgrep rsession}.
-\item \code{pkill rsession}.
-\item \code{kill -WINCH <PID>}.
+\item \verb{pgrep rsession}.
+\item \verb{pkill rsession}.
+\item \verb{kill -WINCH <PID>}.
 }
 }

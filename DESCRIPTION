@@ -1,8 +1,8 @@
 Package: bb8
 Title: Trusty sidekick for R package development
 Description: Personal package with additional devtools utilities.
-Version: 0.2.2
-Date: 2019-10-30
+Version: 0.2.3
+Date: 2019-11-19
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -29,8 +29,10 @@ Suggests:
     covr,
     desc,
     devtools,
+    gh,
     goalie,
     lintr,
+    lookup,
     magrittr,
     methods,
     parallel,
@@ -51,6 +53,7 @@ Suggests:
 Remotes:
     acidgenomics/brio,
     acidgenomics/goalie,
-    acidgenomics/syntactic
+    acidgenomics/syntactic,
+    jimhester/lookup
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.0
