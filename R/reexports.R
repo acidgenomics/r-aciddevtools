@@ -7,7 +7,7 @@
 #' Intended for use inside Rprofile internal env.
 #'
 #' @name reexports
-#' @note Updated 2019-10-20.
+#' @note Updated 2019-11-19.
 NULL
 
 
@@ -348,6 +348,7 @@ build_site <- function(..., devel = FALSE, preview = FALSE) {
 #' @export
 rcmdcheck <- function(path = ".") {
     stopifnot(requireNamespace("rcmdcheck", quietly = TRUE))
+    Sys.setenv("_R_CHECK_FORCE_SUGGESTS_" = "FALSE")
     rcmdcheck::rcmdcheck(
         path = path,
         args = c("--no-manual"),

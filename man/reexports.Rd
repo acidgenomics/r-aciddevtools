@@ -62,5 +62,5 @@
 Intended for use inside Rprofile internal env.
 }
 \note{
-Updated 2019-10-20.
+Updated 2019-11-19.
 }
