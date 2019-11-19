@@ -1,3 +1,8 @@
+## bb8 0.2.3 (2019-11-19)
+
+- Updated package documentation to support roxygen2 7.0 update.
+- Added useful gh, locate, and remotes reexports.
+
 ## bb8 0.2.2 (2019-10-30)
 
 - Added more useful interactive reexports, including pipes.
