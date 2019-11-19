@@ -18,8 +18,10 @@
 \alias{load_all}
 \alias{run_examples}
 \alias{test}
+\alias{gh}
 \alias{lint_dir}
 \alias{lint_package}
+\alias{lookup}
 \alias{\%<>\%}
 \alias{\%$\%}
 \alias{\%>\%}
@@ -33,6 +35,14 @@
 \alias{build_reference_index}
 \alias{build_site}
 \alias{rcmdcheck}
+\alias{download_version}
+\alias{install_bioc}
+\alias{install_bitbucket}
+\alias{install_deps}
+\alias{install_git}
+\alias{install_github}
+\alias{install_gitlab}
+\alias{install_url}
 \alias{py_config}
 \alias{py_module_available}
 \alias{use_virtualenv}
@@ -52,5 +62,5 @@
 Intended for use inside Rprofile internal env.
 }
 \note{
-Updated 2019-10-20.
+Updated 2019-11-19.
 }

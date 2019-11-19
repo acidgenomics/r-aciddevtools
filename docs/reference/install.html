@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bb8</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
       </span>
     </div>
 
@@ -119,9 +119,14 @@
     <p>Install packages from Bioconductor, CRAN, or a Git remote</p>
     </div>
 
-    <pre class="usage"><span class='fu'>install</span>(<span class='no'>pkgs</span>, <span class='kw'>configureArgs</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"configure.args"</span>),
-  <span class='kw'>configureVars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"configure.vars"</span>), <span class='kw'>dependencies</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>lib</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/libPaths.html'>.libPaths</a></span>()<span class='kw'>[[</span><span class='fl'>1L</span>]], <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"pkgType"</span>))</pre>
+    <pre class="usage"><span class='fu'>install</span>(
+  <span class='no'>pkgs</span>,
+  <span class='kw'>configureArgs</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"configure.args"</span>),
+  <span class='kw'>configureVars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"configure.vars"</span>),
+  <span class='kw'>dependencies</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>lib</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/libPaths.html'>.libPaths</a></span>()<span class='kw'>[[</span><span class='fl'>1L</span>]],
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"pkgType"</span>)
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
