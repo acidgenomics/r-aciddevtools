@@ -4,8 +4,10 @@
 \alias{updateDeps}
 \title{Update outdated dependencies}
 \usage{
-updateDeps(pkg = ".", type = c("Depends", "Imports", "LinkingTo",
-  "Suggests", "Enhances"))
+updateDeps(
+  pkg = ".",
+  type = c("Depends", "Imports", "LinkingTo", "Suggests", "Enhances")
+)
 }
 \arguments{
 \item{pkg}{\code{character(1)}.

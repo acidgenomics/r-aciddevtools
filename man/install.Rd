@@ -4,9 +4,14 @@
 \alias{install}
 \title{Install packages from Bioconductor, CRAN, or a Git remote}
 \usage{
-install(pkgs, configureArgs = getOption("configure.args"),
-  configureVars = getOption("configure.vars"), dependencies = TRUE,
-  lib = .libPaths()[[1L]], type = getOption("pkgType"))
+install(
+  pkgs,
+  configureArgs = getOption("configure.args"),
+  configureVars = getOption("configure.vars"),
+  dependencies = TRUE,
+  lib = .libPaths()[[1L]],
+  type = getOption("pkgType")
+)
 }
 \arguments{
 \item{pkgs}{\code{character}.
@@ -18,7 +23,7 @@ installed using \code{\link[remotes:install_github]{remotes::install_github()}}.
 \emph{Used only for source installs.} If a character vector with no names is
 supplied, the elements are concatenated into a single string (separated by
 a space) and used as the value for the \code{--configure-args} or
-\code{configure-vars} flag in the call to \code{R CMD INSTALL}. If the character
+\code{configure-vars} flag in the call to \verb{R CMD INSTALL}. If the character
 vector has names, these are assumed to identify values for
 \code{--configure-args} or \code{--configure-vars} for individual packages. This
 allows one to specify settings for an entire collection of packages which
