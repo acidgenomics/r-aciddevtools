@@ -348,6 +348,7 @@ build_site <- function(..., devel = FALSE, preview = FALSE) {
 #' @export
 rcmdcheck <- function(path = ".") {
     stopifnot(requireNamespace("rcmdcheck", quietly = TRUE))
+    ## See also `force_suggests` argument in `devtools::check()`.
     Sys.setenv("_R_CHECK_FORCE_SUGGESTS_" = "FALSE")
     rcmdcheck::rcmdcheck(
         path = path,
