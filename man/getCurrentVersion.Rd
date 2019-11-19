@@ -8,13 +8,13 @@ getCurrentVersion(repo)
 }
 \arguments{
 \item{repo}{\code{character(1)}.
-GitHub repository ("<user>/<package>").}
+GitHub repository ("user/package").}
 }
 \description{
 Get current version of package from GitHub
 }
 \note{
-Updated 2019-10-23.
+Updated 2019-11-19.
 }
 \examples{
 getCurrentVersion(repo = "acidgenomics/bb8")
