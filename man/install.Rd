@@ -8,7 +8,7 @@ install(
   pkgs,
   configureArgs = getOption("configure.args"),
   configureVars = getOption("configure.vars"),
-  dependencies = TRUE,
+  dependencies = NA,
   lib = .libPaths()[[1L]],
   type = getOption("pkgType")
 )
@@ -65,7 +65,7 @@ Invisible \code{NULL}.
 Install packages from Bioconductor, CRAN, or a Git remote
 }
 \note{
-Updated 2019-10-19.
+Updated 2019-12-04.
 }
 \examples{
 ## > install(pkgs = c("DESeq2", "edgeR"))
