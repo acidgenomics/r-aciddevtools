@@ -1,3 +1,10 @@
+## bb8 0.2.4 (2019-12-04)
+
+- `install` and `updatePackages` no longer attempt to install and/or update
+  suggested packages by default. I ran into some dependency issues with Seurat
+  (SDMTools and adehabitat). See Seurat issue #2377
+  (https://github.com/satijalab/seurat/issues/2377).
+
 ## bb8 0.2.3 (2019-11-19)
 
 - Updated package documentation to support roxygen2 7.0 update.

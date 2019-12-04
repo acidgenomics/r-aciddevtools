@@ -1,8 +1,8 @@
 Package: bb8
 Title: Trusty sidekick for R package development
 Description: Personal package with additional devtools utilities.
-Version: 0.2.3
-Date: 2019-11-19
+Version: 0.2.4
+Date: 2019-12-04
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -56,4 +56,4 @@ Remotes:
     acidgenomics/syntactic,
     jimhester/lookup
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.0
+RoxygenNote: 7.0.2
