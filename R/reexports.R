@@ -222,17 +222,6 @@ lint_package <- function(...) {
 
 
 
-## lookup ======================================================================
-#' @rdname reexports
-#' @usage NULL
-#' @export
-lookup <- function(...) {
-    stopifnot(requireNamespace("lookup", quietly = TRUE))
-    lookup::lookup(...)
-}
-
-
-
 ## magrittr ====================================================================
 #' @rdname reexports
 #' @usage NULL

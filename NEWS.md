@@ -1,3 +1,8 @@
+## bb8 0.2.5 (2020-01-07)
+
+- Removed lookup package from reexports, to avoid accidental installation of
+  GitHub versions that cause `BiocManager::valid()` check to fail.
+
 ## bb8 0.2.4 (2019-12-04)
 
 - `install` and `updatePackages` no longer attempt to install and/or update
