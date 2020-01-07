@@ -32,7 +32,6 @@ Suggests:
     gh,
     goalie,
     lintr,
-    lookup,
     magrittr,
     methods,
     parallel,
@@ -53,7 +52,6 @@ Suggests:
 Remotes:
     acidgenomics/brio,
     acidgenomics/goalie,
-    acidgenomics/syntactic,
-    jimhester/lookup
+    acidgenomics/syntactic
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.0.2
