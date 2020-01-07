@@ -21,7 +21,6 @@
 \alias{gh}
 \alias{lint_dir}
 \alias{lint_package}
-\alias{lookup}
 \alias{\%<>\%}
 \alias{\%$\%}
 \alias{\%>\%}
