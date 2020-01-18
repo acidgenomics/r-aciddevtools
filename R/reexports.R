@@ -24,8 +24,10 @@ BiocCheck <- function(package = ".") {
     stopifnot(requireNamespace("BiocCheck", quietly = TRUE))
     BiocCheck::BiocCheck(
         package = package,
+        `new-package` = TRUE,
         `no-check-R-ver` = TRUE,
         `no-check-bioc-help` = TRUE,
+        `no-check-bioc-views` = TRUE,
         `no-check-coding-practices` = TRUE,
         `no-check-remotes` = TRUE,
         `no-check-version-num` = TRUE,
