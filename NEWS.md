@@ -1,3 +1,9 @@
+## bb8 0.2.6 (2020-01-18)
+
+- Updated `BiocCheck` reexport to not require biocViews in DESCRIPTION by
+  default. This makes CI checks on non-Bioconductor packages destined for
+  CRAN not error.
+
 ## bb8 0.2.5 (2020-01-07)
 
 - Removed lookup package from reexports, to avoid accidental installation of
