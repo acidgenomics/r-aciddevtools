@@ -15,7 +15,7 @@ Authors@R: c(
         role = c("cph", "fnd")
     ))
 Depends: R (>= 3.6)
-License: MIT + file LICENSE
+License: GPL-3
 Encoding: UTF-8
 URL:
     https://bb8.acidgenomics.com/,
