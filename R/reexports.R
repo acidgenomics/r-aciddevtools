@@ -337,16 +337,17 @@ build_site <- function(..., devel = FALSE, preview = FALSE) {
 #' @rdname reexports
 #' @usage NULL
 #' @export
-rcmdcheck <- function(path = ".") {
+rcmdcheck <- function(path = ".", cran = FALSE) {
     stopifnot(requireNamespace("rcmdcheck", quietly = TRUE))
     ## See also `force_suggests` argument in `devtools::check()`.
     Sys.setenv("_R_CHECK_FORCE_SUGGESTS_" = "FALSE")
+    args <- "--no-manual"
+    if (isTRUE(cran)) {
+        args <- c(args, "--as-cran")
+    }
     rcmdcheck::rcmdcheck(
         path = path,
-        args = c(
-            "--as-cran",
-            "--no-manual"
-        ),
+        args = args,
         error_on = "note"
     )
 }
@@ -527,9 +528,12 @@ use_data <- function(..., overwrite = TRUE) {
 #' @rdname reexports
 #' @usage NULL
 #' @export
-check <- function(path = ".") {
+check <- function(path = ".", cran = FALSE) {
     stopifnot(requireNamespace("desc", quietly = TRUE))
-    rcmdcheck(path)
+    rcmdcheck(
+        path = path,
+        cran = cran
+    )
     ## Only run BiocCheck if we detect "biocViews" in DESCRIPTION.
     ok <- !is.na(unname(desc::desc_get(keys = "biocViews", file = path)))
     if (isTRUE(ok)) {
