@@ -532,10 +532,7 @@ use_data <- function(..., overwrite = TRUE) {
 #' @export
 check <- function(path = ".", cran = FALSE) {
     stopifnot(requireNamespace("desc", quietly = TRUE))
-    rcmdcheck(
-        path = path,
-        cran = cran
-    )
+    rcmdcheck(path = path, cran = cran)
     ## Only run BiocCheck if we detect "biocViews" in DESCRIPTION.
     ok <- !is.na(unname(desc::desc_get(keys = "biocViews", file = path)))
     if (isTRUE(ok)) {
