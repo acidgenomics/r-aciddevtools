@@ -1,5 +1,5 @@
 Package: bb8
-Title: Trusty sidekick for R package development
+Title: Trusty Sidekick for R Package Development
 Description: Personal package with additional devtools utilities.
 Version: 0.2.7
 Date: 2020-01-31
