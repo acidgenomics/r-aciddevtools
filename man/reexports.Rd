@@ -5,10 +5,6 @@
 \alias{BiocCheck}
 \alias{valid}
 \alias{available}
-\alias{export}
-\alias{import}
-\alias{loadData}
-\alias{saveData}
 \alias{package_coverage}
 \alias{percent_coverage}
 \alias{report}
@@ -26,6 +22,10 @@
 \alias{\%>\%}
 \alias{\%T>\%}
 \alias{with_parameters_test_that}
+\alias{export}
+\alias{import}
+\alias{loadData}
+\alias{saveData}
 \alias{object_size}
 \alias{build_articles}
 \alias{build_home}
@@ -61,5 +61,5 @@
 Intended for use inside Rprofile internal env.
 }
 \note{
-Updated 2019-11-19.
+Updated 2020-01-31.
 }
