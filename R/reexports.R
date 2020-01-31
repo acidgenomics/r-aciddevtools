@@ -7,7 +7,7 @@
 #' Intended for use inside Rprofile internal env.
 #'
 #' @name reexports
-#' @note Updated 2019-11-19.
+#' @note Updated 2020-01-31.
 NULL
 
 
@@ -55,41 +55,6 @@ valid <- function() {
 available <- function(name) {
     stopifnot(requireNamespace("available", quietly = TRUE))
     available::available(name = name, browse = FALSE)
-}
-
-
-
-## brio ========================================================================
-#' @rdname reexports
-#' @usage NULL
-#' @export
-export <- function(...) {
-    stopifnot(requireNamespace("brio", quietly = TRUE))
-    brio::export(...)
-}
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
-import <- function(...) {
-    stopifnot(requireNamespace("brio", quietly = TRUE))
-    brio::import(...)
-}
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
-loadData <- function(...) {
-    stopifnot(requireNamespace("brio", quietly = TRUE))
-    brio::loadData(...)
-}
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
-saveData <- function(...) {
-    stopifnot(requireNamespace("brio", quietly = TRUE))
-    brio::saveData(...)
 }
 
 
@@ -186,9 +151,11 @@ run_examples <- function(
 #' @usage NULL
 #' @export
 test <- function(...) {
-    stopifnot(requireNamespace("devtools", quietly = TRUE))
-    require("testthat")
-    require("patrick")
+    stopifnot(
+        requireNamespace("devtools", quietly = TRUE),
+        requireNamespace("testthat", quietly = TRUE),
+        requireNamespace("patrick", quietly = TRUE)
+    )
     devtools::test(...)
 }
 
@@ -270,6 +237,41 @@ with_parameters_test_that <- function(...) {
 
 
 
+## pipette ========================================================================
+#' @rdname reexports
+#' @usage NULL
+#' @export
+export <- function(...) {
+    stopifnot(requireNamespace("pipette", quietly = TRUE))
+    pipette::export(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+import <- function(...) {
+    stopifnot(requireNamespace("pipette", quietly = TRUE))
+    pipette::import(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+loadData <- function(...) {
+    stopifnot(requireNamespace("pipette", quietly = TRUE))
+    pipette::loadData(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+saveData <- function(...) {
+    stopifnot(requireNamespace("pipette", quietly = TRUE))
+    pipette::saveData(...)
+}
+
+
+
 ## pryr ========================================================================
 #' @rdname reexports
 #' @usage NULL
@@ -337,13 +339,17 @@ build_site <- function(..., devel = FALSE, preview = FALSE) {
 #' @rdname reexports
 #' @usage NULL
 #' @export
-rcmdcheck <- function(path = ".") {
+rcmdcheck <- function(path = ".", cran = FALSE) {
     stopifnot(requireNamespace("rcmdcheck", quietly = TRUE))
     ## See also `force_suggests` argument in `devtools::check()`.
     Sys.setenv("_R_CHECK_FORCE_SUGGESTS_" = "FALSE")
+    args <- "--no-manual"
+    if (isTRUE(cran)) {
+        args <- c(args, "--as-cran")
+    }
     rcmdcheck::rcmdcheck(
         path = path,
-        args = c("--no-manual"),
+        args = args,
         error_on = "note"
     )
 }
@@ -524,9 +530,12 @@ use_data <- function(..., overwrite = TRUE) {
 #' @rdname reexports
 #' @usage NULL
 #' @export
-check <- function(path = ".") {
+check <- function(path = ".", cran = FALSE) {
     stopifnot(requireNamespace("desc", quietly = TRUE))
-    rcmdcheck(path)
+    rcmdcheck(
+        path = path,
+        cran = cran
+    )
     ## Only run BiocCheck if we detect "biocViews" in DESCRIPTION.
     ok <- !is.na(unname(desc::desc_get(keys = "biocViews", file = path)))
     if (isTRUE(ok)) {
