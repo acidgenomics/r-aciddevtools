@@ -1,3 +1,8 @@
+## bb8 0.2.7 (2020-01-31)
+
+- `rcmdcheck` now uses `--as-cran` flag automatically.
+- Updated import to use pipette instead of brio.
+
 ## bb8 0.2.6 (2020-01-18)
 
 - Updated `BiocCheck` reexport to not require biocViews in DESCRIPTION by
