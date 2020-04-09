@@ -2,7 +2,7 @@
 #'
 #' @export
 #' @note Currently this only works for Linux.
-#' @note Updated 2019-10-19.
+#' @note Updated 2020-04-09.
 #'
 #' @seealso
 #' - `help(topic = "Memory", package = "base")`.
@@ -13,16 +13,18 @@
 #' - https://stackoverflow.com/a/29787527
 #' - https://stat.ethz.ch/R-manual/R-devel/library/base/html/Memory-limits.html
 #' - http://adv-r.had.co.nz/memory.html
+#'
+#' @examples
+#' if (goalie::isLinux()) {
+#'     memfree()
+#' }
 memfree <- function() {
-    stopifnot(
-        identical(R.Version()$os, "linux-gnu"),  # nolint
-        requireNamespace("pryr", quietly = TRUE),
-        requireNamespace("utils", quietly = TRUE)
-    )
+    assert(isLinux())
+    requireNamespaces(c("pryr", "utils"))
     message("Running garbage collection first with 'base::gc()'.")
     print(gc(verbose = TRUE, full = TRUE))
     memUsed <- utils::capture.output(print(pryr::mem_used()))
-    memFree <- system2(
+    memFree <- shell(
         command = "awk",
         args = c(
             "'/MemFree/ {print $2}'",

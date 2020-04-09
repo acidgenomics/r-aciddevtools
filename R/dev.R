@@ -1,7 +1,7 @@
 #' Attach developer packages
 #'
 #' @export
-#' @note Updated 2019-10-19.
+#' @note Updated 2020-04-09.
 #'
 #' @param quiet `logical(1)`.
 #'   Load packages quietly.
@@ -13,7 +13,8 @@
 #' ## Load the developer environment.
 #' ## > dev()
 dev <- function(quiet = TRUE) {
-    stopifnot(requireNamespace("utils", quietly = TRUE))
+    requireNamespaces("utils")
+    assert(isFlag(quiet))
     ## Order is important here.
     pkgs <- c(
         "SummarizedExperiment",
@@ -30,14 +31,15 @@ dev <- function(quiet = TRUE) {
         "covr",
         "testthat",
         "patrick",
+        "goalie",
         "basejump",
         "tidyselect",
         "tidyverse"
     )
-    ## Stop on missing deps.
+    ## Stop on missing packages.
     installed <- rownames(utils::installed.packages())
     notInstalled <- setdiff(pkgs, installed)
-    if (length(notInstalled) > 0L) {
+    if (hasLength(notInstalled)) {
         stop(sprintf("Not installed: %s.", toString(notInstalled)))
     }
     ## Attach unloaded deps.
