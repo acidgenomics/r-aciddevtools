@@ -23,6 +23,7 @@ Encoding: UTF-8
 Depends:
     R (>= 3.6)
 Imports:
+    acidbase (>= 0.1.7),
     goalie (>= 0.4.2)
 Suggests:
     BiocCheck,
@@ -53,6 +54,7 @@ Suggests:
     usethis,
     utils
 Remotes:
+    acidgenomics/acidbase,
     acidgenomics/goalie,
     acidgenomics/pipette,
     acidgenomics/syntactic
