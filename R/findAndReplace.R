@@ -18,7 +18,7 @@ findAndReplace <- function(
     dir = ".",
     recursive = FALSE
 ) {
-    stopifnot(
+    assert(
         requireNamespace("parallel", quietly = TRUE),
         requireNamespace("readr", quietly = TRUE),
     )
