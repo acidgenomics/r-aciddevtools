@@ -1,7 +1,7 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2019-12-04.
+#' @note Updated 2020-04-09.
 #'
 #' @param pkgs `character`.
 #'   Package names to install.
@@ -42,8 +42,11 @@
 #'   on macOS. Refer to [macOS development tools]() for details.
 #'
 #'   [macOS development tools]: https://cran.r-project.org/bin/macosx/tools/
+#' @param reinstall `logical(1)`.
+#'   Force reinstallation of any existing packages.
 #'
-#' @return Invisible `NULL`.
+#' @return Invisible `character`.
+#'   Package names defined in the `pkgs` argument.
 #'
 #' @examples
 #' ## > install(pkgs = c("DESeq2", "edgeR"))
@@ -53,16 +56,21 @@ install <- function(
     configureVars = getOption("configure.vars"),
     dependencies = NA,
     lib = .libPaths()[[1L]],
-    type = getOption("pkgType")
+    type = getOption("pkgType"),
+    reinstall = FALSE
 ) {
-    stopifnot(
-        all(nzchar(pkgs)),
-        requireNamespace("BiocManager", quietly = TRUE),
-        requireNamespace("remotes", quietly = TRUE)
+    requireNamespaces(c("BiocManager", "remotes"))
+    assert(
+        isCharacter(pkgs),
+        isFlag(reinstall)
     )
-    lapply(
+    out <- vapply(
         X = pkgs,
         FUN = function(pkg) {
+            if (!isTRUE(reinstall) && isInstalled(basename(pkg))) {
+                message(sprintf("'%s' is already installed.", pkg))
+                return(pkg)
+            }
             if (grepl(pattern = "/", x = pkg)) {
                 ## remotes-specific (Git).
                 args <- list(
@@ -87,7 +95,8 @@ install <- function(
                 )
             )
             do.call(what = BiocManager::install, args = args)
-        }
+        },
+        FUN.VALUE = character(1L)
     )
-    invisible()
+    invisible(out)
 }
