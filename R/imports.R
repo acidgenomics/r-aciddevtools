@@ -1,3 +1,3 @@
 #' @importFrom acidbase requireNamespaces shell
-#' @importFrom goalie assert isInt isLinux isMacOS
+#' @importFrom goalie assert hasLength isInt isLinux isMacOS
 NULL
