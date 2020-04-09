@@ -19,7 +19,7 @@ printComment <- function(
         "# >"
     )
 ) {
-    stopifnot(requireNamespace("utils", quietly = TRUE))
+    assert(requireNamespace("utils", quietly = TRUE))
     prefix <- match.arg(prefix)
     out <- utils::capture.output(print(...))
     out <- paste(prefix, out)
