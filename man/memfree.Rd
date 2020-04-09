@@ -12,7 +12,12 @@ Get free memory statistics.
 \note{
 Currently this only works for Linux.
 
-Updated 2019-10-19.
+Updated 2020-04-09.
+}
+\examples{
+if (goalie::isLinux()) {
+    memfree()
+}
 }
 \seealso{
 \itemize{
