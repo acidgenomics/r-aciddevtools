@@ -10,7 +10,7 @@
 #' Determine whether a user has installed packages into the system library.
 #'
 #' @export
-#' @note Updated 2019-10-19.
+#' @note Updated 2020-04-09.
 #'
 #' @return `logical(1)`.
 #' Is the system library clean?
@@ -18,7 +18,7 @@
 #' @examples
 #' cleanSystemLibrary()
 cleanSystemLibrary <- function() {
-    assert(requireNamespace("utils", quietly = TRUE))
+    requireNamespaces("utils")
     x <- utils::installed.packages()
     ## Subset information on base packages.
     base <- x[which(x[, "Priority"] == "base"), , drop = FALSE]
