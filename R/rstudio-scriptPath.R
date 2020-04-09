@@ -8,7 +8,7 @@
 #'   Normalized path to current script.
 #'
 scriptPath <- function() {
-    stopifnot(
+    assert(
         isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY"))),
         requireNamespace("rstudioapi", quietly = TRUE)
     )
