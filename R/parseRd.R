@@ -34,13 +34,13 @@
 #' examples <- parseRd(Rd, tag = "examples")
 #' print(examples)
 parseRd <- function(object, tag) {
-    stopifnot(
+    assert(
         requireNamespace("methods", quietly = TRUE),
         methods::is(object, "Rd"),
         is.character(tag) && identical(length(tag), 1L)
     )
     tags <- RdTags(object)
-    stopifnot(all(tag %in% tags))
+    assert(all(tag %in% tags))
     ## Get the metadata that matches the requested tag.
     data <- object[tags == tag]
     data <- unlist(data)

@@ -30,7 +30,7 @@ updateDeps <- function(
         "Enhances"
     )
 ) {
-    stopifnot(
+    assert(
         requireNamespace("BiocManager", quietly = TRUE),
         requireNamespace("desc", quietly = TRUE),
         requireNamespace("utils", quietly = TRUE),
