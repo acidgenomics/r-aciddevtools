@@ -1,5 +1,6 @@
 ## We're checking for a logical in code coverage, but Travis CI will return
 ## FALSE here, and it's hard to test some of these conditions.
+
 ## nocov start
 
 
