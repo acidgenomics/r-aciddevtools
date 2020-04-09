@@ -14,14 +14,16 @@ Authors@R: c(
         given = "Acid Genomics",
         role = c("cph", "fnd")
     ))
-Depends:
-    R (>= 3.6),
-    goalie (>= 0.4.2)
-License: GPL-3
-Encoding: UTF-8
 URL:
     https://bb8.acidgenomics.com/,
     https://github.com/acidgenomics/bb8/
+BugReports: https://github.com/acidgenomics/bb8/issues/
+License: GPL-3
+Encoding: UTF-8
+Depends:
+    R (>= 3.6)
+Imports:
+    goalie (>= 0.4.2)
 Suggests:
     BiocCheck,
     BiocManager,
@@ -55,4 +57,4 @@ Remotes:
     acidgenomics/pipette,
     acidgenomics/syntactic
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
