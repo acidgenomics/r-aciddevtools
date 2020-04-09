@@ -14,7 +14,7 @@
 #' x <- installedPackages()
 #' table(x[["source"]])
 installedPackages <- function() {
-    stopifnot(
+    assert(
         requireNamespace("syntactic", quietly = TRUE),
         requireNamespace("utils", quietly = TRUE)
     )
