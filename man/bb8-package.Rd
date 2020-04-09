@@ -16,6 +16,7 @@ Useful links:
 \itemize{
   \item \url{https://bb8.acidgenomics.com/}
   \item \url{https://github.com/acidgenomics/bb8/}
+  \item Report bugs at \url{https://github.com/acidgenomics/bb8/issues/}
 }
 
 }
