@@ -63,13 +63,14 @@ on macOS. Refer to \url{macOS development tools} for details.}
 Force reinstallation of any existing packages.}
 }
 \value{
-Invisible \code{NULL}.
+Invisible \code{character}.
+Package names defined in the \code{pkgs} argument.
 }
 \description{
 Install packages from Bioconductor, CRAN, or a Git remote
 }
 \note{
-Updated 2020-04-07.
+Updated 2020-04-09.
 }
 \examples{
 ## > install(pkgs = c("DESeq2", "edgeR"))
