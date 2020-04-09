@@ -12,7 +12,7 @@
 #' Rd <- db[["nrow.Rd"]]
 #' RdTags(Rd)
 RdTags <- function(object) {  # nolint
-    stopifnot(
+    assert(
         requireNamespace("methods", quietly = TRUE),
         methods::is(object, "Rd")
     )
