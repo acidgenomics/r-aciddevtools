@@ -27,7 +27,7 @@ script. Note that the \code{f} argument is parameterized and can handle multiple
 requests in a single call.
 }
 \note{
-Updated 2019-10-19.
+Updated 2020-04-09.
 }
 \examples{
 saveRdExamples(
