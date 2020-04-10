@@ -24,7 +24,7 @@ Depends:
     R (>= 3.6)
 Imports:
     acidbase (>= 0.1.7),
-    goalie (>= 0.4.2)
+    goalie (>= 0.4.3)
 Suggests:
     BiocCheck,
     BiocManager,
