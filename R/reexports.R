@@ -230,7 +230,7 @@ with_parameters_test_that <- function(...) {
 
 
 
-## pipette ========================================================================
+## pipette =====================================================================
 #' @rdname reexports
 #' @usage NULL
 #' @export
@@ -525,6 +525,7 @@ use_data <- function(..., overwrite = TRUE) {
 #' @export
 check <- function(path = ".", cran = FALSE) {
     requireNamespaces("desc")
+    lint_package()
     rcmdcheck(
         path = path,
         cran = cran
