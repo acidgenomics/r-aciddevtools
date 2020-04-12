@@ -1,3 +1,25 @@
+## bb8 0.2.9 (2020-04-12)
+
+### Major changes
+
+- Revert back to approach where package doesn't import any dependencies via
+  `Imports`, instead only using `Suggests`. This allows for package update calls
+  inside Travis CI checks and Docker images to work more consistently.
+
+## bb8 0.2.8 (2020-04-12)
+
+### New functions
+
+- `installGitHub`: Install function that allows for versioned package installs
+  without requiring `GITHUB_PAT` variable to be set. Intended for use inside
+  Docker images. Otherwise, use `remotes::install_github` for interactive
+  installs.
+
+### Major changes
+
+- Attempted to rework and simplify internal code, using acidbase and goalie
+  as dependnecies. May revert back to no import approach.
+
 ## bb8 0.2.7 (2020-01-31)
 
 - `rcmdcheck` now uses `--as-cran` flag automatically.

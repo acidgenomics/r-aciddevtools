@@ -58,15 +58,20 @@ install <- function(
     type = getOption("pkgType"),
     reinstall = FALSE
 ) {
-    requireNamespaces(c("BiocManager", "remotes"))
-    assert(
-        isCharacter(pkgs),
-        isFlag(reinstall)
+    stopifnot(
+        requireNamespace("BiocManager", quietly = TRUE),
+        requireNamespace("remotes", quietly = TRUE),
+        requireNamespace("utils", quietly = TRUE),
+        is.character(pkgs),
+        is.logical(reinstall) && identical(length(reinstall), 1L)
     )
     out <- vapply(
         X = pkgs,
         FUN = function(pkg) {
-            if (!isTRUE(reinstall) && isInstalled(basename(pkg))) {
+            if (
+                !isTRUE(reinstall) &&
+                isTRUE(basename(pkg) %in% rownames(utils::installed.packages()))
+            ) {
                 message(sprintf("'%s' is already installed.", pkg))
                 return(pkg)
             }

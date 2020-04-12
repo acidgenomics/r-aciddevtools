@@ -8,8 +8,11 @@
 #'   Normalized path to current script.
 #'
 scriptPath <- function() {
-    assert(isRStudio())
-    requireNamespaces("rstudioapi")
+    stopifnot(
+        requireNamespace("goalie", quietly = TRUE),
+        goalie::isRStudio(),
+        requireNamespace("rstudioapi", quietly = TRUE)
+    )
     x <- rstudioapi::getSourceEditorContext()[["path"]]
     x <- normalizePath(x)
     x

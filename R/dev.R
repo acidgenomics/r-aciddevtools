@@ -13,7 +13,10 @@
 #' ## Load the developer environment.
 #' ## > dev()
 dev <- function(quiet = TRUE) {
-    assert(isFlag(quiet))
+    stopifnot(
+        requireNamespace("utils", quietly = TRUE),
+        is.logical(quiet) && identical(length(quiet), 1L)
+    )
     ## Order is important here.
     pkgs <- c(
         "SummarizedExperiment",
@@ -36,9 +39,9 @@ dev <- function(quiet = TRUE) {
         "tidyverse"
     )
     ## Stop on missing packages.
-    installed <- rownames(installed.packages())
+    installed <- rownames(utils::installed.packages())
     notInstalled <- setdiff(pkgs, installed)
-    if (hasLength(notInstalled)) {
+    if (length(notInstalled) > 0L) {
         stop(sprintf("Not installed: %s.", toString(notInstalled)))
     }
     ## Attach unloaded deps.
@@ -47,9 +50,9 @@ dev <- function(quiet = TRUE) {
         FUN = function(pkg) {
             if (!pkg %in% (.packages())) {
                 if (isTRUE(quiet)) {
-                    suppressPackageStartupMessages(
+                    suppressPackageStartupMessages({
                         attachNamespace(pkg)
-                    )
+                    })
                 } else {
                     attachNamespace(pkg)
                 }

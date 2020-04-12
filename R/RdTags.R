@@ -12,7 +12,10 @@
 #' Rd <- db[["nrow.Rd"]]
 #' RdTags(Rd)
 RdTags <- function(object) {  # nolint
-    assert(is(object, "Rd"))
+    stopifnot(
+        requireNamespace("methods", quietly = TRUE),
+        methods::is(object, "Rd")
+    )
     tags <- vapply(
         X = object,
         FUN = attr,

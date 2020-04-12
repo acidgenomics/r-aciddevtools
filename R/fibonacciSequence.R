@@ -10,7 +10,7 @@
 #' @examples
 #' fibonacciSequence(8L)
 fibonacciSequence <- function(len) {
-    assert(isInt(len))
+    stopifnot(is.integer(len) && identical(length(len), 1L))
     ## Set the lengh of the numeric vector.
     x <- numeric(len)
     x[1L] <- 1L  # nolint

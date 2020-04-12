@@ -18,7 +18,10 @@ findAndReplace <- function(
     dir = ".",
     recursive = FALSE
 ) {
-    requireNamespaces(c("parallel", "readr"))
+    stopifnot(
+        requireNamespace("parallel", quietly = TRUE),
+        requireNamespace("readr", quietly = TRUE)
+    )
     files <- sort(list.files(
         path = dir,
         pattern = "(r|R)$",
