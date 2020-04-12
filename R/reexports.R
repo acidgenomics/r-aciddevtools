@@ -21,7 +21,7 @@ NULL
 #' @usage NULL
 #' @export
 BiocCheck <- function(package = ".") {
-    requireNamespaces("BiocCheck")
+    stopifnot(requireNamespace("BiocCheck", quietly = TRUE))
     BiocCheck::BiocCheck(
         package = package,
         `new-package` = TRUE,
@@ -42,7 +42,7 @@ BiocCheck <- function(package = ".") {
 #' @usage NULL
 #' @export
 valid <- function() {
-    requireNamespaces("BiocManager")
+    stopifnot(requireNamespace("BiocManager", quietly = TRUE))
     BiocManager::valid()
 }
 
@@ -53,7 +53,7 @@ valid <- function() {
 #' @usage NULL
 #' @export
 available <- function(name) {
-    requireNamespaces("available")
+    stopifnot(requireNamespace("available", quietly = TRUE))
     available::available(name = name, browse = FALSE)
 }
 
@@ -64,7 +64,7 @@ available <- function(name) {
 #' @usage NULL
 #' @export
 package_coverage <- function(...) {
-    requireNamespaces("covr")
+    stopifnot(requireNamespace("covr", quietly = TRUE))
     covr::package_coverage(...)
 }
 
@@ -72,7 +72,7 @@ package_coverage <- function(...) {
 #' @usage NULL
 #' @export
 percent_coverage <- function(...) {
-    requireNamespaces("covr")
+    stopifnot(requireNamespace("covr", quietly = TRUE))
     covr::percent_coverage(...)
 }
 
@@ -80,7 +80,10 @@ percent_coverage <- function(...) {
 #' @usage NULL
 #' @export
 report <- function(...) {
-    requireNamespaces(c("DT", "covr"))
+    stopifnot(
+        requireNamespace("DT", quietly = TRUE),
+        requireNamespace("covr", quietly = TRUE)
+    )
     covr::report(...)
 }
 
@@ -91,7 +94,7 @@ report <- function(...) {
 #' @usage NULL
 #' @export
 build <- function(..., vignettes = FALSE) {
-    requireNamespaces("devtools")
+    stopifnot(requireNamespace("devtools", quietly = TRUE))
     devtools::build(..., vignettes = vignettes)
 }
 
@@ -99,7 +102,7 @@ build <- function(..., vignettes = FALSE) {
 #' @usage NULL
 #' @export
 build_vignettes <- function(..., clean = FALSE) {
-    requireNamespaces("devtools")
+    stopifnot(requireNamespace("devtools", quietly = TRUE))
     devtools::build_vignettes(..., clean = clean)
 }
 
@@ -107,7 +110,7 @@ build_vignettes <- function(..., clean = FALSE) {
 #' @usage NULL
 #' @export
 document <- function(...) {
-    requireNamespaces("devtools")
+    stopifnot(requireNamespace("devtools", quietly = TRUE))
     devtools::document(...)
 }
 
@@ -115,7 +118,7 @@ document <- function(...) {
 #' @usage NULL
 #' @export
 load_all <- function() {
-    requireNamespaces("devtools")
+    stopifnot(requireNamespace("devtools", quietly = TRUE))
     ## > pkgload::load_all(helpers = FALSE, attach_testthat = FALSE)
     devtools::load_all()
 }
@@ -134,7 +137,7 @@ run_examples <- function(
     run = FALSE,
     test = FALSE
 ) {
-    requireNamespaces("devtools")
+    stopifnot(requireNamespace("devtools", quietly = TRUE))
     devtools::run_examples(
         ...,
         document = document,
@@ -148,7 +151,11 @@ run_examples <- function(
 #' @usage NULL
 #' @export
 test <- function(...) {
-    requireNamespaces(c("devtools", "testthat", "patrick"))
+    stopifnot(
+        requireNamespace("devtools", quietly = TRUE),
+        requireNamespace("testthat", quietly = TRUE),
+        requireNamespace("patrick", quietly = TRUE)
+    )
     devtools::test(...)
 }
 
@@ -159,7 +166,7 @@ test <- function(...) {
 #' @usage NULL
 #' @export
 gh <- function(...) {
-    requireNamespaces("gh")
+    stopifnot(requireNamespace("gh", quietly = TRUE))
     gh::gh(...)
 }
 
@@ -170,7 +177,7 @@ gh <- function(...) {
 #' @usage NULL
 #' @export
 lint_dir <- function(...) {
-    requireNamespaces("lintr")
+    stopifnot(requireNamespace("lintr", quietly = TRUE))
     lintr::lint_dir(...)
 }
 
@@ -178,7 +185,7 @@ lint_dir <- function(...) {
 #' @usage NULL
 #' @export
 lint_package <- function(...) {
-    requireNamespaces("lintr")
+    stopifnot(requireNamespace("lintr", quietly = TRUE))
     lintr::lint_package(...)
 }
 
@@ -189,7 +196,7 @@ lint_package <- function(...) {
 #' @usage NULL
 #' @export
 `%<>%` <- function(...) {
-    requireNamespaces("magrittr")
+    stopifnot(requireNamespace("magrittr", quietly = TRUE))
     magrittr::`%<>%`
 }
 
@@ -197,7 +204,7 @@ lint_package <- function(...) {
 #' @usage NULL
 #' @export
 `%$%` <- function(...) {
-    requireNamespaces("magrittr")
+    stopifnot(requireNamespace("magrittr", quietly = TRUE))
     magrittr::`%$%`
 }
 
@@ -205,7 +212,7 @@ lint_package <- function(...) {
 #' @usage NULL
 #' @export
 `%>%` <- function(...) {
-    requireNamespaces("magrittr")
+    stopifnot(requireNamespace("magrittr", quietly = TRUE))
     magrittr::`%>%`
 }
 
@@ -213,7 +220,7 @@ lint_package <- function(...) {
 #' @usage NULL
 #' @export
 `%T>%` <- function(...) {
-    requireNamespaces("magrittr")
+    stopifnot(requireNamespace("magrittr", quietly = TRUE))
     magrittr::`%T>%`
 }
 
@@ -224,7 +231,7 @@ lint_package <- function(...) {
 #' @usage NULL
 #' @export
 with_parameters_test_that <- function(...) {
-    requireNamespaces("patrick")
+    stopifnot(requireNamespace("patrick", quietly = TRUE))
     patrick::with_parameters_test_that(...)
 }
 
@@ -235,7 +242,7 @@ with_parameters_test_that <- function(...) {
 #' @usage NULL
 #' @export
 export <- function(...) {
-    requireNamespaces("pipette")
+    stopifnot(requireNamespace("pipette", quietly = TRUE))
     pipette::export(...)
 }
 
@@ -243,7 +250,7 @@ export <- function(...) {
 #' @usage NULL
 #' @export
 import <- function(...) {
-    requireNamespaces("pipette")
+    stopifnot(requireNamespace("pipette", quietly = TRUE))
     pipette::import(...)
 }
 
@@ -251,7 +258,7 @@ import <- function(...) {
 #' @usage NULL
 #' @export
 loadData <- function(...) {
-    requireNamespaces("pipette")
+    stopifnot(requireNamespace("pipette", quietly = TRUE))
     pipette::loadData(...)
 }
 
@@ -259,7 +266,7 @@ loadData <- function(...) {
 #' @usage NULL
 #' @export
 saveData <- function(...) {
-    requireNamespaces("pipette")
+    stopifnot(requireNamespace("pipette", quietly = TRUE))
     pipette::saveData(...)
 }
 
@@ -270,7 +277,7 @@ saveData <- function(...) {
 #' @usage NULL
 #' @export
 object_size <- function(...) {
-    requireNamespaces("pryr")
+    stopifnot(requireNamespace("pryr", quietly = TRUE))
     pryr::object_size(...)
 }
 
@@ -281,7 +288,7 @@ object_size <- function(...) {
 #' @usage NULL
 #' @export
 build_articles <- function(...) {
-    requireNamespaces("pkgdown")
+    stopifnot(requireNamespace("pkgdown", quietly = TRUE))
     pkgdown::build_articles(...)
 }
 
@@ -289,7 +296,7 @@ build_articles <- function(...) {
 #' @usage NULL
 #' @export
 build_home <- function(...) {
-    requireNamespaces("pkgdown")
+    stopifnot(requireNamespace("pkgdown", quietly = TRUE))
     pkgdown::build_home(...)
 }
 
@@ -297,7 +304,7 @@ build_home <- function(...) {
 #' @usage NULL
 #' @export
 build_news <- function(...) {
-    requireNamespaces("pkgdown")
+    stopifnot(requireNamespace("pkgdown", quietly = TRUE))
     pkgdown::build_news(...)
 }
 
@@ -305,7 +312,7 @@ build_news <- function(...) {
 #' @usage NULL
 #' @export
 build_reference <- function(...) {
-    requireNamespaces("pkgdown")
+    stopifnot(requireNamespace("pkgdown", quietly = TRUE))
     pkgdown::build_reference(...)
 }
 
@@ -313,7 +320,7 @@ build_reference <- function(...) {
 #' @usage NULL
 #' @export
 build_reference_index <- function(...) {
-    requireNamespaces("pkgdown")
+    stopifnot(requireNamespace("pkgdown", quietly = TRUE))
     pkgdown::build_reference_index(...)
 }
 
@@ -321,7 +328,7 @@ build_reference_index <- function(...) {
 #' @usage NULL
 #' @export
 build_site <- function(..., devel = FALSE, preview = FALSE) {
-    requireNamespaces("pkgdown")
+    stopifnot(requireNamespace("pkgdown", quietly = TRUE))
     unlink(file.path("docs", "reference"), recursive = TRUE)
     pkgdown::build_site(..., devel = devel, preview = preview)
 }
@@ -333,7 +340,7 @@ build_site <- function(..., devel = FALSE, preview = FALSE) {
 #' @usage NULL
 #' @export
 rcmdcheck <- function(path = ".", cran = FALSE) {
-    requireNamespaces("rcmdcheck")
+    stopifnot(requireNamespace("rcmdcheck", quietly = TRUE))
     ## See also `force_suggests` argument in `devtools::check()`.
     Sys.setenv("_R_CHECK_FORCE_SUGGESTS_" = "FALSE")
     args <- "--no-manual"
@@ -354,7 +361,7 @@ rcmdcheck <- function(path = ".", cran = FALSE) {
 #' @usage NULL
 #' @export
 download_version <- function(...) {
-    requireNamespaces("remotes")
+    stopifnot(requireNamespace("remotes", quietly = TRUE))
     remotes::download_version(...)
 }
 
@@ -362,7 +369,7 @@ download_version <- function(...) {
 #' @usage NULL
 #' @export
 install_bioc <- function(...) {
-    requireNamespaces("remotes")
+    stopifnot(requireNamespace("remotes", quietly = TRUE))
     remotes::install_bioc(...)
 }
 
@@ -370,7 +377,7 @@ install_bioc <- function(...) {
 #' @usage NULL
 #' @export
 install_bitbucket <- function(...) {
-    requireNamespaces("remotes")
+    stopifnot(requireNamespace("remotes", quietly = TRUE))
     remotes::install_bitbucket(...)
 }
 
@@ -378,7 +385,7 @@ install_bitbucket <- function(...) {
 #' @usage NULL
 #' @export
 install_deps <- function(...) {
-    requireNamespaces("remotes")
+    stopifnot(requireNamespace("remotes", quietly = TRUE))
     remotes::install_deps(...)
 }
 
@@ -386,7 +393,7 @@ install_deps <- function(...) {
 #' @usage NULL
 #' @export
 install_git <- function(...) {
-    requireNamespaces("remotes")
+    stopifnot(requireNamespace("remotes", quietly = TRUE))
     remotes::install_git(...)
 }
 
@@ -394,7 +401,7 @@ install_git <- function(...) {
 #' @usage NULL
 #' @export
 install_github <- function(...) {
-    requireNamespaces("remotes")
+    stopifnot(requireNamespace("remotes", quietly = TRUE))
     remotes::install_github(...)
 }
 
@@ -402,7 +409,7 @@ install_github <- function(...) {
 #' @usage NULL
 #' @export
 install_gitlab <- function(...) {
-    requireNamespaces("remotes")
+    stopifnot(requireNamespace("remotes", quietly = TRUE))
     remotes::install_gitlab(...)
 }
 
@@ -410,7 +417,7 @@ install_gitlab <- function(...) {
 #' @usage NULL
 #' @export
 install_url <- function(...) {
-    requireNamespaces("remotes")
+    stopifnot(requireNamespace("remotes", quietly = TRUE))
     remotes::install_url(...)
 }
 
@@ -421,7 +428,7 @@ install_url <- function(...) {
 #' @usage NULL
 #' @export
 py_config <- function(...) {
-    requireNamespaces("reticulate")
+    stopifnot(requireNamespace("reticulate", quietly = TRUE))
     reticulate::py_config(...)
 }
 
@@ -429,7 +436,7 @@ py_config <- function(...) {
 #' @usage NULL
 #' @export
 py_module_available <- function(...) {
-    requireNamespaces("reticulate")
+    stopifnot(requireNamespace("reticulate", quietly = TRUE))
     reticulate::py_module_available(...)
 }
 
@@ -437,7 +444,7 @@ py_module_available <- function(...) {
 #' @usage NULL
 #' @export
 use_virtualenv <- function(...) {
-    requireNamespaces("reticulate")
+    stopifnot(requireNamespace("reticulate", quietly = TRUE))
     reticulate::use_virtualenv(...)
 }
 
@@ -445,7 +452,7 @@ use_virtualenv <- function(...) {
 #' @usage NULL
 #' @export
 virtualenv_list <- function(...) {
-    requireNamespaces("reticulate")
+    stopifnot(requireNamespace("reticulate", quietly = TRUE))
     reticulate::virtualenv_list(...)
 }
 
@@ -456,7 +463,7 @@ virtualenv_list <- function(...) {
 #' @usage NULL
 #' @export
 render <- function(...) {
-    requireNamespaces("rmarkdown")
+    stopifnot(requireNamespace("rmarkdown", quietly = TRUE))
     rmarkdown::render(...)
 }
 
@@ -467,7 +474,7 @@ render <- function(...) {
 #' @usage NULL
 #' @export
 camelCase <- function(...) {
-    requireNamespaces("syntactic")
+    stopifnot(requireNamespace("syntactic", quietly = TRUE))
     syntactic::camelCase(...)
 }
 
@@ -475,7 +482,7 @@ camelCase <- function(...) {
 #' @usage NULL
 #' @export
 kebabCase <- function(...) {
-    requireNamespaces("syntactic")
+    stopifnot(requireNamespace("syntactic", quietly = TRUE))
     syntactic::kebabCase(...)
 }
 
@@ -483,7 +490,7 @@ kebabCase <- function(...) {
 #' @usage NULL
 #' @export
 makeNames <- function(...) {
-    requireNamespaces("syntactic")
+    stopifnot(requireNamespace("syntactic", quietly = TRUE))
     syntactic::makeNames(...)
 }
 
@@ -491,7 +498,7 @@ makeNames <- function(...) {
 #' @usage NULL
 #' @export
 snakeCase <- function(...) {
-    requireNamespaces("syntactic")
+    stopifnot(requireNamespace("syntactic", quietly = TRUE))
     syntactic::snakeCase(...)
 }
 
@@ -502,7 +509,7 @@ snakeCase <- function(...) {
 #' @usage NULL
 #' @export
 test_file <- function(...) {
-    requireNamespaces("testthat")
+    stopifnot(requireNamespace("testthat", quietly = TRUE))
     testthat::test_file(...)
 }
 
@@ -513,7 +520,7 @@ test_file <- function(...) {
 #' @usage NULL
 #' @export
 use_data <- function(..., overwrite = TRUE) {
-    requireNamespaces("usethis")
+    stopifnot(requireNamespace("usethis", quietly = TRUE))
     usethis::use_data(..., overwrite = overwrite)
 }
 
@@ -524,7 +531,7 @@ use_data <- function(..., overwrite = TRUE) {
 #' @usage NULL
 #' @export
 check <- function(path = ".", cran = FALSE) {
-    requireNamespaces("desc")
+    stopifnot(requireNamespace("desc", quietly = TRUE))
     lint_package()
     rcmdcheck(
         path = path,
@@ -541,7 +548,7 @@ check <- function(path = ".", cran = FALSE) {
 #' @usage NULL
 #' @export
 devinstall <- function(..., dependencies = FALSE) {
-    requireNamespaces("devtools")
+    stopifnot(requireNamespace("devtools", quietly = TRUE))
     devtools::install(..., dependencies = dependencies)
 }
 
