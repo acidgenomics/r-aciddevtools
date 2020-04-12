@@ -1,4 +1,4 @@
-#' Find and replace across a directory.
+#' Find and replace across a directory
 #'
 #' @export
 #' @note Updated 2020-04-12.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/findAndReplace.R
 \name{findAndReplace}
 \alias{findAndReplace}
-\title{Find and replace across a directory.}
+\title{Find and replace across a directory}
 \usage{
 findAndReplace(pattern, replacement, dir = ".", recursive = FALSE)
 }
@@ -23,7 +23,7 @@ Search recursively?}
 Invisibly return file paths.
 }
 \description{
-Find and replace across a directory.
+Find and replace across a directory
 }
 \note{
 Updated 2020-04-12.

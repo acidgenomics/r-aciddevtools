@@ -5,7 +5,7 @@
 
 
 
-#' Install package from GitHub
+#' Install packages from GitHub
 #'
 #' @details
 #' This variant doesn't require `GITHUB_PAT`.
