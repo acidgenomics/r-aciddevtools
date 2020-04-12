@@ -4,11 +4,19 @@
 \alias{installGitHub}
 \title{Install package from GitHub}
 \usage{
-installGitHub(repo, version = "latest", reinstall = FALSE)
+installGitHub(repo, release = "latest", reinstall = FALSE)
 }
 \arguments{
 \item{repo}{\code{character}.
-Repository address(es) in the format \code{username/repo}.}
+Repository address(es) in the format \code{owner/repo}.}
+
+\item{release}{\code{character}.
+Release version tag.
+Defaults to latest version available.
+Specific release must match the tag on GitHub (e.g. "v1.0.0").}
+
+\item{reinstall}{\code{logical(1)}.
+Force reinstallation of any existing packages.}
 }
 \value{
 Invisible \code{character}.
@@ -25,12 +33,42 @@ Intended for use inside container images, where a PAT may not be used.
 \note{
 Updated 2020-04-11.
 }
+\section{GitHub API}{
+
+\itemize{
+\item All releases JSON:
+\verb{https://api.github.com/repos/:owner/:repo/releases}
+\item Latest release JSON:
+\verb{https://api.github.com/repos/:owner/:repo/releases/latest}
+\item Specific release JSON (requires numeric release ID, not tag name):
+\verb{https://api.github.com/repos/:owner/:repo/releases/:release_id}
+\item Specific tagged release tarball:
+\verb{https://github.com/:owner/:repo/archive/:tag.tar.gz}
+}
+}
+
 \examples{
+## Install latest release, if necessary.
 installGitHub(
     repo = c(
         "acidgenomics/acidbase",
         "acidgenomics/goalie"
-    )
+    ),
+    release = "latest",
+    reinstall = FALSE
+)
+
+## Force reinstallation of specific versions.
+installGitHub(
+    repo = c(
+        "acidgenomics/acidbase",
+        "acidgenomics/goalie"
+    ),
+    release = c(
+        "v0.1.7",
+        "v0.4.4"
+    ),
+    reinstall = TRUE
 )
 }
 \seealso{
