@@ -1,7 +1,7 @@
 #' Find and replace across a directory.
 #'
 #' @export
-#' @note Updated 2019-08-13.
+#' @note Updated 2020-04-12.
 #'
 #' @inheritParams params
 #' @param pattern `character(1)`.
@@ -18,10 +18,7 @@ findAndReplace <- function(
     dir = ".",
     recursive = FALSE
 ) {
-    assert(
-        requireNamespace("parallel", quietly = TRUE),
-        requireNamespace("readr", quietly = TRUE),
-    )
+    requireNamespaces(c("parallel", "readr"))
     files <- sort(list.files(
         path = dir,
         pattern = "(r|R)$",
