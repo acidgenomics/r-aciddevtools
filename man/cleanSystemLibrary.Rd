@@ -14,7 +14,7 @@ Is the system library clean?
 Determine whether a user has installed packages into the system library.
 }
 \note{
-Updated 2020-04-09.
+Updated 2020-04-12.
 }
 \examples{
 cleanSystemLibrary()
