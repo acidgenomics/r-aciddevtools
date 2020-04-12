@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bb8</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.9</span>
       </span>
     </div>
 
@@ -183,6 +183,36 @@
 <code>rcmdcheck</code> now uses <code>--as-cran</code> flag automatically.</li>
 <li>Updated import to use pipette instead of brio.</li>
 </ul>
+</div>
+    <div id="bb8-0-2-8-2020-04-12" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bb8-0-2-8-2020-04-12" class="anchor"></a>bb8 0.2.8 (2020-04-12)</h2>
+<div id="new-functions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#new-functions" class="anchor"></a>New functions</h3>
+<ul>
+<li>
+<code>installGitHub</code>: Install function that allows for versioned package installs without requiring <code>GITHUB_PAT</code> variable to be set. Intended for use inside Docker images. Otherwise, use <code><a href="https://remotes.r-lib.org/reference/install_github.html">remotes::install_github</a></code> for interactive installs.</li>
+</ul>
+</div>
+<div id="major-changes-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#major-changes-1" class="anchor"></a>Major changes</h3>
+<ul>
+<li>Attempted to rework and simplify internal code, using acidbase and goalie as dependnecies. May revert back to no import approach.</li>
+</ul>
+</div>
+</div>
+    <div id="bb8-0-2-9-2020-04-12" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bb8-0-2-9-2020-04-12" class="anchor"></a>bb8 0.2.9 (2020-04-12)</h2>
+<div id="major-changes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#major-changes" class="anchor"></a>Major changes</h3>
+<ul>
+<li>Revert back to approach where package doesn’t import any dependencies via <code>Imports</code>, instead only using <code>Suggests</code>. This allows for package update calls inside Travis CI checks and Docker images to work more consistently.</li>
+</ul>
+</div>
 </div>
   </div>
 

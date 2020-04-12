@@ -12,6 +12,10 @@
 #'     pbcopy(x)
 #' }
 pbcopy <- function(x) {
-    assert(isMacOS())
-    capture.output(x, file = pipe("pbcopy"))
+    stopifnot(
+        requireNamespace("goalie", quietly = TRUE),
+        requireNamespace("utils", quietly = TRUE),
+        goalie::isMacOS()
+    )
+    utils::capture.output(x, file = pipe("pbcopy"))
 }
