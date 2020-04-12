@@ -2,7 +2,7 @@
 % Please edit documentation in R/installGitHub.R
 \name{installGitHub}
 \alias{installGitHub}
-\title{Install package from GitHub}
+\title{Install packages from GitHub}
 \usage{
 installGitHub(repo, release = "latest", reinstall = FALSE)
 }
@@ -23,7 +23,7 @@ Invisible \code{character}.
 Repository address defined in \code{repo} argument.
 }
 \description{
-Install package from GitHub
+Install packages from GitHub
 }
 \details{
 This variant doesn't require \code{GITHUB_PAT}.

@@ -1,4 +1,4 @@
-#' Get free memory statistics.
+#' Get free memory statistics
 #'
 #' @export
 #' @note Currently this only works for Linux.
