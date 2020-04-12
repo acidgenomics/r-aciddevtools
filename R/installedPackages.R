@@ -14,8 +14,11 @@
 #' x <- installedPackages()
 #' table(x[["source"]])
 installedPackages <- function() {
-    requireNamespaces("syntactic")
-    data <- as.data.frame(installed.packages())
+    stopifnot(
+        requireNamespace("syntactic", quietly = TRUE),
+        requireNamespace("utils", quietly = TRUE)
+    )
+    data <- as.data.frame(utils::installed.packages())
     colnames(data) <- syntactic::camelCase(colnames(data))
     pkgs <- data[["package"]]
     ## Run this check after looking for remote installs, which may contain
@@ -42,7 +45,7 @@ installedPackages <- function() {
     source <- vapply(
         X = pkgs,
         FUN = function(pkg) {
-            desc <- packageDescription(pkg)
+            desc <- utils::packageDescription(pkg)
             if (isTRUE(isCRAN(desc))) {
                 "CRAN"
             } else if (isTRUE(isGitHub(desc))) {

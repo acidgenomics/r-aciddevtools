@@ -5,7 +5,7 @@
 #' requests in a single call.
 #'
 #' @export
-#' @note Updated 2020-04-09.
+#' @note Updated 2020-04-12.
 #'
 #' @inheritParams params
 #' @param Rd `character` or `NULL`.
@@ -31,11 +31,13 @@ saveRdExamples <- function(
     package,
     dir = "."
 ) {
-    requireNamespaces(c("readr", "tools"))
-    assert(
-        isCharacter(Rd, nullOK = TRUE),
-        isString(package),
-        isString(dir)
+    stopifnot(
+        requireNamespace("goalie", quietly = TRUE),
+        requireNamespace("readr", quietly = TRUE),
+        requireNamespace("tools", quietly = TRUE),
+        goalie::isCharacter(Rd, nullOK = TRUE),
+        goalie::isString(package),
+        goalie::isString(dir)
     )
     dir.create(dir, showWarnings = FALSE, recursive = TRUE)
     ## Get a database of the Rd files available in the requested package.
@@ -46,7 +48,7 @@ saveRdExamples <- function(
         Rd <- names(db)  # nolint
     }
     ## Check that the requiested function(s) are valid.
-    assert(all(Rd %in% names(db)))
+    stopifnot(all(Rd %in% names(db)))
     ## Parse the Rd files and return the working examples as a character.
     list <- mapply(
         Rd = Rd,

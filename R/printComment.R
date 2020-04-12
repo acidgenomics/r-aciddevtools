@@ -19,8 +19,9 @@ printComment <- function(
         "# >"
     )
 ) {
+    stopifnot(requireNamespace("utils", quietly = TRUE))
     prefix <- match.arg(prefix)
-    out <- capture.output(print(...))
+    out <- utils::capture.output(print(...))
     out <- paste(prefix, out)
     cat(out, sep = "\n")
 }

@@ -9,7 +9,7 @@
 #'
 #' @seealso http://r-pkgs.had.co.nz/man.html
 tabular <- function(x) {
-    assert(is.data.frame(x))
+    stopifnot(is.data.frame(x))
     align <- function(x) {
         if (is.numeric(x)) {
             "r"
