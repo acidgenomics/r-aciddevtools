@@ -43,27 +43,27 @@
 #'
 #' @examples
 #' ## Install latest release, if necessary.
-#' installGitHub(
-#'     repo = c(
-#'         "acidgenomics/acidbase",
-#'         "acidgenomics/goalie"
-#'     ),
-#'     release = "latest",
-#'     reinstall = FALSE
-#' )
+#' ## > installGitHub(
+#' ## >     repo = c(
+#' ## >         "acidgenomics/acidbase",
+#' ## >         "acidgenomics/goalie"
+#' ## >     ),
+#' ## >     release = "latest",
+#' ## >     reinstall = FALSE
+#' ## > )
 #'
 #' ## Force reinstallation of specific versions.
-#' installGitHub(
-#'     repo = c(
-#'         "acidgenomics/acidbase",
-#'         "acidgenomics/goalie"
-#'     ),
-#'     release = c(
-#'         "v0.1.7",
-#'         "v0.4.4"
-#'     ),
-#'     reinstall = TRUE
-#' )
+#' ## > installGitHub(
+#' ## >     repo = c(
+#' ## >         "acidgenomics/acidbase",
+#' ## >         "acidgenomics/goalie"
+#' ## >     ),
+#' ## >     release = c(
+#' ## >         "v0.1.7",
+#' ## >         "v0.4.4"
+#' ## >     ),
+#' ## >     reinstall = TRUE
+#' ## > )
 installGitHub <- function(
     repo,
     release = "latest",
