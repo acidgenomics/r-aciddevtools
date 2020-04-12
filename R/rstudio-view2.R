@@ -4,7 +4,7 @@
 #' view S4 DataFrame objects.
 #'
 #' @export
-#' @note Updated 2019-10-20.
+#' @note Updated 2020-04-12.
 #'
 #' @inheritParams params
 #'
@@ -15,16 +15,11 @@
 #' @examples
 #' ## > view2(mtcars)
 view2 <- function(object) {
-    stopifnot(
-        requireNamespace("goalie", quietly = TRUE),
-        requireNamespace("methods", quietly = TRUE)
-    )
     ## Coerce S4 object, if applicable.
-    if (goalie::isAny(object, c("DataFrame", "GRanges"))) {
+    if (isAny(object, c("DataFrame", "GRanges"))) {
         object <- as.data.frame(object)
     }
-    if (!isTRUE(nzchar(Sys.getenv("RSTUDIO_USER_IDENTITY")))) {
-        stopifnot(requireNamespace("utils", quietly = TRUE))
+    if (!isRStudio()) {
         View <- utils::View  # nolint
     }
     View(object)

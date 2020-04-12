@@ -15,11 +15,11 @@ Copy to clipboard
 \note{
 Only works on macOS.
 
-Updated 2019-10-30.
+Updated 2020-04-12.
 }
 \examples{
-if (identical(Sys.info()[[1L]], "Darwin")) {
+if (goalie::isMacOS()) {
     x <- "hello world"
-pbcopy(x)
+    pbcopy(x)
 }
 }

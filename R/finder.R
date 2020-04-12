@@ -2,15 +2,15 @@
 #'
 #' @export
 #' @note macOS only.
-#' @note Updated 2019-10-23.
+#' @note Updated 2020-04-07.
 #'
 #' @inheritParams params
 #'
 #' @return Opens window. No return.
 finder <- function(path = ".") {
-    stopifnot(
-        Sys.info()[[1L]] == "Darwin",
-        is.character(path) && identical(length(character), 1L)
+    assert(
+        isMacOS(),
+        isString(path)
     )
     system2(command = "open", args = path)
 }

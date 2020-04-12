@@ -10,7 +10,8 @@ install(
   configureVars = getOption("configure.vars"),
   dependencies = NA,
   lib = .libPaths()[[1L]],
-  type = getOption("pkgType")
+  type = getOption("pkgType"),
+  reinstall = FALSE
 )
 }
 \arguments{
@@ -57,15 +58,19 @@ pre-built binaries from CRAN or Bioconductor.
 Note that installing from source requires the correct GCC and GNU Fortran
 binaries to be installed, and Apple LLVM/Clang compilers should not be used
 on macOS. Refer to \url{macOS development tools} for details.}
+
+\item{reinstall}{\code{logical(1)}.
+Force reinstallation of any existing packages.}
 }
 \value{
-Invisible \code{NULL}.
+Invisible \code{character}.
+Package names defined in the \code{pkgs} argument.
 }
 \description{
 Install packages from Bioconductor, CRAN, or a Git remote
 }
 \note{
-Updated 2019-12-04.
+Updated 2020-04-12.
 }
 \examples{
 ## > install(pkgs = c("DESeq2", "edgeR"))

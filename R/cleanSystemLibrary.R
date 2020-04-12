@@ -1,5 +1,6 @@
 ## We're checking for a logical in code coverage, but Travis CI will return
 ## FALSE here, and it's hard to test some of these conditions.
+
 ## nocov start
 
 
@@ -9,7 +10,7 @@
 #' Determine whether a user has installed packages into the system library.
 #'
 #' @export
-#' @note Updated 2019-10-19.
+#' @note Updated 2020-04-12.
 #'
 #' @return `logical(1)`.
 #' Is the system library clean?
@@ -17,8 +18,7 @@
 #' @examples
 #' cleanSystemLibrary()
 cleanSystemLibrary <- function() {
-    stopifnot(requireNamespace("utils", quietly = TRUE))
-    x <- utils::installed.packages()
+    x <- installed.packages()
     ## Subset information on base packages.
     base <- x[which(x[, "Priority"] == "base"), , drop = FALSE]
     ## Expect a single system library.
@@ -36,7 +36,7 @@ cleanSystemLibrary <- function() {
     ## Check for packages built against a different point release.
     ## (e.g. 3.5.1)
     version <- getRversion()
-    stopifnot(all(grepl("^\\d\\.\\d\\.\\d$", version)))
+    assert(all(grepl("^\\d\\.\\d\\.\\d$", version)))
     ## (e.g. 3.5)
     version <- gsub("\\.\\d$", "", version)
     if (!all(grepl(
