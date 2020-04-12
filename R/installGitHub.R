@@ -157,6 +157,7 @@ installGitHub <- function(
             ## Clean up temporary files.
             file.remove(tarfile)
             unlink(exdir, recursive = TRUE)
+            repo
         }
     )
     invisible(out)
