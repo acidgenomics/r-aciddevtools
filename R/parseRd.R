@@ -4,7 +4,7 @@
 #' returns `character` instead of `matrix`.
 #'
 #' @export
-#' @note Updated 2019-08-13.
+#' @note Updated 2020-04-12.
 #'
 #' @param object `Rd`.
 #'   R documentation, returned from [tools::Rd_db()]
@@ -35,9 +35,8 @@
 #' print(examples)
 parseRd <- function(object, tag) {
     assert(
-        requireNamespace("methods", quietly = TRUE),
-        methods::is(object, "Rd"),
-        is.character(tag) && identical(length(tag), 1L)
+        is(object, "Rd"),
+        isString(tag)
     )
     tags <- RdTags(object)
     assert(all(tag %in% tags))
