@@ -2,7 +2,7 @@ Package: bb8
 Title: Trusty Sidekick for R Package Development
 Description: Personal package with additional devtools utilities.
 Version: 0.2.8
-Date: 2020-04-09
+Date: 2020-04-12
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -24,7 +24,9 @@ Depends:
     R (>= 3.6)
 Imports:
     acidbase (>= 0.1.7),
-    goalie (>= 0.4.3)
+    goalie (>= 0.4.4),
+    methods,
+    utils
 Suggests:
     BiocCheck,
     BiocManager,
@@ -36,7 +38,6 @@ Suggests:
     gh,
     lintr,
     magrittr,
-    methods,
     parallel,
     patrick,
     pipette,
@@ -51,8 +52,7 @@ Suggests:
     syntactic,
     testthat,
     tools,
-    usethis,
-    utils
+    usethis
 Remotes:
     acidgenomics/acidbase,
     acidgenomics/goalie,
