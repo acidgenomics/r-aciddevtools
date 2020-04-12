@@ -10,6 +10,8 @@
 #' @param pkgs `character`.
 #'   Package names.
 #' @param object Object.
+#' @param reinstall `logical(1)`.
+#'   Force reinstallation of any existing packages.
 #' @param x Object.
 #' @param ... Additional arguments.
 #'

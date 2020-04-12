@@ -15,6 +15,9 @@ Package names.}
 
 \item{object}{Object.}
 
+\item{reinstall}{\code{logical(1)}.
+Force reinstallation of any existing packages.}
+
 \item{x}{Object.}
 
 \item{...}{Additional arguments.}

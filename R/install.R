@@ -1,8 +1,9 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2020-04-09.
+#' @note Updated 2020-04-12.
 #'
+#' @inheritParams params
 #' @param pkgs `character`.
 #'   Package names to install.
 #'   Package names containing a "/" are treated as GitHub repositories and
@@ -42,8 +43,6 @@
 #'   on macOS. Refer to [macOS development tools]() for details.
 #'
 #'   [macOS development tools]: https://cran.r-project.org/bin/macosx/tools/
-#' @param reinstall `logical(1)`.
-#'   Force reinstallation of any existing packages.
 #'
 #' @return Invisible `character`.
 #'   Package names defined in the `pkgs` argument.
