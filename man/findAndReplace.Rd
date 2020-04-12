@@ -26,5 +26,5 @@ Invisibly return file paths.
 Find and replace across a directory.
 }
 \note{
-Updated 2019-08-13.
+Updated 2020-04-12.
 }

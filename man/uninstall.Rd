@@ -18,7 +18,7 @@ Names of packages that were removed.
 Wrapper for \code{utils::remove.packages()}.
 }
 \note{
-Updated 2020-04-09.
+Updated 2020-04-12.
 }
 \examples{
 ## > uninstall("bb8")

@@ -14,7 +14,7 @@ R documentation, returned from \code{\link[tools:Rd_db]{tools::Rd_db()}}}
 Modified version of the unexported \code{tools:::RdTags} function.
 }
 \note{
-Updated 2019-10-19.
+Updated 2020-04-12.
 }
 \examples{
 db <- tools::Rd_db("base")

@@ -15,7 +15,7 @@ Copy to clipboard
 \note{
 Only works on macOS.
 
-Updated 2020-04-09.
+Updated 2020-04-12.
 }
 \examples{
 if (goalie::isMacOS()) {

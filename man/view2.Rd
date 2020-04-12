@@ -19,7 +19,7 @@ This variant performs internal coercion to data.frame, so we can easily
 view S4 DataFrame objects.
 }
 \note{
-Updated 2020-04-09.
+Updated 2020-04-12.
 }
 \examples{
 ## > view2(mtcars)
