@@ -30,8 +30,12 @@ updateDeps <- function(
         "Enhances"
     )
 ) {
-    requireNamespaces(c("BiocManager", "desc"))
-    assert(isAFile(file.path(pkg, "DESCRIPTION")))
+    stopifnot(
+        requireNamespace("BiocManager", quietly = TRUE),
+        requireNamespace("remotes", quietly = TRUE),
+        requireNamespace("utils", quietly = TRUE),
+        isTRUE(file.exists(file.path(pkg, "DESCRIPTION")))
+    )
     pkgname <- desc::desc_get_field(file = pkg, key = "Package")
     message(sprintf("Checking %s dependencies.", pkgname))
     ## Get dependency versions.
@@ -48,7 +52,7 @@ updateDeps <- function(
     deps[["version"]] <- sub("^>= ", "", deps[["version"]])
     colnames(deps)[colnames(deps) == "version"] <- "required"
     ## Get current installed versions.
-    current <- installed.packages()
+    current <- utils::installed.packages()
     current <- current[, c("Package", "Version"), drop = FALSE]
     colnames(current)[colnames(current) == "Package"] <- "package"
     colnames(current)[colnames(current) == "Version"] <- "current"

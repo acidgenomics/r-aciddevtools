@@ -15,11 +15,15 @@
 #' @examples
 #' ## > view2(mtcars)
 view2 <- function(object) {
+    stopifnot(
+        requireNamespace("goalie", quietly = TRUE),
+        requireNamespace("utils", quietly = TRUE)
+    )
     ## Coerce S4 object, if applicable.
-    if (isAny(object, c("DataFrame", "GRanges"))) {
+    if (goalie::isAny(object, c("DataFrame", "GRanges"))) {
         object <- as.data.frame(object)
     }
-    if (!isRStudio()) {
+    if (!goalie::isRStudio()) {
         View <- utils::View  # nolint
     }
     View(object)

@@ -18,7 +18,8 @@
 #' @examples
 #' cleanSystemLibrary()
 cleanSystemLibrary <- function() {
-    x <- installed.packages()
+    stopifnot(requireNamespace("utils", quietly = TRUE))
+    x <- utils::installed.packages()
     ## Subset information on base packages.
     base <- x[which(x[, "Priority"] == "base"), , drop = FALSE]
     ## Expect a single system library.
@@ -36,7 +37,7 @@ cleanSystemLibrary <- function() {
     ## Check for packages built against a different point release.
     ## (e.g. 3.5.1)
     version <- getRversion()
-    assert(all(grepl("^\\d\\.\\d\\.\\d$", version)))
+    stopifnot(all(grepl("^\\d\\.\\d\\.\\d$", version)))
     ## (e.g. 3.5)
     version <- gsub("\\.\\d$", "", version)
     if (!all(grepl(

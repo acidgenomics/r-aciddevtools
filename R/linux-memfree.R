@@ -19,12 +19,17 @@
 #'     memfree()
 #' }
 memfree <- function() {
-    assert(isLinux())
-    requireNamespaces("pryr")
+    stopifnot(
+        requireNamespace("acidbase", quietly = TRUE),
+        requireNamespace("goalie", quietly = TRUE),
+        requireNamespace("pryr", quietly = TRUE),
+        requireNamespace("utils", quietly = TRUE),
+        goalie::isLinux()
+    )
     message("Running garbage collection first with 'base::gc()'.")
     print(gc(verbose = TRUE, full = TRUE))
-    memUsed <- capture.output(print(pryr::mem_used()))
-    memFree <- shell(
+    memUsed <- utils::capture.output(print(pryr::mem_used()))
+    memFree <- acidbase::shell(
         command = "awk",
         args = c(
             "'/MemFree/ {print $2}'",

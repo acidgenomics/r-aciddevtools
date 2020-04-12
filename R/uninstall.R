@@ -13,15 +13,16 @@
 #' @examples
 #' ## > uninstall("bb8")
 uninstall <- function(pkgs) {
-    installed <- rownames(installed.packages())
+    stopifnot(requireNamespace("utils", quietly = TRUE))
+    installed <- rownames(utils::installed.packages())
     remove <- intersect(pkgs, installed)
     skip <- setdiff(pkgs, installed)
-    if (hasLength(skip)) {
+    if (length(skip) > 0L) {
         message(sprintf("Skipping packages: %s", toString(skip)))
     }
-    if (hasLength(remove)) {
+    if (length(remove) > 0L) {
         message(sprintf("Removing packages: %s", toString(remove)))
-        remove.packages(remove)
+        utils::remove.packages(remove)
     }
     invisible(remove)
 }

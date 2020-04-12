@@ -129,7 +129,7 @@ installGitHub <- function(
                 )
             }
             tarfile <- tempfile(fileext = ".tar.gz")
-            download.file(
+            utils::download.file(
                 url = url,
                 destfile = tarfile,
                 quiet = FALSE
