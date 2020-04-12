@@ -17,7 +17,7 @@ Update all installed packages
 \note{
 Conflicts with \code{stats::update()}.
 
-Updated 2019-10-19.
+Updated 2020-04-09.
 }
 \examples{
 ## > updatePackages()

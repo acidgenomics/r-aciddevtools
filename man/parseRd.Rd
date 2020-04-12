@@ -30,7 +30,7 @@ Modified version of \code{tools:::.Rd_get_metadata()} that keeps whitespace and
 returns \code{character} instead of \code{matrix}.
 }
 \note{
-Updated 2019-08-13.
+Updated 2020-04-12.
 }
 \examples{
 db <- tools::Rd_db("base")

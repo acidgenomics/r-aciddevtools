@@ -10,7 +10,13 @@ Directory path.}
 \item{path}{\code{character(1)}.
 File path.}
 
+\item{pkgs}{\code{character}.
+Package names.}
+
 \item{object}{Object.}
+
+\item{reinstall}{\code{logical(1)}.
+Force reinstallation of any existing packages.}
 
 \item{x}{Object.}
 

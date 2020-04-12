@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Update all installed packages — updatePackages • bb8</title>
+<title>Install packages from GitHub — installGitHub • bb8</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Update all installed packages — updatePackages" />
-<meta property="og:description" content="Update all installed packages" />
+<meta property="og:title" content="Install packages from GitHub — installGitHub" />
+<meta property="og:description" content="Install packages from GitHub" />
 
 
 
@@ -113,30 +113,98 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Update all installed packages</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/bb8/blob/master/R/updatePackages.R'><code>R/updatePackages.R</code></a></small>
-    <div class="hidden name"><code>updatePackages.Rd</code></div>
+    <h1>Install packages from GitHub</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/bb8/blob/master/R/installGitHub.R'><code>R/installGitHub.R</code></a></small>
+    <div class="hidden name"><code>installGitHub.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Update all installed packages</p>
+    <p>Install packages from GitHub</p>
     </div>
 
-    <pre class="usage"><span class='fu'>updatePackages</span>()</pre>
+    <pre class="usage"><span class='fu'>installGitHub</span>(<span class='no'>repo</span>, <span class='kw'>release</span> <span class='kw'>=</span> <span class='st'>"latest"</span>, <span class='kw'>reinstall</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>repo</th>
+      <td><p><code>character</code>.
+Repository address(es) in the format <code>owner/repo</code>.</p></td>
+    </tr>
+    <tr>
+      <th>release</th>
+      <td><p><code>character</code>.
+Release version tag.
+Defaults to latest version available.
+Specific release must match the tag on GitHub (e.g. "v1.0.0").</p></td>
+    </tr>
+    <tr>
+      <th>reinstall</th>
+      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>.
+Force reinstallation of any existing packages.</p></td>
+    </tr>
+    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Invisible <code>TRUE</code> or console output.
-Whether installation passes Bioconductor validity checks.
-See <code><a href='https://rdrr.io/pkg/BiocManager/man/valid.html'>BiocManager::valid()</a></code> for details.</p>
+    <p>Invisible <code>character</code>.
+Repository address defined in <code>repo</code> argument.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This variant doesn't require <code>GITHUB_PAT</code>.
+If you have a <code>GITHUB_PAT</code> defined, can use <code><a href='install.html'>install()</a></code> directly instead.
+Intended for use inside container images, where a PAT may not be used.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Conflicts with <code><a href='https://rdrr.io/r/stats/update.html'>stats::update()</a></code>.</p>
-<p>Updated 2020-04-09.</p>
+    <p>Updated 2020-04-11.</p>
+    <h2 class="hasAnchor" id="github-api"><a class="anchor" href="#github-api"></a>GitHub API</h2>
+
+    
+
+<ul>
+<li><p>All releases JSON:
+<code>https://api.github.com/repos/:owner/:repo/releases</code></p></li>
+<li><p>Latest release JSON:
+<code>https://api.github.com/repos/:owner/:repo/releases/latest</code></p></li>
+<li><p>Specific release JSON (requires numeric release ID, not tag name):
+<code>https://api.github.com/repos/:owner/:repo/releases/:release_id</code></p></li>
+<li><p>Specific tagged release tarball:
+<code>https://github.com/:owner/:repo/archive/:tag.tar.gz</code></p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'>
+<ul>
+<li><p><code><a href='https://remotes.r-lib.org/reference/install_github.html'>remotes::install_github</a></code>.</p></li>
+<li><p><code>install.packages</code>.</p></li>
+</ul>
+</div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>## &gt; updatePackages()
+    <pre class="examples"><div class='input'>## Install latest release, if necessary.
+## &gt; installGitHub(
+## &gt;     repo = c(
+## &gt;         "acidgenomics/acidbase",
+## &gt;         "acidgenomics/goalie"
+## &gt;     ),
+## &gt;     release = "latest",
+## &gt;     reinstall = FALSE
+## &gt; )
+
+## Force reinstallation of specific versions.
+## &gt; installGitHub(
+## &gt;     repo = c(
+## &gt;         "acidgenomics/acidbase",
+## &gt;         "acidgenomics/goalie"
+## &gt;     ),
+## &gt;     release = c(
+## &gt;         "v0.1.7",
+## &gt;         "v0.4.4"
+## &gt;     ),
+## &gt;     reinstall = TRUE
+## &gt; )
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

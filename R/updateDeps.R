@@ -7,7 +7,7 @@
 #' [Rcheck]: https://github.com/acidgenomics/Rcheck
 #'
 #' @export
-#' @note Updated 2019-10-23.
+#' @note Updated 2020-04-12.
 #'
 #' @param pkg `character(1)`.
 #'   Package path. Must contain a `DESCRIPTION` file.
@@ -30,12 +30,8 @@ updateDeps <- function(
         "Enhances"
     )
 ) {
-    stopifnot(
-        requireNamespace("BiocManager", quietly = TRUE),
-        requireNamespace("desc", quietly = TRUE),
-        requireNamespace("utils", quietly = TRUE),
-        file.exists(file.path(pkg, "DESCRIPTION"))
-    )
+    requireNamespaces(c("BiocManager", "desc"))
+    assert(isAFile(file.path(pkg, "DESCRIPTION")))
     pkgname <- desc::desc_get_field(file = pkg, key = "Package")
     message(sprintf("Checking %s dependencies.", pkgname))
     ## Get dependency versions.
@@ -52,7 +48,7 @@ updateDeps <- function(
     deps[["version"]] <- sub("^>= ", "", deps[["version"]])
     colnames(deps)[colnames(deps) == "version"] <- "required"
     ## Get current installed versions.
-    current <- utils::installed.packages()
+    current <- installed.packages()
     current <- current[, c("Package", "Version"), drop = FALSE]
     colnames(current)[colnames(current) == "Package"] <- "package"
     colnames(current)[colnames(current) == "Version"] <- "current"

@@ -2,19 +2,16 @@
 #'
 #' @export
 #' @note Only works on macOS.
-#' @note Updated 2019-10-30.
+#' @note Updated 2020-04-12.
 #'
 #' @inheritParams params
 #'
 #' @examples
-#' if (identical(Sys.info()[[1L]], "Darwin")) {
+#' if (goalie::isMacOS()) {
 #'     x <- "hello world"
-#' pbcopy(x)
+#'     pbcopy(x)
 #' }
 pbcopy <- function(x) {
-    stopifnot(
-        identical(Sys.info()[[1L]], "Darwin"),
-        requireNamespace("utils", quietly = TRUE)
-    )
-    utils::capture.output(x, file = pipe("pbcopy"))
+    assert(isMacOS())
+    capture.output(x, file = pipe("pbcopy"))
 }

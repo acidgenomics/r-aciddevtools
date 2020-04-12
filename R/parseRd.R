@@ -4,7 +4,7 @@
 #' returns `character` instead of `matrix`.
 #'
 #' @export
-#' @note Updated 2019-08-13.
+#' @note Updated 2020-04-12.
 #'
 #' @param object `Rd`.
 #'   R documentation, returned from [tools::Rd_db()]
@@ -34,13 +34,12 @@
 #' examples <- parseRd(Rd, tag = "examples")
 #' print(examples)
 parseRd <- function(object, tag) {
-    stopifnot(
-        requireNamespace("methods", quietly = TRUE),
-        methods::is(object, "Rd"),
-        is.character(tag) && identical(length(tag), 1L)
+    assert(
+        is(object, "Rd"),
+        isString(tag)
     )
     tags <- RdTags(object)
-    stopifnot(all(tag %in% tags))
+    assert(all(tag %in% tags))
     ## Get the metadata that matches the requested tag.
     data <- object[tags == tag]
     data <- unlist(data)

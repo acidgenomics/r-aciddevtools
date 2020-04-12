@@ -2,7 +2,7 @@
 #'
 #' @export
 #' @note Conflicts with `stats::update()`.
-#' @note Updated 2019-10-19.
+#' @note Updated 2020-04-09.
 #'
 #' @return Invisible `TRUE` or console output.
 #'   Whether installation passes Bioconductor validity checks.
@@ -11,17 +11,14 @@
 #' @examples
 #' ## > updatePackages()
 updatePackages <- function() {
-    stopifnot(requireNamespace("BiocManager", quietly = TRUE))
-    stopifnot(requireNamespace("remotes", quietly = TRUE))
+    requireNamespaces(c("BiocManager", "remotes"))
     remotes::update_packages(
         packages = TRUE,
-        dependencies = TRUE,
         upgrade = "always",
         repos = BiocManager::repositories()
     )
     BiocManager::install(
         pkgs = character(),
-        dependencies = TRUE,
         update = TRUE,
         ask = FALSE,
         checkBuilt = TRUE

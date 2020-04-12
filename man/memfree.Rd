@@ -2,17 +2,22 @@
 % Please edit documentation in R/linux-memfree.R
 \name{memfree}
 \alias{memfree}
-\title{Get free memory statistics.}
+\title{Get free memory statistics}
 \usage{
 memfree()
 }
 \description{
-Get free memory statistics.
+Get free memory statistics
 }
 \note{
 Currently this only works for Linux.
 
-Updated 2019-10-19.
+Updated 2020-04-12.
+}
+\examples{
+if (goalie::isLinux()) {
+    memfree()
+}
 }
 \seealso{
 \itemize{

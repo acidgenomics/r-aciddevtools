@@ -1,7 +1,7 @@
 #' Print as comment
 #'
 #' @export
-#' @note Updated 2019-08-13.
+#' @note Updated 2020-04-12.
 #'
 #' @param ... Passthrough to `print()`.
 #' @param prefix Comment prefix to use. RStudio, roxygen, and ESS prefixes
@@ -19,9 +19,8 @@ printComment <- function(
         "# >"
     )
 ) {
-    stopifnot(requireNamespace("utils", quietly = TRUE))
     prefix <- match.arg(prefix)
-    out <- utils::capture.output(print(...))
+    out <- capture.output(print(...))
     out <- paste(prefix, out)
     cat(out, sep = "\n")
 }
