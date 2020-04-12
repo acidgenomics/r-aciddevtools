@@ -2,7 +2,7 @@
 #'
 #' @export
 #' @note Only works on macOS.
-#' @note Updated 2020-04-09.
+#' @note Updated 2020-04-12.
 #'
 #' @inheritParams params
 #'
@@ -13,6 +13,5 @@
 #' }
 pbcopy <- function(x) {
     assert(isMacOS())
-    requireNamespaces("utils")
-    utils::capture.output(x, file = pipe("pbcopy"))
+    capture.output(x, file = pipe("pbcopy"))
 }

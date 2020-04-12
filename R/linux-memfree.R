@@ -2,7 +2,7 @@
 #'
 #' @export
 #' @note Currently this only works for Linux.
-#' @note Updated 2020-04-09.
+#' @note Updated 2020-04-12.
 #'
 #' @seealso
 #' - `help(topic = "Memory", package = "base")`.
@@ -20,10 +20,10 @@
 #' }
 memfree <- function() {
     assert(isLinux())
-    requireNamespaces(c("pryr", "utils"))
+    requireNamespaces("pryr")
     message("Running garbage collection first with 'base::gc()'.")
     print(gc(verbose = TRUE, full = TRUE))
-    memUsed <- utils::capture.output(print(pryr::mem_used()))
+    memUsed <- capture.output(print(pryr::mem_used()))
     memFree <- shell(
         command = "awk",
         args = c(
