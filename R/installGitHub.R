@@ -69,15 +69,16 @@ installGitHub <- function(
     release = "latest",
     reinstall = FALSE
 ) {
-    assert(
-        allAreMatchingRegex(x = repo, pattern = "^[^/]+/[^/]+$"),
-        isCharacter(release),
-        isFlag(reinstall)
+    stopifnot(
+        requireNamespace("utils", quietly = TRUE),
+        all(grepl(x = repo, pattern = "^[^/]+/[^/]+$")),
+        is.character(release) && identical(length(release), 1L),
+        is.logical(reinstall) && identical(length(reinstall), 1L)
     )
     if (length(repo) > 1L && identical(release, "latest")) {
         release <- rep(release, times = length(repo))
     }
-    assert(areSameLength(repo, release))
+    stopifnot(identical(length(repo), length(release)))
     out <- mapply(
         repo = repo,
         release = release,
@@ -85,19 +86,22 @@ installGitHub <- function(
         FUN = function(repo, release, reinstall) {
             ## > owner <- dirname(repo)
             pkg <- basename(repo)
-            if (!isTRUE(reinstall) && isInstalled(pkg)) {
+            if (
+                !isTRUE(reinstall) &&
+                isTRUE(pkg %in% rownames(utils::installed.packages()))
+            ) {
                 message(sprintf("'%s' is already installed.", pkg))
                 return(repo)
             }
             ## Get the tarball URL.
             if (identical(release, "latest")) {
-                jsonUrl <- pasteURL(
-                    "api.github.com",
+                jsonUrl <- paste(
+                    "https://api.github.com",
                     "repos",
                     repo,
                     "releases",
                     "latest",
-                    protocol = "https"
+                    sep = "/"
                 )
                 json <- withCallingHandlers(expr = {
                     tryCatch(expr = readLines(jsonUrl))
@@ -116,12 +120,12 @@ installGitHub <- function(
                 x <- strsplit(x = x, split = "\"", fixed = TRUE)[[1L]][[4L]]
                 url <- x
             } else {
-                url <- pasteURL(
-                    "github.com",
+                url <- paste(
+                    "https://github.com",
                     repo,
                     "archive",
                     paste0(release, ".tar.gz"),
-                    protocol = "https"
+                    sep = "/"
                 )
             }
             tarfile <- tempfile(fileext = ".tar.gz")
@@ -141,7 +145,7 @@ installGitHub <- function(
                     )
                 )
             )
-            untar(
+            utils::untar(
                 tarfile = tarfile,
                 exdir = exdir,
                 verbose = TRUE
@@ -152,8 +156,11 @@ installGitHub <- function(
                 full.names = TRUE,
                 recursive = FALSE
             )
-            assert(isADir(pkgdir))
-            install.packages(pkgs = pkgdir, repos = NULL, type = "source")
+            stopifnot(
+                identical(length(pkgdir), 1L),
+                isTRUE(dir.exists(pkgdir))
+            )
+            utils::install.packages(pkgs = pkgdir, repos = NULL, type = "source")
             ## Clean up temporary files.
             file.remove(tarfile)
             unlink(exdir, recursive = TRUE)
