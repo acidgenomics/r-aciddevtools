@@ -1,7 +1,7 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2020-04-12.
+#' @note Updated 2020-04-13.
 #'
 #' @inheritParams params
 #' @param pkgs `character`.
@@ -59,12 +59,22 @@ install <- function(
     reinstall = FALSE
 ) {
     stopifnot(
-        requireNamespace("BiocManager", quietly = TRUE),
-        requireNamespace("remotes", quietly = TRUE),
         requireNamespace("utils", quietly = TRUE),
         is.character(pkgs),
         is.logical(reinstall) && identical(length(reinstall), 1L)
     )
+    ## Ensure dependency packages are installed.
+    invisible(lapply(
+        X = c("BiocManager", "remotes"),
+        FUN = function(pkg) {
+            if (!requireNamespace(pkg, quietly = TRUE)) {
+                utils::install.packages(
+                    pkgs = pkg,
+                    repos = "https://cloud.r-project.org"
+                )
+            }
+        }
+    ))
     out <- vapply(
         X = pkgs,
         FUN = function(pkg) {
