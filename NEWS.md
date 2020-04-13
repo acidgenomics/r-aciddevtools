@@ -1,3 +1,10 @@
+## bb8 0.2.11 (2020-04-13)
+
+### Minor changes
+
+- `install`: Bug fix for systems lacking BiocManager or remotes packages.
+  These dependencies are now installed in the fly if missing.
+
 ## bb8 0.2.10 (2020-04-12)
 
 ### Minor changes
