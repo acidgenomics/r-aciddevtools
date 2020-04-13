@@ -176,6 +176,14 @@ gh <- function(...) {
 #' @rdname reexports
 #' @usage NULL
 #' @export
+lint <- function(...) {
+    stopifnot(requireNamespace("lintr", quietly = TRUE))
+    lintr::lint(...)
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
 lint_dir <- function(...) {
     stopifnot(requireNamespace("lintr", quietly = TRUE))
     lintr::lint_dir(...)
