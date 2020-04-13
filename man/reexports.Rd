@@ -15,6 +15,7 @@
 \alias{run_examples}
 \alias{test}
 \alias{gh}
+\alias{lint}
 \alias{lint_dir}
 \alias{lint_package}
 \alias{\%<>\%}
