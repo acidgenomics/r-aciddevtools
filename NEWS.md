@@ -1,3 +1,10 @@
+## bb8 0.2.12 (2020-04-13)
+
+### Minor changes
+
+- `install`: Another bug fix. Switching from `vapply` to `lapply` internally to
+  capture return from BiocManager, as this output can vary.
+
 ## bb8 0.2.11 (2020-04-13)
 
 ### Minor changes
