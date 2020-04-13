@@ -1,3 +1,9 @@
+## bb8 0.2.10 (2020-04-12)
+
+### Minor changes
+
+- `installGitHub`: Bug fix for JSON parsing compability across Linux and macOS.
+
 ## bb8 0.2.9 (2020-04-12)
 
 ### Major changes

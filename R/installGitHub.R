@@ -24,7 +24,7 @@
 #'   `https://github.com/:owner/:repo/archive/:tag.tar.gz`
 #'
 #' @export
-#' @note Updated 2020-04-11.
+#' @note Updated 2020-04-12.
 #'
 #' @inheritParams params
 #' @param repo `character`.
@@ -115,7 +115,7 @@ installGitHub <- function(
                     }
                 })
                 ## Extract the tarball URL from the JSON output using base R.
-                x <- strsplit(x = json, split = ",", fixed = TRUE)[[1L]]
+                x <- unlist(strsplit(x = json, split = ",", fixed = TRUE))
                 x <- grep(pattern = "tarball_url", x = x, value = TRUE)
                 x <- strsplit(x = x, split = "\"", fixed = TRUE)[[1L]][[4L]]
                 url <- x
