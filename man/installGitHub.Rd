@@ -31,7 +31,7 @@ If you have a \code{GITHUB_PAT} defined, can use \code{\link[=install]{install()
 Intended for use inside container images, where a PAT may not be used.
 }
 \note{
-Updated 2020-04-11.
+Updated 2020-04-12.
 }
 \section{GitHub API}{
 
