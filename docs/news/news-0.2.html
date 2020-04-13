@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bb8</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.12</span>
       </span>
     </div>
 
@@ -217,9 +217,9 @@
     <div id="bb8-0-2-10-2020-04-12" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bb8-0-2-10-2020-04-12" class="anchor"></a>bb8 0.2.10 (2020-04-12)</h2>
-<div id="minor-changes-1" class="section level3">
+<div id="minor-changes-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-1" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-2" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>
 <code>installGitHub</code>: Bug fix for JSON parsing compability across Linux and macOS.</li>
@@ -229,12 +229,24 @@
     <div id="bb8-0-2-11-2020-04-13" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bb8-0-2-11-2020-04-13" class="anchor"></a>bb8 0.2.11 (2020-04-13)</h2>
+<div id="minor-changes-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#minor-changes-1" class="anchor"></a>Minor changes</h3>
+<ul>
+<li>
+<code>install</code>: Bug fix for systems lacking BiocManager or remotes packages. These dependencies are now installed in the fly if missing.</li>
+</ul>
+</div>
+</div>
+    <div id="bb8-0-2-12-2020-04-13" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bb8-0-2-12-2020-04-13" class="anchor"></a>bb8 0.2.12 (2020-04-13)</h2>
 <div id="minor-changes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>
-<code>install</code>: Bug fix for systems lacking BiocManager or remotes packages. These dependencies are now installed in the fly if missing.</li>
+<code>install</code>: Another bug fix. Switching from <code>vapply</code> to <code>lapply</code> internally to capture return from BiocManager, as this output can vary.</li>
 </ul>
 </div>
 </div>

@@ -75,7 +75,7 @@ install <- function(
             }
         }
     ))
-    out <- vapply(
+    out <- lapply(
         X = pkgs,
         FUN = function(pkg) {
             if (
@@ -109,8 +109,7 @@ install <- function(
                 )
             )
             do.call(what = BiocManager::install, args = args)
-        },
-        FUN.VALUE = character(1L)
+        }
     )
     invisible(out)
 }
