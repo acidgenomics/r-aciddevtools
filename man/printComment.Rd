@@ -4,13 +4,21 @@
 \alias{printComment}
 \title{Print as comment}
 \usage{
-printComment(..., prefix = c("##", "## >", "#'", "#' >", "#", "# >"))
+printComment(
+  ...,
+  prefix = c("##", "## >", "#'", "#' >", "#", "# >"),
+  width = 80L
+)
 }
 \arguments{
 \item{...}{Passthrough to \code{print()}.}
 
 \item{prefix}{Comment prefix to use. RStudio, roxygen, and ESS prefixes
 are supported.}
+
+\item{width}{\code{integer(1L)}.
+Desired output width.
+Defaults to 80 characters.}
 }
 \value{
 Console output.
@@ -19,5 +27,5 @@ Console output.
 Print as comment
 }
 \note{
-Updated 2020-04-12.
+Updated 2020-05-12.
 }

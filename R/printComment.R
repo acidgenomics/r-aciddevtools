@@ -6,7 +6,7 @@
 #' @param ... Passthrough to `print()`.
 #' @param prefix Comment prefix to use. RStudio, roxygen, and ESS prefixes
 #'   are supported.
-#' @param `integer(1L)`.
+#' @param width `integer(1L)`.
 #'   Desired output width.
 #'   Defaults to 80 characters.
 #'
