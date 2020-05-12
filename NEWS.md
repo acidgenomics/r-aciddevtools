@@ -1,3 +1,10 @@
+## bb8 0.2.13 (2020-05-12)
+
+### Minor changes
+
+- `printComment`: Added `width` parameter. This allows for improved automatic
+  return of comments at a desired width. Currently defaults to 80 characters.
+
 ## bb8 0.2.12 (2020-04-13)
 
 ### Minor changes
