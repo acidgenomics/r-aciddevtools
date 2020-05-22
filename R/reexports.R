@@ -205,7 +205,7 @@ lint_package <- function(...) {
 #' @export
 `%<>%` <- function(...) {
     stopifnot(requireNamespace("magrittr", quietly = TRUE))
-    magrittr::`%<>%`
+    magrittr::`%<>%`(...)
 }
 
 #' @rdname reexports
@@ -213,7 +213,7 @@ lint_package <- function(...) {
 #' @export
 `%$%` <- function(...) {
     stopifnot(requireNamespace("magrittr", quietly = TRUE))
-    magrittr::`%$%`
+    magrittr::`%$%`(...)
 }
 
 #' @rdname reexports
@@ -221,7 +221,7 @@ lint_package <- function(...) {
 #' @export
 `%>%` <- function(...) {
     stopifnot(requireNamespace("magrittr", quietly = TRUE))
-    magrittr::`%>%`
+    magrittr::`%>%`(...)
 }
 
 #' @rdname reexports
@@ -229,7 +229,7 @@ lint_package <- function(...) {
 #' @export
 `%T>%` <- function(...) {
     stopifnot(requireNamespace("magrittr", quietly = TRUE))
-    magrittr::`%T>%`
+    magrittr::`%T>%`(...)
 }
 
 
