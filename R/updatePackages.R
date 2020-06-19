@@ -21,11 +21,13 @@ updatePackages <- function() {
         ask = FALSE,
         checkBuilt = TRUE
     )
-    remotes::update_packages(
-        packages = TRUE,
-        upgrade = "always",
-        repos = BiocManager::repositories()
-    )
+    suppressMessages({
+        remotes::update_packages(
+            packages = TRUE,
+            upgrade = "always",
+            repos = BiocManager::repositories()
+        )
+    })
     out <- BiocManager::valid()
     if (isTRUE(out)) {
         invisible(TRUE)
