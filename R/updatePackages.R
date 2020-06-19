@@ -2,7 +2,7 @@
 #'
 #' @export
 #' @note Conflicts with `stats::update()`.
-#' @note Updated 2020-06-17.
+#' @note Updated 2020-06-19.
 #'
 #' @return Invisible `TRUE` or console output.
 #'   Whether installation passes Bioconductor validity checks.
@@ -21,13 +21,11 @@ updatePackages <- function() {
         ask = FALSE,
         checkBuilt = TRUE
     )
-    suppressMessages({
-        remotes::update_packages(
-            packages = TRUE,
-            upgrade = "always",
-            repos = BiocManager::repositories()
-        )
-    })
+    remotes::update_packages(
+        packages = TRUE,
+        upgrade = "always",
+        repos = BiocManager::repositories()
+    )
     out <- BiocManager::valid()
     if (isTRUE(out)) {
         invisible(TRUE)
