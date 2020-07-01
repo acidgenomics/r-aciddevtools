@@ -3,11 +3,8 @@
 
 
 #' Reexported functions
-#'
-#' Intended for use inside Rprofile internal env.
-#'
 #' @name reexports
-#' @note Updated 2020-04-09.
+#' @note Updated 2020-07-01.
 NULL
 
 

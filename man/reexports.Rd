@@ -59,11 +59,8 @@
 \alias{devinstall}
 \alias{doc}
 \title{Reexported functions}
-\description{
-Intended for use inside Rprofile internal env.
-}
 \note{
-Updated 2020-04-09.
+Updated 2020-07-01.
 }
 \keyword{internal}
 \description{
