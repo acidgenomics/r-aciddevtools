@@ -1,14 +1,14 @@
 #' Get current version of package from GitHub
 #'
 #' @export
-#' @note Updated 2019-11-19.
+#' @note Updated 2020-07-01.
 #'
 #' @param repo `character(1)`.
 #'   GitHub repository ("user/package").
 #'
 #' @examples
-#' getCurrentVersion(repo = "acidgenomics/bb8")
-getCurrentVersion <- function(repo) {
+#' getCurrentGitHubVersion(repo = "acidgenomics/bb8")
+getCurrentGitHubVersion <- function(repo) {
     url <- paste0("https://github.com/", repo, "/releases/latest")
     x <- readLines(url)
     x <- grep(

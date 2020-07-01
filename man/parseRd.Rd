@@ -8,7 +8,7 @@ parseRd(object, tag)
 }
 \arguments{
 \item{object}{\code{Rd}.
-R documentation, returned from \code{\link[tools:Rd_db]{tools::Rd_db()}}}
+R documentation, returned from \code{\link[tools:Rdutils]{tools::Rd_db()}}}
 
 \item{tag}{\code{character(1)}.
 Desired metadata type.
@@ -43,5 +43,5 @@ examples <- parseRd(Rd, tag = "examples")
 print(examples)
 }
 \seealso{
-\code{\link[tools:Rd_db]{tools::Rd_db()}}.
+\code{\link[tools:Rdutils]{tools::Rd_db()}}.
 }
