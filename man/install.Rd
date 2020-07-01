@@ -48,7 +48,7 @@ these packages depend on/link to/import/suggest.
 
 \item{lib}{\code{character}.
 Destination library directory paths.
-Defaults to the first element of \code{\link[base:libPaths]{.libPaths()}}.}
+Defaults to the first element of \code{.libPaths()}.}
 
 \item{type}{\code{character(1)}.
 Type of package to download and install. \code{"source"} is recommended by
@@ -70,7 +70,7 @@ Package names defined in the \code{pkgs} argument.
 Install packages from Bioconductor, CRAN, or a Git remote
 }
 \note{
-Updated 2020-04-13.
+Updated 2020-07-01.
 }
 \examples{
 ## > install(pkgs = c("DESeq2", "edgeR"))

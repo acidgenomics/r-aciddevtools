@@ -1,3 +1,11 @@
+## bb8 0.2.15 (2020-07-01)
+
+### Minor changes
+
+- Renamed `getCurrentVersion` function to `getCurrentGitHubVersion`.
+
+## bb8 0.2.14 (2020-06-21)
+
 ## bb8 0.2.13 (2020-05-12)
 
 ### Minor changes

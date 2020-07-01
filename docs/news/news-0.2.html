@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bb8</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.15</span>
       </span>
     </div>
 
@@ -116,9 +116,9 @@
       
     </div>
 
-    <div id="bb8-0-2-0-2019-10-20" class="section level2">
+    <div id="bb8-020-2019-10-20" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bb8-0-2-0-2019-10-20" class="anchor"></a>bb8 0.2.0 (2019-10-20)</h2>
+<a href="#bb8-020-2019-10-20" class="anchor"></a>bb8 0.2.0 (2019-10-20)</h2>
 <ul>
 <li>Added <code>install</code>, which wraps <code><a href="https://rdrr.io/pkg/BiocManager/man/install.html">BiocManager::install</a></code> with some improved defaults for Mike’s usage.</li>
 <li>Added <code>updatePackages</code>, which wraps <code><a href="https://rdrr.io/pkg/BiocManager/man/install.html">BiocManager::install</a></code> and <code><a href="https://remotes.r-lib.org/reference/update_packages.html">remotes::update_packages</a></code> with some improved defaults.</li>
@@ -126,9 +126,9 @@
 <li>Package doesn’t load any other additional packages as dependencies, to keep loading super fast in a new R session.</li>
 </ul>
 </div>
-    <div id="bb8-0-2-1-2019-10-23" class="section level2">
+    <div id="bb8-021-2019-10-23" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bb8-0-2-1-2019-10-23" class="anchor"></a>bb8 0.2.1 (2019-10-23)</h2>
+<a href="#bb8-021-2019-10-23" class="anchor"></a>bb8 0.2.1 (2019-10-23)</h2>
 <ul>
 <li>Added <code>killAll</code> function, which calls <code>pkill rsession</code> internally.</li>
 <li>
@@ -138,55 +138,55 @@
 <li>Added <code>isInstalled</code>, which checks against <code>installed.packages</code> return.</li>
 </ul>
 </div>
-    <div id="bb8-0-2-2-2019-10-30" class="section level2">
+    <div id="bb8-022-2019-10-30" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bb8-0-2-2-2019-10-30" class="anchor"></a>bb8 0.2.2 (2019-10-30)</h2>
+<a href="#bb8-022-2019-10-30" class="anchor"></a>bb8 0.2.2 (2019-10-30)</h2>
 <ul>
 <li>Added more useful interactive reexports, including pipes.</li>
 </ul>
 </div>
-    <div id="bb8-0-2-3-2019-11-19" class="section level2">
+    <div id="bb8-023-2019-11-19" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bb8-0-2-3-2019-11-19" class="anchor"></a>bb8 0.2.3 (2019-11-19)</h2>
+<a href="#bb8-023-2019-11-19" class="anchor"></a>bb8 0.2.3 (2019-11-19)</h2>
 <ul>
 <li>Updated package documentation to support roxygen2 7.0 update.</li>
 <li>Added useful gh, locate, and remotes reexports.</li>
 </ul>
 </div>
-    <div id="bb8-0-2-4-2019-12-04" class="section level2">
+    <div id="bb8-024-2019-12-04" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bb8-0-2-4-2019-12-04" class="anchor"></a>bb8 0.2.4 (2019-12-04)</h2>
+<a href="#bb8-024-2019-12-04" class="anchor"></a>bb8 0.2.4 (2019-12-04)</h2>
 <ul>
 <li>
 <code>install</code> and <code>updatePackages</code> no longer attempt to install and/or update suggested packages by default. I ran into some dependency issues with Seurat (SDMTools and adehabitat). See Seurat issue <a href='https://github.com/acidgenomics/bb8/issues/2377'>#2377</a> (<a href="https://github.com/satijalab/seurat/issues/2377" class="uri">https://github.com/satijalab/seurat/issues/2377</a>).</li>
 </ul>
 </div>
-    <div id="bb8-0-2-5-2020-01-07" class="section level2">
+    <div id="bb8-025-2020-01-07" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bb8-0-2-5-2020-01-07" class="anchor"></a>bb8 0.2.5 (2020-01-07)</h2>
+<a href="#bb8-025-2020-01-07" class="anchor"></a>bb8 0.2.5 (2020-01-07)</h2>
 <ul>
 <li>Removed lookup package from reexports, to avoid accidental installation of GitHub versions that cause <code><a href="https://rdrr.io/pkg/BiocManager/man/valid.html">BiocManager::valid()</a></code> check to fail.</li>
 </ul>
 </div>
-    <div id="bb8-0-2-6-2020-01-18" class="section level2">
+    <div id="bb8-026-2020-01-18" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bb8-0-2-6-2020-01-18" class="anchor"></a>bb8 0.2.6 (2020-01-18)</h2>
+<a href="#bb8-026-2020-01-18" class="anchor"></a>bb8 0.2.6 (2020-01-18)</h2>
 <ul>
 <li>Updated <code>BiocCheck</code> reexport to not require biocViews in DESCRIPTION by default. This makes CI checks on non-Bioconductor packages destined for CRAN not error.</li>
 </ul>
 </div>
-    <div id="bb8-0-2-7-2020-01-31" class="section level2">
+    <div id="bb8-027-2020-01-31" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bb8-0-2-7-2020-01-31" class="anchor"></a>bb8 0.2.7 (2020-01-31)</h2>
+<a href="#bb8-027-2020-01-31" class="anchor"></a>bb8 0.2.7 (2020-01-31)</h2>
 <ul>
 <li>
 <code>rcmdcheck</code> now uses <code>--as-cran</code> flag automatically.</li>
 <li>Updated import to use pipette instead of brio.</li>
 </ul>
 </div>
-    <div id="bb8-0-2-8-2020-04-12" class="section level2">
+    <div id="bb8-028-2020-04-12" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bb8-0-2-8-2020-04-12" class="anchor"></a>bb8 0.2.8 (2020-04-12)</h2>
+<a href="#bb8-028-2020-04-12" class="anchor"></a>bb8 0.2.8 (2020-04-12)</h2>
 <div id="new-functions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#new-functions" class="anchor"></a>New functions</h3>
@@ -203,9 +203,9 @@
 </ul>
 </div>
 </div>
-    <div id="bb8-0-2-9-2020-04-12" class="section level2">
+    <div id="bb8-029-2020-04-12" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bb8-0-2-9-2020-04-12" class="anchor"></a>bb8 0.2.9 (2020-04-12)</h2>
+<a href="#bb8-029-2020-04-12" class="anchor"></a>bb8 0.2.9 (2020-04-12)</h2>
 <div id="major-changes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#major-changes" class="anchor"></a>Major changes</h3>
@@ -214,51 +214,66 @@
 </ul>
 </div>
 </div>
-    <div id="bb8-0-2-10-2020-04-12" class="section level2">
+    <div id="bb8-0210-2020-04-12" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bb8-0-2-10-2020-04-12" class="anchor"></a>bb8 0.2.10 (2020-04-12)</h2>
-<div id="minor-changes-3" class="section level3">
+<a href="#bb8-0210-2020-04-12" class="anchor"></a>bb8 0.2.10 (2020-04-12)</h2>
+<div id="minor-changes-4" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-3" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-4" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>
 <code>installGitHub</code>: Bug fix for JSON parsing compability across Linux and macOS.</li>
 </ul>
 </div>
 </div>
-    <div id="bb8-0-2-11-2020-04-13" class="section level2">
+    <div id="bb8-0211-2020-04-13" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bb8-0-2-11-2020-04-13" class="anchor"></a>bb8 0.2.11 (2020-04-13)</h2>
-<div id="minor-changes-2" class="section level3">
+<a href="#bb8-0211-2020-04-13" class="anchor"></a>bb8 0.2.11 (2020-04-13)</h2>
+<div id="minor-changes-3" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-2" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-3" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>
 <code>install</code>: Bug fix for systems lacking BiocManager or remotes packages. These dependencies are now installed in the fly if missing.</li>
 </ul>
 </div>
 </div>
-    <div id="bb8-0-2-12-2020-04-13" class="section level2">
+    <div id="bb8-0212-2020-04-13" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bb8-0-2-12-2020-04-13" class="anchor"></a>bb8 0.2.12 (2020-04-13)</h2>
-<div id="minor-changes-1" class="section level3">
+<a href="#bb8-0212-2020-04-13" class="anchor"></a>bb8 0.2.12 (2020-04-13)</h2>
+<div id="minor-changes-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-1" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-2" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>
 <code>install</code>: Another bug fix. Switching from <code>vapply</code> to <code>lapply</code> internally to capture return from BiocManager, as this output can vary.</li>
 </ul>
 </div>
 </div>
-    <div id="bb8-0-2-13-2020-05-12" class="section level2">
+    <div id="bb8-0213-2020-05-12" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bb8-0-2-13-2020-05-12" class="anchor"></a>bb8 0.2.13 (2020-05-12)</h2>
+<a href="#bb8-0213-2020-05-12" class="anchor"></a>bb8 0.2.13 (2020-05-12)</h2>
+<div id="minor-changes-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#minor-changes-1" class="anchor"></a>Minor changes</h3>
+<ul>
+<li>
+<code>printComment</code>: Added <code>width</code> parameter. This allows for improved automatic return of comments at a desired width. Currently defaults to 80 characters.</li>
+</ul>
+</div>
+</div>
+    <div id="bb8-0214-2020-06-21" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bb8-0214-2020-06-21" class="anchor"></a>bb8 0.2.14 (2020-06-21)</h2>
+</div>
+    <div id="bb8-0215-2020-07-01" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bb8-0215-2020-07-01" class="anchor"></a>bb8 0.2.15 (2020-07-01)</h2>
 <div id="minor-changes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h3>
 <ul>
-<li>
-<code>printComment</code>: Added <code>width</code> parameter. This allows for improved automatic return of comments at a desired width. Currently defaults to 80 characters.</li>
+<li>Renamed <code>getCurrentVersion</code> function to <code>getCurrentGitHubVersion</code>.</li>
 </ul>
 </div>
 </div>

@@ -1,7 +1,7 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2020-04-13.
+#' @note Updated 2020-07-01.
 #'
 #' @inheritParams params
 #' @param pkgs `character`.
@@ -32,7 +32,7 @@
 #'    `c("Depends", "Imports", "LinkingTo")`.
 #' @param lib `character`.
 #'   Destination library directory paths.
-#'   Defaults to the first element of [`.libPaths()`][base::libPaths].
+#'   Defaults to the first element of `.libPaths()`.
 #' @param type `character(1)`.
 #'   Type of package to download and install. `"source"` is recommended by
 #'   default, but `"binary"` can be used on macOS or Windows to install
