@@ -24,7 +24,7 @@
 #'   `https://github.com/:owner/:repo/archive/:tag.tar.gz`
 #'
 #' @export
-#' @note Updated 2020-04-12.
+#' @note Updated 2020-07-22.
 #'
 #' @inheritParams params
 #' @param repo `character`.
@@ -67,7 +67,7 @@
 installGitHub <- function(
     repo,
     release = "latest",
-    reinstall = FALSE
+    reinstall = TRUE
 ) {
     stopifnot(
         requireNamespace("utils", quietly = TRUE),

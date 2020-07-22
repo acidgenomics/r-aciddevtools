@@ -4,7 +4,7 @@
 \alias{installGitHub}
 \title{Install packages from GitHub}
 \usage{
-installGitHub(repo, release = "latest", reinstall = FALSE)
+installGitHub(repo, release = "latest", reinstall = TRUE)
 }
 \arguments{
 \item{repo}{\code{character}.
@@ -31,7 +31,7 @@ If you have a \code{GITHUB_PAT} defined, can use \code{\link[=install]{install()
 Intended for use inside container images, where a PAT may not be used.
 }
 \note{
-Updated 2020-04-12.
+Updated 2020-07-22.
 }
 \section{GitHub API}{
 

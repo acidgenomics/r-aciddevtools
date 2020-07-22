@@ -11,7 +11,7 @@ install(
   dependencies = NA,
   lib = .libPaths()[[1L]],
   type = getOption("pkgType"),
-  reinstall = FALSE
+  reinstall = TRUE
 )
 }
 \arguments{
@@ -70,7 +70,7 @@ Package names defined in the \code{pkgs} argument.
 Install packages from Bioconductor, CRAN, or a Git remote
 }
 \note{
-Updated 2020-07-01.
+Updated 2020-07-22.
 }
 \examples{
 ## > install(pkgs = c("DESeq2", "edgeR"))
