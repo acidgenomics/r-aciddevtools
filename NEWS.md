@@ -1,3 +1,9 @@
+## bb8 0.2.16 (2020-07-22)
+
+### Major changes
+
+- `install` and `installGitHub` now default to `reinstall = TRUE`.
+
 ## bb8 0.2.15 (2020-07-01)
 
 ### Minor changes
