@@ -7,7 +7,7 @@
 #' [Rcheck]: https://github.com/acidgenomics/Rcheck
 #'
 #' @export
-#' @note Updated 2020-04-12.
+#' @note Updated 2020-07-23.
 #'
 #' @param pkg `character(1)`.
 #'   Package path. Must contain a `DESCRIPTION` file.
@@ -106,5 +106,5 @@ updateDeps <- function(
     }
     pkgs <- deps[["package"]]
     message(sprintf("Updating %s dependencies: %s.", pkgname, toString(pkgs)))
-    BiocManager::install(pkgs = pkgs, update = FALSE, ask = FALSE)
+    install(pkgs = pkgs, reinstall = TRUE)
 }
