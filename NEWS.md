@@ -1,3 +1,10 @@
+## bb8 0.2.17 (2020-07-23)
+
+### Minor changes
+
+- `updateDeps`: Now calling `install` internally rather than handing off to
+  `BiocManager::install` call.
+
 ## bb8 0.2.16 (2020-07-22)
 
 ### Major changes
