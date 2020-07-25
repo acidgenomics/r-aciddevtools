@@ -6,8 +6,8 @@ test <- function() {
     stopifnot(
         dir.exists(testsDir),
         requireNamespace("devtools", quietly = TRUE),
-        requireNamespace("testthat", quietly = TRUE),
-        requireNamespace("patrick", quietly = TRUE)
+        requireNamespace("testthat", quietly = TRUE)
+        ## > requireNamespace("patrick", quietly = TRUE)
     )
     devtools::load_all()
     testthat::test_dir(
