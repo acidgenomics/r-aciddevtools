@@ -1,3 +1,11 @@
+## bb8 0.2.18 (2020-07-28)
+
+### Minor changes
+
+- Removed internal references to patrick package, which provides parameterized
+  unit testing. Now falling back to simply using `for` or `mapply` loops instead
+  inside of packages.
+
 ## bb8 0.2.17 (2020-07-23)
 
 ### Minor changes
