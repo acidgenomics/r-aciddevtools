@@ -203,17 +203,6 @@ magrittr::`%T>%`
 
 
 
-## patrick =====================================================================
-#' @rdname reexports
-#' @usage NULL
-#' @export
-with_parameters_test_that <- function(...) {
-    stopifnot(requireNamespace("patrick", quietly = TRUE))
-    patrick::with_parameters_test_that(...)
-}
-
-
-
 ## pipette =====================================================================
 #' @rdname reexports
 #' @usage NULL

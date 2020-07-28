@@ -1,5 +1,5 @@
 #' Execute test_that tests in a package
-#' @note Updated 2020-07-25.
+#' @note Updated 2020-07-28.
 #' @export
 test <- function() {
     testsDir <- file.path("tests", "testthat")
@@ -7,7 +7,6 @@ test <- function() {
         dir.exists(testsDir),
         requireNamespace("devtools", quietly = TRUE),
         requireNamespace("testthat", quietly = TRUE)
-        ## > requireNamespace("patrick", quietly = TRUE)
     )
     devtools::load_all()
     testthat::test_dir(

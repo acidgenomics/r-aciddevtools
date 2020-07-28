@@ -22,7 +22,6 @@
 \alias{\%$\%}
 \alias{\%>\%}
 \alias{\%T>\%}
-\alias{with_parameters_test_that}
 \alias{export}
 \alias{import}
 \alias{loadData}

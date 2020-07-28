@@ -10,5 +10,5 @@ test()
 Execute test_that tests in a package
 }
 \note{
-Updated 2020-07-25.
+Updated 2020-07-28.
 }
