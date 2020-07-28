@@ -32,7 +32,6 @@ dev <- function(quiet = TRUE) {
         "pkgdown",
         "covr",
         "testthat",
-        "patrick",
         "goalie",
         "basejump",
         "tidyselect",
