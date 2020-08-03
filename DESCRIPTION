@@ -20,9 +20,8 @@ URL:
 BugReports: https://github.com/acidgenomics/bb8/issues/
 License: GPL-3
 Encoding: UTF-8
-Depends:
-    R (>= 4.0),
-    magrittr
+Depends: R (>= 4.0)
+Imports: magrittr
 Suggests:
     BiocCheck,
     BiocManager,

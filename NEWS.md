@@ -1,3 +1,11 @@
+## bb8 0.2.19 (2020-08-03)
+
+### Minor changes
+
+- Removed reexport of `export` and `import` from pipette package.
+  The `export` function doesn't detect `sym` class correctly.
+- Switched magrittr from Depends to Imports.
+
 ## bb8 0.2.18 (2020-07-28)
 
 ### Minor changes
