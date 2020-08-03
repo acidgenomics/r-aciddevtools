@@ -22,8 +22,6 @@
 \alias{\%$\%}
 \alias{\%>\%}
 \alias{\%T>\%}
-\alias{export}
-\alias{import}
 \alias{loadData}
 \alias{saveData}
 \alias{object_size}
