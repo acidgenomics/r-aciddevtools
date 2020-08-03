@@ -1,8 +1,8 @@
 Package: bb8
 Title: Trusty Sidekick for R Package Development
 Description: Personal package with additional devtools utilities.
-Version: 0.2.18
-Date: 2020-07-28
+Version: 0.2.19
+Date: 2020-08-03
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -27,13 +27,13 @@ Suggests:
     BiocCheck,
     BiocManager,
     DT,
-    acidbase (>= 0.1.10),
+    acidbase (>= 0.1.11),
     available,
     covr,
     desc,
     devtools,
     gh,
-    goalie (>= 0.4.5),
+    goalie (>= 0.4.6),
     lintr,
     methods,
     parallel,

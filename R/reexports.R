@@ -207,22 +207,6 @@ magrittr::`%T>%`
 #' @rdname reexports
 #' @usage NULL
 #' @export
-export <- function(...) {
-    stopifnot(requireNamespace("pipette", quietly = TRUE))
-    pipette::export(...)
-}
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
-import <- function(...) {
-    stopifnot(requireNamespace("pipette", quietly = TRUE))
-    pipette::import(...)
-}
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
 loadData <- function(...) {
     stopifnot(requireNamespace("pipette", quietly = TRUE))
     pipette::loadData(...)
