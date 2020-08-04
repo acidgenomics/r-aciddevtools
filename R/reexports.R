@@ -127,16 +127,11 @@ load_all <- function() {
 #' @rdname reexports
 #' @usage NULL
 #' @export
-run_examples <- function(
-    ...,
-    document = FALSE,
-    fresh = TRUE
-) {
+run_examples <- function() {
     stopifnot(requireNamespace("devtools", quietly = TRUE))
     devtools::run_examples(
-        ...,
-        document = document,
-        fresh = fresh
+        document = FALSE,
+        fresh = TRUE
     )
 }
 
