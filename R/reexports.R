@@ -130,17 +130,13 @@ load_all <- function() {
 run_examples <- function(
     ...,
     document = FALSE,
-    fresh = TRUE,
-    run = FALSE,
-    test = FALSE
+    fresh = TRUE
 ) {
     stopifnot(requireNamespace("devtools", quietly = TRUE))
     devtools::run_examples(
         ...,
         document = document,
-        fresh = fresh,
-        run = run,
-        test = test
+        fresh = fresh
     )
 }
 
