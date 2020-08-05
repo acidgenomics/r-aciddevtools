@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bb8</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.20</span>
       </span>
     </div>
 
@@ -217,9 +217,9 @@
     <div id="bb8-0210-2020-04-12" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bb8-0210-2020-04-12" class="anchor"></a>bb8 0.2.10 (2020-04-12)</h2>
-<div id="minor-changes-7" class="section level3">
+<div id="minor-changes-8" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-7" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-8" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>
 <code>installGitHub</code>: Bug fix for JSON parsing compability across Linux and macOS.</li>
@@ -229,9 +229,9 @@
     <div id="bb8-0211-2020-04-13" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bb8-0211-2020-04-13" class="anchor"></a>bb8 0.2.11 (2020-04-13)</h2>
-<div id="minor-changes-6" class="section level3">
+<div id="minor-changes-7" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-6" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-7" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>
 <code>install</code>: Bug fix for systems lacking BiocManager or remotes packages. These dependencies are now installed in the fly if missing.</li>
@@ -241,9 +241,9 @@
     <div id="bb8-0212-2020-04-13" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bb8-0212-2020-04-13" class="anchor"></a>bb8 0.2.12 (2020-04-13)</h2>
-<div id="minor-changes-5" class="section level3">
+<div id="minor-changes-6" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-5" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-6" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>
 <code>install</code>: Another bug fix. Switching from <code>vapply</code> to <code>lapply</code> internally to capture return from BiocManager, as this output can vary.</li>
@@ -253,9 +253,9 @@
     <div id="bb8-0213-2020-05-12" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bb8-0213-2020-05-12" class="anchor"></a>bb8 0.2.13 (2020-05-12)</h2>
-<div id="minor-changes-4" class="section level3">
+<div id="minor-changes-5" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-4" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-5" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>
 <code>printComment</code>: Added <code>width</code> parameter. This allows for improved automatic return of comments at a desired width. Currently defaults to 80 characters.</li>
@@ -269,9 +269,9 @@
     <div id="bb8-0215-2020-07-01" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bb8-0215-2020-07-01" class="anchor"></a>bb8 0.2.15 (2020-07-01)</h2>
-<div id="minor-changes-3" class="section level3">
+<div id="minor-changes-4" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-3" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-4" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Renamed <code>getCurrentVersion</code> function to <code>getCurrentGitHubVersion</code>.</li>
 </ul>
@@ -292,9 +292,9 @@
     <div id="bb8-0217-2020-07-23" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bb8-0217-2020-07-23" class="anchor"></a>bb8 0.2.17 (2020-07-23)</h2>
-<div id="minor-changes-2" class="section level3">
+<div id="minor-changes-3" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-2" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-3" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>
 <code>updateDeps</code>: Now calling <code>install</code> internally rather than handing off to <code><a href="https://rdrr.io/pkg/BiocManager/man/install.html">BiocManager::install</a></code> call.</li>
@@ -304,9 +304,9 @@
     <div id="bb8-0218-2020-07-28" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bb8-0218-2020-07-28" class="anchor"></a>bb8 0.2.18 (2020-07-28)</h2>
-<div id="minor-changes-1" class="section level3">
+<div id="minor-changes-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-1" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-2" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Removed internal references to patrick package, which provides parameterized unit testing. Now falling back to simply using <code>for</code> or <code>mapply</code> loops instead inside of packages.</li>
 </ul>
@@ -315,12 +315,24 @@
     <div id="bb8-0219-2020-08-03" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bb8-0219-2020-08-03" class="anchor"></a>bb8 0.2.19 (2020-08-03)</h2>
+<div id="minor-changes-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#minor-changes-1" class="anchor"></a>Minor changes</h3>
+<ul>
+<li>Removed reexport of <code>export</code> and <code>import</code> from pipette package. The <code>export</code> function doesn’t detect <code>sym</code> class correctly.</li>
+<li>Switched magrittr from Depends to Imports.</li>
+</ul>
+</div>
+</div>
+    <div id="bb8-0220-2020-08-05" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bb8-0220-2020-08-05" class="anchor"></a>bb8 0.2.20 (2020-08-05</h2>
 <div id="minor-changes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h3>
 <ul>
-<li>Removed reexport of <code>export</code> and <code>import</code> from pipette package. The <code>export</code> function doesn’t detect <code>sym</code> class correctly.</li>
-<li>Switched magrittr from Depends to Imports.</li>
+<li>
+<code>install</code> now internally treats all warnings as errors.</li>
 </ul>
 </div>
 </div>
