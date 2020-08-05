@@ -85,7 +85,15 @@ install <- function(
                 !isTRUE(reinstall) &&
                 isTRUE(basename(pkg) %in% rownames(utils::installed.packages()))
             ) {
-                message(sprintf("'%s' is already installed.", pkg))
+                message(sprintf(
+                    "'%s' is already installed.",
+                    basename(pkg)
+                ))
+                return(pkg)
+            }
+            ## Enable easy install of URLs.
+            if (grepl(pattern = "^http(s)?://", x = pkg)) {
+                utils::install.packages(pkgs = pkg, repos = NULL)
                 return(pkg)
             }
             if (grepl(pattern = "/", x = pkg)) {
@@ -112,6 +120,7 @@ install <- function(
                 )
             )
             do.call(what = BiocManager::install, args = args)
+            pkg
         }
     )
     options("warn" = warn)
