@@ -65,7 +65,7 @@ install <- function(
     )
     ## Treat all warnings as errors.
     warn <- getOption("warn")
-    options("warn") <- 2L
+    options("warn" = 2L)
     ## Ensure dependency packages are installed.
     invisible(lapply(
         X = c("BiocManager", "remotes"),
@@ -114,6 +114,6 @@ install <- function(
             do.call(what = BiocManager::install, args = args)
         }
     )
-    options("warn") <- warn
+    options("warn" = warn)
     invisible(out)
 }
