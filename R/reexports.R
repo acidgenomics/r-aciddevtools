@@ -120,19 +120,15 @@ load_all <- function() {
     devtools::load_all()
 }
 
-## Disabling `run = TRUE` by default.
-## Otherwise, this will attempt to run code inside `\dontrun{}` blocks.
-## See https://github.com/r-lib/devtools/issues/1990.
+## Note that `fresh = TRUE` is currently erroring:
+## https://github.com/r-lib/devtools/issues/2264
 
 #' @rdname reexports
 #' @usage NULL
 #' @export
 run_examples <- function() {
     stopifnot(requireNamespace("devtools", quietly = TRUE))
-    devtools::run_examples(
-        document = FALSE,
-        fresh = TRUE
-    )
+    devtools::run_examples(document = FALSE)
 }
 
 
