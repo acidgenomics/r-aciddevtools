@@ -1,3 +1,9 @@
+## bb8 0.2.20 (2020-08-05
+
+### Minor changes
+
+- `install` now internally treats all warnings as errors.
+
 ## bb8 0.2.19 (2020-08-03)
 
 ### Minor changes
