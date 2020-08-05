@@ -1,7 +1,7 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2020-07-22.
+#' @note Updated 2020-08-05.
 #'
 #' @inheritParams params
 #' @param pkgs `character`.
@@ -63,6 +63,9 @@ install <- function(
         is.character(pkgs),
         is.logical(reinstall) && identical(length(reinstall), 1L)
     )
+    ## Treat all warnings as errors.
+    warn <- getOption("warn")
+    options("warn") <- 2L
     ## Ensure dependency packages are installed.
     invisible(lapply(
         X = c("BiocManager", "remotes"),
@@ -111,5 +114,6 @@ install <- function(
             do.call(what = BiocManager::install, args = args)
         }
     )
+    options("warn") <- warn
     invisible(out)
 }
