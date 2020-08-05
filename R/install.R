@@ -81,19 +81,23 @@ install <- function(
     out <- lapply(
         X = pkgs,
         FUN = function(pkg) {
+            ## Enable version-specific install from package tarball URLs.
+            if (grepl(pattern = "^http(s)?://", x = pkg)) {
+                url <- pkg
+                pkg <- strsplit(basename(url), "[_-]")[[1L]][[1L]]
+                if (
+                    !isTRUE(reinstall) &&
+                    isTRUE(pkg %in% rownames(utils::installed.packages()))
+                ) {
+                    utils::install.packages(pkgs = url, repos = NULL)
+                }
+                return(pkg)
+            }
             if (
                 !isTRUE(reinstall) &&
                 isTRUE(basename(pkg) %in% rownames(utils::installed.packages()))
             ) {
-                message(sprintf(
-                    "'%s' is already installed.",
-                    basename(pkg)
-                ))
-                return(pkg)
-            }
-            ## Enable easy install of URLs.
-            if (grepl(pattern = "^http(s)?://", x = pkg)) {
-                utils::install.packages(pkgs = pkg, repos = NULL)
+                message(sprintf("'%s' is already installed.", basename(pkg)))
                 return(pkg)
             }
             if (grepl(pattern = "/", x = pkg)) {
