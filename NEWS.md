@@ -1,4 +1,10 @@
-## bb8 0.2.20 (2020-08-05
+## bb8 0.2.21 (2020-08-05)
+
+### Minor changes
+
+- `install` now supports direct installation of package tarballs from URLs.
+
+## bb8 0.2.20 (2020-08-05)
 
 ### Minor changes
 
