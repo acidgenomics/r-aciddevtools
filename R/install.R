@@ -127,5 +127,5 @@ install <- function(
 
 ## Updated 2020-08-11.
 .isInstalled <- function(pkgs) {
-    basename(pks) %in% rownames(utils::installed.packages())
+    basename(pkgs) %in% rownames(utils::installed.packages())
 }
