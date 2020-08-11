@@ -1,3 +1,8 @@
+## bb8 0.2.22 (2020-08-11)
+
+- `install`: Bug fix for skipping install from tarball URLs if the package
+  is already installed. Can override with `reinstall = TRUE`.
+
 ## bb8 0.2.21 (2020-08-05)
 
 ### Minor changes

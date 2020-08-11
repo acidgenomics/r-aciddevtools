@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bb8</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.21</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.22</span>
       </span>
     </div>
 
@@ -121,7 +121,7 @@
 <a href="#bb8-020-2019-10-20" class="anchor"></a>bb8 0.2.0 (2019-10-20)</h2>
 <ul>
 <li>Added <code>install</code>, which wraps <code><a href="https://rdrr.io/pkg/BiocManager/man/install.html">BiocManager::install</a></code> with some improved defaults for Mike’s usage.</li>
-<li>Added <code>updatePackages</code>, which wraps <code><a href="https://rdrr.io/pkg/BiocManager/man/install.html">BiocManager::install</a></code> and <code><a href="https://remotes.r-lib.org/reference/update_packages.html">remotes::update_packages</a></code> with some improved defaults.</li>
+<li>Added <code>updatePackages</code>, which wraps <code><a href="https://rdrr.io/pkg/BiocManager/man/install.html">BiocManager::install</a></code> and <code><a href="https://rdrr.io/pkg/remotes/man/update_packages.html">remotes::update_packages</a></code> with some improved defaults.</li>
 <li>Rexporting additional useful functions that get loaded by default in an interactive R session. See Mike’s corresponding <code>Rprofile</code> dotfile.</li>
 <li>Package doesn’t load any other additional packages as dependencies, to keep loading super fast in a new R session.</li>
 </ul>
@@ -192,7 +192,7 @@
 <a href="#new-functions" class="anchor"></a>New functions</h3>
 <ul>
 <li>
-<code>installGitHub</code>: Install function that allows for versioned package installs without requiring <code>GITHUB_PAT</code> variable to be set. Intended for use inside Docker images. Otherwise, use <code><a href="https://remotes.r-lib.org/reference/install_github.html">remotes::install_github</a></code> for interactive installs.</li>
+<code>installGitHub</code>: Install function that allows for versioned package installs without requiring <code>GITHUB_PAT</code> variable to be set. Intended for use inside Docker images. Otherwise, use <code><a href="https://rdrr.io/pkg/remotes/man/install_github.html">remotes::install_github</a></code> for interactive installs.</li>
 </ul>
 </div>
 <div id="major-changes-2" class="section level3">
@@ -347,6 +347,14 @@
 <code>install</code> now supports direct installation of package tarballs from URLs.</li>
 </ul>
 </div>
+</div>
+    <div id="bb8-0222-2020-08-11" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bb8-0222-2020-08-11" class="anchor"></a>bb8 0.2.22 (2020-08-11)</h2>
+<ul>
+<li>
+<code>install</code>: Bug fix for skipping install from tarball URLs if the package is already installed. Can override with <code>reinstall = TRUE</code>.</li>
+</ul>
 </div>
   </div>
 
