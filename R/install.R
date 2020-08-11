@@ -1,7 +1,7 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2020-08-05.
+#' @note Updated 2020-08-11.
 #'
 #' @inheritParams params
 #' @param pkgs `character`.
@@ -85,32 +85,24 @@ install <- function(
             if (grepl(pattern = "^http(s)?://", x = pkg)) {
                 url <- pkg
                 pkg <- strsplit(basename(url), "[_-]")[[1L]][[1L]]
-                if (
-                    !isTRUE(reinstall) &&
-                    isTRUE(pkg %in% rownames(utils::installed.packages()))
-                ) {
-                    utils::install.packages(pkgs = url, repos = NULL)
+                if (isTRUE(.isInstalled(pkg)) && !isTRUE(reinstall)) {
+                    message(sprintf("'%s' is already installed.", pkg))
+                    return(pkg)
                 }
+                ## Alternatively, can use `devtools::install_version()`.
+                utils::install.packages(pkgs = url, repos = NULL)
                 return(pkg)
             }
-            if (
-                !isTRUE(reinstall) &&
-                isTRUE(basename(pkg) %in% rownames(utils::installed.packages()))
-            ) {
+            if (isTRUE(.isInstalled(pkg)) && !isTRUE(reinstall)) {
                 message(sprintf("'%s' is already installed.", basename(pkg)))
                 return(pkg)
             }
             if (grepl(pattern = "/", x = pkg)) {
                 ## remotes-specific (Git).
-                args <- list(
-                    upgrade = "always"
-                )
+                args <- list(upgrade = "always")
             } else {
                 ## BiocManager-specific (Bioconductor/CRAN).
-                args <- list(
-                    ask = FALSE,
-                    update = TRUE
-                )
+                args <- list(ask = FALSE, update = TRUE)
             }
             args <- c(
                 args,
@@ -129,4 +121,11 @@ install <- function(
     )
     options("warn" = warn)
     invisible(out)
+}
+
+
+
+## Updated 2020-08-11.
+.isInstalled <- function(pkgs) {
+    basename(pks) %in% rownames(utils::installed.packages())
 }
