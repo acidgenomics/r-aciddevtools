@@ -1,3 +1,8 @@
+## bb8 0.2.24 (2020-08-11)
+
+- `updatePackages`: Migrated automatic CRAN and GitHub removals here from
+  code previously defined in koopa.
+
 ## bb8 0.2.23 (2020-08-11)
 
 ### Minor changes
