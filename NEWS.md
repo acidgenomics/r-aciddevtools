@@ -1,4 +1,12 @@
+## bb8 0.2.23 (2020-08-11)
+
+### Minor changes
+
+- Renamed `cleanSystemLibrary` to `isCleanSystemLibrary.`
+
 ## bb8 0.2.22 (2020-08-11)
+
+### Minor changes
 
 - `install`: Bug fix for skipping install from tarball URLs if the package
   is already installed. Can override with `reinstall = TRUE`.
