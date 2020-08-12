@@ -496,6 +496,13 @@ doc <- function(...) {
     document(...)
 }
 
+#' @rdname reexports
+#' @usage NULL
+#' @export
+exit <- function(...) {
+    quit(...)
+}
+
 
 
 ## nolint end

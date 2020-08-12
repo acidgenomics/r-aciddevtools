@@ -54,6 +54,7 @@
 \alias{check}
 \alias{devinstall}
 \alias{doc}
+\alias{exit}
 \title{Reexported functions}
 \note{
 Updated 2020-07-01.
