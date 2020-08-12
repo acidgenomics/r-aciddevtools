@@ -2,6 +2,7 @@
 
 - `updatePackages`: Migrated automatic CRAN and GitHub removals here from
   code previously defined in koopa.
+- Migrated `isCleanSystemLibrary` to goalie package.
 
 ## bb8 0.2.23 (2020-08-11)
 
