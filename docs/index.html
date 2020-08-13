@@ -79,12 +79,10 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>This is an <a href="https://www.r-project.org/">R</a> package.</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"remotes"</span>, <span class="kw">quietly</span> <span class="kw">=</span> <span class="fl">TRUE</span>)) {
-    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>)
-}
-<span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span>(<span class="kw">R_REMOTES_UPGRADE</span> <span class="kw">=</span> <span class="st">"always"</span>)
-<span class="co">## Set `GITHUB_PAT` in `~/.Renviron` if you get a rate limit error.</span>
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"acidgenomics/bb8"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(
+    <span class="kw">pkgs</span> <span class="kw">=</span> <span class="st">"bb8"</span>,
+    <span class="kw">repos</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"r.acidgenomics.com"</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html">getOption</a></span>(<span class="st">"repos"</span>))
+)</pre></div>
 </div>
 </div>
   </div>
