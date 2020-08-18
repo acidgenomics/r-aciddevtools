@@ -1,3 +1,7 @@
+## bb8 0.2.27 (2020-08-18)
+
+- Bug fix for Bioconductor and CRAN/RSPM package detection.
+
 ## bb8 0.2.26 (2020-08-18)
 
 - `installedPackages`: Improved detection of Acid Genomics packages installed
