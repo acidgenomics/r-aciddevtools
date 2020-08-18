@@ -102,7 +102,7 @@ updateDeps <- function(
     deps <- deps[!deps[["pass"]], , drop = FALSE]
     if (identical(nrow(deps), 0L)) {
         message(sprintf("All %s dependencies are up-to-date.", pkgname))
-        return()
+        return(invisible())
     }
     pkgs <- deps[["package"]]
     message(sprintf("Updating %s dependencies: %s.", pkgname, toString(pkgs)))
