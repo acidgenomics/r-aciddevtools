@@ -1,3 +1,7 @@
+## bb8 0.2.25 (2020-08-17)
+
+- `install`: Don't attempt to update old packages by default.
+
 ## bb8 0.2.24 (2020-08-11)
 
 - `updatePackages`: Migrated automatic CRAN and GitHub removals here from
