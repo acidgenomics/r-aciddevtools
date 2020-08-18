@@ -1,3 +1,8 @@
+## bb8 0.2.26 (2020-08-18)
+
+- `installedPackages`: Improved detection of Acid Genomics packages installed
+  from `r.acidgenomics.com` instead of GitHub.
+
 ## bb8 0.2.25 (2020-08-17)
 
 - `install`: Don't attempt to update old packages by default.
