@@ -21,17 +21,11 @@ installedPackages <- function() {
     data <- as.data.frame(utils::installed.packages())
     colnames(data) <- syntactic::camelCase(colnames(data))
     pkgs <- data[["package"]]
-    ## Run this check after looking for remote installs, which may contain
-    ## draft biocViews info, even though the package isn't on Bioconductor yet.
+    isAcid <- function(desc) {
+        grepl("^https://.+\\.acidgenomics\\.com", desc[["URL"]])
+    }
     isBioconductor <- function(desc) {
-        ok <- grepl(
-            pattern = "^https://git\\.bioconductor\\.org",
-            x = desc[["git_url"]]
-        )
-        if (isTRUE(ok)) return(TRUE)
-        ok <- !is.null(desc[["biocViews"]])
-        if (isTRUE(ok)) return(TRUE)
-        FALSE
+        grepl("^https://git\\.bioconductor\\.org", desc[["git_url"]])
     }
     isCRAN <- function(desc) {
         identical(desc[["Repository"]], "CRAN")
@@ -54,6 +48,8 @@ installedPackages <- function() {
                 "GitLab"
             } else if (isTRUE(isBioconductor(desc))) {
                 "Bioconductor"
+            } else if (isTRUE(isAcid(desc))) {
+                "Acid Genomics"
             } else {
                 ## Using "local" instead of `NA_character_` matches the
                 ## return of `sessioninfo::session_info()`.
