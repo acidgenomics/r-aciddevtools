@@ -4,7 +4,7 @@
 #' Bioconductor, or from a remote (i.e. GitHub, GitLab) install.
 #'
 #' @export
-#' @note Updated 2020-04-12.
+#' @note Updated 2020-08-18.
 #'
 #' @seealso
 #' - `sessioninfo::package_info()`.
@@ -25,10 +25,14 @@ installedPackages <- function() {
         grepl("^https://.+\\.acidgenomics\\.com", desc[["URL"]])
     }
     isBioconductor <- function(desc) {
-        grepl("^https://git\\.bioconductor\\.org", desc[["git_url"]])
-    }
-    isCRAN <- function(desc) {
-        identical(desc[["Repository"]], "CRAN")
+        ok <- grepl(
+            pattern = "^https://git\\.bioconductor\\.org",
+            x = desc[["git_url"]]
+        )
+        if (isTRUE(ok)) return(TRUE)
+        ok <- !is.null(desc[["biocViews"]])
+        if (isTRUE(ok)) return(TRUE)
+        FALSE
     }
     isGitHub <- function(desc) {
         identical(tolower(desc[["RemoteType"]]), "github")
@@ -40,8 +44,8 @@ installedPackages <- function() {
         X = pkgs,
         FUN = function(pkg) {
             desc <- utils::packageDescription(pkg)
-            if (isTRUE(isCRAN(desc))) {
-                "CRAN"
+            if (!is.null(desc[["Repository"]])) {
+                desc[["Repository"]]
             } else if (isTRUE(isGitHub(desc))) {
                 "GitHub"
             } else if (isTRUE(isGitLab(desc))) {

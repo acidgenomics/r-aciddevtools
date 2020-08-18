@@ -11,7 +11,7 @@ Includes "source" column, indicating whether package is from CRAN,
 Bioconductor, or from a remote (i.e. GitHub, GitLab) install.
 }
 \note{
-Updated 2020-04-12.
+Updated 2020-08-18.
 }
 \examples{
 x <- installedPackages()
