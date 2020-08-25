@@ -1,7 +1,7 @@
 #' Update all installed packages
 #'
 #' @export
-#' @note Updated 2020-08-11.
+#' @note Updated 2020-08-25.
 #'
 #' @return Invisible `TRUE` or console output.
 #'   Whether installation passes Bioconductor validity checks.
@@ -21,7 +21,6 @@ updatePackages <- function() {
                 ## "Matrix.utils"
                 "SDMTools",
                 "bioverbs",
-                "brio",
                 "freerange",
                 "lsei",
                 "npsurv",
