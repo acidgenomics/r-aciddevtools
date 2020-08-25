@@ -1,3 +1,7 @@
+## bb8 0.2.28 (2020-08-25)
+
+- `updatePackages`: Don't attempt to remove brio, as it's now on CRAN.
+
 ## bb8 0.2.27 (2020-08-18)
 
 - Bug fix for Bioconductor and CRAN/RSPM package detection.
