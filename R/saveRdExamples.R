@@ -64,7 +64,7 @@ saveRdExamples <- function(
             ## Early return if there are no examples.
             if (length(x) == 0L) {
                 message(sprintf("Skipped '%s'.", Rd))
-                return(invisible())
+                return(invisible(NULL))
             }
             ## Save to an R script.
             path <- file.path(dir, paste0(Rd, ".R"))
