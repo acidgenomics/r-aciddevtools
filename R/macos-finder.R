@@ -2,17 +2,17 @@
 #'
 #' @export
 #' @note macOS only.
-#' @note Updated 2020-04-12.
+#' @note Updated 2020-10-06.
 #'
 #' @inheritParams params
 #'
 #' @return Opens window. No return.
 finder <- function(path = ".") {
     stopifnot(
-        requireNamespace("acidbase", quietly = TRUE),
+        requireNamespace("AcidBase", quietly = TRUE),
         requireNamespace("goalie", quietly = TRUE),
         goalie::isMacOS(),
         goalie::isString(path)
     )
-    acidbase::shell(command = "open", args = path)
+    AcidBase::shell(command = "open", args = path)
 }

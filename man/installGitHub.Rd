@@ -31,7 +31,7 @@ If you have a \code{GITHUB_PAT} defined, can use \code{\link[=install]{install()
 Intended for use inside container images, where a PAT may not be used.
 }
 \note{
-Updated 2020-07-22.
+Updated 2020-10-06.
 }
 \section{GitHub API}{
 
@@ -51,8 +51,8 @@ Updated 2020-07-22.
 ## Install latest release, if necessary.
 ## > installGitHub(
 ## >     repo = c(
-## >         "acidgenomics/acidbase",
-## >         "acidgenomics/goalie"
+## >         "acidgenomics/goalie",
+## >         "acidgenomics/syntactic"
 ## >     ),
 ## >     release = "latest",
 ## >     reinstall = FALSE
@@ -61,12 +61,12 @@ Updated 2020-07-22.
 ## Force reinstallation of specific versions.
 ## > installGitHub(
 ## >     repo = c(
-## >         "acidgenomics/acidbase",
-## >         "acidgenomics/goalie"
+## >         "acidgenomics/goalie",
+## >         "acidgenomics/syntactic"
 ## >     ),
 ## >     release = c(
-## >         "v0.1.7",
-## >         "v0.4.4"
+## >         "v0.4.8",
+## >         "v0.4.2"
 ## >     ),
 ## >     reinstall = TRUE
 ## > )

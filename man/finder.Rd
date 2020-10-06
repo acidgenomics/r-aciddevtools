@@ -19,5 +19,5 @@ Open Finder to the current directory
 \note{
 macOS only.
 
-Updated 2020-04-12.
+Updated 2020-10-06.
 }

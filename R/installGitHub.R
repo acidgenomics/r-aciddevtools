@@ -24,7 +24,7 @@
 #'   `https://github.com/:owner/:repo/archive/:tag.tar.gz`
 #'
 #' @export
-#' @note Updated 2020-07-22.
+#' @note Updated 2020-10-06.
 #'
 #' @inheritParams params
 #' @param repo `character`.
@@ -45,8 +45,8 @@
 #' ## Install latest release, if necessary.
 #' ## > installGitHub(
 #' ## >     repo = c(
-#' ## >         "acidgenomics/acidbase",
-#' ## >         "acidgenomics/goalie"
+#' ## >         "acidgenomics/goalie",
+#' ## >         "acidgenomics/syntactic"
 #' ## >     ),
 #' ## >     release = "latest",
 #' ## >     reinstall = FALSE
@@ -55,12 +55,12 @@
 #' ## Force reinstallation of specific versions.
 #' ## > installGitHub(
 #' ## >     repo = c(
-#' ## >         "acidgenomics/acidbase",
-#' ## >         "acidgenomics/goalie"
+#' ## >         "acidgenomics/goalie",
+#' ## >         "acidgenomics/syntactic"
 #' ## >     ),
 #' ## >     release = c(
-#' ## >         "v0.1.7",
-#' ## >         "v0.4.4"
+#' ## >         "v0.4.8",
+#' ## >         "v0.4.2"
 #' ## >     ),
 #' ## >     reinstall = TRUE
 #' ## > )

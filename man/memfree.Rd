@@ -12,7 +12,7 @@ Get free memory statistics
 \note{
 Currently this only works for Linux.
 
-Updated 2020-04-12.
+Updated 2020-10-06.
 }
 \examples{
 if (goalie::isLinux()) {
