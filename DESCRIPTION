@@ -1,8 +1,8 @@
 Package: bb8
 Title: Trusty Sidekick for R Package Development
 Description: Personal package with additional devtools utilities.
-Version: 0.2.28
-Date: 2020-08-25
+Version: 0.2.29
+Date: 2020-10-06
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -23,10 +23,10 @@ Encoding: UTF-8
 Depends: R (>= 4.0)
 Imports: magrittr
 Suggests:
+    AcidBase (>= 0.2.0),
     BiocCheck,
     BiocManager,
     DT,
-    acidbase (>= 0.1.11),
     available,
     covr,
     desc,
@@ -52,7 +52,7 @@ Suggests:
     usethis,
     utils
 Remotes:
-    acidgenomics/acidbase,
+    acidgenomics/AcidBase,
     acidgenomics/goalie,
     acidgenomics/pipette,
     acidgenomics/syntactic
