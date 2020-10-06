@@ -1,3 +1,7 @@
+## bb8 0.2.29 (2020-10-06)
+
+- Renamed acidbase package to AcidBase, and updated import here.
+
 ## bb8 0.2.28 (2020-08-25)
 
 - `updatePackages`: Don't attempt to remove brio, as it's now on CRAN.
