@@ -1,6 +1,7 @@
-## bb8 0.2.29 (2020-10-06)
+## bb8 0.2.29 (2020-10-07)
 
 - Renamed acidbase package to AcidBase, and updated import here.
+- Removed GitHub remotes to Acid Genomics packages.
 
 ## bb8 0.2.28 (2020-08-25)
 
