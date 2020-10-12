@@ -1,3 +1,8 @@
+## bb8 0.2.30 (2020-10-12)
+
+- `updatePackages`: Only attempt to update GitHub packages if `GITHUB_PAT`
+  environment variable is set.
+
 ## bb8 0.2.29 (2020-10-07)
 
 - Renamed acidbase package to AcidBase, and updated import here.
