@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bb8</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.29</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.31</span>
       </span>
     </div>
 
@@ -163,7 +163,7 @@ If you have a <code>GITHUB_PAT</code> defined, can use <code><a href='install.ht
 Intended for use inside container images, where a PAT may not be used.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-07-22.</p>
+    <p>Updated 2020-10-06.</p>
     <h2 class="hasAnchor" id="github-api"><a class="anchor" href="#github-api"></a>GitHub API</h2>
 
     
@@ -192,8 +192,8 @@ Intended for use inside container images, where a PAT may not be used.</p>
     <pre class="examples"><div class='input'><span class='co'>## Install latest release, if necessary.</span>
 <span class='co'>## &gt; installGitHub(</span>
 <span class='co'>## &gt;     repo = c(</span>
-<span class='co'>## &gt;         "acidgenomics/acidbase",</span>
-<span class='co'>## &gt;         "acidgenomics/goalie"</span>
+<span class='co'>## &gt;         "acidgenomics/goalie",</span>
+<span class='co'>## &gt;         "acidgenomics/syntactic"</span>
 <span class='co'>## &gt;     ),</span>
 <span class='co'>## &gt;     release = "latest",</span>
 <span class='co'>## &gt;     reinstall = FALSE</span>
@@ -202,12 +202,12 @@ Intended for use inside container images, where a PAT may not be used.</p>
 <span class='co'>## Force reinstallation of specific versions.</span>
 <span class='co'>## &gt; installGitHub(</span>
 <span class='co'>## &gt;     repo = c(</span>
-<span class='co'>## &gt;         "acidgenomics/acidbase",</span>
-<span class='co'>## &gt;         "acidgenomics/goalie"</span>
+<span class='co'>## &gt;         "acidgenomics/goalie",</span>
+<span class='co'>## &gt;         "acidgenomics/syntactic"</span>
 <span class='co'>## &gt;     ),</span>
 <span class='co'>## &gt;     release = c(</span>
-<span class='co'>## &gt;         "v0.1.7",</span>
-<span class='co'>## &gt;         "v0.4.4"</span>
+<span class='co'>## &gt;         "v0.4.8",</span>
+<span class='co'>## &gt;         "v0.4.2"</span>
 <span class='co'>## &gt;     ),</span>
 <span class='co'>## &gt;     reinstall = TRUE</span>
 <span class='co'>## &gt; )</span>
