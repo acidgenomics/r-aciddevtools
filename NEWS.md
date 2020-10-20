@@ -1,3 +1,7 @@
+## bb8 0.2.31 (2020-10-20)
+
+- `updateDeps`: Hardened against missing packages.
+
 ## bb8 0.2.30 (2020-10-12)
 
 - `updatePackages`: Only attempt to update GitHub packages if `GITHUB_PAT`
