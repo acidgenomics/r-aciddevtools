@@ -119,6 +119,6 @@ updateDeps <- function(
             "All %s dependencies are up-to-date.",
             pkgname
         ))
-        return(invisible(NULL))
+        invisible(NULL)
     }
 }
