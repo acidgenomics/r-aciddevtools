@@ -7,7 +7,7 @@
 #' [Rcheck]: https://github.com/acidgenomics/Rcheck
 #'
 #' @export
-#' @note Updated 2020-07-23.
+#' @note Updated 2020-10-20.
 #'
 #' @param pkg `character(1)`.
 #'   Package path. Must contain a `DESCRIPTION` file.
@@ -36,53 +36,60 @@ updateDeps <- function(
         requireNamespace("utils", quietly = TRUE),
         isTRUE(file.exists(file.path(pkg, "DESCRIPTION")))
     )
-    pkgname <- desc::desc_get_field(file = pkg, key = "Package")
-    message(sprintf("Checking %s dependencies.", pkgname))
-    ## Get dependency versions.
-    deps <- desc::desc_get_deps(pkg)
-    ## Drop base R.
-    keep <- deps[["package"]] != "R"
-    deps <- deps[keep, , drop = FALSE]
-    ## Keep only requested dependency types.
-    keep <- deps[["type"]] %in% type
-    deps <- deps[keep, , drop = FALSE]
-    ## Only keep dependencies with a suggested minimum version.
-    keep <- grepl("^>= ", deps[["version"]])
-    deps <- deps[keep, , drop = FALSE]
-    deps[["version"]] <- sub("^>= ", "", deps[["version"]])
-    colnames(deps)[colnames(deps) == "version"] <- "required"
     ## Get current installed versions.
     current <- utils::installed.packages()
     current <- current[, c("Package", "Version"), drop = FALSE]
     colnames(current)[colnames(current) == "Package"] <- "package"
     colnames(current)[colnames(current) == "Version"] <- "current"
+    pkgname <- desc::desc_get_field(file = pkg, key = "Package")
+    message(sprintf("Checking %s dependencies.", pkgname))
+    ## Get dependency versions.
+    df <- desc::desc_get_deps(pkg)
+    stopifnot(is.data.frame(df))
+    ## Drop base R row.
+    keep <- df[["package"]] != "R"
+    df <- df[keep, , drop = FALSE]
+    ## Keep only requested dependency types.
+    keep <- df[["type"]] %in% type
+    df <- df[keep, , drop = FALSE]
+    ## Create a vector of packages we need to update.
+    pkgs <- character()
+    ## Packages without a version requirement.
+    noVersion <- df[which(df[["version"]] == "*"), "package", drop = TRUE]
+    noVersionMissing <- noVersion[which(!noVersion %in% rownames(current))]
+    pkgs <- c(pkgs, noVersionMissing)
+    ## Packages less than or equal to a specific version.
+    keep <- grepl("^>= ", df[["version"]])
+    df <- df[keep, , drop = FALSE]
+    df[["version"]] <- sub("^>= ", "", df[["version"]])
+    colnames(df)[colnames(df) == "version"] <- "required"
     ## Create an index column so merge operation doesn't resort.
-    deps[["idx"]] <- seq_len(nrow(deps))
-    deps <- merge(
-        x = deps,
+    df[["idx"]] <- seq_len(nrow(df))
+    df <- merge(
+        x = df,
         y = current,
         by = "package",
         all.x = TRUE,
         sort = FALSE
     )
-    deps <- deps[order(deps[["idx"]]), , drop = FALSE]
-    deps[["idx"]] <- NULL
+    df <- df[order(df[["idx"]]), , drop = FALSE]
+    df[["idx"]] <- NULL
     ## Rename package in data frame to remote name, if necessary.
     remotes <- desc::desc_get_remotes(pkg)
     if (length(remotes) > 0L) {
         x <- remotes
-        table <- deps[["package"]]
+        table <- df[["package"]]
         match <- match(x = basename(x), table = table)
         for (i in seq_along(match)) {
             if (is.na(match[i])) next
             table[match[i]] <- remotes[i]
         }
-        deps[["package"]] <- table
+        df[["package"]] <- table
     }
     ## Get a logical vector of which packages pass requirement.
-    deps[["pass"]] <- mapply(
-        x = as.character(deps[["current"]]),
-        y = as.character(deps[["required"]]),
+    df[["pass"]] <- mapply(
+        x = as.character(df[["current"]]),
+        y = as.character(df[["required"]]),
         FUN = function(x, y) {
             if (is.na(x)) return(FALSE)
             x <- package_version(x)
@@ -92,19 +99,26 @@ updateDeps <- function(
         SIMPLIFY = TRUE,
         USE.NAMES = FALSE
     )
-    if (!all(deps[["pass"]])) {
+    if (!all(df[["pass"]])) {
         message(paste(
-            utils::capture.output(print(deps, row.names = FALSE)),
+            utils::capture.output(print(df, row.names = FALSE)),
             collapse = "\n"
         ))
     }
     ## Filter dependencies by which packages need an update.
-    deps <- deps[!deps[["pass"]], , drop = FALSE]
-    if (identical(nrow(deps), 0L)) {
-        message(sprintf("All %s dependencies are up-to-date.", pkgname))
+    df <- df[!df[["pass"]], , drop = FALSE]
+    pkgs <- c(pkgs, df[["package"]])
+    if (length(pkgs) > 0L) {
+        message(sprintf(
+            "Updating %s dependencies: %s.",
+            pkgname, toString(pkgs)
+        ))
+        install(pkgs = pkgs, reinstall = TRUE)
+    } else {
+        message(sprintf(
+            "All %s dependencies are up-to-date.",
+            pkgname
+        ))
         return(invisible(NULL))
     }
-    pkgs <- deps[["package"]]
-    message(sprintf("Updating %s dependencies: %s.", pkgname, toString(pkgs)))
-    install(pkgs = pkgs, reinstall = TRUE)
 }
