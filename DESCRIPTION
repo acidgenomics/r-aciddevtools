@@ -1,8 +1,8 @@
 Package: bb8
 Title: Trusty Sidekick for R Package Development
 Description: Personal package with additional devtools utilities.
-Version: 0.2.31
-Date: 2020-10-20
+Version: 0.2.32
+Date: 2020-10-23
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -23,7 +23,7 @@ Encoding: UTF-8
 Depends: R (>= 4.0)
 Imports: magrittr
 Suggests:
-    AcidBase (>= 0.2.0),
+    AcidBase,
     BiocCheck,
     BiocManager,
     DT,
@@ -33,7 +33,7 @@ Suggests:
     devtools,
     drat,
     gh,
-    goalie (>= 0.4.6),
+    goalie,
     lintr,
     methods,
     parallel,
@@ -48,8 +48,10 @@ Suggests:
     rstudioapi,
     syntactic,
     testthat,
+    tibble,
     tools,
     usethis,
     utils
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Additional_repositories: https://r.acidgenomics.com
