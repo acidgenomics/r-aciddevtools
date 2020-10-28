@@ -1,3 +1,11 @@
+## bb8 0.2.33 (2020-10-28)
+
+- Bug fix, ensuring tibble `view` is reexported.
+
+## bb8 0.2.32 (2020-10-23)
+
+- Draft update adding `view` as a reexport, from tibble package.
+
 ## bb8 0.2.31 (2020-10-20)
 
 - `updateDeps`: Hardened against missing packages.
