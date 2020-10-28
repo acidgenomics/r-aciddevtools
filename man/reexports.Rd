@@ -50,6 +50,7 @@
 \alias{makeNames}
 \alias{snakeCase}
 \alias{test_file}
+\alias{view}
 \alias{use_data}
 \alias{check}
 \alias{devinstall}

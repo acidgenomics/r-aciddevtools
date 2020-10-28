@@ -27,7 +27,7 @@ Supports Bioconductor, CRAN, and GitHub packages via BiocManager.
 This is used by \href{https://github.com/acidgenomics/Rcheck}{Rcheck} for continuous integration (CI) testing.
 }
 \note{
-Updated 2020-07-23.
+Updated 2020-10-20.
 }
 \seealso{
 \itemize{
