@@ -109,8 +109,14 @@ install <- function(
                 return(pkg)
             }
             ## Enable version-specific install from package tarball URLs.
-            if (grepl(pattern = "^http(s)?://", x = pkg)) {
+            if (
+                file.exists(pkg) ||
+                grepl(pattern = "^http(s)?://", x = pkg)
+            ) {
                 url <- pkg
+                if (file.exists(url)) {
+                    url <- normalizePath(url)
+                }
                 pkg <- strsplit(basename(url), "[_-]")[[1L]][[1L]]
                 if (isTRUE(.isInstalled(pkg)) && !isTRUE(reinstall)) {
                     message(sprintf("'%s' is already installed.", pkg))
