@@ -1,13 +1,20 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2020-08-17.
+#' @note Updated 2020-10-29.
 #'
 #' @inheritParams params
 #' @param pkgs `character`.
 #'   Package names to install.
-#'   Package names containing a "/" are treated as GitHub repositories and
-#'   installed using [remotes::install_github()].
+#'   By default, strings are passed to [BiocManager::install()].
+#'
+#'   Special cases:
+#'
+#'   - Package tarball URLs (i.e. from CRAN or Bioconductor) are supported.
+#'   - Strings matching  "USER/REPO" are treated as GitHub repositories,
+#'     and installed using [remotes::install_github()].
+#'   - Strings ending with ".git" are treated as Git repositories, and
+#'     installed using [remotes::install_git()].
 #' @param configureArgs,configureVars `character` or named `list`.
 #'   *Used only for source installs.* If a character vector with no names is
 #'   supplied, the elements are concatenated into a single string (separated by
@@ -81,6 +88,26 @@ install <- function(
     out <- lapply(
         X = pkgs,
         FUN = function(pkg) {
+            ## Direct install from Git repo.
+            if (grepl(pattern = "\\.git$", x = pkg)) {
+                url <- pkg
+                pkg <- sub(
+                    pattern = "\\.git$",
+                    replacement = "",
+                    x = basename(url)
+                )
+                if (isTRUE(.isInstalled(pkg)) && !isTRUE(reinstall)) {
+                    message(sprintf("'%s' is already installed.", pkg))
+                    return(pkg)
+                }
+                message(sprintf(
+                    "Installing '%s' from '%s' with '%s::%s'.",
+                    pkg, url, "remotes", "install_git"
+                ))
+                stopifnot(requireNamespace("remotes", quietly = TRUE))
+                remotes::install_git(url)
+                return(pkg)
+            }
             ## Enable version-specific install from package tarball URLs.
             if (grepl(pattern = "^http(s)?://", x = pkg)) {
                 url <- pkg
@@ -90,6 +117,10 @@ install <- function(
                     return(pkg)
                 }
                 ## Alternatively, can use `devtools::install_version()`.
+                message(sprintf(
+                    "Installing '%s' from '%s' with '%s::%s'.",
+                    pkg, url, "utils", "install.packages"
+                ))
                 utils::install.packages(pkgs = url, repos = NULL)
                 return(pkg)
             }
@@ -97,7 +128,7 @@ install <- function(
                 message(sprintf("'%s' is already installed.", basename(pkg)))
                 return(pkg)
             }
-            if (grepl(pattern = "/", x = pkg)) {
+            if (grepl(pattern = "^[^/]+/[^/]+$", x = pkg)) {
                 ## remotes-specific (Git).
                 args <- list(upgrade = "always")
             } else {
@@ -115,6 +146,11 @@ install <- function(
                     type = type
                 )
             )
+            stopifnot(requireNamespace("BiocManager", quietly = TRUE))
+            message(sprintf(
+                "Installing '%s' with '%s::%s'.",
+                pkg, "BiocManager", "install"
+            ))
             do.call(what = BiocManager::install, args = args)
             pkg
         }

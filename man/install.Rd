@@ -17,8 +17,16 @@ install(
 \arguments{
 \item{pkgs}{\code{character}.
 Package names to install.
-Package names containing a "/" are treated as GitHub repositories and
-installed using \code{\link[remotes:install_github]{remotes::install_github()}}.}
+By default, strings are passed to \code{\link[BiocManager:install]{BiocManager::install()}}.
+
+Special cases:
+\itemize{
+\item Package tarball URLs (i.e. from CRAN or Bioconductor) are supported.
+\item Strings matching  "USER/REPO" are treated as GitHub repositories,
+and installed using \code{\link[remotes:install_github]{remotes::install_github()}}.
+\item Strings ending with ".git" are treated as Git repositories, and
+installed using \code{\link[remotes:install_git]{remotes::install_git()}}.
+}}
 
 \item{configureArgs, configureVars}{\code{character} or named \code{list}.
 \emph{Used only for source installs.} If a character vector with no names is
@@ -70,7 +78,7 @@ Package names defined in the \code{pkgs} argument.
 Install packages from Bioconductor, CRAN, or a Git remote
 }
 \note{
-Updated 2020-08-17.
+Updated 2020-10-29.
 }
 \examples{
 ## > install(pkgs = c("DESeq2", "edgeR"))
