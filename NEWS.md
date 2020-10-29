@@ -1,3 +1,8 @@
+## bb8 0.2.34 (2020-10-29)
+
+- `install`: Added support for automatic installation from a Git repository.
+  Calls `remotes::install_git` internally.
+
 ## bb8 0.2.33 (2020-10-28)
 
 - Bug fix, ensuring tibble `view` is reexported.
