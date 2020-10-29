@@ -10,7 +10,8 @@
 #'
 #'   Special cases:
 #'
-#'   - Package tarball URLs (i.e. from CRAN or Bioconductor) are supported.
+#'   - Package tarball files and remote URLs (i.e. from CRAN or Bioconductor)
+#'     are supported.
 #'   - Strings matching  "USER/REPO" are treated as GitHub repositories,
 #'     and installed using [remotes::install_github()].
 #'   - Strings ending with ".git" are treated as Git repositories, and
