@@ -1,3 +1,7 @@
+## bb8 0.2.35 (2020-10-29)
+
+- `install`: Improve support for direct installation from a local file.
+
 ## bb8 0.2.34 (2020-10-29)
 
 - `install`: Added support for automatic installation from a Git repository.
