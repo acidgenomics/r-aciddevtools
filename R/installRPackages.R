@@ -26,6 +26,7 @@ installRPackages <- function(all = FALSE) {
     .install <- function(...) {
         install(..., reinstall = FALSE)
     }
+    okMsg <- "Installation of R packages was successful."
     installBioconductor()
     ## Tricky packages =========================================================
     ## > cranArchive <- "https://cloud.r-project.org/src/contrib/Archive/"
@@ -148,6 +149,7 @@ installRPackages <- function(all = FALSE) {
         )
     )
     if (!isTRUE(all)) {
+        message(okMsg)
         return(invisible(NULL))
     }
     ## CRAN (extra) ============================================================
@@ -324,5 +326,5 @@ installRPackages <- function(all = FALSE) {
             "waldronlab/cBioPortalData"                 # RNASeq
         )
     )
-    message("Installation of R packages was successful.")
+    message(okMsg)
 }
