@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Copy to clipboard — pbcopy • bb8</title>
+<title>Install recommended default R packages — installDefaultPackages • bb8</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Copy to clipboard — pbcopy" />
-<meta property="og:description" content="Copy to clipboard" />
+<meta property="og:title" content="Install recommended default R packages — installDefaultPackages" />
+<meta property="og:description" content="Install recommended default R packages" />
 
 
 
@@ -119,36 +119,54 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Copy to clipboard</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/bb8/blob/master/R/macos-pbcopy.R'><code>R/macos-pbcopy.R</code></a></small>
-    <div class="hidden name"><code>pbcopy.Rd</code></div>
+    <h1>Install recommended default R packages</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/bb8/blob/master/R/installDefaultPackages.R'><code>R/installDefaultPackages.R</code></a></small>
+    <div class="hidden name"><code>installDefaultPackages.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Copy to clipboard</p>
+    <p>Install recommended default R packages</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pbcopy</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>installDefaultPackages</span><span class='op'>(</span>all <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>Object.</p></td>
+      <th>all</th>
+      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>.
+Install additional extra packages.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Only works on macOS.</p>
-<p>Updated 2020-04-12.</p>
+    <p>Updated 2020-11-03.</p>
+    <h2 class="hasAnchor" id="tricky-packages"><a class="anchor" href="#tricky-packages"></a>Tricky packages</h2>
+
+    
+
+<ul>
+<li><p><strong>2020-08-24</strong>: mgcv v1.8-32 won't build on macOS due to <code>_kij</code> missing.
+Can fix by installing binary package instead.
+This issue is fixed in v1.8-33, on CRAN 2020-08-27.</p></li>
+<li><p><strong>2020-08-05</strong>: rgdal v1.5-15 won't build on Debian.
+Fixed with v1.5-16.</p></li>
+<li><p><strong>2020-08-11</strong>: cpp11 v0.2.0 update is breaking tidyr.
+See https://github.com/tidyverse/tidyr/issues/1024 for details.</p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'>
+<ul>
+<li><p>https://www.bioconductor.org/packages/release/BiocViews.html#___Software</p></li>
+</ul>
+</div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'>goalie</span><span class='fu'>::</span><span class='fu'><a href='https://goalie.acidgenomics.com/reference/check-scalar-isMacOS.html'>isMacOS</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-    <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='st'>"hello world"</span>
-    <span class='fu'>pbcopy</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-<span class='op'>}</span>
+    <pre class="examples"><div class='input'><span class='co'>## &gt; installDefaultPackages()</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
