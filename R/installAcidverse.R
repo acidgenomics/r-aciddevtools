@@ -8,6 +8,7 @@
 #' @examples
 #' ## > installAcidverse()
 installAcidverse <- function() {
+    message("Installing Acid Genomics packages.")
     install(
         pkgs = c(
             "AcidGSEA",                                 # RNASeq
