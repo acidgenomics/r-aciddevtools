@@ -20,8 +20,8 @@
 #' - https://www.bioconductor.org/packages/release/BiocViews.html#___Software
 #'
 #' @examples
-#' ## > installRPackages()
-installRPackages <- function(all = FALSE) {
+#' ## > installDefaultPackages()
+installDefaultPackages <- function(all = FALSE) {
     stopifnot(is.logical(all) && length(all) == 1L)
     .install <- function(...) {
         install(..., reinstall = FALSE)
