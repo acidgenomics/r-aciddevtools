@@ -1,3 +1,11 @@
+## bb8 0.2.36 (2020-11-03)
+
+Migrated some install functions from koopa R package:
+
+- `installAcidverse`: Install all Acid Genomics packages.
+- `installBioconductor`: Wrapper for `BiocManager::install`.
+- `installDefaultPackages`: Install default recommended R packages.
+
 ## bb8 0.2.35 (2020-10-29)
 
 - `install`: Improve support for direct installation from a local file.
