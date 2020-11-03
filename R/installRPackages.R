@@ -22,32 +22,26 @@
 #' @examples
 #' ## > installRPackages()
 installRPackages <- function(all = FALSE) {
-    assert(isFlag(all))
-    ## These dependencies are required to install sf, etc.
-    assert(allAreSystemCommands(c("gdal-config", "geos-config")))
-    ## Check for GitHub PAT, if necessary.
-    if (isTRUE(all)) {
-        assert(hasGitHubPAT())
+    stopifnot(is.logical(all) && length(all) == 1L)
+    .install <- function(...) {
+        install(..., reinstall = FALSE)
     }
     installBioconductor()
-    h1("Install R packages")
-    h2("Tricky packages")
+    ## Tricky packages =========================================================
     ## > cranArchive <- "https://cloud.r-project.org/src/contrib/Archive/"
-    ## > install(
+    ## > .install(
     ## >     pkgs = c(
     ## >         paste0(cranArchive, "cpp11/cpp11_0.1.0.tar.gz"),
     ## >         paste0(cranArchive, "rgdal/rgdal_1.5-12.tar.gz"),
-    ## >     ),
-    ## >     reinstall = FALSE
+    ## >     )
     ## > )
     ## > if (isMacOS()) {
     ## >     binPrefix <- "https://cran.r-project.org/bin/macosx/contrib/4.0/"
-    ## >     install(
-    ## >         pkgs = paste0(binPrefix, "mgcv_1.8-32.tgz"),
-    ## >         reinstall = FALSE
+    ## >     .install(
+    ## >         pkgs = paste0(binPrefix, "mgcv_1.8-32.tgz")
     ## >     )
     ## > }
-    install(
+    .install(
         pkgs = c(
             "Rcpp",
             "RcppArmadillo",
@@ -56,11 +50,10 @@ installRPackages <- function(all = FALSE) {
             "rJava",
             "rgdal",
             "sf"
-        ),
-        reinstall = FALSE
+        )
     )
-    h2("CRAN")
-    install(
+    ## CRAN (default) ==========================================================
+    .install(
         pkgs = c(
             "DT",
             "Matrix",
@@ -108,24 +101,22 @@ installRPackages <- function(all = FALSE) {
             "viridis",
             "vroom",
             "xmlparsedata"
-        ),
-        reinstall = FALSE
+        )
     )
-    h2("Bioconductor")
+    ## Bioconductor (default) ==================================================
     ## 2020-10-29: Temporary fix for missing packages in BioC 3.13 repo.
     ## > if (isTRUE(isBiocDevel())) {
-    ## >     install(
+    ## >     .install(
     ## >         pkgs = paste0(
     ## >             "https://git.bioconductor.org/packages/",
     ## >             c(
     ## >                 "DelayedArray",
     ## >                 "SingleCellExperiment"
     ## >             )
-    ## >         ),
-    ## >         reinstall = FALSE
+    ## >         )
     ## >     )
     ## > }
-    install(
+    .install(
         pkgs = c(
             "AnnotationDbi",
             "AnnotationHub",
@@ -154,15 +145,13 @@ installRPackages <- function(all = FALSE) {
             "ensembldb",
             "rtracklayer",
             "zlibbioc"
-        ),
-        reinstall = FALSE
+        )
     )
     if (!isTRUE(all)) {
         return(invisible(NULL))
     }
-    h1("Install additional R packages ({.arg --all} mode)")
-    h2("CRAN")
-    install(
+    ## CRAN (extra) ============================================================
+    .install(
         pkgs = c(
             "NMF",
             "R.oo",
@@ -215,11 +204,10 @@ installRPackages <- function(all = FALSE) {
             "snow",
             "uwot",
             "waldo"
-        ),
-        reinstall = FALSE
+        )
     )
-    h2("Bioconductor")
-    install(
+    ## Bioconductor ============================================================
+    .install(
         pkgs = c(
             ## > "BSgenome.Hsapiens.NCBI.GRCh38",       # AnnotationData
             ## > "BSgenome.Hsapiens.UCSC.hg19",         # AnnotationData
@@ -317,13 +305,16 @@ installRPackages <- function(all = FALSE) {
             "tximport",                                 # RNASeq
             "vsn",                                      # Visualization
             "zinbwave"                                  # SingleCell
-        ),
-        reinstall = FALSE
+        )
     )
-    h2("Acid Genomics")
+    ## Acid Genomics ===========================================================
     installAcidverse()
-    h2("GitHub")
-    install(
+    ## GitHub ==================================================================
+    stopifnot(
+        requireNamespace("goalie", quietly = TRUE),
+        goalie::hasGitHubPAT()
+    )
+    .install(
         pkgs = c(
             "BaderLab/scClustViz",                      # SingleCell
             "cole-trapnell-lab/monocle3",               # SingleCell
@@ -331,8 +322,7 @@ installRPackages <- function(all = FALSE) {
             "js229/Vennerable",                         # Visualization
             "kevinblighe/scDataviz",                    # SingleCell
             "waldronlab/cBioPortalData"                 # RNASeq
-        ),
-        reinstall = FALSE
+        )
     )
     message("Installation of R packages was successful.")
 }
