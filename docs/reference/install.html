@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bb8</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.34</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.36</span>
       </span>
     </div>
 
@@ -147,7 +147,8 @@
 Package names to install.
 By default, strings are passed to <code><a href='https://rdrr.io/pkg/BiocManager/man/install.html'>BiocManager::install()</a></code>.</p>
 <p>Special cases:</p><ul>
-<li><p>Package tarball URLs (i.e. from CRAN or Bioconductor) are supported.</p></li>
+<li><p>Package tarball files and remote URLs (i.e. from CRAN or Bioconductor)
+are supported.</p></li>
 <li><p>Strings matching  "USER/REPO" are treated as GitHub repositories,
 and installed using <code><a href='https://remotes.r-lib.org/reference/install_github.html'>remotes::install_github()</a></code>.</p></li>
 <li><p>Strings ending with ".git" are treated as Git repositories, and

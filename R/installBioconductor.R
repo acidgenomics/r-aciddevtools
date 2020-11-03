@@ -33,9 +33,8 @@ installBioconductor <- function(
         )
     ))
     if (!requireNamespace("BiocManager", quietly = TRUE)) {
-        install.packages("BiocManager")
+        utils::install.packages("BiocManager")
     }
-    stopifnot(requireNamespace("BiocManager", quietly = TRUE))
     if (!isTRUE(length(version) == 1L)) {
         version <- BiocManager::version()
     }
