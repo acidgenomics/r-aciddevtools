@@ -21,7 +21,8 @@ By default, strings are passed to \code{\link[BiocManager:install]{BiocManager::
 
 Special cases:
 \itemize{
-\item Package tarball URLs (i.e. from CRAN or Bioconductor) are supported.
+\item Package tarball files and remote URLs (i.e. from CRAN or Bioconductor)
+are supported.
 \item Strings matching  "USER/REPO" are treated as GitHub repositories,
 and installed using \code{\link[remotes:install_github]{remotes::install_github()}}.
 \item Strings ending with ".git" are treated as Git repositories, and
