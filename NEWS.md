@@ -1,3 +1,8 @@
+## bb8 0.2.37 (2020-11-04)
+
+- `install`: Set `dependencies` argument to `TRUE` by default instead of `NA`,
+  which will automatically install suggested packages.
+
 ## bb8 0.2.36 (2020-11-03)
 
 Migrated some install functions from koopa R package:
