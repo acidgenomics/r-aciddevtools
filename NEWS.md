@@ -1,3 +1,7 @@
+## bb8 0.2.38 (2020-11-04)
+
+- `installBioconductor`: Also include automatic installation of BiocCheck.
+
 ## bb8 0.2.37 (2020-11-04)
 
 - `install`: Set `dependencies` argument to `TRUE` by default instead of `NA`,
