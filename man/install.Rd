@@ -8,7 +8,7 @@ install(
   pkgs,
   configureArgs = getOption("configure.args"),
   configureVars = getOption("configure.vars"),
-  dependencies = NA,
+  dependencies = TRUE,
   lib = .libPaths()[[1L]],
   type = getOption("pkgType"),
   reinstall = TRUE
@@ -79,7 +79,7 @@ Package names defined in the \code{pkgs} argument.
 Install packages from Bioconductor, CRAN, or a Git remote
 }
 \note{
-Updated 2020-10-29.
+Updated 2020-11-04.
 }
 \examples{
 ## > install(pkgs = c("DESeq2", "edgeR"))
