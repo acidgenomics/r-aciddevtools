@@ -1,6 +1,7 @@
 ## bb8 0.2.39 (2020-11-04)
 
 - Migrated `installBioconductor` code into koopa package.
+- Hardened `uninstall` and `updatePackages` against warnings.
 
 ## bb8 0.2.38 (2020-11-04)
 
