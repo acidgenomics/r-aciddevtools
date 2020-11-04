@@ -38,5 +38,13 @@ installBioconductor <- function(
     if (!isTRUE(length(version) == 1L)) {
         version <- BiocManager::version()
     }
-    BiocManager::install(update = FALSE, ask = FALSE, version = version)
+    BiocManager::install(
+        update = FALSE,
+        ask = FALSE,
+        version = version
+    )
+    install(
+        pkgs = "BiocCheck",
+        reinstall = FALSE
+    )
 }
