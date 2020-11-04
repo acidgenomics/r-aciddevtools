@@ -15,7 +15,7 @@ See \code{\link[BiocManager:valid]{BiocManager::valid()}} for details.
 Update all installed packages
 }
 \note{
-Updated 2020-10-12.
+Updated 2020-11-04.
 }
 \examples{
 ## > updatePackages()

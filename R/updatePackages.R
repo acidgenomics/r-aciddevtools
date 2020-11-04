@@ -1,7 +1,7 @@
 #' Update all installed packages
 #'
 #' @export
-#' @note Updated 2020-10-12.
+#' @note Updated 2020-11-04.
 #'
 #' @return Invisible `TRUE` or console output.
 #'   Whether installation passes Bioconductor validity checks.
@@ -11,6 +11,9 @@
 #' ## > updatePackages()
 updatePackages <- function() {
     stopifnot(requireNamespace("BiocManager", quietly = TRUE))
+    ## Treat all warnings as errors.
+    warn <- getOption("warn")
+    options("warn" = 2L)
     ## Clean up CRAN removals and abandoned GitHub packages first.
     suppressMessages({
         uninstall(
@@ -42,6 +45,7 @@ updatePackages <- function() {
         })
     }
     out <- BiocManager::valid()
+    options("warn" = warn)
     if (isTRUE(out)) {
         invisible(TRUE)
     } else {

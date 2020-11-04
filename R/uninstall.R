@@ -5,7 +5,7 @@
 #' @inheritParams params
 #'
 #' @export
-#' @note Updated 2020-04-12.
+#' @note Updated 2020-11-04.
 #'
 #' @return Invisible `character`.
 #'   Names of packages that were removed.
@@ -14,6 +14,9 @@
 #' ## > uninstall("bb8")
 uninstall <- function(pkgs) {
     stopifnot(requireNamespace("utils", quietly = TRUE))
+    ## Treat all warnings as errors.
+    warn <- getOption("warn")
+    options("warn" = 2L)
     installed <- rownames(utils::installed.packages())
     remove <- intersect(pkgs, installed)
     skip <- setdiff(pkgs, installed)
@@ -24,5 +27,6 @@ uninstall <- function(pkgs) {
         message(sprintf("Removing packages: %s", toString(remove)))
         utils::remove.packages(remove)
     }
+    options("warn" = warn)
     invisible(remove)
 }
