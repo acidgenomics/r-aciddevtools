@@ -1,3 +1,7 @@
+## bb8 0.2.39 (2020-11-04)
+
+- Migrated `installBioconductor` code into koopa package.
+
 ## bb8 0.2.38 (2020-11-04)
 
 - `installBioconductor`: Also include automatic installation of BiocCheck.
