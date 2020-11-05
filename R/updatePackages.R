@@ -29,6 +29,7 @@ updatePackages <- function() {
     message("Updating Bioconductor and CRAN packages.")
     BiocManager::install(
         pkgs = character(),
+        site_repository = "https://r.acidgenomics.com",
         update = TRUE,
         ask = FALSE,
         checkBuilt = TRUE
@@ -40,7 +41,10 @@ updatePackages <- function() {
             remotes::update_packages(
                 packages = TRUE,
                 upgrade = "always",
-                repos = BiocManager::repositories()
+                repos = c(
+                    "https://r.acidgenomics.com",
+                    BiocManager::repositories()
+                )
             )
         })
     }
