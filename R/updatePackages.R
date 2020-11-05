@@ -37,16 +37,14 @@ updatePackages <- function() {
     if (isTRUE(nzchar(Sys.getenv("GITHUB_PAT")))) {
         message("Updating GitHub packages.")
         stopifnot(requireNamespace("remotes", quietly = TRUE))
-        suppressMessages({
-            remotes::update_packages(
-                packages = TRUE,
-                upgrade = "always",
-                repos = c(
-                    "https://r.acidgenomics.com",
-                    BiocManager::repositories()
-                )
+        remotes::update_packages(
+            packages = TRUE,
+            upgrade = "always",
+            repos = c(
+                "https://r.acidgenomics.com",
+                BiocManager::repositories()
             )
-        })
+        )
     }
     out <- BiocManager::valid()
     options("warn" = warn)
