@@ -1,4 +1,4 @@
-#' Install recommended default R packages
+#' Install recommended R packages
 #'
 #' @section Tricky packages:
 #'
@@ -11,7 +11,7 @@
 #'   See https://github.com/tidyverse/tidyr/issues/1024 for details.
 #'
 #' @export
-#' @note Updated 2020-11-03.
+#' @note Updated 2020-11-06.
 #'
 #' @param all `logical(1)`.
 #'   Install additional extra packages.
@@ -20,14 +20,23 @@
 #' - https://www.bioconductor.org/packages/release/BiocViews.html#___Software
 #'
 #' @examples
-#' ## > installDefaultPackages()
-installDefaultPackages <- function(all = FALSE) {
+#' ## > installRecommendedPackages()
+installRecommendedPackages <- function(all = FALSE) {
     stopifnot(is.logical(all) && length(all) == 1L)
     .install <- function(...) {
         install(..., reinstall = FALSE)
     }
     okMsg <- "Installation of R packages was successful."
-    installBioconductor()
+    ## Enable versioned Bioconductor install.
+    if (!requireNamespace("BiocManager", quietly = TRUE)) {
+        utils::install.packages("BiocManager")
+    }
+    biocVersion <- Sys.getenv("BIOC_VERSION")
+    if (!isTRUE(nzchar(biocVersion))) {
+        biocVersion <- BiocManager::version()
+    }
+    message(sprintf("Installing Bioconductor %s.", biocVersion))
+    BiocManager::install(update = FALSE, ask = FALSE, version = biocVersion)
     ## Tricky packages =========================================================
     ## > cranArchive <- "https://cloud.r-project.org/src/contrib/Archive/"
     ## > .install(

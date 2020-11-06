@@ -1,3 +1,8 @@
+## bb8 0.2.41 (2020-11-06)
+
+- Renamed `installDefaultPackages` to `installRecommendedPackages`.
+- Fixed internal Bioconductor installation code.
+
 ## bb8 0.2.40 (2020-11-05)
 
 - `install`: Attempt to improve internal repository handling.
