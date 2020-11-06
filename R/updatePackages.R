@@ -29,6 +29,7 @@ updatePackages <- function() {
     message("Updating Bioconductor and CRAN packages.")
     BiocManager::install(
         pkgs = character(),
+        site_repository = "https://r.acidgenomics.com",
         update = TRUE,
         ask = FALSE,
         checkBuilt = TRUE
@@ -36,11 +37,15 @@ updatePackages <- function() {
     if (isTRUE(nzchar(Sys.getenv("GITHUB_PAT")))) {
         message("Updating GitHub packages.")
         stopifnot(requireNamespace("remotes", quietly = TRUE))
+        ## Suppressing messages about packages ahead of CRAN.
         suppressMessages({
             remotes::update_packages(
                 packages = TRUE,
                 upgrade = "always",
-                repos = BiocManager::repositories()
+                repos = c(
+                    "https://r.acidgenomics.com",
+                    BiocManager::repositories()
+                )
             )
         })
     }
