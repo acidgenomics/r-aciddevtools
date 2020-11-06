@@ -79,7 +79,7 @@ Package names defined in the \code{pkgs} argument.
 Install packages from Bioconductor, CRAN, or a Git remote
 }
 \note{
-Updated 2020-11-04.
+Updated 2020-11-05.
 }
 \examples{
 ## > install(pkgs = c("DESeq2", "edgeR"))
