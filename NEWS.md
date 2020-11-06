@@ -1,3 +1,8 @@
+## bb8 0.2.40 (2020-11-05)
+
+- `install`: Attempt to improve internal repository handling.
+- `updatePackages`: Attempt to improve internal repository handling.
+
 ## bb8 0.2.39 (2020-11-04)
 
 - Migrated `installBioconductor` code into koopa package.

@@ -1,7 +1,7 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2020-11-04.
+#' @note Updated 2020-11-05.
 #'
 #' @inheritParams params
 #' @param pkgs `character`.
@@ -140,7 +140,11 @@ install <- function(
                 args <- list(upgrade = "always")
             } else {
                 ## BiocManager-specific (Bioconductor/CRAN).
-                args <- list(ask = FALSE, update = FALSE)
+                args <- list(
+                    site_repository = "https://r.acidgenomics.com",
+                    ask = FALSE,
+                    update = FALSE
+                )
             }
             args <- c(
                 args,
