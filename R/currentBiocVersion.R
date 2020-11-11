@@ -3,7 +3,7 @@
 #' @export
 #' @note Updated 2020-11-11.
 #'
-#' @return `numeric_version`.
+#' @return `package_version`.
 #'
 #' @seealso
 #' - https://bioconductor.org/bioc-version
@@ -14,6 +14,6 @@
 currentBiocVersion <- function() {
     url <- "https://bioconductor.org/bioc-version"
     x <- readLines(con = url, warn = FALSE)
-    x <- numeric_version(x)
+    x <- package_version(x)
     x
 }

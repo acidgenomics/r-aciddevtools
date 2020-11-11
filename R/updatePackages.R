@@ -1,7 +1,7 @@
 #' Update all installed packages
 #'
 #' @export
-#' @note Updated 2020-11-04.
+#' @note Updated 2020-11-11.
 #'
 #' @return Invisible `TRUE` or console output.
 #'   Whether installation passes Bioconductor validity checks.
@@ -10,10 +10,9 @@
 #' @examples
 #' ## > updatePackages()
 updatePackages <- function() {
-    stopifnot(requireNamespace("BiocManager", quietly = TRUE))
-    ## Treat all warnings as errors.
     warn <- getOption("warn")
     options("warn" = 2L)
+    .installIfNecessary(c("BiocManager", "remotes"))
     ## Clean up CRAN removals and abandoned GitHub packages first.
     suppressMessages({
         uninstall(
@@ -26,6 +25,20 @@ updatePackages <- function() {
             )
         )
     })
+    stopifnot(requireNamespace("BiocManager", quietly = TRUE))
+    biocInstalled <- BiocManager::version()
+    biocCurrent <- currentBiocVersion()
+    if (isTRUE(biocInstalled < biocCurrent)) {
+        message(sprintf(
+            "Updating Bioconductor to %s.",
+            as.character(biocCurrent)
+        ))
+        BiocManager::install(
+            update = TRUE,
+            ask = FALSE,
+            version = biocCurrent
+        )
+    }
     message("Updating Bioconductor and CRAN packages.")
     BiocManager::install(
         pkgs = character(),
@@ -37,7 +50,7 @@ updatePackages <- function() {
     if (isTRUE(nzchar(Sys.getenv("GITHUB_PAT")))) {
         message("Updating GitHub packages.")
         stopifnot(requireNamespace("remotes", quietly = TRUE))
-        ## Suppressing messages about packages ahead of CRAN.
+        ## Suppressing messages about packages ahead of CRAN here.
         suppressMessages({
             remotes::update_packages(
                 packages = TRUE,

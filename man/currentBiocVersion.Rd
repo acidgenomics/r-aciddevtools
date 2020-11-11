@@ -7,7 +7,7 @@
 currentBiocVersion()
 }
 \value{
-\code{numeric_version}.
+\code{package_version}.
 }
 \description{
 Current Bioconductor release version
