@@ -71,21 +71,9 @@ install <- function(
         is.character(pkgs),
         is.logical(reinstall) && identical(length(reinstall), 1L)
     )
-    ## Treat all warnings as errors.
     warn <- getOption("warn")
     options("warn" = 2L)
-    ## Ensure dependency packages are installed.
-    invisible(lapply(
-        X = c("BiocManager", "remotes"),
-        FUN = function(pkg) {
-            if (!requireNamespace(pkg, quietly = TRUE)) {
-                utils::install.packages(
-                    pkgs = pkg,
-                    repos = "https://cloud.r-project.org"
-                )
-            }
-        }
-    ))
+    .installIfNecessary(c("BiocManager", "remotes"))
     out <- lapply(
         X = pkgs,
         FUN = function(pkg) {
@@ -168,11 +156,4 @@ install <- function(
     )
     options("warn" = warn)
     invisible(out)
-}
-
-
-
-## Updated 2020-08-11.
-.isInstalled <- function(pkgs) {
-    basename(pkgs) %in% rownames(utils::installed.packages())
 }
