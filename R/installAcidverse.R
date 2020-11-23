@@ -1,7 +1,7 @@
 #' Install Acid Genomics packages
 #'
 #' @export
-#' @note Updated 2020-11-03.
+#' @note Updated 2020-11-23.
 #'
 #' @return Status from [install()].
 #'
@@ -29,6 +29,7 @@ installAcidverse <- function() {
             "bcbioSingleCell",                          # SingleCell
             "cBioPortalAnalysis",                       # CancerData
             "goalie",                                   # Infrastructure
+            "koopa",                                    # Infrastructure
             "pointillism",                              # SingleCell
             "syntactic"                                 # Infrastructure
         ),
