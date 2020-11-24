@@ -178,6 +178,7 @@ installRecommendedPackages <- function(all = FALSE) {
             "dbplyr",
             "dendextend",
             "dendsort",
+            "drat",
             "dynamicTreeCut",
             "fastICA",
             "fastcluster",
