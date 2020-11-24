@@ -4,7 +4,7 @@
 \alias{installRecommendedPackages}
 \title{Install recommended R packages}
 \usage{
-installRecommendedPackages(all = FALSE)
+installRecommendedPackages(all = TRUE)
 }
 \arguments{
 \item{all}{\code{logical(1)}.
@@ -14,7 +14,7 @@ Install additional extra packages.}
 Install recommended R packages
 }
 \note{
-Updated 2020-11-06.
+Updated 2020-11-24.
 }
 \section{Tricky packages}{
 

@@ -1,3 +1,7 @@
+## bb8 0.2.43 (2020-11-24)
+
+- `installRecommendedPackages`: Install all packages by default.
+
 ## bb8 0.2.42 (2020-11-11)
 
 - Added `currentBiocVersion`, which checks for current Bioconductor release

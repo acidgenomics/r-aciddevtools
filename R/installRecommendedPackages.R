@@ -21,7 +21,7 @@
 #'
 #' @examples
 #' ## > installRecommendedPackages()
-installRecommendedPackages <- function(all = FALSE) {
+installRecommendedPackages <- function(all = TRUE) {
     stopifnot(is.logical(all) && length(all) == 1L)
     .install <- function(...) {
         install(..., reinstall = FALSE)
@@ -161,6 +161,8 @@ installRecommendedPackages <- function(all = FALSE) {
         message(okMsg)
         return(invisible(NULL))
     }
+    ## Acid Genomics ===========================================================
+    installAcidverse()
     ## CRAN (extra) ============================================================
     .install(
         pkgs = c(
@@ -319,23 +321,20 @@ installRecommendedPackages <- function(all = FALSE) {
             "zinbwave"                                  # SingleCell
         )
     )
-    ## Acid Genomics ===========================================================
-    installAcidverse()
     ## GitHub ==================================================================
-    stopifnot(
-        requireNamespace("goalie", quietly = TRUE),
-        goalie::hasGitHubPAT()
-    )
-    .install(
-        pkgs = c(
-            "BaderLab/scClustViz",                      # SingleCell
-            "cole-trapnell-lab/monocle3",               # SingleCell
-            "jonocarroll/DFplyr",                       # DataRepresentation
-            "js229/Vennerable",                         # Visualization
-            "kevinblighe/scDataviz",                    # SingleCell
-            "mojaveazure/loomR",                        # SingleCell
-            "waldronlab/cBioPortalData"                 # RNASeq
+    stopifnot(requireNamespace("goalie", quietly = TRUE))
+    if (isTRUE(goalie::hasGitHubPAT())) {
+        .install(
+            pkgs = c(
+                "BaderLab/scClustViz",                  # SingleCell
+                "cole-trapnell-lab/monocle3",           # SingleCell
+                "jonocarroll/DFplyr",                   # DataRepresentation
+                "js229/Vennerable",                     # Visualization
+                "kevinblighe/scDataviz",                # SingleCell
+                "mojaveazure/loomR",                    # SingleCell
+                "waldronlab/cBioPortalData"             # RNASeq
+            )
         )
-    )
+    }
     message(okMsg)
 }
