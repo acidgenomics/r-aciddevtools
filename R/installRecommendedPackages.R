@@ -164,6 +164,7 @@ installRecommendedPackages <- function(all = FALSE) {
     ## CRAN (extra) ============================================================
     .install(
         pkgs = c(
+            ## > "available",
             "NMF",
             "R.oo",
             "R6",
@@ -171,7 +172,6 @@ installRecommendedPackages <- function(all = FALSE) {
             "UpSetR",
             "WGCNA",
             "ashr",
-            "available",
             "bookdown",
             "cgdsr",  # cBioPortal
             "datapasta",
