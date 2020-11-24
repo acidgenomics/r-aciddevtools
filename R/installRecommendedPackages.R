@@ -11,7 +11,7 @@
 #'   See https://github.com/tidyverse/tidyr/issues/1024 for details.
 #'
 #' @export
-#' @note Updated 2020-11-06.
+#' @note Updated 2020-11-24.
 #'
 #' @param all `logical(1)`.
 #'   Install additional extra packages.
@@ -332,6 +332,7 @@ installRecommendedPackages <- function(all = FALSE) {
             "jonocarroll/DFplyr",                       # DataRepresentation
             "js229/Vennerable",                         # Visualization
             "kevinblighe/scDataviz",                    # SingleCell
+            "mojaveazure/loomR",                        # SingleCell
             "waldronlab/cBioPortalData"                 # RNASeq
         )
     )
