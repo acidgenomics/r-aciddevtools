@@ -1,3 +1,9 @@
+## bb8 0.2.44 (2020-11-25)
+
+- `updatePackages`: Improved error message handling when internal BiocManager
+  validity checks fail. Wrapped using `tryCatch` call to better show which
+  packages are responsible for the check failure.
+
 ## bb8 0.2.43 (2020-11-24)
 
 - `installRecommendedPackages`: Install all packages by default.

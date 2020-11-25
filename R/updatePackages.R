@@ -1,7 +1,7 @@
 #' Update all installed packages
 #'
 #' @export
-#' @note Updated 2020-11-11.
+#' @note Updated 2020-11-25.
 #'
 #' @return Invisible `TRUE` or console output.
 #'   Whether installation passes Bioconductor validity checks.
@@ -62,7 +62,7 @@ updatePackages <- function() {
             )
         })
     }
-    out <- BiocManager::valid()
+    out <- .valid()
     options("warn" = warn)
     if (isTRUE(out)) {
         invisible(TRUE)

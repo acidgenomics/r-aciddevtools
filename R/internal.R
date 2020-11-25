@@ -34,3 +34,22 @@
 .isInstalled <- function(pkgs) {
     basename(pkgs) %in% rownames(utils::installed.packages())
 }
+
+
+
+#' Wrapper for BiocManager validity checks
+#'
+#' @note Updated 2020-11-25.
+#' @noRd
+.valid <- function() {
+    tryCatch(
+        expr = BiocManager::valid(),
+        warning = function(w) {
+            result <- capture.output(suppressWarnings({
+                BiocManager::valid()
+            }))
+            cat(result, sep = "\n")
+            stop(w)
+        }
+    )
+}
