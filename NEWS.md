@@ -1,3 +1,8 @@
+## bb8 0.2.45 (2020-12-03)
+
+- `install`: Improved automatic definition of `type` internally for manual
+  local package installs.
+
 ## bb8 0.2.44 (2020-11-25)
 
 - `updatePackages`: Improved error message handling when internal BiocManager
