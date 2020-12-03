@@ -480,6 +480,7 @@ use_data <- function(..., overwrite = TRUE) {
 #' @export
 check <- function(path = ".", cran = FALSE) {
     stopifnot(requireNamespace("desc", quietly = TRUE))
+    ## FIXME This isn't stopping on lint failures, as expected.
     lint_package()
     rcmdcheck(
         path = path,
