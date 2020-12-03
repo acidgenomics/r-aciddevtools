@@ -1,7 +1,5 @@
 # bb8
 
-[![Repo status: active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-
 Trusty sidekick for [R][] package development.
 
 ## Installation

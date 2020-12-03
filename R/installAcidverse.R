@@ -30,6 +30,7 @@ installAcidverse <- function() {
             "bcbioSingleCell",                          # SingleCell
             "cBioPortalAnalysis",                       # CancerData
             "goalie",                                   # Infrastructure
+            "koopa",                                    # Infrastructure
             "pointillism",                              # SingleCell
             "syntactic"                                 # Infrastructure
         ),
