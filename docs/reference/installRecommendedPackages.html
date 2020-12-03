@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Version 0.1 • bb8</title>
+<title>Install recommended R packages — installRecommendedPackages • bb8</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Version 0.1" />
+<meta property="og:title" content="Install recommended R packages — installRecommendedPackages" />
+<meta property="og:description" content="Install recommended R packages" />
 
 
 
@@ -60,7 +61,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -118,53 +119,61 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1 data-toc-skip>Changelog <small>0.1</small></h1>
-      
+    <h1>Install recommended R packages</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/bb8/blob/master/R/installRecommendedPackages.R'><code>R/installRecommendedPackages.R</code></a></small>
+    <div class="hidden name"><code>installRecommendedPackages.Rd</code></div>
     </div>
 
-    <div id="bb8-010-2019-08-13" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bb8-010-2019-08-13" class="anchor"></a>bb8 0.1.0 (2019-08-13)</h2>
-<p>Initial stable release.</p>
-</div>
-    <div id="bb8-011-2019-08-13" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bb8-011-2019-08-13" class="anchor"></a>bb8 0.1.1 (2019-08-13)</h2>
-<ul>
-<li>Removed goalie dependency.</li>
-<li>Fixed <code>updateDeps</code> so it can run on Travis CI.</li>
-</ul>
-</div>
-    <div id="bb8-012-2019-08-22" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bb8-012-2019-08-22" class="anchor"></a>bb8 0.1.2 (2019-08-22)</h2>
-<ul>
-<li>Improved <code>updateDeps</code> handling for Rcheck on Travis CI.</li>
-</ul>
-</div>
-    <div id="bb8-013-2019-08-27" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bb8-013-2019-08-27" class="anchor"></a>bb8 0.1.3 (2019-08-27)</h2>
-<ul>
-<li>Updated R dependency to 3.6.</li>
-</ul>
-</div>
-    <div id="bb8-014-2019-10-17" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bb8-014-2019-10-17" class="anchor"></a>bb8 0.1.4 (2019-10-17)</h2>
-<ul>
-<li>Removed <code>lint_dir</code>, which is now exported in lintr package.</li>
-<li>Added <code>installedPackages</code>, which returns a camelCase formatted <code>data.frame</code> containing a “source” column. This column includes whether the package was installed from CRAN, Biocondcutor, GitHub, GitLab, or <code>NA</code> (if system, or is a local build).</li>
-</ul>
-</div>
-  </div>
+    <div class="ref-description">
+    <p>Install recommended R packages</p>
+    </div>
 
+    <pre class="usage"><span class='fu'>installRecommendedPackages</span><span class='op'>(</span>all <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>all</th>
+      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>.
+Install additional extra packages.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Updated 2020-11-06.</p>
+    <h2 class="hasAnchor" id="tricky-packages"><a class="anchor" href="#tricky-packages"></a>Tricky packages</h2>
+
+    
+
+<ul>
+<li><p><strong>2020-08-24</strong>: mgcv v1.8-32 won't build on macOS due to <code>_kij</code> missing.
+Can fix by installing binary package instead.
+This issue is fixed in v1.8-33, on CRAN 2020-08-27.</p></li>
+<li><p><strong>2020-08-05</strong>: rgdal v1.5-15 won't build on Debian.
+Fixed with v1.5-16.</p></li>
+<li><p><strong>2020-08-11</strong>: cpp11 v0.2.0 update is breaking tidyr.
+See https://github.com/tidyverse/tidyr/issues/1024 for details.</p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'>
+<ul>
+<li><p>https://www.bioconductor.org/packages/release/BiocViews.html#___Software</p></li>
+</ul>
+</div>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'>## &gt; installRecommendedPackages()</span>
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
 
 
