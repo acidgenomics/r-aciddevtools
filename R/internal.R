@@ -39,13 +39,13 @@
 
 #' Wrapper for BiocManager validity checks
 #'
-#' @note Updated 2020-11-25.
+#' @note Updated 2020-12-03.
 #' @noRd
 .valid <- function() {
     tryCatch(
         expr = BiocManager::valid(),
         warning = function(w) {
-            result <- capture.output(suppressWarnings({
+            result <- utils::capture.output(suppressWarnings({
                 BiocManager::valid()
             }))
             cat(result, sep = "\n")
