@@ -1,3 +1,8 @@
+## bb8 0.2.43 (2020-12-03)
+
+- `install`: Improved automatic definition of `type` internally for manual
+  local package installs.
+
 ## bb8 0.2.42 (2020-11-11)
 
 - Added `currentBiocVersion`, which checks for current Bioconductor release
