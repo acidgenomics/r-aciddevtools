@@ -1,7 +1,7 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2020-11-05.
+#' @note Updated 2020-12-03.
 #'
 #' @inheritParams params
 #' @param pkgs `character`.
@@ -116,7 +116,11 @@ install <- function(
                     "Installing '%s' from '%s' with '%s::%s'.",
                     pkg, url, "utils", "install.packages"
                 ))
-                utils::install.packages(pkgs = url, repos = NULL)
+                utils::install.packages(
+                    pkgs = url,
+                    repos = NULL,
+                    type = "source"
+                )
                 return(pkg)
             }
             if (isTRUE(.isInstalled(pkg)) && !isTRUE(reinstall)) {
