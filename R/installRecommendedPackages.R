@@ -11,7 +11,7 @@
 #'   See https://github.com/tidyverse/tidyr/issues/1024 for details.
 #'
 #' @export
-#' @note Updated 2020-11-24.
+#' @note Updated 2020-12-07.
 #'
 #' @param all `logical(1)`.
 #'   Install additional extra packages.
@@ -170,7 +170,7 @@ installRecommendedPackages <- function(all = TRUE) {
             "NMF",
             "R.oo",
             "R6",
-            "Seurat",
+            ## > "Seurat",  # dependency issue
             "UpSetR",
             "WGCNA",
             "ashr",
@@ -179,7 +179,7 @@ installRecommendedPackages <- function(all = TRUE) {
             "datapasta",
             "dbplyr",
             "dendextend",
-            "dendsort",
+            ## > "dendsort",  # dependency issue
             "drat",
             "dynamicTreeCut",
             "fastICA",
@@ -336,5 +336,13 @@ installRecommendedPackages <- function(all = TRUE) {
             )
         )
     }
+    ## Packages with dependency issues =========================================
+    install(
+        pkgs = c(
+            "dendsort",  # gapmap
+            "Seurat"  # loomR
+        ),
+        dependencies = FALSE
+    )
     message(okMsg)
 }
