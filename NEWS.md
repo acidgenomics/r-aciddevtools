@@ -1,3 +1,7 @@
+## bb8 0.2.46 (2020-12-07)
+
+- Fix for packages with dependency issues: Seurat and dendsort.
+
 ## bb8 0.2.45 (2020-12-03)
 
 - `install`: Improved automatic definition of `type` internally for manual
