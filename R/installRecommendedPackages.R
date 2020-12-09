@@ -342,7 +342,8 @@ installRecommendedPackages <- function(all = TRUE) {
             "gage",  # DESeq
             "Seurat"  # loomR
         ),
-        dependencies = FALSE
+        dependencies = FALSE,
+        reinstall = FALSE
     )
     message(okMsg)
 }
