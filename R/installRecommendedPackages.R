@@ -11,7 +11,7 @@
 #'   See https://github.com/tidyverse/tidyr/issues/1024 for details.
 #'
 #' @export
-#' @note Updated 2020-12-07.
+#' @note Updated 2020-12-09.
 #'
 #' @param all `logical(1)`.
 #'   Install additional extra packages.
@@ -289,7 +289,6 @@ installRecommendedPackages <- function(all = TRUE) {
             "enrichplot",                               # Visualization
             "fgsea",                                    # Pathways
             "fishpond",                                 # RNASeq
-            "gage",                                     # Pathways
             "genefilter",                               # Microarray
             "geneplotter",                              # Visualization
             "ggbio",                                    # Visualization
@@ -340,6 +339,7 @@ installRecommendedPackages <- function(all = TRUE) {
     install(
         pkgs = c(
             "dendsort",  # gapmap
+            "gage",  # DESeq
             "Seurat"  # loomR
         ),
         dependencies = FALSE

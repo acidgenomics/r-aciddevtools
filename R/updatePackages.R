@@ -1,7 +1,7 @@
 #' Update all installed packages
 #'
 #' @export
-#' @note Updated 2020-11-25.
+#' @note Updated 2020-12-08.
 #'
 #' @return Invisible `TRUE` or console output.
 #'   Whether installation passes Bioconductor validity checks.
@@ -40,6 +40,7 @@ updatePackages <- function() {
         )
     }
     message("Updating Bioconductor and CRAN packages.")
+    BiocManager::repositories()
     BiocManager::install(
         pkgs = character(),
         site_repository = "https://r.acidgenomics.com",
