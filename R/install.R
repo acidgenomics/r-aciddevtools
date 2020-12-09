@@ -86,7 +86,7 @@ install <- function(
                     x = basename(url)
                 )
                 if (isTRUE(.isInstalled(pkg)) && !isTRUE(reinstall)) {
-                    message(sprintf("'%s' is already installed.", pkg))
+                    message(sprintf("'%s' is installed.", pkg))
                     return(pkg)
                 }
                 message(sprintf(
@@ -108,7 +108,7 @@ install <- function(
                 }
                 pkg <- strsplit(basename(url), "[_-]")[[1L]][[1L]]
                 if (isTRUE(.isInstalled(pkg)) && !isTRUE(reinstall)) {
-                    message(sprintf("'%s' is already installed.", pkg))
+                    message(sprintf("'%s' is installed.", pkg))
                     return(pkg)
                 }
                 ## Alternatively, can use `devtools::install_version()`.
@@ -124,7 +124,7 @@ install <- function(
                 return(pkg)
             }
             if (isTRUE(.isInstalled(pkg)) && !isTRUE(reinstall)) {
-                message(sprintf("'%s' is already installed.", basename(pkg)))
+                message(sprintf("'%s' is installed.", basename(pkg)))
                 return(pkg)
             }
             if (grepl(pattern = "^[^/]+/[^/]+$", x = pkg)) {
