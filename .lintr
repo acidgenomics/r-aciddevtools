@@ -1,4 +1,9 @@
 linters: with_defaults(
+    #assignment_spaces_linter,
+    #missing_argument_linter,
+    #missing_package_linter,
+    #namespace_linter,
+    #sprintf_linter,
     T_and_F_symbol_linter,
     absolute_path_linter,
     assignment_linter,
@@ -30,7 +35,8 @@ linters: with_defaults(
     undesirable_function_linter,
     undesirable_operator_linter,
     unneeded_concatenation_linter,
-    default = default_linters)
+    default = default_linters
+  )
 exclude: "# nolint"
 exclude_start: "# nolint start"
 exclude_end: "# nolint end"

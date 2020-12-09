@@ -479,18 +479,32 @@ use_data <- function(..., overwrite = TRUE) {
 #' @usage NULL
 #' @export
 check <- function(path = ".", cran = FALSE) {
-    stopifnot(requireNamespace("desc", quietly = TRUE))
-    ## FIXME This isn't stopping on lint failures, as expected.
-    lint_package()
-    rcmdcheck(
-        path = path,
-        cran = cran
+    stopifnot(
+        requireNamespace("desc", quietly = TRUE),
+        isTRUE(dir.exists(path))
     )
-    ## Only run BiocCheck if we detect "biocViews" in DESCRIPTION.
-    ok <- !is.na(unname(desc::desc_get(keys = "biocViews", file = path)))
-    if (isTRUE(ok)) {
-        BiocCheck(path)
+    wd <- getwd()
+    setwd(normalizePath(path, mustWork = TRUE))
+    message("Checking for lints with 'lint_package()'.")
+    lints <- lint_package(path = ".")
+    if (length(lints) > 0L) {
+        print(lints)
+        stop(sprintf(
+            fmt = "Package failed lintr checks. %d %s detected.",
+            length(lints),
+            ngettext(n = length(lints), msg1 = "lint", msg2 = "lints")
+        ))
     }
+    message("Running package checks with 'rcmdcheck()'.")
+    rcmdcheck(path = ".", cran = cran)
+    ## Only run BiocCheck if we detect "biocViews" in DESCRIPTION.
+    ok <- !is.na(unname(desc::desc_get(keys = "biocViews", file = ".")))
+    if (isTRUE(ok)) {
+        message("Running additional Bioconductor checks with 'BiocCheck()'.")
+        BiocCheck(package = ".")
+    }
+    setwd(wd)
+    invisible(TRUE)
 }
 
 #' @rdname reexports
