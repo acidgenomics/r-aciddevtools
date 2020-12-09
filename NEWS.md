@@ -1,3 +1,7 @@
+## bb8 0.2.47 (2020-12-09)
+
+- `check`: Hardened against lintr check failure.
+
 ## bb8 0.2.46 (2020-12-07)
 
 - Fix for packages with dependency issues: Seurat and dendsort.
