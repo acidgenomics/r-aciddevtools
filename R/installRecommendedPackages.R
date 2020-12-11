@@ -11,7 +11,7 @@
 #'   See https://github.com/tidyverse/tidyr/issues/1024 for details.
 #'
 #' @export
-#' @note Updated 2020-12-09.
+#' @note Updated 2020-12-11.
 #'
 #' @param all `logical(1)`.
 #'   Install additional extra packages.
@@ -338,9 +338,9 @@ installRecommendedPackages <- function(all = TRUE) {
     ## Packages with dependency issues =========================================
     install(
         pkgs = c(
-            "dendsort",  # gapmap
-            "gage",  # DESeq
-            "Seurat"  # loomR
+            "dendsort",  # gapmap removed from CRAN.
+            "gage",  # DESeq is deprecated from Bioconductor.
+            "Seurat"  # loomR isn't on CRAN.
         ),
         dependencies = FALSE,
         reinstall = FALSE
