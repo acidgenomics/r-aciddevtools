@@ -13,7 +13,7 @@ Status from \code{\link[=install]{install()}}.
 Install Acid Genomics packages
 }
 \note{
-Updated 2020-11-23.
+Updated 2020-12-03.
 }
 \examples{
 ## > installAcidverse()
