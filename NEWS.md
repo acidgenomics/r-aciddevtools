@@ -1,3 +1,8 @@
+## bb8 0.2.48 (2020-12-16)
+
+- Added `pc` alias for `printComment`, to reduce the amount of typing required
+  during an interactive scripting session.
+
 ## bb8 0.2.47 (2020-12-09)
 
 - `check`: Hardened against lintr check failure.

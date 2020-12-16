@@ -1,7 +1,7 @@
 #' Print as comment
 #'
 #' @export
-#' @note Updated 2020-05-12.
+#' @note Updated 2020-12-16.
 #'
 #' @param ... Passthrough to `print()`.
 #' @param prefix Comment prefix to use. RStudio, roxygen, and ESS prefixes
@@ -33,4 +33,12 @@ printComment <- function(
     cat(out, sep = "\n")
     ## Reset the width back to default.
     options(width = defaultWidth)
+}
+
+
+
+#' @rdname printComment
+#' @export
+pc <- function(...) {
+    printComment(...)
 }
