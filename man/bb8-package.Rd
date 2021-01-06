@@ -14,9 +14,9 @@ Personal package with additional devtools utilities.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://bb8.acidgenomics.com/}
-  \item \url{https://github.com/acidgenomics/bb8/}
-  \item Report bugs at \url{https://github.com/acidgenomics/bb8/issues/}
+  \item \url{https://r.acidgenomics.com/packages/bb8/}
+  \item \url{https://github.com/acidgenomics/r-bb8/}
+  \item Report bugs at \url{https://github.com/acidgenomics/r-bb8/issues/}
 }
 
 }
