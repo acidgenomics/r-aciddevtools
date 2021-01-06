@@ -15,9 +15,9 @@ Authors@R: c(
         role = c("cph", "fnd")
     ))
 URL:
-    https://bb8.acidgenomics.com/,
-    https://github.com/acidgenomics/bb8/
-BugReports: https://github.com/acidgenomics/bb8/issues/
+    https://r.acidgenomics.com/packages/bb8/,
+    https://github.com/acidgenomics/r-bb8/
+BugReports: https://github.com/acidgenomics/r-bb8/issues/
 License: GPL-3
 Encoding: UTF-8
 Depends: R (>= 4.0)
