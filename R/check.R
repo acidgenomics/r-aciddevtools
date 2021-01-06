@@ -20,7 +20,7 @@ check <- function(path = ".", cran = FALSE) {
     path <- normalizePath(path, mustWork = TRUE)
     keys <- desc::desc_get(keys = c("Package", "biocViews"), file = ".")
     pkgName <- keys[["Package"]]
-    message(sprintf("Checking '%s' package at '%s'.", pkgName, path))
+    message(sprintf("Checking %s package at '%s'.", pkgName, path))
     wd <- getwd()
     setwd(path)
     message("Checking for lints with 'lint_package()'.")
