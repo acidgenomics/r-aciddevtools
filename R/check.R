@@ -17,8 +17,10 @@ check <- function(path = ".", cran = FALSE) {
         requireNamespace("desc", quietly = TRUE),
         isTRUE(dir.exists(path))
     )
+    path <- normalizePath(path, mustWork = TRUE)
+    message(sprintf("Checking package at '%s'.", path))
     wd <- getwd()
-    setwd(normalizePath(path, mustWork = TRUE))
+    setwd(path)
     message("Checking for lints with 'lint_package()'.")
     lints <- lint_package(path = ".")
     if (length(lints) > 0L) {
@@ -31,8 +33,14 @@ check <- function(path = ".", cran = FALSE) {
     }
     message("Running package checks with 'rcmdcheck()'.")
     rcmdcheck(path = ".", cran = cran)
-    ## Only run BiocCheck if we detect "biocViews" in DESCRIPTION.
-    ok <- !is.na(unname(desc::desc_get(keys = "biocViews", file = ".")))
+    ## Only run BiocCheck if we detect "biocViews" in DESCRIPTION and when the
+    ## directory name is identical to the package name. BiocCheck currently
+    ## errors on directory names that differ from the package name.
+    keys <- desc::desc_get(keys = c("Package", "biocViews"), file = ".")
+    ok <- all(
+        !is.na(keys[["biocViews"]]),
+        identical(basename(path), keys[["Package"]])
+    )
     if (isTRUE(ok)) {
         message("Running additional Bioconductor checks with 'BiocCheck()'.")
         BiocCheck(package = ".")
