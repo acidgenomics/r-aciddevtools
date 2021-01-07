@@ -1,3 +1,5 @@
+## FIXME Consider building into temporary directory and then checking that file.
+
 #' Check package
 #'
 #' @export
