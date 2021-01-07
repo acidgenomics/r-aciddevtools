@@ -20,7 +20,7 @@ Perform additional CRAN submission checks.}
 Check package
 }
 \note{
-Updated 2021-01-06.
+Updated 2021-01-07.
 }
 \examples{
 ## > check()

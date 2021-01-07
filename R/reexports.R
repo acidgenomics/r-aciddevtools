@@ -11,8 +11,8 @@ NULL
 
 ## BiocCheck ===================================================================
 ## Run `BiocCheck::usage()` for options.
-## See also Rcheck bioc-check script.
-## https://github.com/acidgenomics/Rcheck/blob/master/checks/bioc-check
+## See also r-cmd-check bioc-check script.
+## https://github.com/acidgenomics/r-cmd-check/blob/master/checks/bioc-check
 
 #' @rdname reexports
 #' @usage NULL

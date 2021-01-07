@@ -24,7 +24,7 @@ See \code{utils::install.packages()} for details.}
 Supports Bioconductor, CRAN, and GitHub packages via BiocManager.
 }
 \details{
-This is used by \href{https://github.com/acidgenomics/Rcheck}{Rcheck} for continuous integration (CI) testing.
+This is used by \href{https://github.com/acidgenomics/r-cmd-check}{r-cmd-check} for continuous integration (CI) testing.
 }
 \note{
 Updated 2020-10-20.
