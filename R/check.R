@@ -1,4 +1,6 @@
 ## FIXME Consider building into temporary directory and then checking that file.
+## NOTE Added support for `urlchecker::url_check()` when urlchecker is on CRAN.
+
 
 #' Check package
 #'
