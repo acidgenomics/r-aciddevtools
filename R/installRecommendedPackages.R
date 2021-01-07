@@ -219,6 +219,7 @@ installRecommendedPackages <- function(all = TRUE) {
             "snakecase",
             "snow",
             "styler",  # kind of like Python black for R
+            "tidytext",
             "usethis",
             "uwot",
             "waldo",
