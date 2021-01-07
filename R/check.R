@@ -33,6 +33,7 @@ check <- function(path = ".", cran = FALSE) {
             ngettext(n = length(lints), msg1 = "lint", msg2 = "lints")
         ))
     }
+    ## Note that URL checks are automatic in R 4.1.
     if (requireNamespace("urlchecker", quietly = TRUE)) {
         message("Checking URLs with 'urlchecker::url_check()'.")
         urlchecker::url_check(path = ".")
