@@ -1,7 +1,3 @@
-## FIXME Consider building into temporary directory and then checking that file.
-## NOTE Added support for `urlchecker::url_check()` when urlchecker is on CRAN.
-
-
 #' Check package
 #'
 #' @export
@@ -36,6 +32,10 @@ check <- function(path = ".", cran = FALSE) {
             length(lints),
             ngettext(n = length(lints), msg1 = "lint", msg2 = "lints")
         ))
+    }
+    if (requireNamespace("urlchecker", quietly = TRUE)) {
+        message("Checking URLs with 'urlchecker::url_check()'.")
+        urlchecker::url_check(path = ".")
     }
     message("Running package checks with 'rcmdcheck()'.")
     rcmdcheck(path = ".", cran = cran)
