@@ -35,11 +35,3 @@ printComment <- function(
     ## Reset the width back to default.
     options(width = defaultWidth)
 }
-
-
-
-#' @rdname printComment
-#' @export
-pc <- function(...) {
-    printComment(...)
-}
