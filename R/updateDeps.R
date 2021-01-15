@@ -2,9 +2,9 @@
 #'
 #' Supports Bioconductor, CRAN, and GitHub packages via BiocManager.
 #'
-#' This is used by [Rcheck][] for continuous integration (CI) testing.
+#' This is used by [r-cmd-check][] for continuous integration (CI) testing.
 #'
-#' [Rcheck]: https://github.com/acidgenomics/Rcheck
+#' [r-cmd-check]: https://github.com/acidgenomics/r-cmd-check
 #'
 #' @export
 #' @note Updated 2020-10-20.

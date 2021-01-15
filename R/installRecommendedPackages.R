@@ -11,7 +11,7 @@
 #'   See https://github.com/tidyverse/tidyr/issues/1024 for details.
 #'
 #' @export
-#' @note Updated 2020-12-11.
+#' @note Updated 2020-01-07.
 #'
 #' @param all `logical(1)`.
 #'   Install additional extra packages.
@@ -65,15 +65,10 @@ installRecommendedPackages <- function(all = TRUE) {
     ## CRAN (default) ==========================================================
     .install(
         pkgs = c(
-            "DT",
             "Matrix",
             "R.utils",
             "Rcpp",
             "RcppArmadillo",
-            "backports",
-            "broom",
-            "caTools",
-            "cli",
             "covr",
             "cowplot",
             "curl",
@@ -81,18 +76,13 @@ installRecommendedPackages <- function(all = TRUE) {
             "desc",
             "devtools",
             "ggrepel",
-            "git2r",
             "httr",
             "knitr",
             "lintr",
-            "lobstr",
             "magrittr",
             "matrixStats",
             "parallel",
-            "patrick",
-            "pbapply",
             "pkgdown",
-            "processx",
             "rcmdcheck",
             "remotes",
             "reprex",
@@ -107,10 +97,8 @@ installRecommendedPackages <- function(all = TRUE) {
             "stringi",
             "testthat",
             "tidyverse",
-            "usethis",
             "viridis",
-            "vroom",
-            "xmlparsedata"
+            "vroom"
         )
     )
     ## Bioconductor (default) ==================================================
@@ -166,26 +154,32 @@ installRecommendedPackages <- function(all = TRUE) {
     ## CRAN (extra) ============================================================
     .install(
         pkgs = c(
+            ## > "Seurat",  # dependency issue
             ## > "available",
+            ## > "dendsort",  # dependency issue
+            "DT",
             "NMF",
             "R.oo",
             "R6",
-            ## > "Seurat",  # dependency issue
             "UpSetR",
             "WGCNA",
             "ashr",
+            "backports",
             "bookdown",
+            "broom",
             "cgdsr",  # cBioPortal
+            "cli",
+            "crayon",
             "datapasta",
             "dbplyr",
             "dendextend",
-            ## > "dendsort",  # dependency issue
             "drat",
             "dynamicTreeCut",
             "fastICA",
             "fastcluster",
             "fastmatch",
             "fdrtool",
+            "forcats",
             "fs",
             "future",
             "ggdendro",
@@ -193,18 +187,25 @@ installRecommendedPackages <- function(all = TRUE) {
             "ggrepel",
             "ggridges",
             "ggupset",
+            "git2r",
+            "glue",
             "gprofiler2",
             "hexbin",
             "htmlwidgets",
             "janitor",
             "jsonlite",
             "languageserver",
+            "lobstr",
+            "lubridate",
             "memoise",
             "openxlsx",
             "packrat",
+            "pbapply",
             "pheatmap",
             "pillar",
             "plyr",
+            "prettyunits",
+            "processx",
             "pryr",
             "ps",
             "pzfx",
@@ -212,12 +213,17 @@ installRecommendedPackages <- function(all = TRUE) {
             "readxl",
             "reshape2",
             "rio",
+            "rvest",
             "shinycssloaders",
             "slam",
             "snakecase",
             "snow",
+            "styler",  # kind of like Python black for R
+            "tidytext",
+            "usethis",
             "uwot",
-            "waldo"
+            "waldo",
+            "xmlparsedata"
         )
     )
     ## Bioconductor ============================================================

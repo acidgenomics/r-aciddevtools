@@ -2,7 +2,6 @@
 % Please edit documentation in R/printComment.R
 \name{printComment}
 \alias{printComment}
-\alias{pc}
 \title{Print as comment}
 \usage{
 printComment(
@@ -10,8 +9,6 @@ printComment(
   prefix = c("##", "## >", "#'", "#' >", "#", "# >"),
   width = 80L
 )
-
-pc(...)
 }
 \arguments{
 \item{...}{Passthrough to \code{print()}.}
@@ -30,5 +27,5 @@ Console output.
 Print as comment
 }
 \note{
-Updated 2020-12-16.
+Updated 2021-01-15.
 }
