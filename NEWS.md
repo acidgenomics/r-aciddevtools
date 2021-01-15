@@ -1,3 +1,11 @@
+## bb8 0.2.49 (2021-01-15)
+
+- `check`: Improved package name detection, which doesn't always correspond
+  to the directory name. Using desc package to harden this. Also a couple of
+  bug fixes related to checking outside of package working directory.
+- `printComment`: Bug fix to better set the width.
+- Removed `pc` alias, which can get masked by Bioconductor.
+
 ## bb8 0.2.48 (2020-12-16)
 
 - Added `pc` alias for `printComment`, to reduce the amount of typing required

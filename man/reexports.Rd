@@ -52,7 +52,6 @@
 \alias{test_file}
 \alias{view}
 \alias{use_data}
-\alias{check}
 \alias{devinstall}
 \alias{doc}
 \alias{exit}

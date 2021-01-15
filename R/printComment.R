@@ -1,7 +1,7 @@
 #' Print as comment
 #'
 #' @export
-#' @note Updated 2020-12-16.
+#' @note Updated 2021-01-15.
 #'
 #' @param ... Passthrough to `print()`.
 #' @param prefix Comment prefix to use. RStudio, roxygen, and ESS prefixes
@@ -25,7 +25,8 @@ printComment <- function(
 ) {
     stopifnot(requireNamespace("utils", quietly = TRUE))
     prefix <- match.arg(prefix)
-    ## Always set width at 80 characters.
+    ## Subtract the width of the prefix, including a space.
+    width <- width - (length(prefix) + 1L)
     defaultWidth <- getOption("width")
     options(width = width)
     out <- utils::capture.output(print(...))
@@ -33,12 +34,4 @@ printComment <- function(
     cat(out, sep = "\n")
     ## Reset the width back to default.
     options(width = defaultWidth)
-}
-
-
-
-#' @rdname printComment
-#' @export
-pc <- function(...) {
-    printComment(...)
 }
