@@ -18,13 +18,12 @@ check <- function(path = ".", cran = FALSE) {
         isTRUE(dir.exists(path))
     )
     path <- normalizePath(path, mustWork = TRUE)
-    keys <- desc::desc_get(keys = c("Package", "biocViews"), file = ".")
+    descFile <- file.path(path, "DESCRIPTION")
+    keys <- desc::desc_get(keys = c("Package", "biocViews"), file = descFile)
     pkgName <- keys[["Package"]]
     message(sprintf("Checking '%s' package at '%s'.", pkgName, path))
-    wd <- getwd()
-    setwd(path)
     message("Checking for lints with 'lint_package()'.")
-    lints <- lint_package(path = ".")
+    lints <- lint_package(path = path)
     if (length(lints) > 0L) {
         print(lints)
         stop(sprintf(
@@ -36,10 +35,10 @@ check <- function(path = ".", cran = FALSE) {
     ## Note that URL checks are automatic in R 4.1.
     if (requireNamespace("urlchecker", quietly = TRUE)) {
         message("Checking URLs with 'urlchecker::url_check()'.")
-        urlchecker::url_check(path = ".")
+        urlchecker::url_check(path = path)
     }
     message("Running package checks with 'rcmdcheck()'.")
-    rcmdcheck(path = ".", cran = cran)
+    rcmdcheck(path = path, cran = cran)
     ## Only run BiocCheck if we detect "biocViews" in DESCRIPTION and when the
     ## directory name is identical to the package name. BiocCheck currently
     ## errors on directory names that differ from the package name.
@@ -49,8 +48,7 @@ check <- function(path = ".", cran = FALSE) {
     )
     if (isTRUE(ok)) {
         message("Running additional Bioconductor checks with 'BiocCheck()'.")
-        BiocCheck(package = ".")
+        BiocCheck(package = path)
     }
-    setwd(wd)
     invisible(TRUE)
 }
