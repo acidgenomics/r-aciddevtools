@@ -19,7 +19,7 @@ installedPackages <- function() {
         requireNamespace("utils", quietly = TRUE)
     )
     data <- as.data.frame(utils::installed.packages())
-    colnames(data) <- syntactic::camelCase(colnames(data))
+    colnames(data) <- syntactic::camelCase(colnames(data), strict = TRUE)
     pkgs <- data[["package"]]
     isAcid <- function(desc) {
         grepl("^https://.+\\.acidgenomics\\.com", desc[["URL"]])
