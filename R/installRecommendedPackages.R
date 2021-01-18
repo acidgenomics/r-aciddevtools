@@ -11,7 +11,7 @@
 #'   See https://github.com/tidyverse/tidyr/issues/1024 for details.
 #'
 #' @export
-#' @note Updated 2020-01-07.
+#' @note Updated 2021-01-18.
 #'
 #' @param all `logical(1)`.
 #'   Install additional extra packages.
@@ -69,6 +69,7 @@ installRecommendedPackages <- function(all = TRUE) {
             "R.utils",
             "Rcpp",
             "RcppArmadillo",
+            "bench",
             "covr",
             "cowplot",
             "curl",
@@ -83,6 +84,7 @@ installRecommendedPackages <- function(all = TRUE) {
             "matrixStats",
             "parallel",
             "pkgdown",
+            "profvis",
             "rcmdcheck",
             "remotes",
             "reprex",
