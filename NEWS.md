@@ -1,3 +1,7 @@
+## bb8 0.2.50 (2021-01-31)
+
+- Added veloviz and liger to recommended packages.
+
 ## bb8 0.2.49 (2021-01-15)
 
 - `check`: Improved package name detection, which doesn't always correspond
