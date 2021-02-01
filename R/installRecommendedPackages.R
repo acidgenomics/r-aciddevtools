@@ -11,7 +11,7 @@
 #'   See https://github.com/tidyverse/tidyr/issues/1024 for details.
 #'
 #' @export
-#' @note Updated 2021-01-18.
+#' @note Updated 2021-01-31.
 #'
 #' @param all `logical(1)`.
 #'   Install additional extra packages.
@@ -197,6 +197,7 @@ installRecommendedPackages <- function(all = TRUE) {
             "janitor",
             "jsonlite",
             "languageserver",
+            "liger",
             "lobstr",
             "lubridate",
             "memoise",
@@ -334,6 +335,7 @@ installRecommendedPackages <- function(all = TRUE) {
         .install(
             pkgs = c(
                 "BaderLab/scClustViz",                  # SingleCell
+                "JEFworks-Lab/veloviz",                 # SingleCell
                 "cole-trapnell-lab/monocle3",           # SingleCell
                 "jonocarroll/DFplyr",                   # DataRepresentation
                 "js229/Vennerable",                     # Visualization
