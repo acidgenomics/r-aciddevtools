@@ -14,7 +14,7 @@ Install additional extra packages.}
 Install recommended R packages
 }
 \note{
-Updated 2020-01-07.
+Updated 2021-01-31.
 }
 \section{Tricky packages}{
 
