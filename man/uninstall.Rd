@@ -21,5 +21,5 @@ Wrapper for \code{utils::remove.packages()}.
 Updated 2020-11-04.
 }
 \examples{
-## > uninstall("bb8")
+## > uninstall("rlang")
 }
