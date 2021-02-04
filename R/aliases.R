@@ -4,6 +4,13 @@
 #'
 #' @name aliases
 #' @note Updated 2021-02-02.
+#'
+#' @param ... Passthrough arguments.
+#'
+#' @return Varies, depending on the function.
+#'
+#' @examples
+#' ## > d()
 NULL
 
 
