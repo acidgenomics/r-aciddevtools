@@ -1,3 +1,7 @@
+## AcidDevTools 0.3.0 (2021-02-04)
+
+- Renamed package from "bb8" to "AcidDevTools".
+
 ## bb8 0.2.50 (2021-01-31)
 
 - Added veloviz and liger to recommended packages.

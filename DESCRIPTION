@@ -1,8 +1,8 @@
-Package: bb8
-Title: Trusty Sidekick for R Package Development
-Description: Personal package with additional devtools utilities.
-Version: 0.2.50
-Date: 2020-01-31
+Package: AcidDevTools
+Title: Acid Genomics Developer Tools
+Description: Toolkit for R package development.
+Version: 0.3.0
+Date: 2020-02-04
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -15,9 +15,9 @@ Authors@R: c(
         role = c("cph", "fnd")
     ))
 URL:
-    https://r.acidgenomics.com/packages/bb8/,
-    https://github.com/acidgenomics/r-bb8/
-BugReports: https://github.com/acidgenomics/r-bb8/issues/
+    https://r.acidgenomics.com/packages/aciddevtools/,
+    https://github.com/acidgenomics/r-aciddevtools/
+BugReports: https://github.com/acidgenomics/r-aciddevtools/issues/
 License: GPL-3
 Encoding: UTF-8
 Depends: R (>= 4.0)
