@@ -10,9 +10,18 @@ d(...)
 
 la(...)
 }
+\arguments{
+\item{...}{Passthrough arguments.}
+}
+\value{
+Varies, depending on the function.
+}
 \description{
 Shortcut aliases to reduce common keystrokes.
 }
 \note{
 Updated 2021-02-02.
+}
+\examples{
+## > d()
 }
