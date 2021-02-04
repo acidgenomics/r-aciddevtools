@@ -24,7 +24,6 @@ installAcidverse <- function() {
             "PANTHER",                                  # Annotation
             "WormBase",                                 # Annotation
             "basejump",                                 # Infrastructure
-            "bb8",                                      # Infrastructure
             "bcbioBase",                                # Infrastructure
             "bcbioRNASeq",                              # RNASeq
             "bcbioSingleCell",                          # SingleCell
