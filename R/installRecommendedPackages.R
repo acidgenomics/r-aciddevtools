@@ -293,6 +293,7 @@ installRecommendedPackages <- function(all = TRUE) {
             "biovizBase",                               # Visualization
             "cBioPortalData",                           # RNASeq
             "cbaf",                                     # RNASeq
+            "clusterExperiment",                        # SingleCell
             "clusterProfiler",                          # Pathways
             "csaw",                                     # ChIPSeq
             "destiny",                                  # SingleCell
