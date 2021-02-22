@@ -11,7 +11,7 @@
 #'   See https://github.com/tidyverse/tidyr/issues/1024 for details.
 #'
 #' @export
-#' @note Updated 2021-02-18.
+#' @note Updated 2021-02-22.
 #'
 #' @param all `logical(1)`.
 #'   Install additional extra packages.
@@ -323,6 +323,7 @@ installRecommendedPackages <- function(all = TRUE) {
             "scran",                                    # SingleCell
             "sctransform",                              # SingleCell
             "slalom",                                   # SingleCell
+            "slingshot",                                # SingleCell
             "splatter",                                 # SingleCell
             "targetscan.Hs.eg.db",                      # miRNA
             "tximeta",                                  # RNASeq
