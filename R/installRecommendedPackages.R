@@ -11,7 +11,7 @@
 #'   See https://github.com/tidyverse/tidyr/issues/1024 for details.
 #'
 #' @export
-#' @note Updated 2021-02-22.
+#' @note Updated 2021-02-23.
 #'
 #' @param all `logical(1)`.
 #'   Install additional extra packages.
@@ -80,11 +80,13 @@ installRecommendedPackages <- function(all = TRUE) {
             "httr",
             "knitr",
             "lintr",
+            "magick",
             "magrittr",
             "matrixStats",
             "parallel",
             "pkgdown",
             "profvis",
+            "ragg",
             "rcmdcheck",
             "remotes",
             "reprex",
