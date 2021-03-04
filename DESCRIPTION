@@ -39,6 +39,7 @@ Suggests:
     parallel,
     pipette,
     pkgdown,
+    pkgload,
     pryr,
     rcmdcheck,
     readr,
