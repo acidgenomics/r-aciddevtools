@@ -1,3 +1,8 @@
+## AcidDevTools 0.3.1 (2021-03-04)
+
+- `load_all` alias now has `helpers = FALSE` set by default, to speed up
+  package loads significantly.
+
 ## AcidDevTools 0.3.0 (2021-02-04)
 
 - Renamed package from "bb8" to "AcidDevTools".
