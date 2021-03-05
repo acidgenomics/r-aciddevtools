@@ -11,7 +11,7 @@
 #'   See https://github.com/tidyverse/tidyr/issues/1024 for details.
 #'
 #' @export
-#' @note Updated 2021-02-23.
+#' @note Updated 2021-03-05.
 #'
 #' @param all `logical(1)`.
 #'   Install additional extra packages.
@@ -51,6 +51,9 @@ installRecommendedPackages <- function(all = TRUE) {
     ## >         pkgs = paste0(binPrefix, "mgcv_1.8-32.tgz")
     ## >     )
     ## > }
+    ## Here's how to install rgl from source on macOS:
+    ## https://github.com/dmurdoch/rgl/issues/45
+    ## > install.packages("rgl", configure.args = "--disable-opengl")
     .install(
         pkgs = c(
             "Rcpp",
@@ -59,6 +62,7 @@ installRecommendedPackages <- function(all = TRUE) {
             "XML",
             "rJava",
             "rgdal",
+            "rgl",
             "sf"
         )
     )
