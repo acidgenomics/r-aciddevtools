@@ -11,7 +11,7 @@
 #'   See https://github.com/tidyverse/tidyr/issues/1024 for details.
 #'
 #' @export
-#' @note Updated 2021-01-31.
+#' @note Updated 2021-04-08.
 #'
 #' @param all `logical(1)`.
 #'   Install additional extra packages.
@@ -216,6 +216,7 @@ installRecommendedPackages <- function(all = TRUE) {
             "readxl",
             "reshape2",
             "rio",
+            "rsconnect",  # shinyapps.io
             "rvest",
             "shinycssloaders",
             "slam",
