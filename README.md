@@ -1,4 +1,4 @@
-# bb8
+# AcidDevTools
 
 Trusty sidekick for [R][] package development.
 
@@ -8,7 +8,7 @@ This is an [R][] package.
 
 ```r
 install.packages(
-    pkgs = "bb8",
+    pkgs = "AcidDevTools",
     repos = c(
         "https://r.acidgenomics.com",
         getOption("repos")
