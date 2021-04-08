@@ -114,10 +114,16 @@ document <- function(...) {
 #' @rdname reexports
 #' @usage NULL
 #' @export
-load_all <- function() {
-    stopifnot(requireNamespace("devtools", quietly = TRUE))
-    ## > pkgload::load_all(helpers = FALSE, attach_testthat = FALSE)
-    devtools::load_all()
+load_all <- function(..., helpers = FALSE) {
+    stopifnot(requireNamespace("pkgload", quietly = TRUE))
+    pkgload::load_all(
+        helpers = helpers,
+        attach_testthat = FALSE
+    )
+    ## > devtools::load_all(
+    ## >     ...,
+    ## >     helpers = helpers
+    ## > )
 }
 
 ## Note that `fresh = TRUE` is currently erroring:

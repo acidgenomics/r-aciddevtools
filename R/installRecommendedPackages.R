@@ -37,7 +37,7 @@ installRecommendedPackages <- function(all = TRUE) {
     }
     message(sprintf("Installing Bioconductor %s.", biocVersion))
     BiocManager::install(update = FALSE, ask = FALSE, version = biocVersion)
-    ## Tricky packages =========================================================
+    ## Tricky packages ==================================================== {{{1
     ## > cranArchive <- "https://cloud.r-project.org/src/contrib/Archive/"
     ## > .install(
     ## >     pkgs = c(
@@ -51,6 +51,9 @@ installRecommendedPackages <- function(all = TRUE) {
     ## >         pkgs = paste0(binPrefix, "mgcv_1.8-32.tgz")
     ## >     )
     ## > }
+    ## Here's how to install rgl from source on macOS:
+    ## https://github.com/dmurdoch/rgl/issues/45
+    ## > install.packages("rgl", configure.args = "--disable-opengl")
     .install(
         pkgs = c(
             "Rcpp",
@@ -59,10 +62,11 @@ installRecommendedPackages <- function(all = TRUE) {
             "XML",
             "rJava",
             "rgdal",
+            "rgl",
             "sf"
         )
     )
-    ## CRAN (default) ==========================================================
+    ## CRAN (default) ===================================================== {{{1
     .install(
         pkgs = c(
             "Matrix",
@@ -80,11 +84,13 @@ installRecommendedPackages <- function(all = TRUE) {
             "httr",
             "knitr",
             "lintr",
+            "magick",
             "magrittr",
             "matrixStats",
             "parallel",
             "pkgdown",
             "profvis",
+            "ragg",
             "rcmdcheck",
             "remotes",
             "reprex",
@@ -103,7 +109,7 @@ installRecommendedPackages <- function(all = TRUE) {
             "vroom"
         )
     )
-    ## Bioconductor (default) ==================================================
+    ## Bioconductor (default) ============================================= {{{1
     ## 2020-10-29: Temporary fix for missing packages in BioC 3.13 repo.
     ## > if (isTRUE(isBiocDevel())) {
     ## >     .install(
@@ -151,14 +157,15 @@ installRecommendedPackages <- function(all = TRUE) {
         message(okMsg)
         return(invisible(NULL))
     }
-    ## Acid Genomics ===========================================================
+    ## Acid Genomics ====================================================== {{{1
     installAcidverse()
-    ## CRAN (extra) ============================================================
+    ## CRAN (extra) ======================================================= {{{1
     .install(
         pkgs = c(
-            ## > "Seurat",  # dependency issue
-            ## > "available",
-            ## > "dendsort",  # dependency issue
+            ## > "Seurat",      # dependency issue (see below).
+            ## > "box",         # just released on CRAN 2021-02.
+            ## > "dendsort",    # dependency issue (see below).
+            ## > "pak",         # wait for > 0.1.2.
             "DT",
             "NMF",
             "R.oo",
@@ -166,6 +173,7 @@ installRecommendedPackages <- function(all = TRUE) {
             "UpSetR",
             "WGCNA",
             "ashr",
+            "available",
             "backports",
             "bookdown",
             "broom",
@@ -292,6 +300,7 @@ installRecommendedPackages <- function(all = TRUE) {
             "biovizBase",                               # Visualization
             "cBioPortalData",                           # RNASeq
             "cbaf",                                     # RNASeq
+            "clusterExperiment",                        # SingleCell
             "clusterProfiler",                          # Pathways
             "csaw",                                     # ChIPSeq
             "destiny",                                  # SingleCell
@@ -322,6 +331,7 @@ installRecommendedPackages <- function(all = TRUE) {
             "scran",                                    # SingleCell
             "sctransform",                              # SingleCell
             "slalom",                                   # SingleCell
+            "slingshot",                                # SingleCell
             "splatter",                                 # SingleCell
             "targetscan.Hs.eg.db",                      # miRNA
             "tximeta",                                  # RNASeq
@@ -349,9 +359,9 @@ installRecommendedPackages <- function(all = TRUE) {
     ## Packages with dependency issues =========================================
     install(
         pkgs = c(
-            "dendsort",  # gapmap removed from CRAN.
-            "gage",  # DESeq is deprecated from Bioconductor.
-            "Seurat"  # loomR isn't on CRAN.
+            "dendsort",     # gapmap removed from CRAN.
+            "gage",         # DESeq is deprecated from Bioconductor.
+            "Seurat"        # loomR isn't on CRAN.
         ),
         dependencies = FALSE,
         reinstall = FALSE

@@ -17,5 +17,5 @@ Get current version of package from GitHub
 Updated 2020-07-01.
 }
 \examples{
-getCurrentGitHubVersion(repo = "acidgenomics/bb8")
+getCurrentGitHubVersion(repo = "r-lib/rlang")
 }

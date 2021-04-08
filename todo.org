@@ -1,0 +1,8 @@
+#+TITLE: AcidDevTools
+#+STARTUP: content
+* Development
+** TODO Ensure that notes don't pass through without error.
+   https://cran.r-project.org/web/packages/rcmdcheck/rcmdcheck.pdf
+   R CMD check convert notes to warnings
+   rcmdcheck
+   check_details

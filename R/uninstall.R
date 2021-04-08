@@ -11,7 +11,7 @@
 #'   Names of packages that were removed.
 #'
 #' @examples
-#' ## > uninstall("bb8")
+#' ## > uninstall("rlang")
 uninstall <- function(pkgs) {
     stopifnot(requireNamespace("utils", quietly = TRUE))
     ## Treat all warnings as errors.
