@@ -305,6 +305,7 @@ installRecommendedPackages <- function(all = TRUE) {
             "csaw",                                     # ChIPSeq
             "destiny",                                  # SingleCell
             "edgeR",                                    # RNASeq
+            "enrichR",                                  # Pathways
             "enrichplot",                               # Visualization
             "fgsea",                                    # Pathways
             "fishpond",                                 # RNASeq
