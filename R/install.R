@@ -145,7 +145,7 @@ install <- function(
                     update = FALSE
                 )
             }
-            if (isTRUE(smartAutoconf)) {
+            if (isTRUE(autoconf)) {
                 switch(
                     EXPR = pkg,
                     "rgl" = {
