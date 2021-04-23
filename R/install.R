@@ -150,6 +150,7 @@ install <- function(
                     EXPR = pkg,
                     "rgl" = {
                         ## Might only want to set this on macOS.
+                        ## https://github.com/dmurdoch/rgl/issues/45
                         configureArgs <- "--disable-opengl"
                     }
                 )
