@@ -1,7 +1,7 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2020-12-03.
+#' @note Updated 2021-04-23.
 #'
 #' @inheritParams params
 #' @param pkgs `character`.
@@ -30,6 +30,11 @@
 #'   multi-element character strings for each package which are concatenated to
 #'   a single string to be used as the value for `--configure-args` and/or
 #'   `--configure-vars`.
+#' @param autoconf `logical(1)`.
+#'   Smartly Set configuration options internally automatically for some
+#'   packages that are problematic to install from source. Note that this will
+#'   override `configureArgs` and `configureVars` settings, when applicable.
+#'   Currently applies to: rgl.
 #' @param dependencies `logical(1)`, `character`, or `NA`.
 #'  - `TRUE`/`FALSE` indicating whether to install uninstalled packages which
 #'    these packages depend on/link to/import/suggest.
@@ -61,6 +66,7 @@ install <- function(
     pkgs,
     configureArgs = getOption("configure.args"),
     configureVars = getOption("configure.vars"),
+    autoconf = TRUE,
     dependencies = TRUE,
     lib = .libPaths()[[1L]],
     type = getOption("pkgType"),
@@ -69,6 +75,7 @@ install <- function(
     stopifnot(
         requireNamespace("utils", quietly = TRUE),
         is.character(pkgs),
+        is.logical(autoconf) && identical(length(autoconf), 1L),
         is.logical(reinstall) && identical(length(reinstall), 1L)
     )
     warn <- getOption("warn")
@@ -136,6 +143,15 @@ install <- function(
                     site_repository = "https://r.acidgenomics.com",
                     ask = FALSE,
                     update = FALSE
+                )
+            }
+            if (isTRUE(smartAutoconf)) {
+                switch(
+                    EXPR = pkg,
+                    "rgl" = {
+                        ## Might only want to set this on macOS.
+                        configureArgs <- "--disable-opengl"
+                    }
                 )
             }
             args <- c(

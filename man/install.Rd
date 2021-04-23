@@ -8,6 +8,7 @@ install(
   pkgs,
   configureArgs = getOption("configure.args"),
   configureVars = getOption("configure.vars"),
+  autoconf = TRUE,
   dependencies = TRUE,
   lib = .libPaths()[[1L]],
   type = getOption("pkgType"),
@@ -44,6 +45,12 @@ multi-element character strings for each package which are concatenated to
 a single string to be used as the value for \code{--configure-args} and/or
 \code{--configure-vars}.}
 
+\item{autoconf}{\code{logical(1)}.
+Smartly Set configuration options internally automatically for some
+packages that are problematic to install from source. Note that this will
+override \code{configureArgs} and \code{configureVars} settings, when applicable.
+Currently applies to: rgl.}
+
 \item{dependencies}{\code{logical(1)}, \code{character}, or \code{NA}.
 \itemize{
 \item \code{TRUE}/\code{FALSE} indicating whether to install uninstalled packages which
@@ -79,7 +86,7 @@ Package names defined in the \code{pkgs} argument.
 Install packages from Bioconductor, CRAN, or a Git remote
 }
 \note{
-Updated 2020-12-03.
+Updated 2021-04-23.
 }
 \examples{
 ## > install(pkgs = c("DESeq2", "edgeR"))
