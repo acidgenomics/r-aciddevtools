@@ -38,22 +38,6 @@ installRecommendedPackages <- function(all = TRUE) {
     message(sprintf("Installing Bioconductor %s.", biocVersion))
     BiocManager::install(update = FALSE, ask = FALSE, version = biocVersion)
     ## Tricky packages ==================================================== {{{1
-    ## > cranArchive <- "https://cloud.r-project.org/src/contrib/Archive/"
-    ## > .install(
-    ## >     pkgs = c(
-    ## >         paste0(cranArchive, "cpp11/cpp11_0.1.0.tar.gz"),
-    ## >         paste0(cranArchive, "rgdal/rgdal_1.5-12.tar.gz"),
-    ## >     )
-    ## > )
-    ## > if (isMacOS()) {
-    ## >     binPrefix <- "https://cran.r-project.org/bin/macosx/contrib/4.0/"
-    ## >     .install(
-    ## >         pkgs = paste0(binPrefix, "mgcv_1.8-32.tgz")
-    ## >     )
-    ## > }
-    ## Here's how to install rgl from source on macOS:
-    ## https://github.com/dmurdoch/rgl/issues/45
-    ## > install.packages("rgl", configure.args = "--disable-opengl")
     .install(
         pkgs = c(
             "Rcpp",
