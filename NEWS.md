@@ -1,3 +1,9 @@
+## AcidDevTools 0.3.2 (2021-04-23)
+
+- `install`: Added new `autoconf` option, which will automatically set internal
+  configuration overrides automatically for some problematic packages
+  (e.g. rgl on macOS).
+
 ## AcidDevTools 0.3.1 (2021-03-04)
 
 - `load_all` alias now has `helpers = FALSE` set by default, to speed up
