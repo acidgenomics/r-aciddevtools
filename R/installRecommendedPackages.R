@@ -46,9 +46,12 @@ installRecommendedPackages <- function(all = TRUE) {
             "XML",
             "rJava",
             "rgdal",
-            "rgl",
             "sf"
         )
+    )
+    .install(
+        pkgs = "rgl",  # webshot2 missing from CRAN.
+        dependencies = NA
     )
     ## CRAN (default) ===================================================== {{{1
     .install(
