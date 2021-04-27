@@ -1,7 +1,7 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2021-04-23.
+#' @note Updated 2021-04-27.
 #'
 #' @inheritParams params
 #' @param pkgs `character`.
@@ -148,6 +148,15 @@ install <- function(
             if (isTRUE(autoconf)) {
                 switch(
                     EXPR = pkg,
+                    "data.table" {
+                        ## Ensure we're building from source on macOS; the
+                        ## prebuilt binary doesn't support parallel threads
+                        ## via OpenMP by default.
+                        ## See also:
+                        ## https://github.com/Rdatatable/data.table/wiki/
+                        ##   Installation#openmp-enabled-compiler-for-mac
+                        type <- "source"
+                    },
                     "rgl" = {
                         ## Might only want to set this on macOS.
                         ## https://github.com/dmurdoch/rgl/issues/45
