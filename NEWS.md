@@ -1,3 +1,8 @@
+## AcidDevtools 0.3.3 (2021-04-27)
+
+- Increased verbosity of `dyn.load` calls during `load_all`, which is very
+  useful for debugging package load time and dependency chain.
+
 ## AcidDevTools 0.3.2 (2021-04-23)
 
 - `install`: Added new `autoconf` option, which will automatically set internal
