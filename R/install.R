@@ -148,7 +148,7 @@ install <- function(
             if (isTRUE(autoconf)) {
                 switch(
                     EXPR = pkg,
-                    "data.table" {
+                    "data.table" = {
                         ## Ensure we're building from source on macOS; the
                         ## prebuilt binary doesn't support parallel threads
                         ## via OpenMP by default.
