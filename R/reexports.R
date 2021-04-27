@@ -116,6 +116,8 @@ document <- function(...) {
 #' @export
 load_all <- function(..., helpers = FALSE) {
     stopifnot(requireNamespace("pkgload", quietly = TRUE))
+    verbose <- getOption("verbose")
+    options(verbose = TRUE)
     pkgload::load_all(
         helpers = helpers,
         attach_testthat = FALSE
@@ -124,6 +126,8 @@ load_all <- function(..., helpers = FALSE) {
     ## >     ...,
     ## >     helpers = helpers
     ## > )
+    options(verbose = verbose)
+    invisible(TRUE)
 }
 
 ## Note that `fresh = TRUE` is currently erroring:
