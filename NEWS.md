@@ -1,3 +1,12 @@
+## AcidDevTools 0.3.4 (2021-04-27)
+
+- `install` now ensures data.table gets built from source automatically.
+  Currently on macOS, the prebuilt CRAN binaries don't enable parallel threading
+  by default due to improper OpenMP configuration, which is annoying. Since
+  we install the fxcoudert GCC compiler by default, let's use this instead
+  to enable OpenMP and parallel processing support. May want to consider a
+  similar approach in the future for Rcpp, etc.
+
 ## AcidDevtools 0.3.3 (2021-04-27)
 
 - Increased verbosity of `dyn.load` calls during `load_all`, which is very
