@@ -253,8 +253,10 @@ install <- function(
 .autoconf <- function(args) {
     pkg <- args[["pkgs"]]
     stopifnot(is.character(pkg) && length(pkg) == 1L)
-    homebrewOpt <- .homebrewOpt()
-    koopaOpt <- .koopaOpt()
+    try({
+        homebrewOpt <- .homebrewOpt()
+        koopaOpt <- .koopaOpt()
+    })
     switch(
         EXPR = pkg,
         "data.table" = {
@@ -297,6 +299,7 @@ install <- function(
                 file.path(opt, "proj", "lib")
             projShare <-
                 file.path(opt, "proj", "share")
+            ## FIXME This check is failing.
             stopifnot(
                 file.exists(gdalConfig),
                 file.exists(geosConfig),
