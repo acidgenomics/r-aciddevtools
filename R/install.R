@@ -297,7 +297,7 @@ install <- function(
                 file.path(opt, "proj", "lib")
             projShare <-
                 file.path(opt, "proj", "share")
-            stopinfnot(
+            stopifnot(
                 is.file(gdalConfig),
                 is.file(geosConfig),
                 is.directory(projData),
