@@ -6,8 +6,6 @@
 
 
 
-## FIXME This is erroring on Linux if Homebrew isn't installed...
-
 #' Homebrew opt prefix
 #'
 #' @note Updated 2021-04-30.
