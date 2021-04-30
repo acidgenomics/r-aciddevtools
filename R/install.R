@@ -194,10 +194,8 @@ install <- function(
 .autoconf <- function(args) {
     pkg <- args[["pkgs"]]
     stopifnot(is.character(pkg) && length(pkg) == 1L)
-    try({
-        homebrewOpt <- .homebrewOpt()
-        koopaOpt <- .koopaOpt()
-    })
+    homebrewOpt <- .homebrewOpt()
+    koopaOpt <- .koopaOpt()
     switch(
         EXPR = pkg,
         "data.table" = {
@@ -210,8 +208,9 @@ install <- function(
         },
         "geos" = {
             if (.isLinux()) {
-                geosDir <- file.path(koopaOpt, "geos")
-                if (dir.exists(geosDir)) {
+                opt <- koopaOpt
+                geosDir <- file.path(opt, "geos")
+                if (all(dir.exists(c(opt, geosDir)))) {
                     geosConfig <- file.path(geosDir, "bin", "geos-config")
                     stopifnot(file.exists(geosConfig))
                     args[["configure.args"]] <-
@@ -234,7 +233,7 @@ install <- function(
             gdalDir <- file.path(opt, "gdal")
             geosDir <- file.path(opt, "geos")
             projDir <- file.path(opt, "proj")
-            if (all(dir.exists(c(gdalDir, geosDir, projDir)))) {
+            if (all(dir.exists(c(opt, gdalDir, geosDir, projDir)))) {
                 gdalConfig <- file.path(gdalDir, "bin", "gdal-config")
                 geosConfig <- file.path(geosDir, "bin", "geos-config")
                 projData <- file.path(projDir, "share", "proj")
