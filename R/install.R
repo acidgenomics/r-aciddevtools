@@ -299,7 +299,6 @@ install <- function(
                 file.path(opt, "proj", "lib")
             projShare <-
                 file.path(opt, "proj", "share")
-            ## FIXME This check is failing.
             stopifnot(
                 file.exists(gdalConfig),
                 file.exists(geosConfig),
@@ -316,6 +315,7 @@ install <- function(
                     paste0("--with-proj-lib=", projLib),
                     paste0("--with-proj-share=", projShare)
                 )
+            args[["dependencies"]] <- NA
         }
     )
     args
