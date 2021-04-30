@@ -12,7 +12,7 @@
 #' @noRd
 .homebrewOpt <- function() {
     x <- .homebrewPrefix()
-    if (!dir.exists(x)) return(NULL)
+    if (isFALSE(dir.exists(x))) return(NULL)
     x <- file.path(x, "opt")
     stopifnot(dir.exists(x))
     x
@@ -31,7 +31,7 @@
         return(x)
     }
     if (.isMacOS()) {
-        if (dir.exists(file.path("", "opt", "homebrew"))) {
+        if (isTRUE(dir.exists(file.path("", "opt", "homebrew")))) {
             x <- file.path("", "opt", "homebrew")
         } else {
             x <- file.path("", "usr", "local")
@@ -39,7 +39,7 @@
     } else if (.isLinux()) {
         x <- file.path("", "home", "linuxbrew", ".linuxbrew")
     }
-    if (!dir.exists(x)) return(NULL)
+    if (isFALSE(dir.exists(x))) return(NULL)
     x
 }
 
@@ -114,7 +114,7 @@
 #' @noRd
 .koopaOpt <- function() {
     x <- .koopaPrefix()
-    if (!dir.exists(x)) return(NULL)
+    if (isFALSE(dir.exists(x))) return(NULL)
     x <- file.path(x, "opt")
     stopifnot(dir.exists(x))
     x
@@ -128,7 +128,7 @@
 #' @noRd
 .koopaPrefix <- function() {
     x <- Sys.getenv("KOOPA_PREFIX")
-    if (nchar(x) == 0L) return(NULL)
+    if (isFALSE(dir.exists(x))) return(NULL)
     x
 }
 
