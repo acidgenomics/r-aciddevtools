@@ -118,7 +118,7 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2021-04-27.
+#' @note Updated 2021-04-30.
 #'
 #' @inheritParams params
 #' @param pkgs `character`.
@@ -251,48 +251,36 @@ install <- function(
                 message(sprintf("'%s' is installed.", basename(pkg)))
                 return(pkg)
             }
+            stopifnot(requireNamespace("BiocManager", quietly = TRUE))
+            args <- list()
             if (grepl(pattern = "^[^/]+/[^/]+$", x = pkg)) {
                 ## remotes-specific (Git).
-                args <- list(upgrade = "always")
+                args[["upgrade"]] <- "always"
             } else {
                 ## BiocManager-specific (Bioconductor/CRAN).
-                args <- list(
-                    site_repository = "https://r.acidgenomics.com",
-                    ask = FALSE,
-                    update = FALSE
+                args <- append(
+                    x = args,
+                    values = list(
+                        "ask" = FALSE,
+                        "site_repository" = "https://r.acidgenomics.com",
+                        "update" = FALSE
+                    )
                 )
             }
-            if (isTRUE(autoconf)) {
-                switch(
-                    EXPR = pkg,
-                    "data.table" = {
-                        ## Ensure we're building from source on macOS; the
-                        ## prebuilt binary doesn't support parallel threads
-                        ## via OpenMP by default.
-                        ## See also:
-                        ## https://github.com/Rdatatable/data.table/wiki/
-                        ##   Installation#openmp-enabled-compiler-for-mac
-                        type <- "source"
-                    },
-                    "rgl" = {
-                        ## Might only want to set this on macOS.
-                        ## https://github.com/dmurdoch/rgl/issues/45
-                        configureArgs <- "--disable-opengl"
-                    }
-                )
-            }
-            args <- c(
-                args,
-                list(
-                    pkgs = pkg,
-                    checkBuilt = TRUE,
-                    configure.args = configureArgs,
-                    configure.vars = configureVars,
-                    dependencies = dependencies,
-                    type = type
+            args <- append(
+                x = args,
+                values = list(
+                    "pkgs" = pkg,
+                    "checkBuilt" = TRUE,
+                    "configure.args" = configureArgs,
+                    "configure.vars" = configureVars,
+                    "dependencies" = dependencies,
+                    "type" = type
                 )
             )
-            stopifnot(requireNamespace("BiocManager", quietly = TRUE))
+            if (isTRUE(autoconf)) {
+                args <- .autoconf(args)
+            }
             message(sprintf(
                 "Installing '%s' with '%s::%s'.",
                 pkg, "BiocManager", "install"
@@ -303,4 +291,50 @@ install <- function(
     )
     options("warn" = warn)
     invisible(out)
+}
+
+
+
+#' Autoconfigure a specified package
+#'
+#' This function will dynamically change configure arguments for some tricky
+#' to install packages.
+#'
+#' @note Updated 2021-04-30.
+#' @noRd
+#'
+#' @param args `list`.
+#'   Named list of arguments.
+#'
+#' @return `list`.
+#'   Arguments list to be passed to `BiocManager::install`.
+.autoconf <- function(args) {
+    pkg <- args[["pkgs"]]
+    stopifnot(is.character(pkg) && length(pkg) == 1L)
+    switch(
+        EXPR = pkg,
+        "data.table" = {
+            ## Ensure we're building from source on macOS; the prebuilt binary
+            ## doesn't support parallel threads via OpenMP by default.
+            ## See also:
+            ## https://github.com/Rdatatable/data.table/wiki/
+            ##   Installation#openmp-enabled-compiler-for-mac
+            args[["type"]] <- "source"
+        },
+        "geos" = {
+            if (.isLinux()) {
+                "FIXME"
+            }
+        },
+        "rgl" = {
+            if (.isMacOS()) {
+                ## https://github.com/dmurdoch/rgl/issues/45
+                args[["configure.args"]] <- "--disable-opengl"
+            }
+        },
+        "sf" = {
+            "FIXME"  # Linux and macOS.
+        }
+    )
+    args
 }
