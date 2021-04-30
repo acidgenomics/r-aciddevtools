@@ -11,7 +11,7 @@
 #' @note Updated 2021-04-30.
 #' @noRd
 .homebrewOpt <- function() {
-    x <- file.path(.homebrewPrefix, "opt")
+    x <- file.path(.homebrewPrefix(), "opt")
     stopifnot(dir.exists(x))
     x
 
