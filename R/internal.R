@@ -11,11 +11,11 @@
 #' @note Updated 2021-04-30.
 #' @noRd
 .homebrewOpt <- function() {
-    x <- file.path(.homebrewPrefix(), "opt")
+    x <- .homebrewPrefix()
+    if (!dir.exists(x)) return(NULL)
+    x <- file.path(x, "opt")
     stopifnot(dir.exists(x))
     x
-
-
 }
 
 
@@ -39,7 +39,7 @@
     } else if (.isLinux()) {
         x <- file.path("", "home", "linuxbrew", ".linuxbrew")
     }
-    stopifnot(dir.exists(x))
+    if (!dir.exists(x)) return(NULL)
     x
 }
 
@@ -113,7 +113,9 @@
 #' @note Updated 2021-04-30.
 #' @noRd
 .koopaOpt <- function() {
-    x <- file.path(.koopaPrefix(), "opt")
+    x <- .koopaPrefix()
+    if (!dir.exists(x)) return(NULL)
+    x <- file.path(x, "opt")
     stopifnot(dir.exists(x))
     x
 }
@@ -126,7 +128,7 @@
 #' @noRd
 .koopaPrefix <- function() {
     x <- Sys.getenv("KOOPA_PREFIX")
-    stopifnot(dir.exists(x))
+    if (nchar(x) == 0L) return(NULL)
     x
 }
 
