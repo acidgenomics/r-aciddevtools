@@ -6,6 +6,8 @@
 
 
 
+## FIXME This is erroring on Linux if Homebrew isn't installed...
+
 #' Homebrew opt prefix
 #'
 #' @note Updated 2021-04-30.
@@ -19,6 +21,8 @@
 }
 
 
+
+## FIXME This is erroring on Linux if Homebrew isn't installed...
 
 #' Homebrew prefix
 #'
@@ -108,6 +112,8 @@
 
 
 
+## FIXME Does this work on Linux if koopa isn't installed?
+
 #' Koopa opt prefix.
 #'
 #' @note Updated 2021-04-30.
@@ -121,6 +127,8 @@
 }
 
 
+
+## FIXME Does this work on Linux if koopa isn't installed?
 
 #' Koopa prefix.
 #'
