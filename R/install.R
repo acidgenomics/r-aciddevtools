@@ -1,35 +1,3 @@
-# FIXME MOVE THESE TO ACIDDEVTOOLS.
-#koopa::linux_install_r_geos() { # {{{1
-#    # """
-#    # Install R rgeos package.
-#    # @note Updated 2021-01-20.
-#    # """
-#    local geos_prefix make_prefix
-#    if koopa::is_r_package_installed rgeos
-#    then
-#        koopa::alert_note 'rgeos is already installed.'
-#        return 0
-#    fi
-#    koopa::assert_is_installed Rscript
-#    koopa::assert_is_not_file '/usr/bin/geos-config'
-#    # How to enable versioned support, if necessary.
-#    # > app_prefix="$(koopa::app_prefix)"
-#    # > geos_version="$(koopa::variable 'geos')"
-#    # > geos_prefix="${app_prefix}/geos/${geos_version}"
-#    make_prefix="$(koopa::make_prefix)"
-#    geos_prefix="$make_prefix"
-#    Rscript -e "\
-#        install.packages(
-#            pkgs = \"rgeos\",
-#            type = \"source\",
-#            repos = \"https://cran.rstudio.com\",
-#            configure.args = paste(
-#                \"--with-geos-config=${geos_prefix}/bin/geos-config\"
-#            )
-#        )"
-#    return 0
-#}
-#
 ## FIXME MOVE THESE TO ACIDDEVTOOLS.
 #koopa::linux_install_r_sf() { # {{{1
 #    # """
@@ -285,6 +253,8 @@ install <- function(
 .autoconf <- function(args) {
     pkg <- args[["pkgs"]]
     stopifnot(is.character(pkg) && length(pkg) == 1L)
+    homebrewOpt <- .homebrewOpt()
+    koopaOpt <- .koopaOpt()
     switch(
         EXPR = pkg,
         "data.table" = {
@@ -297,7 +267,10 @@ install <- function(
         },
         "geos" = {
             if (.isLinux()) {
-                "FIXME"
+                geosConfig <- file.path(koopaOpt, "geos", "bin", "geos-config")
+                stopifnot(is.file(geosConfig))
+                args[["configure.args"]] <-
+                    paste0("--with-geos-config=", geosConfig)
             }
         },
         "rgl" = {
@@ -308,51 +281,33 @@ install <- function(
         },
         "sf" = {
             if (.isMacOS()) {
-                homebrewOpt <- .homebrewOpt()
+                gdalConfig <-
+                    file.path(homebrewOpt, "gdal", "bin", "gdal-config")
+                geosConfig <-
+                    file.path(homebrewOpt, "geos", "bin", "geos-config")
+                projData <-
+                    file.path(homebrewOpt, "proj", "share", "proj")
+                projInclude <-
+                    file.path(homebrewOpt, "proj", "include")
+                projLib <-
+                    file.path(homebrewOpt, "proj", "lib")
+                projShare <-
+                    file.path(homebrewOpt, "proj", "share")
+                stopinfnot(
+                    is.file(gdalConfig),
+                    is.file(geosConfig),
+                    is.directory(projData),
+                    is.directory(projInclude),
+                    is.directory(projLib)
+                )
                 args[["configure.args"]] <-
                     paste(
-                        paste0(
-                            "--with-gdal-config=",
-                            file.path(
-                                homebrewOpt,
-                                "gdal", "bin", "gdal-config"
-                            )
-                        ),
-                        paste0(
-                            "--with-geos-config=",
-                            file.path(
-                                homebrewOpt,
-                                "geos", "bin", "geos-config"
-                            )
-                        ),
-                        paste0(
-                            "--with-proj-data=",
-                            file.path(
-                                homebrewOpt,
-                                "proj", "share", "proj"
-                            )
-                        ),
-                        paste0(
-                            "--with-proj-include=",
-                            file.path(
-                                homebrewOpt,
-                                "proj", "include"
-                            )
-                        ),
-                        paste0(
-                            "--with-proj-lib=",
-                            file.path(
-                                homebrewOpt,
-                                "proj", "lib"
-                            )
-                        ),
-                        paste0(
-                            "--with-proj-share=",
-                            file.path(
-                                homebrewOpt,
-                                "proj", "share"
-                            )
-                        )
+                        paste0("--with-gdal-config=", gdalConfig),
+                        paste0("--with-geos-config=", geosConfig),
+                        paste0("--with-proj-data=", projData),
+                        paste0("--with-proj-include=", projInclude),
+                        paste0("--with-proj-lib=", projLib),
+                        paste0("--with-proj-share=", projShare)
                 )
             }
         }

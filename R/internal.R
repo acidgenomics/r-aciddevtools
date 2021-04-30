@@ -25,9 +25,9 @@
     } else if (.isLinux()) {
         x <- file.path("", "home", "linuxbrew", ".linuxbrew")
     }
-    if (!isTRUE(is.directory(x))) {
-        stop("Failed to detect Homebrew installation.")
-    }
+    ## > if (!isTRUE(is.directory(x))) {
+    ## >     stop("Failed to detect Homebrew installation.")
+    ## > }
     x
 }
 
@@ -94,6 +94,25 @@
     isTRUE(grepl(pattern = "darwin", x = R.Version()[["os"]]))
 }
 
+
+
+#' Koopa opt prefix.
+#'
+#' @note Updated 2021-04-30.
+#' @noRd
+.koopaOpt <- function() {
+    file.path(.koopaPrefix(), "opt")
+}
+
+
+
+#' Koopa prefix.
+#'
+#' @note Updated 2021-04-30.
+#' @noRd
+.koopaPrefix <- function() {
+    Sys.getenv("KOOPA_PREFIX")
+}
 
 
 
