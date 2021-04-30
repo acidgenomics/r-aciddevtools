@@ -14,15 +14,13 @@
 #' @noRd
 .homebrewOpt <- function() {
     x <- .homebrewPrefix()
-    if (isFALSE(dir.exists(x))) return(NULL)
+    if (isFALSE(dir.exists(x))) return("")
     x <- file.path(x, "opt")
     stopifnot(dir.exists(x))
     x
 }
 
 
-
-## FIXME This is erroring on Linux if Homebrew isn't installed...
 
 #' Homebrew prefix
 #'
@@ -43,7 +41,7 @@
     } else if (.isLinux()) {
         x <- file.path("", "home", "linuxbrew", ".linuxbrew")
     }
-    if (isFALSE(dir.exists(x))) return(NULL)
+    if (isFALSE(dir.exists(x))) return("")
     x
 }
 
@@ -112,15 +110,13 @@
 
 
 
-## FIXME Does this work on Linux if koopa isn't installed?
-
 #' Koopa opt prefix.
 #'
 #' @note Updated 2021-04-30.
 #' @noRd
 .koopaOpt <- function() {
     x <- .koopaPrefix()
-    if (isFALSE(dir.exists(x))) return(NULL)
+    if (isFALSE(dir.exists(x))) return("")
     x <- file.path(x, "opt")
     stopifnot(dir.exists(x))
     x
@@ -128,15 +124,13 @@
 
 
 
-## FIXME Does this work on Linux if koopa isn't installed?
-
 #' Koopa prefix.
 #'
 #' @note Updated 2021-04-30.
 #' @noRd
 .koopaPrefix <- function() {
     x <- Sys.getenv("KOOPA_PREFIX")
-    if (isFALSE(dir.exists(x))) return(NULL)
+    if (isFALSE(dir.exists(x))) return("")
     x
 }
 
