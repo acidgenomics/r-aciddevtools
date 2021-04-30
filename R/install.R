@@ -210,10 +210,13 @@ install <- function(
         },
         "geos" = {
             if (.isLinux()) {
-                geosConfig <- file.path(koopaOpt, "geos", "bin", "geos-config")
-                stopifnot(file.exists(geosConfig))
-                args[["configure.args"]] <-
-                    paste0("--with-geos-config=", geosConfig)
+                geosDir <- file.path(koopaOpt, "geos")
+                if (dir.exists(geosDir)) {
+                    geosConfig <- file.path(geosDir, "bin", "geos-config")
+                    stopifnot(file.exists(geosConfig))
+                    args[["configure.args"]] <-
+                        paste0("--with-geos-config=", geosConfig)
+                }
             }
         },
         "rgl" = {
@@ -228,34 +231,33 @@ install <- function(
             } else if (.isLinux()) {
                 opt <- koopaOpt
             }
-            gdalConfig <-
-                file.path(opt, "gdal", "bin", "gdal-config")
-            geosConfig <-
-                file.path(opt, "geos", "bin", "geos-config")
-            projData <-
-                file.path(opt, "proj", "share", "proj")
-            projInclude <-
-                file.path(opt, "proj", "include")
-            projLib <-
-                file.path(opt, "proj", "lib")
-            projShare <-
-                file.path(opt, "proj", "share")
-            stopifnot(
-                file.exists(gdalConfig),
-                file.exists(geosConfig),
-                dir.exists(projData),
-                dir.exists(projInclude),
-                dir.exists(projLib)
-            )
-            args[["configure.args"]] <-
-                paste(
-                    paste0("--with-gdal-config=", gdalConfig),
-                    paste0("--with-geos-config=", geosConfig),
-                    paste0("--with-proj-data=", projData),
-                    paste0("--with-proj-include=", projInclude),
-                    paste0("--with-proj-lib=", projLib),
-                    paste0("--with-proj-share=", projShare)
+            gdalDir <- file.path(opt, "gdal")
+            geosDir <- file.path(opt, "geos")
+            projDir <- file.path(opt, "proj")
+            if (all(dir.exists(c(gdalDir, geosDir, projDir)))) {
+                gdalConfig <- file.path(gdalDir, "bin", "gdal-config")
+                geosConfig <- file.path(geosDir, "bin", "geos-config")
+                projData <- file.path(projDir, "share", "proj")
+                projInclude <- file.path(projDir, "include")
+                projLib <- file.path(projDir, "lib")
+                projShare <- file.path(projDir, "share")
+                stopifnot(
+                    file.exists(gdalConfig),
+                    file.exists(geosConfig),
+                    dir.exists(projData),
+                    dir.exists(projInclude),
+                    dir.exists(projLib)
                 )
+                args[["configure.args"]] <-
+                    paste(
+                        paste0("--with-gdal-config=", gdalConfig),
+                        paste0("--with-geos-config=", geosConfig),
+                        paste0("--with-proj-data=", projData),
+                        paste0("--with-proj-include=", projInclude),
+                        paste0("--with-proj-lib=", projLib),
+                        paste0("--with-proj-share=", projShare)
+                    )
+            }
             args[["dependencies"]] <- NA
         }
     )
