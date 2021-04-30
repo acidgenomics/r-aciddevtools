@@ -1,3 +1,8 @@
+## AcidDevTools 0.3.5 (2021-04-30)
+
+- `install`: Improved `autoconf` handling for data.table, geos, rgl, and sf
+  packages. Refer to internal `.autoconf` code for details.
+
 ## AcidDevTools 0.3.4 (2021-04-27)
 
 - `install` now ensures data.table gets built from source automatically.
