@@ -16,7 +16,7 @@
         return(x)
     }
     if (.isMacOS()) {
-        if (is.directory(file.path("", "opt", "homebrew"))) {
+        if (dir.exists(file.path("", "opt", "homebrew"))) {
             x <- file.path("", "opt", "homebrew")
         } else {
             x <- file.path("", "usr", "local")
@@ -25,9 +25,6 @@
     } else if (.isLinux()) {
         x <- file.path("", "home", "linuxbrew", ".linuxbrew")
     }
-    ## > if (!isTRUE(is.directory(x))) {
-    ## >     stop("Failed to detect Homebrew installation.")
-    ## > }
     x
 }
 
