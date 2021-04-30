@@ -6,6 +6,33 @@
 
 
 
+#' Homebrew opt prefix
+#'
+#' @note Updated 2021-04-30.
+#' @noRd
+.homebrewOpt <- function() {
+    x <- Sys.getenv("HOMEBREW_PREFIX")
+    if (isTRUE(nchar(x) > 0L)) {
+        return(x)
+    }
+    if (.isMacOS()) {
+        if (is.directory(file.path("", "opt", "homebrew"))) {
+            x <- file.path("", "opt", "homebrew")
+        } else {
+            x <- file.path("", "usr", "local")
+        }
+
+    } else if (.isLinux()) {
+        x <- file.path("", "home", "linuxbrew", ".linuxbrew")
+    }
+    if (!isTRUE(is.directory(x))) {
+        stop("Failed to detect Homebrew installation.")
+    }
+    x
+}
+
+
+
 #' Install packages, if necessary
 #'
 #' @note Updated 2020-11-11.

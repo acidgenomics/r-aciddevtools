@@ -1,29 +1,3 @@
-## FIXME REWORK THIS:
-# FIXME Define this in r-aciddevtools instead.
-#koopa::macos_install_r_sf() { # {{{1
-#    # """
-#    # Install R sf package.
-#    # @note Updated 2020-07-16.
-#    # """
-#    koopa::assert_has_no_args "$#"
-#    koopa::assert_is_installed Rscript
-#    koopa::is_r_package_installed sf && return 0
-#    Rscript -e "\
-#        install.packages(
-#            pkgs = \"sf\",
-#            type = \"source\",
-#            configure.args = paste(
-#                \"--with-gdal-config=/usr/local/opt/gdal/bin/gdal-config\",
-#                \"--with-geos-config=/usr/local/opt/geos/bin/geos-config\",
-#                \"--with-proj-data=/usr/local/opt/proj/share/proj\",
-#                \"--with-proj-include=/usr/local/opt/proj/include\",
-#                \"--with-proj-lib=/usr/local/opt/proj/lib\",
-#                \"--with-proj-share=/usr/local/opt/proj/share\"
-#            )
-#        )"
-#    return 0
-#}
-
 # FIXME MOVE THESE TO ACIDDEVTOOLS.
 #koopa::linux_install_r_geos() { # {{{1
 #    # """
@@ -333,7 +307,54 @@ install <- function(
             }
         },
         "sf" = {
-            "FIXME"  # Linux and macOS.
+            if (.isMacOS()) {
+                homebrewOpt <- .homebrewOpt()
+                args[["configure.args"]] <-
+                    paste(
+                        paste0(
+                            "--with-gdal-config=",
+                            file.path(
+                                homebrewOpt,
+                                "gdal", "bin", "gdal-config"
+                            )
+                        ),
+                        paste0(
+                            "--with-geos-config=",
+                            file.path(
+                                homebrewOpt,
+                                "geos", "bin", "geos-config"
+                            )
+                        ),
+                        paste0(
+                            "--with-proj-data=",
+                            file.path(
+                                homebrewOpt,
+                                "proj", "share", "proj"
+                            )
+                        ),
+                        paste0(
+                            "--with-proj-include=",
+                            file.path(
+                                homebrewOpt,
+                                "proj", "include"
+                            )
+                        ),
+                        paste0(
+                            "--with-proj-lib=",
+                            file.path(
+                                homebrewOpt,
+                                "proj", "lib"
+                            )
+                        ),
+                        paste0(
+                            "--with-proj-share=",
+                            file.path(
+                                homebrewOpt,
+                                "proj", "share"
+                            )
+                        )
+                )
+            }
         }
     )
     args
