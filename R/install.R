@@ -268,7 +268,7 @@ install <- function(
         "geos" = {
             if (.isLinux()) {
                 geosConfig <- file.path(koopaOpt, "geos", "bin", "geos-config")
-                stopifnot(is.file(geosConfig))
+                stopifnot(file.exists(geosConfig))
                 args[["configure.args"]] <-
                     paste0("--with-geos-config=", geosConfig)
             }
@@ -298,11 +298,11 @@ install <- function(
             projShare <-
                 file.path(opt, "proj", "share")
             stopifnot(
-                is.file(gdalConfig),
-                is.file(geosConfig),
-                is.directory(projData),
-                is.directory(projInclude),
-                is.directory(projLib)
+                file.exists(gdalConfig),
+                file.exists(geosConfig),
+                dir.exists(projData),
+                dir.exists(projInclude),
+                dir.exists(projLib)
             )
             args[["configure.args"]] <-
                 paste(
