@@ -281,35 +281,38 @@ install <- function(
         },
         "sf" = {
             if (.isMacOS()) {
-                gdalConfig <-
-                    file.path(homebrewOpt, "gdal", "bin", "gdal-config")
-                geosConfig <-
-                    file.path(homebrewOpt, "geos", "bin", "geos-config")
-                projData <-
-                    file.path(homebrewOpt, "proj", "share", "proj")
-                projInclude <-
-                    file.path(homebrewOpt, "proj", "include")
-                projLib <-
-                    file.path(homebrewOpt, "proj", "lib")
-                projShare <-
-                    file.path(homebrewOpt, "proj", "share")
-                stopinfnot(
-                    is.file(gdalConfig),
-                    is.file(geosConfig),
-                    is.directory(projData),
-                    is.directory(projInclude),
-                    is.directory(projLib)
-                )
-                args[["configure.args"]] <-
-                    paste(
-                        paste0("--with-gdal-config=", gdalConfig),
-                        paste0("--with-geos-config=", geosConfig),
-                        paste0("--with-proj-data=", projData),
-                        paste0("--with-proj-include=", projInclude),
-                        paste0("--with-proj-lib=", projLib),
-                        paste0("--with-proj-share=", projShare)
-                )
+                opt <- homebrewOpt
+            } else if (.isLinux()) {
+                opt <- koopaOpt
             }
+            gdalConfig <-
+                file.path(opt, "gdal", "bin", "gdal-config")
+            geosConfig <-
+                file.path(opt, "geos", "bin", "geos-config")
+            projData <-
+                file.path(opt, "proj", "share", "proj")
+            projInclude <-
+                file.path(opt, "proj", "include")
+            projLib <-
+                file.path(opt, "proj", "lib")
+            projShare <-
+                file.path(opt, "proj", "share")
+            stopinfnot(
+                is.file(gdalConfig),
+                is.file(geosConfig),
+                is.directory(projData),
+                is.directory(projInclude),
+                is.directory(projLib)
+            )
+            args[["configure.args"]] <-
+                paste(
+                    paste0("--with-gdal-config=", gdalConfig),
+                    paste0("--with-geos-config=", geosConfig),
+                    paste0("--with-proj-data=", projData),
+                    paste0("--with-proj-include=", projInclude),
+                    paste0("--with-proj-lib=", projLib),
+                    paste0("--with-proj-share=", projShare)
+                )
         }
     )
     args
