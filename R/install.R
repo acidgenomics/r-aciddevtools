@@ -217,6 +217,7 @@ install <- function(
             if (.isMacOS()) {
                 cLoc <- "/usr/local/gfortran"
                 sdkLoc <- "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
+                stopifnot(all(dir.exists(c(cLoc, sdkLoc))))
                 makevarsLines <- c(
                     paste0(
                         "CC=", cLoc, "/bin/gcc", " ",
