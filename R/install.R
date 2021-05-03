@@ -206,18 +206,21 @@ install <- function(
             ##   Installation#openmp-enabled-compiler-for-mac
             args[["type"]] <- "source"
             if (.isMacOS()) {
-                args[["configure.args"]] <- c(
-                    "C_LOC=/usr/local/gfortran",
-                    "SDK_LOC=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
-                    "CC=$(C_LOC)/bin/gcc -fopenmp",
-                    "CXX=$(C_LOC)/bin/g++ -fopenmp",
-                    "CXX11=$(C_LOC)/bin/g++ -fopenmp",
-                    "CFLAGS=-g -O3 -Wall -pedantic -std=gnu99 -mtune=native -pipe",
-                    "CPPFLAGS=-I$(C_LOC)/include -I$(SDK_LOC)/usr/include",
-                    "CXXFLAGS=-g -O3 -Wall -pedantic -std=c++11 -mtune=native -pipe",
-                    "CXX11FLAGS=-g -O3 -Wall -pedantic -std=c++11 -mtune=native -pipe",
-                    "LDFLAGS=-L$(C_LOC)/lib -Wl,-rpath,$(C_LOC)/lib"
+                ## FIXME This approach is not working. How to pass the args
+                ## in here without having to set Renviron ???
+                C_LOC <- "/usr/local/gfortran"
+                SDK_LOC <- "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
+                configureVars <- c(
+                    paste0("CC='", C_LOC, "/bin/gcc -fopenmp'"),
+                    paste0("CXX='", C_LOC, "/bin/g++ -fopenmp'"),
+                    paste0("CXX11='", C_LOC, "/bin/g++ -fopenmp'"),
+                    "CFLAGS='-g -O3 -Wall -pedantic -std=gnu99 -mtune=native -pipe'",
+                    paste0("CPPFLAGS='-I", C_LOC, "/include -I", SDK_LOC, "/usr/include'"),
+                    "CXXFLAGS='-g -O3 -Wall -pedantic -std=c++11 -mtune=native -pipe'",
+                    "CXX11FLAGS='-g -O3 -Wall -pedantic -std=c++11 -mtune=native -pipe'",
+                    paste0("LDFLAGS='-L", C_LOC, "/lib -Wl,-rpath,", C_LOC, "lib'")
                 )
+                args[["configure.vars"]] <- configureVars
             }
         },
         "geos" = {
@@ -261,15 +264,15 @@ install <- function(
                     dir.exists(projInclude),
                     dir.exists(projLib)
                 )
-                args[["configure.args"]] <-
-                    paste(
-                        paste0("--with-gdal-config=", gdalConfig),
-                        paste0("--with-geos-config=", geosConfig),
-                        paste0("--with-proj-data=", projData),
-                        paste0("--with-proj-include=", projInclude),
-                        paste0("--with-proj-lib=", projLib),
-                        paste0("--with-proj-share=", projShare)
-                    )
+                configureArgs <- c(
+                    paste0("--with-gdal-config=", gdalConfig),
+                    paste0("--with-geos-config=", geosConfig),
+                    paste0("--with-proj-data=", projData),
+                    paste0("--with-proj-include=", projInclude),
+                    paste0("--with-proj-lib=", projLib),
+                    paste0("--with-proj-share=", projShare)
+                )
+                args[["configure.args"]] <- configureArgs
             }
             args[["dependencies"]] <- NA
         }
