@@ -205,18 +205,20 @@ install <- function(
             ## https://github.com/Rdatatable/data.table/wiki/
             ##   Installation#openmp-enabled-compiler-for-mac
             args[["type"]] <- "source"
-            args[["configure.args"]] <- c(
-                "C_LOC=/usr/local/gfortran",
-                "SDK_LOC=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
-                "CC=$(C_LOC)/bin/gcc -fopenmp",
-                "CXX=$(C_LOC)/bin/g++ -fopenmp",
-                "CXX11=$(C_LOC)/bin/g++ -fopenmp",
-                "CFLAGS=-g -O3 -Wall -pedantic -std=gnu99 -mtune=native -pipe",
-                "CPPFLAGS=-I$(C_LOC)/include -I$(SDK_LOC)/usr/include",
-                "CXXFLAGS=-g -O3 -Wall -pedantic -std=c++11 -mtune=native -pipe",
-                "CXX11FLAGS=-g -O3 -Wall -pedantic -std=c++11 -mtune=native -pipe",
-                "LDFLAGS=-L$(C_LOC)/lib -Wl,-rpath,$(C_LOC)/lib"
-            )
+            if (.isMacOS()) {
+                args[["configure.args"]] <- c(
+                    "C_LOC=/usr/local/gfortran",
+                    "SDK_LOC=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+                    "CC=$(C_LOC)/bin/gcc -fopenmp",
+                    "CXX=$(C_LOC)/bin/g++ -fopenmp",
+                    "CXX11=$(C_LOC)/bin/g++ -fopenmp",
+                    "CFLAGS=-g -O3 -Wall -pedantic -std=gnu99 -mtune=native -pipe",
+                    "CPPFLAGS=-I$(C_LOC)/include -I$(SDK_LOC)/usr/include",
+                    "CXXFLAGS=-g -O3 -Wall -pedantic -std=c++11 -mtune=native -pipe",
+                    "CXX11FLAGS=-g -O3 -Wall -pedantic -std=c++11 -mtune=native -pipe",
+                    "LDFLAGS=-L$(C_LOC)/lib -Wl,-rpath,$(C_LOC)/lib"
+                )
+            }
         },
         "geos" = {
             if (.isLinux()) {
