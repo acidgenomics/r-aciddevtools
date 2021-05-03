@@ -1,3 +1,9 @@
+## AcidDevTools 0.3.6 (2021-05-03)
+
+- `install`: Improved `autoconf` handling for data.table, now using
+  `~/.R/Makevars` dynamically to define gfortran GCC compiler options used
+  to enable OpenMP support for parallel threads on macOS.
+
 ## AcidDevTools 0.3.5 (2021-04-30)
 
 - `install`: Improved `autoconf` handling for data.table, geos, rgl, and sf
