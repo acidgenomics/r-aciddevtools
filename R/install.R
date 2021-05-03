@@ -198,7 +198,11 @@ install <- function(
 #'   Arguments list to be passed to `BiocManager::install`.
 .autoconf <- function(args) {
     pkg <- args[["pkgs"]]
-    stopifnot(is.character(pkg) && length(pkg) == 1L)
+    makevarsFile <- file.path("~", ".R", "Makevars")
+    stopifnot(
+        is.character(pkg) && length(pkg) == 1L,
+        !file.exists(makevarsFile)
+    )
     homebrewOpt <- .homebrewOpt()
     koopaOpt <- .koopaOpt()
     switch(
