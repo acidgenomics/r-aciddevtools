@@ -150,10 +150,11 @@ installRecommendedPackages <- function(all = TRUE) {
     .install(
         pkgs = c(
             ## > "Seurat",      # dependency issue (see below).
-            ## > "available",   # BiocInstaller missing
+            ## > "available",   # BiocInstaller suggest is defunct.
             ## > "box",         # just released on CRAN 2021-02.
             ## > "dendsort",    # dependency issue (see below).
             ## > "pak",         # wait for > 0.1.2.
+            ## > "pryr",        # deprecated (use lobstr).
             "DT",
             "NMF",
             "R.oo",
@@ -204,7 +205,6 @@ installRecommendedPackages <- function(all = TRUE) {
             "plyr",
             "prettyunits",
             "processx",
-            "pryr",
             "ps",
             "pzfx",
             "rdrop2",
