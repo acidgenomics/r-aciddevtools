@@ -150,6 +150,7 @@ installRecommendedPackages <- function(all = TRUE) {
     .install(
         pkgs = c(
             ## > "Seurat",      # dependency issue (see below).
+            ## > "available",   # BiocInstaller missing
             ## > "box",         # just released on CRAN 2021-02.
             ## > "dendsort",    # dependency issue (see below).
             ## > "pak",         # wait for > 0.1.2.
@@ -160,7 +161,6 @@ installRecommendedPackages <- function(all = TRUE) {
             "UpSetR",
             "WGCNA",
             "ashr",
-            "available",
             "backports",
             "bookdown",
             "broom",

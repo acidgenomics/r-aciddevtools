@@ -78,7 +78,7 @@ install <- function(
         is.character(pkgs),
         is.logical(autoconf) && identical(length(autoconf), 1L),
         is.logical(reinstall) && identical(length(reinstall), 1L),
-        stopifnot(!file.exists(makevarsFile))
+        isFALSE(file.exists(makevarsFile))
     )
     warn <- getOption("warn")
     options("warn" = 2L)
@@ -86,7 +86,7 @@ install <- function(
     out <- lapply(
         X = pkgs,
         FUN = function(pkg) {
-            stopifnot(!file.exists(makevarsFile))
+            stopifnot(isFALSE(file.exists(makevarsFile)))
             ## Direct install from Git repo.
             if (grepl(pattern = "\\.git$", x = pkg)) {
                 url <- pkg
