@@ -78,7 +78,7 @@ install <- function(
         is.character(pkgs),
         is.logical(autoconf) && identical(length(autoconf), 1L),
         is.logical(reinstall) && identical(length(reinstall), 1L),
-        !file.exists(makevarsFile)
+        stopifnot(!file.exists(makevarsFile))
     )
     warn <- getOption("warn")
     options("warn" = 2L)
@@ -86,6 +86,7 @@ install <- function(
     out <- lapply(
         X = pkgs,
         FUN = function(pkg) {
+            stopifnot(!file.exists(makevarsFile))
             ## Direct install from Git repo.
             if (grepl(pattern = "\\.git$", x = pkg)) {
                 url <- pkg
@@ -171,12 +172,12 @@ install <- function(
                 pkg, "BiocManager", "install"
             ))
             do.call(what = BiocManager::install, args = args)
+            if (isTRUE(autoconf) && file.exists(makevarsFile)) {
+                file.remove(makevarsFile)
+            }
             pkg
         }
     )
-    if (isTRUE(autoconf) && file.exists(makevarsFile)) {
-        file.remove(makevarsFile)
-    }
     options("warn" = warn)
     invisible(out)
 }
