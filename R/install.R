@@ -1,7 +1,7 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2021-04-30.
+#' @note Updated 2021-05-02.
 #'
 #' @inheritParams params
 #' @param pkgs `character`.
@@ -205,6 +205,28 @@ install <- function(
             ## https://github.com/Rdatatable/data.table/wiki/
             ##   Installation#openmp-enabled-compiler-for-mac
             args[["type"]] <- "source"
+
+            # > C_LOC=/usr/local/gfortran
+            # > SDK_LOC=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
+            # >
+            # > CC=$(C_LOC)/bin/gcc -fopenmp
+            # > CXX=$(C_LOC)/bin/g++ -fopenmp
+            # >
+            # > CXX11=$(C_LOC)/bin/g++ -fopenmp
+            # > CXX14=$(C_LOC)/bin/g++ -fopenmp
+            # > CXX17=$(C_LOC)/bin/g++ -fopenmp
+            # > CXX20=$(C_LOC)/bin/g++ -fopenmp
+            # >
+            # > CFLAGS=-g -O3 -Wall -pedantic -std=gnu99 -mtune=native -pipe
+            # > CPPFLAGS=-I$(C_LOC)/include -I$(SDK_LOC)/usr/include
+            # > CXXFLAGS=-g -O3 -Wall -pedantic -std=c++11 -mtune=native -pipe
+            # > LDFLAGS=-L$(C_LOC)/lib -Wl,-rpath,$(C_LOC)/lib
+            # >
+            # > CXX11FLAGS=-g -O3 -Wall -pedantic -std=c++11 -mtune=native -pipe
+            # > CXX14FLAGS=-g -O3 -Wall -pedantic -std=c++11 -mtune=native -pipe
+            # > CXX17FLAGS=-g -O3 -Wall -pedantic -std=c++11 -mtune=native -pipe
+            # > CXX20FLAGS=-g -O3 -Wall -pedantic -std=c++11 -mtune=native -pipe
+
         },
         "geos" = {
             if (.isLinux()) {
