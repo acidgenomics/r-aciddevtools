@@ -72,11 +72,13 @@ install <- function(
     type = getOption("pkgType"),
     reinstall = TRUE
 ) {
+    makevarsFile <- file.path("~", ".R", "Makevars")
     stopifnot(
         requireNamespace("utils", quietly = TRUE),
         is.character(pkgs),
         is.logical(autoconf) && identical(length(autoconf), 1L),
-        is.logical(reinstall) && identical(length(reinstall), 1L)
+        is.logical(reinstall) && identical(length(reinstall), 1L),
+        !file.exists(makevarsFile)
     )
     warn <- getOption("warn")
     options("warn" = 2L)
@@ -172,6 +174,9 @@ install <- function(
             pkg
         }
     )
+    if (isTRUE(autoconf) && file.exists(makevarsFile)) {
+        file.remove(makevarsFile)
+    }
     options("warn" = warn)
     invisible(out)
 }
@@ -183,7 +188,7 @@ install <- function(
 #' This function will dynamically change configure arguments for some tricky
 #' to install packages.
 #'
-#' @note Updated 2021-04-30.
+#' @note Updated 2021-05-03.
 #' @noRd
 #'
 #' @param args `list`.
@@ -206,21 +211,62 @@ install <- function(
             ##   Installation#openmp-enabled-compiler-for-mac
             args[["type"]] <- "source"
             if (.isMacOS()) {
-                ## FIXME This approach is not working. How to pass the args
-                ## in here without having to set Renviron ???
-                C_LOC <- "/usr/local/gfortran"
-                SDK_LOC <- "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
-                configureVars <- c(
-                    paste0("CC='", C_LOC, "/bin/gcc -fopenmp'"),
-                    paste0("CXX='", C_LOC, "/bin/g++ -fopenmp'"),
-                    paste0("CXX11='", C_LOC, "/bin/g++ -fopenmp'"),
-                    "CFLAGS='-g -O3 -Wall -pedantic -std=gnu99 -mtune=native -pipe'",
-                    paste0("CPPFLAGS='-I", C_LOC, "/include -I", SDK_LOC, "/usr/include'"),
-                    "CXXFLAGS='-g -O3 -Wall -pedantic -std=c++11 -mtune=native -pipe'",
-                    "CXX11FLAGS='-g -O3 -Wall -pedantic -std=c++11 -mtune=native -pipe'",
-                    paste0("LDFLAGS='-L", C_LOC, "/lib -Wl,-rpath,", C_LOC, "lib'")
+                cLoc <- "/usr/local/gfortran"
+                sdkLoc <- "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
+                makevarsLines <- c(
+                    paste0(
+                        "CC=", cLoc, "/bin/gcc", " ",
+                        "-fopenmp"
+                    ),
+                    paste0(
+                        "CXX=", cLoc, "/bin/g++", " ",
+                        "-fopenmp"
+                    ),
+                    paste0(
+                        "CXX11=", cLoc, "/bin/g++", " ",
+                        "-fopenmp"
+                    ),
+                    paste0(
+                        "CFLAGS=",
+                        "-g", " ",
+                        "-O3", " ",
+                        "-Wall", " ",
+                        "-pedantic",  " ",
+                        "-std=gnu99",  " ",
+                        "-mtune=native",  " ",
+                        "-pipe"
+                    ),
+                    paste0(
+                        "CPPFLAGS=",
+                        "-I", cLoc, "/include", " ",
+                        "-I", sdkLoc, "/usr/include"
+                    ),
+                    paste0(
+                        "CXXFLAGS=",
+                        "-g", " ",
+                        "-O3", " ",
+                        "-Wall", " ",
+                        "-pedantic", " ",
+                        "-std=c++11", " ",
+                        "-mtune=native", " ",
+                        "-pipe"
+                    ),
+                    paste0(
+                        "CXX11FLAGS=-g", " ",
+                        "-O3", " ",
+                        "-Wall", " ",
+                        "-pedantic", " ",
+                        "-std=c++11", " ",
+                        "-mtune=native", " ",
+                        "-pipe"
+                    ),
+                    paste0(
+                        "LDFLAGS=",
+                        "-L", cLoc, "/lib", " ",
+                        "-Wl,-rpath,", cLoc, "lib"
+                    )
                 )
-                args[["configure.vars"]] <- configureVars
+                writeLines(text = makevarsLines, con = makevarsFile)
             }
         },
         "geos" = {
