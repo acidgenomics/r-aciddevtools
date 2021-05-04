@@ -11,7 +11,7 @@
 #'   See https://github.com/tidyverse/tidyr/issues/1024 for details.
 #'
 #' @export
-#' @note Updated 2021-04-08.
+#' @note Updated 2021-05-04.
 #'
 #' @param all `logical(1)`.
 #'   Install additional extra packages.
@@ -267,6 +267,7 @@ installRecommendedPackages <- function(all = TRUE) {
             "RDAVIDWebService",                         # Pathways
             "Rhdf5lib",                                 # DataRepresentation
             "Rhtslib",                                  # DataRepresentation
+            "RiboProfiling",                            # RiboSeq
             "Rsamtools",                                # Alignment
             "Rsubread",                                 # Alignment
             "SC3",                                      # SingleCell
@@ -314,6 +315,7 @@ installRecommendedPackages <- function(all = TRUE) {
             "pathview",                                 # Pathways
             "pcaMethods",                               # Bayesian
             "rhdf5",                                    # DataRepresentation
+            "riboSeqR",                                 # RiboSeq
             "scater",                                   # SingleCell
             "scone",                                    # SingleCell
             "scran",                                    # SingleCell
