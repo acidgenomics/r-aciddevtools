@@ -1,7 +1,7 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2021-05-03.
+#' @note Updated 2021-05-10.
 #'
 #' @inheritParams params
 #' @param pkgs `character`.
