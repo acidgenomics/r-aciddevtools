@@ -45,17 +45,6 @@ valid <- function() {
 
 
 
-## available ===================================================================
-#' @rdname reexports
-#' @usage NULL
-#' @export
-available <- function(name) {
-    stopifnot(requireNamespace("available", quietly = TRUE))
-    available::available(name = name, browse = FALSE)
-}
-
-
-
 ## covr ========================================================================
 #' @rdname reexports
 #' @usage NULL
