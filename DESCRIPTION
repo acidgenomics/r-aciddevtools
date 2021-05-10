@@ -27,7 +27,6 @@ Suggests:
     BiocCheck,
     BiocManager,
     DT,
-    available,
     covr,
     desc,
     devtools,
@@ -51,11 +50,9 @@ Suggests:
     testthat,
     tibble,
     tools,
-    usethis,
     urlchecker,
+    usethis,
     utils
-Remotes:
-    r-lib/urlchecker
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Additional_repositories: https://r.acidgenomics.com

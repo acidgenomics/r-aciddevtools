@@ -1,6 +1,7 @@
 ## AcidDevTools 0.3.7 (2021-05-10)
 
 - `install`: Bug fix for `stopifnot` check on `makevarsFile`.
+- Updated references to available and urlchecker packages.
 
 ## AcidDevTools 0.3.6 (2021-05-03)
 
