@@ -1,3 +1,7 @@
+## AcidDevTools 0.3.7 (2021-05-10)
+
+- `install`: Bug fix for `stopifnot` check on `makevarsFile`.
+
 ## AcidDevTools 0.3.6 (2021-05-03)
 
 - `install`: Improved `autoconf` handling for data.table, now using
