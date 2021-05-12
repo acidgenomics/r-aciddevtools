@@ -1,30 +1,54 @@
 #' Install recommended R packages
 #'
-#' @section Tricky packages:
-#'
-#' - **2020-08-24**: mgcv v1.8-32 won't build on macOS due to `_kij` missing.
-#'   Can fix by installing binary package instead.
-#'   This issue is fixed in v1.8-33, on CRAN 2020-08-27.
-#' - **2020-08-05**: rgdal v1.5-15 won't build on Debian.
-#'   Fixed with v1.5-16.
-#' - **2020-08-11**: cpp11 v0.2.0 update is breaking tidyr.
-#'   See https://github.com/tidyverse/tidyr/issues/1024 for details.
-#'
 #' @export
-#' @note Updated 2021-05-04.
+#' @note Updated 2021-05-12.
 #'
-#' @param all `logical(1)`.
-#'   Install additional extra packages.
+#' @section tidyverse packages:
 #'
-#' @seealso
-#' - https://www.bioconductor.org/packages/release/BiocViews.html#___Software
+#' The [tidyverse][] is a data science meta-package containing: DBI, dplyr,
+#' forcats, ggplot2, googledrive, googlesheets4, haven, httr, jsonlite,
+#' lubridate, purrr, readr, readxl, rvest, stringr, tibble, tidyr, and xml2.
+#'
+#' [tidyverse]: https://www.tidyverse.org/packages/
+#'
+#' @param extra `logical` or `logical(1)`.
+#'   Named logical vector of which types of extra packages to install.
+#'   Alternatively, can install all extra packages by setting to `TRUE`, or
+#'   disable the installation of any extra packages by setting to `FALSE`.
 #'
 #' @examples
 #' ## > installRecommendedPackages()
-installRecommendedPackages <- function(all = TRUE) {
-    stopifnot(is.logical(all) && length(all) == 1L)
-    .install <- function(...) {
-        install(..., reinstall = FALSE)
+installRecommendedPackages <- function(
+    extra = c(
+        "acidverse" = TRUE,
+        "annotation" = FALSE,
+        "cancer" = TRUE,
+        "chipseq" = FALSE,
+        "devtools" = TRUE,
+        "enrichment" = FALSE,
+        "filesystem" = TRUE,
+        "general" = TRUE,
+        "graphics" = TRUE,
+        "models" = TRUE,
+        "riboseq" = FALSE,
+        "rnaseq" = TRUE,
+        "shiny" = TRUE,
+        "singlecell" = TRUE,
+        "smallrna" = FALSE,
+        "tidyverse" = TRUE
+    )
+) {
+    stopifnot(is.logical(extra))
+    .install <- function(
+        ...,
+        reinstall = FALSE,
+        dependencies = NA
+    ) {
+        install(
+            ...,
+            dependencies = dependencies,
+            reinstall = reinstall
+        )
     }
     okMsg <- "Installation of R packages was successful."
     ## Enable versioned Bioconductor install.
@@ -37,228 +61,289 @@ installRecommendedPackages <- function(all = TRUE) {
     }
     message(sprintf("Installing Bioconductor %s.", biocVersion))
     BiocManager::install(update = FALSE, ask = FALSE, version = biocVersion)
-    ## Tricky packages ==================================================== {{{1
-    .install(
-        pkgs = c(
-            "Rcpp",
-            "RcppArmadillo",
-            "RcppAnnoy",
-            "XML",
-            "rJava",
-            "rgdal",
-            "sf"
-        )
+    ## Default packages =================================================== {{{1
+    pkgs <- character()
+    ## Tricky to build ---------------------------------------------------- {{{2
+    pkgs <- c(
+        pkgs,
+        "Rcpp",
+        "RcppArmadillo",
+        "RcppAnnoy",
+        "XML",
+        "rJava",
+        "rgdal",
+        "rgl",
+        "sf"
     )
-    .install(
-        pkgs = "rgl",  # webshot2 missing from CRAN.
-        dependencies = NA
+    ## CRAN --------------------------------------------------------------- {{{2
+    pkgs <- c(
+        pkgs,
+        "Matrix",
+        "R.utils",
+        "data.table",
+        "future",
+        "knitr",
+        "magrittr",
+        "matrixStats",
+        "parallel",
+        "reticulate",
+        "rmarkdown",
+        "sessioninfo",
+        "stringi",
+        "viridis"
     )
-    ## CRAN (default) ===================================================== {{{1
-    .install(
-        pkgs = c(
-            "Matrix",
-            "R.utils",
-            "Rcpp",
-            "RcppArmadillo",
-            "bench",
-            "covr",
-            "cowplot",
-            "curl",
-            "data.table",
-            "desc",
-            "devtools",
-            "ggrepel",
-            "httr",
-            "knitr",
-            "lintr",
-            "magick",
-            "magrittr",
-            "matrixStats",
-            "parallel",
-            "pkgdown",
-            "profvis",
-            "ragg",
-            "rcmdcheck",
-            "remotes",
-            "reprex",
-            "reticulate",
-            "rlang",
-            "rmarkdown",
-            "roxygen2",
-            "sessioninfo",
-            "shiny",
-            "shinydashboard",
-            "sloop",
-            "stringi",
-            "testthat",
-            "tidyverse",
-            "viridis",
-            "vroom"
-        )
+    ## Bioconductor ------------------------------------------------------- {{{2
+    pkgs <- c(
+        pkgs,
+        "AnnotationDbi",
+        "AnnotationHub",
+        "Biobase",
+        "BiocCheck",
+        "BiocFileCache",
+        "BiocGenerics",
+        "BiocNeighbors",
+        "BiocParallel",
+        "BiocSingular",
+        "BiocStyle",
+        "BiocVersion",
+        "Biostrings",
+        "GenomeInfoDb",
+        "GenomeInfoDbData",
+        "GenomicAlignments",
+        "GenomicFeatures",
+        "GenomicRanges",
+        "IRanges",
+        "S4Vectors",
+        "SingleCellExperiment",
+        "SummarizedExperiment",
+        "XVector",
+        "ensembldb",
+        "rtracklayer",
+        "zlibbioc"
     )
-    ## Bioconductor (default) ============================================= {{{1
-    ## 2020-10-29: Temporary fix for missing packages in BioC 3.13 repo.
-    ## > if (isTRUE(isBiocDevel())) {
-    ## >     .install(
-    ## >         pkgs = paste0(
-    ## >             "https://git.bioconductor.org/packages/",
-    ## >             c(
-    ## >                 "DelayedArray",
-    ## >                 "SingleCellExperiment"
-    ## >             )
-    ## >         )
-    ## >     )
-    ## > }
-    .install(
-        pkgs = c(
-            "AnnotationDbi",
-            "AnnotationHub",
-            "Biobase",
-            "BiocCheck",
-            "BiocFileCache",
-            "BiocGenerics",
-            "BiocNeighbors",
-            "BiocParallel",
-            "BiocSingular",
-            "BiocStyle",
-            "BiocVersion",
-            "Biostrings",
-            "DelayedArray",
-            "DelayedMatrixStats",
-            "GenomeInfoDb",
-            "GenomeInfoDbData",
-            "GenomicAlignments",
-            "GenomicFeatures",
-            "GenomicRanges",
-            "IRanges",
-            "S4Vectors",
-            "SingleCellExperiment",
-            "SummarizedExperiment",
-            "XVector",
-            "ensembldb",
-            "rtracklayer",
-            "zlibbioc"
-        )
-    )
-    if (!isTRUE(all)) {
+    .install(pkgs)
+    if (!any(extra)) {
         message(okMsg)
         return(invisible(NULL))
     }
-    ## Acid Genomics ====================================================== {{{1
-    installAcidverse()
-    ## CRAN (extra) ======================================================= {{{1
-    .install(
-        pkgs = c(
-            ## > "Seurat",      # dependency issue (see below).
-            ## > "available",   # BiocInstaller suggest is defunct.
-            ## > "box",         # just released on CRAN 2021-02.
-            ## > "dendsort",    # dependency issue (see below).
-            ## > "pak",         # wait for > 0.1.2.
-            ## > "pryr",        # deprecated (use lobstr).
+    ## Extra packages ===================================================== {{{1
+    pkgs <- character()
+    ## Acidverse ---------------------------------------------------------- {{{2
+    if (isTRUE(extra[["acidverse"]])) {
+        installAcidverse()
+    }
+    ## CRAN --------------------------------------------------------------- {{{2
+    if (isTRUE(extra[["tidyverse"]])) {
+        pkgs <- c(pkgs, "tidyverse")
+    }
+    if (isTRUE(extra[["general"]])) {
+        pkgs <- c(
+            pkgs,
             "DT",
-            "NMF",
+            "languageserver",  # vscode
+            "slam",
+            "tidytext"
+        )
+    }
+    if (isTRUE(extra[["cancer"]])) {
+        pkgs <- c(
+            pkgs,
+            "cgdsr"  # cBioPortal
+        )
+    }
+    if (isTRUE(extra[["devtools"]])) {
+        pkgs <- c(
+            pkgs,
             "R.oo",
             "R6",
+            "available",
+            "backports",
+            "bench",
+            "bookdown",
+            "box",
+            "cli",
+            "covr",
+            "crayon",
+            "dbplyr",
+            "desc",
+            "devtools",
+            "drat",
+            "git2r",
+            "glue",
+            "lintr",
+            "lobstr",
+            "memoise",
+            "packrat",
+            "pkgdown",
+            "pak",
+            "pillar",
+            "profvis",
+            "processx",
+            "ps",
+            "rcmdcheck",
+            "remotes",
+            "reprex",
+            "rlang",
+            "roxygen2",
+            "sloop",
+            "snow",
+            "styler",
+            "testthat",
+            "usethis",
+            "waldo",
+            "xmlparsedata"
+        )
+    }
+    if (isTRUE(extra[["enrichment"]])) {
+        pkgs <- c(
+            pkgs,
+            "gprofiler2",
+            "liger"
+        )
+    }
+    if (isTRUE(extra[["filesystem"]])) {
+        pkgs <- c(
+            pkgs,
+            "broom",
+            "curl",
+            "datapasta",
+            "fs",
+            "janitor",
+            "jsonlite",
+            "openxlsx",
+            "pzfx",
+            "rdrop2",
+            "rio",
+            "snakecase",
+            "vroom"
+        )
+    }
+    if (isTRUE(extra[["graphics"]])) {
+        pkgs <- c(
+            pkgs,
             "UpSetR",
+            "cowplot",
+            "dendextend",
+            "dendsort",
+            "ggdendro",
+            "ggpubr",
+            "ggrepel",
+            "ggrepel",
+            "ggridges",
+            "ggupset",
+            "hexbin",
+            "magick",
+            "pheatmap",
+            "prettyunits",
+            "ragg"
+        )
+    }
+    if (isTRUE(extra[["models"]])) {
+        pkgs <- c(
+            pkgs,
+            "NMF",
             "WGCNA",
             "ashr",
-            "backports",
-            "bookdown",
-            "broom",
-            "cgdsr",  # cBioPortal
-            "cli",
-            "crayon",
-            "datapasta",
-            "dbplyr",
-            "dendextend",
-            "drat",
             "dynamicTreeCut",
             "fastICA",
             "fastcluster",
             "fastmatch",
             "fdrtool",
-            "forcats",
-            "fs",
-            "future",
-            "ggdendro",
-            "ggpubr",
-            "ggrepel",
-            "ggridges",
-            "ggupset",
-            "git2r",
-            "glue",
-            "gprofiler2",
-            "hexbin",
-            "htmlwidgets",
-            "janitor",
-            "jsonlite",
-            "languageserver",
-            "liger",
-            "lobstr",
-            "lubridate",
-            "memoise",
-            "openxlsx",
-            "packrat",
-            "pbapply",
-            "pheatmap",
-            "pillar",
-            "plyr",
-            "prettyunits",
-            "processx",
-            "ps",
-            "pzfx",
-            "rdrop2",
-            "readxl",
-            "reshape2",
-            "rio",
-            "rsconnect",  # shinyapps.io
-            "rvest",
-            "shinycssloaders",
-            "slam",
-            "snakecase",
-            "snow",
-            "styler",  # kind of like Python black for R
-            "tidytext",
-            "usethis",
-            "uwot",
-            "waldo",
-            "xmlparsedata"
+            "uwot"
         )
-    )
-    ## Bioconductor ============================================================
+    }
+    if (isTRUE(extra[["shiny"]])) {
+        pkgs <- c(
+            pkgs,
+            "htmlwidgets",
+            "rsconnect",  # shinyapps.io
+            "shiny",
+            "shinycssloaders",
+            "shinydashboard"
+        )
+    }
+    if (isTRUE(extra[["singlecell"]])) {
+        pkgs <- c(pkgs, "Seurat")
+    }
+    ## Bioconductor ------------------------------------------------------- {{{2
+    ## General
+    if (isTRUE(extra[["general"]])) {
+        pkgs <- c(
+            pkgs,
+            "DelayedArray",
+            "DelayedMatrixStats"
+        )
+    }
+    ## Annotation (i.e. genomes) ------------------------------------------ {{{3
+    if (isTRUE(extra[["annotation"]])) {
+        pkgs <- c(
+            pkgs,
+            "ExperimentHub",
+            "GEOquery",
+            "biomaRt"
+        )
+
+    ## >     "AnnotationFilter",                        # Annotation
+    ## >     "BSgenome.Hsapiens.NCBI.GRCh38",           # AnnotationData
+    ## >     "BSgenome.Hsapiens.UCSC.hg19",             # AnnotationData
+    ## >     "BSgenome.Hsapiens.UCSC.hg38",             # AnnotaitonData
+    ## >     "BSgenome.Mmusculus.UCSC.mm10",            # AnnotationData
+    ## >     "EnsDb.Hsapiens.v75",                      # AnnotationData
+    ## >     "EnsDb.Hsapiens.v86",                      # AnnotationData
+            "org.Hs.eg.db",                             # AnnotationData
+            "org.Mm.eg.db",                             # AnnotationData
+            "TxDb.Hsapiens.UCSC.hg19.knownGene",        # AnnotationData
+            "TxDb.Hsapiens.UCSC.hg38.knownGene",        # AnnotationData
+            "TxDb.Mmusculus.UCSC.mm10.knownGene",       # AnnotationData
+
+    ## Cancer genomics.
+            "cBioPortalData"
+
+    ## ChIP-seq.
+            "ChIPpeakAnno",                             # ChIPSeq
+
+    ## microRNA-seq.
+            "TargetScore",                              # miRNA
+
+    ## Pathways.
+            "clusterProfiler",                          # Pathways
+            "DOSE",                                     # Pathways
+            "GOSemSim",                                 # Pathways
+            "GSEABase",                                 # Pathways
+            "GSVA",                                     # Pathways
+            "KEGG.db",                                  # AnnotationData
+    ## >     "ReactomePA",                              # Pathways
+    ## >     "STRINGdb",                                # Pathways
+    ## >     "reactome.db",                             # AnnotationData
+
+    ## Ribo-seq.
+
+    ## Single-cell RNA-seq
+            ## > "VeloViz" (submitted)
+
+    ## Variation.
+            "DNAcopy",                                  # CopyNumberVariation
+            "VariantAnnotation",                        # Annotation
+
+    ## These annotation/database packages are large, and not recommended to
+    ## install on all machines by default.
+    ## > .install(
+            "targetscan.Hs.eg.db",                      # miRNA
+
     .install(
         pkgs = c(
-            ## > "BSgenome.Hsapiens.NCBI.GRCh38",       # AnnotationData
-            ## > "BSgenome.Hsapiens.UCSC.hg19",         # AnnotationData
-            ## > "BSgenome.Hsapiens.UCSC.hg38",         # AnnotaitonData
-            ## > "BSgenome.Mmusculus.UCSC.mm10",        # AnnotationData
-            ## > "ReactomePA",                          # Pathways
-            ## > "reactome.db",                         # AnnotationData
-            ## > "STRINGdb",                            # Pathways
-            "AnnotationFilter",                         # Annotation
-            "ChIPpeakAnno",                             # ChIPSeq
             "ComplexHeatmap",                           # Visualization
             "ConsensusClusterPlus",                     # Visualization
             "DESeq2",                                   # RNASeq
             "DEXSeq",                                   # RNASeq
-            "DNAcopy",                                  # CopyNumberVariation
-            "DOSE",                                     # Pathways
             "DiffBind",                                 # ChIPSeq
             "DropletUtils",                             # SingleCell
             "EDASeq",                                   # RNASeq
             "EnhancedVolcano",                          # Visualization
-            "EnsDb.Hsapiens.v75",                       # AnnotationData
-            "EnsDb.Hsapiens.v86",                       # AnnotationData
-            "ExperimentHub",                            # Annotation
-            "GEOquery",                                 # Annotation
-            "GOSemSim",                                 # Pathways
-            "GSEABase",                                 # Pathways
-            "GSVA",                                     # Pathways
             "Gviz",                                     # Visualization
             "HDF5Array",                                # DataRepresentation
             "HSMMSingleCell",                           # SingleCell
             "IHW",                                      # RNASeq
-            "KEGG.db",                                  # AnnotationData
             "KEGGREST",                                 # Pathways
             "KEGGgraph",                                # Visualization
             "MAST",                                     # RNASeq
@@ -274,44 +359,38 @@ installRecommendedPackages <- function(all = TRUE) {
             "ShortRead",                                # Alignment
             "SpidermiR",                                # miRNA
             "TCGAbiolinks",                             # Sequencing
-            "TargetScore",                              # miRNA
-            "TxDb.Hsapiens.UCSC.hg19.knownGene",        # AnnotationData
-            "TxDb.Hsapiens.UCSC.hg38.knownGene",        # AnnotationData
-            "TxDb.Mmusculus.UCSC.mm10.knownGene",       # AnnotationData
-            "VariantAnnotation",                        # Annotation
             "apeglm",                                   # RNASeq
             "ballgown",                                 # RNASeq
             "batchelor",                                # SingleCell
             "beachmat",                                 # SingleCell
             "biobroom",                                 # DataImport
-            "biomaRt",                                  # Annotation
+
             "biovizBase",                               # Visualization
             "cBioPortalData",                           # RNASeq
             "cbaf",                                     # RNASeq
             "clusterExperiment",                        # SingleCell
-            "clusterProfiler",                          # Pathways
             "csaw",                                     # ChIPSeq
             "destiny",                                  # SingleCell
             "edgeR",                                    # RNASeq
             "enrichR",                                  # Pathways
             "enrichplot",                               # Visualization
             "fgsea",                                    # Pathways
+            "scDataviz",                                # SingleCell
             "fishpond",                                 # RNASeq
             "genefilter",                               # Microarray
             "geneplotter",                              # Visualization
             "ggbio",                                    # Visualization
             "ggtree",                                   # Visualization
+            "gage",                                     # ???
             "goseq",                                    # Pathways
             "isomiRs",                                  # miRNA
             "limma",                                    # RNASeq
             "miRBaseConverter",                         # miRNA
             "miRNApath",                                # miRNA
             "miRNAtap",                                 # miRNA
-            "mirbase.db",                               # AnnotationData
+            "mirbase.db",                               # miRNA/AnnotationData
             "multiMiR",                                 # miRNA
             "multtest",                                 # MultipleComparison
-            "org.Hs.eg.db",                             # AnnotationData
-            "org.Mm.eg.db",                             # AnnotationData
             "pathview",                                 # Pathways
             "pcaMethods",                               # Bayesian
             "rhdf5",                                    # DataRepresentation
@@ -323,38 +402,11 @@ installRecommendedPackages <- function(all = TRUE) {
             "slalom",                                   # SingleCell
             "slingshot",                                # SingleCell
             "splatter",                                 # SingleCell
-            "targetscan.Hs.eg.db",                      # miRNA
             "tximeta",                                  # RNASeq
             "tximport",                                 # RNASeq
             "vsn",                                      # Visualization
             "zinbwave"                                  # SingleCell
         )
-    )
-    ## GitHub ==================================================================
-    stopifnot(requireNamespace("goalie", quietly = TRUE))
-    if (isTRUE(goalie::hasGitHubPAT())) {
-        .install(
-            pkgs = c(
-                "BaderLab/scClustViz",                  # SingleCell
-                "JEFworks-Lab/veloviz",                 # SingleCell
-                "cole-trapnell-lab/monocle3",           # SingleCell
-                "jonocarroll/DFplyr",                   # DataRepresentation
-                "js229/Vennerable",                     # Visualization
-                "kevinblighe/scDataviz",                # SingleCell
-                "mojaveazure/loomR",                    # SingleCell
-                "waldronlab/cBioPortalData"             # RNASeq
-            )
-        )
-    }
-    ## Packages with dependency issues =========================================
-    install(
-        pkgs = c(
-            "dendsort",     # gapmap removed from CRAN.
-            "gage",         # DESeq is deprecated from Bioconductor.
-            "Seurat"        # loomR isn't on CRAN.
-        ),
-        dependencies = FALSE,
-        reinstall = FALSE
     )
     message(okMsg)
 }
