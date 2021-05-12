@@ -23,7 +23,7 @@ installRecommendedPackages <- function(
         "acidverse" = TRUE,
         "alignment" = FALSE,
         "annotation" = FALSE,
-        "cancer" = TRUE,
+        "cancer" = FALSE,
         "chipseq" = FALSE,
         "devtools" = TRUE,
         "enrichment" = FALSE,

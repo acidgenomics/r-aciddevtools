@@ -5,7 +5,7 @@
 \title{Install recommended R packages}
 \usage{
 installRecommendedPackages(
-  extra = c(acidverse = TRUE, alignment = FALSE, annotation = FALSE, cancer = TRUE,
+  extra = c(acidverse = TRUE, alignment = FALSE, annotation = FALSE, cancer = FALSE,
     chipseq = FALSE, devtools = TRUE, enrichment = FALSE, filesystem = TRUE, general =
     TRUE, graphics = TRUE, riboseq = FALSE, rnaseq = TRUE, shiny = TRUE, singlecell =
     FALSE, smallrna = FALSE, statistics = TRUE, tidyverse = TRUE, variation = FALSE)
