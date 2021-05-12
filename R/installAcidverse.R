@@ -1,7 +1,7 @@
 #' Install Acid Genomics packages
 #'
 #' @export
-#' @note Updated 2020-12-03.
+#' @note Updated 2021-05-12.
 #'
 #' @return Status from [install()].
 #'
@@ -33,6 +33,7 @@ installAcidverse <- function() {
             "pointillism",                              # SingleCell
             "syntactic"                                 # Infrastructure
         ),
+        dependencies = TRUE,
         reinstall = FALSE
     )
 }
