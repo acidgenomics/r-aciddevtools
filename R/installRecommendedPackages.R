@@ -305,6 +305,7 @@ installRecommendedPackages <- function(
             "GEOquery",
             "biomaRt"
         )
+    }
     if (isTRUE(extra[["cancer"]])) {
         pkgs <- c(
             pkgs,
