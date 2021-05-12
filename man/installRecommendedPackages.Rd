@@ -7,8 +7,8 @@
 installRecommendedPackages(
   extra = c(acidverse = TRUE, alignment = FALSE, annotation = FALSE, cancer = FALSE,
     chipseq = FALSE, devtools = TRUE, enrichment = FALSE, filesystem = TRUE, general =
-    TRUE, graphics = TRUE, riboseq = FALSE, rnaseq = TRUE, shiny = TRUE, singlecell =
-    FALSE, smallrna = FALSE, statistics = TRUE, tidyverse = TRUE, variation = FALSE)
+    TRUE, graphics = TRUE, riboseq = FALSE, rnaseq = FALSE, shiny = TRUE, singlecell =
+    FALSE, smallrna = FALSE, statistics = FALSE, tidyverse = TRUE, variation = FALSE)
 )
 }
 \arguments{

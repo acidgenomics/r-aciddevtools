@@ -31,11 +31,11 @@ installRecommendedPackages <- function(
         "general" = TRUE,
         "graphics" = TRUE,
         "riboseq" = FALSE,
-        "rnaseq" = TRUE,
+        "rnaseq" = FALSE,
         "shiny" = TRUE,
         "singlecell" = FALSE,
         "smallrna" = FALSE,
-        "statistics" = TRUE,
+        "statistics" = FALSE,
         "tidyverse" = TRUE,
         "variation" = FALSE
     )
