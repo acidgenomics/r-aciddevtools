@@ -66,6 +66,7 @@ installRecommendedPackages <- function(
     ## Default packages =================================================== {{{1
     pkgs <- character()
     ## Tricky to build ---------------------------------------------------- {{{2
+    ## Order is important here.
     pkgs <- c(
         pkgs,
         "Rcpp",
@@ -175,11 +176,11 @@ installRecommendedPackages <- function(
             "lobstr",
             "memoise",
             "packrat",
-            "pkgdown",
             "pak",
             "pillar",
-            "profvis",
+            "pkgdown",
             "processx",
+            "profvis",
             "ps",
             "rcmdcheck",
             "remotes",
@@ -296,14 +297,14 @@ installRecommendedPackages <- function(
             "BSgenome.Hsapiens.UCSC.hg38",
             "BSgenome.Mmusculus.UCSC.mm10",
             "EnsDb.Hsapiens.v75",  # GRCh37/hg19
-            "org.Hs.eg.db",
-            "org.Mm.eg.db",
+            "ExperimentHub",
+            "GEOquery",
             "TxDb.Hsapiens.UCSC.hg19.knownGene",
             "TxDb.Hsapiens.UCSC.hg38.knownGene",
             "TxDb.Mmusculus.UCSC.mm10.knownGene",
-            "ExperimentHub",
-            "GEOquery",
-            "biomaRt"
+            "biomaRt",
+            "org.Hs.eg.db",
+            "org.Mm.eg.db",
         )
     }
     if (isTRUE(extra[["cancer"]])) {
@@ -327,9 +328,6 @@ installRecommendedPackages <- function(
         ## - reactome.db (very large)
         pkgs <- c(
             pkgs,
-            "PANTHER.db",
-            "RDAVIDWebService",
-            "clusterProfiler",
             "DOSE",
             "GOSemSim",
             "GSEABase",
@@ -337,8 +335,11 @@ installRecommendedPackages <- function(
             "KEGG.db",
             "KEGGREST",
             "KEGGgraph",
+            "PANTHER.db",
+            "RDAVIDWebService",
             "ReactomePA",
             "STRINGdb",
+            "clusterProfiler",
             "enrichR",
             "enrichplot",
             "fgsea",
@@ -392,8 +393,8 @@ installRecommendedPackages <- function(
     if (isTRUE(extra[["smallrna"]])) {
         pkgs <- c(
             pkgs,
-            "TargetScore",
             "SpidermiR",
+            "TargetScore",
             "isomiRs",
             "miRBaseConverter",
             "miRNApath",
@@ -408,11 +409,11 @@ installRecommendedPackages <- function(
         ## - VeloViz (submitted)
         pkgs <- c(
             pkgs,
-            "MAST",
-            "SingleCellExperiment",
             "DropletUtils",
             "HSMMSingleCell",
+            "MAST",
             "SC3",
+            "SingleCellExperiment",
             "batchelor",
             "beachmat",
             "clusterExperiment",

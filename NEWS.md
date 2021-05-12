@@ -1,3 +1,11 @@
+## AcidDevTools 0.3.8 (2021-05-12)
+
+- `installRecommendedPackages`: Made this function more modular, allowing for
+  the user to specify which types of extra packages should be installed.
+  Applies primarily to Bioconductor (i.e. next-generation sequencing) analysis
+  packages, which can often be quite large and inappropriate for a compact
+  virtual machine instance.
+
 ## AcidDevTools 0.3.7 (2021-05-10)
 
 - `install`: Bug fix for `stopifnot` check on `makevarsFile`.

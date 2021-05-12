@@ -4,36 +4,33 @@
 \alias{installRecommendedPackages}
 \title{Install recommended R packages}
 \usage{
-installRecommendedPackages(all = TRUE)
+installRecommendedPackages(
+  extra = c(acidverse = TRUE, alignment = FALSE, annotation = FALSE, cancer = TRUE,
+    chipseq = FALSE, devtools = TRUE, enrichment = FALSE, filesystem = TRUE, general =
+    TRUE, graphics = TRUE, riboseq = FALSE, rnaseq = TRUE, shiny = TRUE, singlecell =
+    FALSE, smallrna = FALSE, statistics = TRUE, tidyverse = TRUE, variation = FALSE)
+)
 }
 \arguments{
-\item{all}{\code{logical(1)}.
-Install additional extra packages.}
+\item{extra}{\code{logical} or \code{logical(1)}.
+Named logical vector of which types of extra packages to install.
+Alternatively, can install all extra packages by setting to \code{TRUE}, or
+disable the installation of any extra packages by setting to \code{FALSE}.}
 }
 \description{
 Install recommended R packages
 }
 \note{
-Updated 2021-05-04.
+Updated 2021-05-12.
 }
-\section{Tricky packages}{
+\section{tidyverse packages}{
 
-\itemize{
-\item \strong{2020-08-24}: mgcv v1.8-32 won't build on macOS due to \verb{_kij} missing.
-Can fix by installing binary package instead.
-This issue is fixed in v1.8-33, on CRAN 2020-08-27.
-\item \strong{2020-08-05}: rgdal v1.5-15 won't build on Debian.
-Fixed with v1.5-16.
-\item \strong{2020-08-11}: cpp11 v0.2.0 update is breaking tidyr.
-See https://github.com/tidyverse/tidyr/issues/1024 for details.
-}
+
+The \href{https://www.tidyverse.org/packages/}{tidyverse} is a data science meta-package containing: DBI, dplyr,
+forcats, ggplot2, googledrive, googlesheets4, haven, httr, jsonlite,
+lubridate, purrr, readr, readxl, rvest, stringr, tibble, tidyr, and xml2.
 }
 
 \examples{
 ## > installRecommendedPackages()
-}
-\seealso{
-\itemize{
-\item https://www.bioconductor.org/packages/release/BiocViews.html#___Software
-}
 }
