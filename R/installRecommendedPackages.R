@@ -126,7 +126,7 @@ installRecommendedPackages <- function(
     .install(pkgs)
     if (!any(extra)) {
         message(okMsg)
-        return(invisible(NULL))
+        return(invisible(TRUE))
     }
     ## Extra packages ===================================================== {{{1
     pkgs <- character()
@@ -251,7 +251,10 @@ installRecommendedPackages <- function(
         )
     }
     if (isTRUE(extra[["singlecell"]])) {
-        pkgs <- c(pkgs, "Seurat")
+        pkgs <- c(
+            pkgs,
+            "Seurat"
+        )
     }
     if (isTRUE(extra[["statistics"]])) {
         pkgs <- c(
@@ -296,7 +299,7 @@ installRecommendedPackages <- function(
             "BSgenome.Hsapiens.UCSC.hg19",
             "BSgenome.Hsapiens.UCSC.hg38",
             "BSgenome.Mmusculus.UCSC.mm10",
-            "EnsDb.Hsapiens.v75",  # GRCh37/hg19
+            "EnsDb.Hsapiens.v75",  # GRCh37 (hg19)
             "ExperimentHub",
             "GEOquery",
             "TxDb.Hsapiens.UCSC.hg19.knownGene",
@@ -304,7 +307,7 @@ installRecommendedPackages <- function(
             "TxDb.Mmusculus.UCSC.mm10.knownGene",
             "biomaRt",
             "org.Hs.eg.db",
-            "org.Mm.eg.db",
+            "org.Mm.eg.db"
         )
     }
     if (isTRUE(extra[["cancer"]])) {
@@ -447,4 +450,5 @@ installRecommendedPackages <- function(
     }
     .install(pkgs)
     message(okMsg)
+    invisible(TRUE)
 }
