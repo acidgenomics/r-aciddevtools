@@ -21,6 +21,7 @@
 installRecommendedPackages <- function(
     extra = c(
         "acidverse" = TRUE,
+        "alignment" = FALSE,
         "annotation" = FALSE,
         "cancer" = TRUE,
         "chipseq" = FALSE,
@@ -29,13 +30,14 @@ installRecommendedPackages <- function(
         "filesystem" = TRUE,
         "general" = TRUE,
         "graphics" = TRUE,
-        "models" = TRUE,
         "riboseq" = FALSE,
         "rnaseq" = TRUE,
         "shiny" = TRUE,
-        "singlecell" = TRUE,
+        "singlecell" = FALSE,
         "smallrna" = FALSE,
-        "tidyverse" = TRUE
+        "statistics" = TRUE,
+        "tidyverse" = TRUE,
+        "variation" = FALSE
     )
 ) {
     stopifnot(is.logical(extra))
@@ -114,7 +116,6 @@ installRecommendedPackages <- function(
         "GenomicRanges",
         "IRanges",
         "S4Vectors",
-        "SingleCellExperiment",
         "SummarizedExperiment",
         "XVector",
         "ensembldb",
@@ -128,7 +129,7 @@ installRecommendedPackages <- function(
     }
     ## Extra packages ===================================================== {{{1
     pkgs <- character()
-    ## Acidverse ---------------------------------------------------------- {{{2
+    ## Acid Genomics ------------------------------------------------------ {{{2
     if (isTRUE(extra[["acidverse"]])) {
         installAcidverse()
     }
@@ -238,20 +239,6 @@ installRecommendedPackages <- function(
             "ragg"
         )
     }
-    if (isTRUE(extra[["models"]])) {
-        pkgs <- c(
-            pkgs,
-            "NMF",
-            "WGCNA",
-            "ashr",
-            "dynamicTreeCut",
-            "fastICA",
-            "fastcluster",
-            "fastmatch",
-            "fdrtool",
-            "uwot"
-        )
-    }
     if (isTRUE(extra[["shiny"]])) {
         pkgs <- c(
             pkgs,
@@ -265,148 +252,197 @@ installRecommendedPackages <- function(
     if (isTRUE(extra[["singlecell"]])) {
         pkgs <- c(pkgs, "Seurat")
     }
+    if (isTRUE(extra[["statistics"]])) {
+        pkgs <- c(
+            pkgs,
+            "NMF",
+            "WGCNA",
+            "ashr",
+            "dynamicTreeCut",
+            "fastICA",
+            "fastcluster",
+            "fastmatch",
+            "fdrtool",
+            "uwot"
+        )
+    }
     ## Bioconductor ------------------------------------------------------- {{{2
-    ## General
     if (isTRUE(extra[["general"]])) {
         pkgs <- c(
             pkgs,
             "DelayedArray",
-            "DelayedMatrixStats"
+            "DelayedMatrixStats",
+            "HDF5Array",
+            "MultiAssayExperiment",
+            "Rhdf5lib",
+            "Rhtslib",
+            "rhdf5"
         )
     }
-    ## Annotation (i.e. genomes) ------------------------------------------ {{{3
+    if (isTRUE(extra[["alignment"]])) {
+        pkgs <- c(
+            pkgs,
+            "Rsamtools",
+            "Rsubread",
+            "ShortRead"
+        )
+    }
     if (isTRUE(extra[["annotation"]])) {
         pkgs <- c(
             pkgs,
+            "AnnotationFilter",
+            "BSgenome.Hsapiens.NCBI.GRCh38",
+            "BSgenome.Hsapiens.UCSC.hg19",
+            "BSgenome.Hsapiens.UCSC.hg38",
+            "BSgenome.Mmusculus.UCSC.mm10",
+            "EnsDb.Hsapiens.v75",  # GRCh37/hg19
+            "org.Hs.eg.db",
+            "org.Mm.eg.db",
+            "TxDb.Hsapiens.UCSC.hg19.knownGene",
+            "TxDb.Hsapiens.UCSC.hg38.knownGene",
+            "TxDb.Mmusculus.UCSC.mm10.knownGene",
             "ExperimentHub",
             "GEOquery",
             "biomaRt"
         )
-
-    ## >     "AnnotationFilter",                        # Annotation
-    ## >     "BSgenome.Hsapiens.NCBI.GRCh38",           # AnnotationData
-    ## >     "BSgenome.Hsapiens.UCSC.hg19",             # AnnotationData
-    ## >     "BSgenome.Hsapiens.UCSC.hg38",             # AnnotaitonData
-    ## >     "BSgenome.Mmusculus.UCSC.mm10",            # AnnotationData
-    ## >     "EnsDb.Hsapiens.v75",                      # AnnotationData
-    ## >     "EnsDb.Hsapiens.v86",                      # AnnotationData
-            "org.Hs.eg.db",                             # AnnotationData
-            "org.Mm.eg.db",                             # AnnotationData
-            "TxDb.Hsapiens.UCSC.hg19.knownGene",        # AnnotationData
-            "TxDb.Hsapiens.UCSC.hg38.knownGene",        # AnnotationData
-            "TxDb.Mmusculus.UCSC.mm10.knownGene",       # AnnotationData
-
-    ## Cancer genomics.
-            "cBioPortalData"
-
-    ## ChIP-seq.
-            "ChIPpeakAnno",                             # ChIPSeq
-
-    ## microRNA-seq.
-            "TargetScore",                              # miRNA
-
-    ## Pathways.
-            "clusterProfiler",                          # Pathways
-            "DOSE",                                     # Pathways
-            "GOSemSim",                                 # Pathways
-            "GSEABase",                                 # Pathways
-            "GSVA",                                     # Pathways
-            "KEGG.db",                                  # AnnotationData
-    ## >     "ReactomePA",                              # Pathways
-    ## >     "STRINGdb",                                # Pathways
-    ## >     "reactome.db",                             # AnnotationData
-
-    ## Ribo-seq.
-
-    ## Single-cell RNA-seq
-            ## > "VeloViz" (submitted)
-
-    ## Variation.
-            "DNAcopy",                                  # CopyNumberVariation
-            "VariantAnnotation",                        # Annotation
-
-    ## These annotation/database packages are large, and not recommended to
-    ## install on all machines by default.
-    ## > .install(
-            "targetscan.Hs.eg.db",                      # miRNA
-
-    .install(
-        pkgs = c(
-            "ComplexHeatmap",                           # Visualization
-            "ConsensusClusterPlus",                     # Visualization
-            "DESeq2",                                   # RNASeq
-            "DEXSeq",                                   # RNASeq
-            "DiffBind",                                 # ChIPSeq
-            "DropletUtils",                             # SingleCell
-            "EDASeq",                                   # RNASeq
-            "EnhancedVolcano",                          # Visualization
-            "Gviz",                                     # Visualization
-            "HDF5Array",                                # DataRepresentation
-            "HSMMSingleCell",                           # SingleCell
-            "IHW",                                      # RNASeq
-            "KEGGREST",                                 # Pathways
-            "KEGGgraph",                                # Visualization
-            "MAST",                                     # RNASeq
-            "MultiAssayExperiment",                     # DataRepresentation
-            "PANTHER.db",                               # AnnotationData
-            "RDAVIDWebService",                         # Pathways
-            "Rhdf5lib",                                 # DataRepresentation
-            "Rhtslib",                                  # DataRepresentation
-            "RiboProfiling",                            # RiboSeq
-            "Rsamtools",                                # Alignment
-            "Rsubread",                                 # Alignment
-            "SC3",                                      # SingleCell
-            "ShortRead",                                # Alignment
-            "SpidermiR",                                # miRNA
-            "TCGAbiolinks",                             # Sequencing
-            "apeglm",                                   # RNASeq
-            "ballgown",                                 # RNASeq
-            "batchelor",                                # SingleCell
-            "beachmat",                                 # SingleCell
-            "biobroom",                                 # DataImport
-
-            "biovizBase",                               # Visualization
-            "cBioPortalData",                           # RNASeq
-            "cbaf",                                     # RNASeq
-            "clusterExperiment",                        # SingleCell
-            "csaw",                                     # ChIPSeq
-            "destiny",                                  # SingleCell
-            "edgeR",                                    # RNASeq
-            "enrichR",                                  # Pathways
-            "enrichplot",                               # Visualization
-            "fgsea",                                    # Pathways
-            "scDataviz",                                # SingleCell
-            "fishpond",                                 # RNASeq
-            "genefilter",                               # Microarray
-            "geneplotter",                              # Visualization
-            "ggbio",                                    # Visualization
-            "ggtree",                                   # Visualization
-            "gage",                                     # ???
-            "goseq",                                    # Pathways
-            "isomiRs",                                  # miRNA
-            "limma",                                    # RNASeq
-            "miRBaseConverter",                         # miRNA
-            "miRNApath",                                # miRNA
-            "miRNAtap",                                 # miRNA
-            "mirbase.db",                               # miRNA/AnnotationData
-            "multiMiR",                                 # miRNA
-            "multtest",                                 # MultipleComparison
-            "pathview",                                 # Pathways
-            "pcaMethods",                               # Bayesian
-            "rhdf5",                                    # DataRepresentation
-            "riboSeqR",                                 # RiboSeq
-            "scater",                                   # SingleCell
-            "scone",                                    # SingleCell
-            "scran",                                    # SingleCell
-            "sctransform",                              # SingleCell
-            "slalom",                                   # SingleCell
-            "slingshot",                                # SingleCell
-            "splatter",                                 # SingleCell
-            "tximeta",                                  # RNASeq
-            "tximport",                                 # RNASeq
-            "vsn",                                      # Visualization
-            "zinbwave"                                  # SingleCell
+    if (isTRUE(extra[["cancer"]])) {
+        pkgs <- c(
+            pkgs,
+            "TCGAbiolinks",
+            "cBioPortalData",
+            "cbaf"  # cBioPortal
         )
-    )
+    }
+    if (isTRUE(extra[["chipseq"]])) {
+        pkgs <- c(
+            pkgs,
+            "ChIPpeakAnno",
+            "DiffBind",
+            "csaw"
+        )
+    }
+    if (isTRUE(extra[["enrichment"]])) {
+        ## Consider:
+        ## - reactome.db (very large)
+        pkgs <- c(
+            pkgs,
+            "PANTHER.db",
+            "RDAVIDWebService",
+            "clusterProfiler",
+            "DOSE",
+            "GOSemSim",
+            "GSEABase",
+            "GSVA",
+            "KEGG.db",
+            "KEGGREST",
+            "KEGGgraph",
+            "ReactomePA",
+            "STRINGdb",
+            "enrichR",
+            "enrichplot",
+            "fgsea",
+            "gage",
+            "goseq",
+            "pathview"
+        )
+    }
+    if (isTRUE(extra[["graphics"]])) {
+        pkgs <- c(
+            pkgs,
+            "ComplexHeatmap",
+            "ConsensusClusterPlus",
+            "EnhancedVolcano",
+            "Gviz",
+            "biovizBase",
+            "genefilter",
+            "geneplotter",
+            "ggbio",
+            "ggtree",
+            "vsn"
+        )
+    }
+    if (isTRUE(extra[["filesystem"]])) {
+        pkgs <- c(
+            pkgs,
+            "biobroom"
+        )
+    }
+    if (isTRUE(extra[["riboseq"]])) {
+        pkgs <- c(
+            pkgs,
+            "RiboProfiling",
+            "riboSeqR"
+        )
+    }
+    if (isTRUE(extra[["rnaseq"]])) {
+        pkgs <- c(
+            pkgs,
+            "DESeq2",
+            "DEXSeq",
+            "EDASeq",
+            "ballgown",
+            "edgeR",
+            "fishpond",
+            "limma",
+            "tximeta",
+            "tximport"
+        )
+    }
+    if (isTRUE(extra[["smallrna"]])) {
+        pkgs <- c(
+            pkgs,
+            "TargetScore",
+            "SpidermiR",
+            "isomiRs",
+            "miRBaseConverter",
+            "miRNApath",
+            "miRNAtap",
+            "mirbase.db",
+            "multiMiR",
+            "targetscan.Hs.eg.db"
+        )
+    }
+    if (isTRUE(extra[["singlecell"]])) {
+        ## Consider:
+        ## - VeloViz (submitted)
+        pkgs <- c(
+            pkgs,
+            "MAST",
+            "SingleCellExperiment",
+            "DropletUtils",
+            "HSMMSingleCell",
+            "SC3",
+            "batchelor",
+            "beachmat",
+            "clusterExperiment",
+            "destiny",
+            "scDataviz",
+            "scater",
+            "scone",
+            "scran",
+            "sctransform",
+            "slalom",
+            "slingshot",
+            "splatter",
+            "zinbwave"
+        )
+    }
+    if (isTRUE(extra[["statistics"]])) {
+        pkgs <- c(
+            pkgs,
+            "IHW",
+            "apeglm",
+            "multtest",
+            "pcaMethods"
+        )
+    }
+    if (isTRUE(extra[["variation"]])) {
+        pkgs <- c(
+            pkgs,
+            "DNAcopy",
+            "VariantAnnotation"
+        )
+    }
+    .install(pkgs)
     message(okMsg)
 }
