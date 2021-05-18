@@ -1,7 +1,7 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2021-05-10.
+#' @note Updated 2021-05-18.
 #'
 #' @inheritParams params
 #' @param pkgs `character`.
@@ -217,13 +217,19 @@ install <- function(
     switch(
         EXPR = pkg,
         "data.table" = {
-            ## Ensure we're building from source on macOS; the prebuilt binary
-            ## doesn't support parallel threads via OpenMP by default.
-            ## See also:
-            ## https://github.com/Rdatatable/data.table/wiki/
-            ##   Installation#openmp-enabled-compiler-for-mac
-            args[["type"]] <- "source"
-            if (.isMacOS()) {
+            if (
+                .isMacOS() &&
+                isTRUE(grepl(
+                    pattern = "^/Library/Frameworks/R.framework/Resources",
+                    x = Sys.getenv("R_HOME")
+                ))
+            ) {
+                ## The prebuilt binary doesn't support parallel threads via
+                ## OpenMP by default.
+                ## See also:
+                ## - https://github.com/Rdatatable/data.table/wiki/
+                ##     Installation#openmp-enabled-compiler-for-mac
+                args[["type"]] <- "source"
                 cLoc <- file.path(
                     "",
                     "usr",
