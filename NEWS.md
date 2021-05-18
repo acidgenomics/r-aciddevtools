@@ -1,3 +1,8 @@
+## AcidDevTools 0.3.9 (2021-05-18)
+
+- Removed `clearWarnings` from exports, which doesn't seem to be compatible
+  with R 4.1 due to inability to assign `last.warning` to base environment.
+
 ## AcidDevTools 0.3.8 (2021-05-12)
 
 - `installRecommendedPackages`: Made this function more modular, allowing for
