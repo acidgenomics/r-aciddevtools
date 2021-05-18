@@ -39,8 +39,8 @@ memfree <- function() {
     )
     memFree <- .format.object_size(as.numeric(memFree), "auto")
     message(
-        sprintf("Memory used: %d, via 'pryr::mem_used'.", memUsed), "\n",
-        sprintf("Memory free: %d, via 'awk MemFree'.", memFree)
+        sprintf("Memory used: %s, via 'pryr::mem_used'.", memUsed), "\n",
+        sprintf("Memory free: %s, via 'awk MemFree'.", memFree)
     )
 }
 

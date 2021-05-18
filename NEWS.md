@@ -2,6 +2,8 @@
 
 - Removed `clearWarnings` from exports, which doesn't seem to be compatible
   with R 4.1 due to inability to assign `last.warning` to base environment.
+- `memfree`: Now using `%s` instead of `%d` internally in `sprintf` call,
+  due to hardened change in R 4.1.
 
 ## AcidDevTools 0.3.8 (2021-05-12)
 
