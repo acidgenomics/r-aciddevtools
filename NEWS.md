@@ -1,3 +1,8 @@
+## AcidDevTools 0.3.10 (2021-05-18)
+
+- `check`: Made lintr, urlchecker, and BiocCheck checks optional if these
+  packages are not installed. This can be the case inside Docker images.
+
 ## AcidDevTools 0.3.9 (2021-05-18)
 
 - Removed `clearWarnings` from exports, which doesn't seem to be compatible
