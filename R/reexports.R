@@ -170,25 +170,6 @@ lint_package <- function(...) {
 
 
 
-## magrittr ====================================================================
-#' @importFrom magrittr %<>%
-#' @export
-magrittr::`%<>%`
-
-#' @importFrom magrittr %$%
-#' @export
-magrittr::`%$%`
-
-#' @importFrom magrittr %>%
-#' @export
-magrittr::`%>%`
-
-#' @importFrom magrittr %T>%
-#' @export
-magrittr::`%T>%`
-
-
-
 ## pipette =====================================================================
 #' @rdname reexports
 #' @usage NULL

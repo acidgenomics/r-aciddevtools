@@ -1,3 +1,7 @@
+## AcidDevTools 0.3.11 (2021-05-18)
+
+- Removed magrittr as an import, now that base R supports pipe in 4.1.
+
 ## AcidDevTools 0.3.10 (2021-05-18)
 
 - `check`: Made lintr, urlchecker, and BiocCheck checks optional if these
