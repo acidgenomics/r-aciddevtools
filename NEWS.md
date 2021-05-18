@@ -1,3 +1,7 @@
+## AcidDevTools 0.3.12 (2021-05-18)
+
+- Fix for BiocManager / install.packages handling in R 4.1
+
 ## AcidDevTools 0.3.11 (2021-05-18)
 
 - Removed magrittr as an import, now that base R supports pipe in 4.1.

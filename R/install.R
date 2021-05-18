@@ -148,6 +148,7 @@ install <- function(
                     x = args,
                     values = list(
                         "ask" = FALSE,
+                        "force" = TRUE,
                         "site_repository" = "https://r.acidgenomics.com",
                         "update" = FALSE
                     )
