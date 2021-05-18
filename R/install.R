@@ -69,15 +69,19 @@ install <- function(
     autoconf = TRUE,
     dependencies = TRUE,
     lib = .libPaths()[[1L]],
-    type = getOption("pkgType"),
+    type = getOption("pkgType", default = "source"),
     reinstall = TRUE
 ) {
     makevarsFile <- file.path("~", ".R", "Makevars")
+    if (is.null(type)) {
+        type <- "source"
+    }
     stopifnot(
         requireNamespace("utils", quietly = TRUE),
         is.character(pkgs),
         is.logical(autoconf) && identical(length(autoconf), 1L),
         is.logical(reinstall) && identical(length(reinstall), 1L),
+        is.character(type) && identical(length(type), 1L),
         isFALSE(file.exists(makevarsFile))
     )
     warn <- getOption("warn")
@@ -172,7 +176,10 @@ install <- function(
                 "Installing '%s' with '%s::%s'.",
                 pkg, "BiocManager", "install"
             ))
+            pkgTypeDefault <- getOption("pkgType")
+            options("pkgType" = args[["type"]])
             do.call(what = BiocManager::install, args = args)
+            options("pkgType" = pkgTypeDefault)
             if (isTRUE(autoconf) && file.exists(makevarsFile)) {
                 file.remove(makevarsFile)
             }
@@ -283,6 +290,16 @@ install <- function(
                         "LDFLAGS=",
                         "-L", cLoc, "/lib", " ",
                         "-Wl,-rpath,", cLoc, "lib"
+                    ),
+                    paste0(
+                        "SHLIB_OPENMP_CFLAGS=",
+                        "-Xpreprocessor", " ",
+                        "-fopenmp"
+                    ),
+                    paste0(
+                        "SHLIB_OPENMP_CXXFLAGS=",
+                        "-Xpreprocessor", " ",
+                        "-fopenmp"
                     )
                 )
                 writeLines(text = makevarsLines, con = makevarsFile)
