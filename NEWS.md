@@ -1,3 +1,8 @@
+## AcidDevTools 0.3.13 (2021-05-19)
+
+- `installRecommendedPackages`: Added GRmetrics and dr4pl, for
+  IC50 calculations.
+
 ## AcidDevTools 0.3.12 (2021-05-18)
 
 - Fix for BiocManager / install.packages handling in R 4.1
