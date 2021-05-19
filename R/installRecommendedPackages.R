@@ -1,7 +1,7 @@
 #' Install recommended R packages
 #'
 #' @export
-#' @note Updated 2021-05-12.
+#' @note Updated 2021-05-19.
 #'
 #' @section tidyverse packages:
 #'
@@ -30,6 +30,7 @@ installRecommendedPackages <- function(
         "filesystem" = TRUE,
         "general" = TRUE,
         "graphics" = TRUE,
+        "pharma" = TRUE,
         "riboseq" = FALSE,
         "rnaseq" = FALSE,
         "shiny" = TRUE,
@@ -240,6 +241,12 @@ installRecommendedPackages <- function(
             "ragg"
         )
     }
+    if (isTRUE(extra[["pharma"]])) {
+        pkgs <- c(
+            pkgs,
+            "dr4pl"
+        )
+    }
     if (isTRUE(extra[["shiny"]])) {
         pkgs <- c(
             pkgs,
@@ -370,6 +377,12 @@ installRecommendedPackages <- function(
         pkgs <- c(
             pkgs,
             "biobroom"
+        )
+    }
+    if (isTRUE(extra[["pharma"]])) {
+        pkgs <- c(
+            pkgs,
+            "GRmetrics"
         )
     }
     if (isTRUE(extra[["riboseq"]])) {
