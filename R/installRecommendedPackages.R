@@ -233,6 +233,7 @@ installRecommendedPackages <- function(
             "ggrepel",
             "ggrepel",
             "ggridges",
+            "ggstatsplot",
             "ggupset",
             "hexbin",
             "magick",
