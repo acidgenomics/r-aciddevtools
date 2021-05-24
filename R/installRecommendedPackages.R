@@ -433,6 +433,7 @@ installRecommendedPackages <- function(
     if (isTRUE(extra[["singlecell"]])) {
         ## Consider:
         ## - VeloViz (submitted)
+        ## - immunogenomics/scpost (power calculations)
         pkgs <- c(
             pkgs,
             "DropletUtils",
