@@ -224,91 +224,12 @@ install <- function(
                     x = Sys.getenv("R_HOME")
                 ))
             ) {
-                ## The prebuilt binary doesn't support parallel threads via
-                ## OpenMP by default.
+                ## The prebuilt CRAN binary for macOS doesn't support parallel
+                ## threads via OpenMP by default.
                 ## See also:
                 ## - https://github.com/Rdatatable/data.table/wiki/
                 ##     Installation#openmp-enabled-compiler-for-mac
                 args[["type"]] <- "source"
-                cLoc <- file.path(
-                    "",
-                    "usr",
-                    "local",
-                    "gfortran"
-                )
-                sdkLoc <- file.path(
-                    "",
-                    "Library",
-                    "Developer",
-                    "CommandLineTools",
-                    "SDKs",
-                    "MacOSX.sdk"
-                )
-                stopifnot(all(dir.exists(c(cLoc, sdkLoc))))
-                makevarsLines <- c(
-                    paste0(
-                        "CC=", cLoc, "/bin/gcc", " ",
-                        "-fopenmp"
-                    ),
-                    paste0(
-                        "CXX=", cLoc, "/bin/g++", " ",
-                        "-fopenmp"
-                    ),
-                    paste0(
-                        "CXX11=", cLoc, "/bin/g++", " ",
-                        "-fopenmp"
-                    ),
-                    paste0(
-                        "CFLAGS=",
-                        "-g", " ",
-                        "-O3", " ",
-                        "-Wall", " ",
-                        "-pedantic",  " ",
-                        "-std=gnu99",  " ",
-                        "-mtune=native",  " ",
-                        "-pipe"
-                    ),
-                    paste0(
-                        "CPPFLAGS=",
-                        "-I", cLoc, "/include", " ",
-                        "-I", sdkLoc, "/usr/include"
-                    ),
-                    paste0(
-                        "CXXFLAGS=",
-                        "-g", " ",
-                        "-O3", " ",
-                        "-Wall", " ",
-                        "-pedantic", " ",
-                        "-std=c++11", " ",
-                        "-mtune=native", " ",
-                        "-pipe"
-                    ),
-                    paste0(
-                        "CXX11FLAGS=-g", " ",
-                        "-O3", " ",
-                        "-Wall", " ",
-                        "-pedantic", " ",
-                        "-std=c++11", " ",
-                        "-mtune=native", " ",
-                        "-pipe"
-                    ),
-                    paste0(
-                        "LDFLAGS=",
-                        "-L", cLoc, "/lib", " ",
-                        "-Wl,-rpath,", cLoc, "lib"
-                    ),
-                    paste0(
-                        "SHLIB_OPENMP_CFLAGS=",
-                        "-Xpreprocessor", " ",
-                        "-fopenmp"
-                    ),
-                    paste0(
-                        "SHLIB_OPENMP_CXXFLAGS=",
-                        "-Xpreprocessor", " ",
-                        "-fopenmp"
-                    )
-                )
-                writeLines(text = makevarsLines, con = makevarsFile)
             }
         },
         "geos" = {
