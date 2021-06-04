@@ -1,3 +1,8 @@
+## AcidDevTools 0.3.14 (2021-06-04)
+
+- `check`: Added `biocCheck` and `coverage` arguments.
+  Now checking package coverage for at least 80% coverage by default.
+
 ## AcidDevTools 0.3.13 (2021-05-19)
 
 - `installRecommendedPackages`: Added GRmetrics and dr4pl, for
