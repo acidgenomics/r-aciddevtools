@@ -233,6 +233,7 @@ installRecommendedPackages <- function(
             "ggrepel",
             "ggrepel",
             "ggridges",
+            "ggstatsplot",
             "ggupset",
             "hexbin",
             "magick",
@@ -278,6 +279,15 @@ installRecommendedPackages <- function(
         )
     }
     ## Bioconductor ------------------------------------------------------- {{{2
+    ## New packages in 3.13 worth a look:
+    ## (from https://twitter.com/mikelove/status/1395615161260650497)
+    ## - GenomicDistributions
+    ## - airpart
+    ## - condiments
+    ## - memes
+    ## - miloR
+    ## - moanin
+    ## - satuRn
     if (isTRUE(extra[["general"]])) {
         pkgs <- c(
             pkgs,
@@ -423,6 +433,7 @@ installRecommendedPackages <- function(
     if (isTRUE(extra[["singlecell"]])) {
         ## Consider:
         ## - VeloViz (submitted)
+        ## - immunogenomics/scpost (power calculations)
         pkgs <- c(
             pkgs,
             "DropletUtils",
