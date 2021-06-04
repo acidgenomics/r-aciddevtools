@@ -83,7 +83,6 @@ check <- function(
     cutoff = 0.80
 ) {
     if (!dir.exists("tests")) {
-        message("No unit tests defined in 'tests' directory.")
         return(invisible(FALSE))
     }
     message("Checking coverage with covr package.")
