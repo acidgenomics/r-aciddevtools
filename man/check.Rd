@@ -12,6 +12,12 @@ Directory path to package.}
 
 \item{cran}{\code{logical(1)}.
 Perform additional CRAN submission checks.}
+
+\item{biocCheck}{\code{logical(1)}.
+Perform additional Bioconductor checks.}
+
+\item{coverage}{\code{logical(1)}.
+Check that unit tests provide sufficient coverage.}
 }
 \value{
 \code{TRUE} on success, otherwise error.

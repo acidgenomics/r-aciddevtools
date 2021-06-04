@@ -7,6 +7,10 @@
 #'   Directory path to package.
 #' @param cran `logical(1)`.
 #'   Perform additional CRAN submission checks.
+#' @param biocCheck `logical(1)`.
+#'   Perform additional Bioconductor checks.
+#' @param coverage `logical(1)`.
+#'   Check that unit tests provide sufficient coverage.
 #'
 #' @return `TRUE` on success, otherwise error.
 #'
