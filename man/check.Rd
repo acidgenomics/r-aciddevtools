@@ -4,7 +4,7 @@
 \alias{check}
 \title{Check package}
 \usage{
-check(path = ".", cran = FALSE)
+check(path = ".", cran = FALSE, biocCheck = TRUE, coverage = TRUE)
 }
 \arguments{
 \item{path}{\code{character(1)}.
