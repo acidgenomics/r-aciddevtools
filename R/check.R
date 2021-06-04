@@ -82,7 +82,7 @@ check <- function(
     path = ".",
     cutoff = 0.80
 ) {
-    if (!dir.exists("tests")) {
+    if (!dir.exists(file.path(path, "tests"))) {
         return(invisible(FALSE))
     }
     message("Checking coverage with covr package.")
