@@ -1,3 +1,9 @@
+## FIXME Always run devtools::test here.
+## FIXME Disable covr::report by default for drat, but enable here by default.
+## FIXME For unit test, ensure exit on first failure.
+
+
+
 #' Check package
 #'
 #' @export
