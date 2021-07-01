@@ -1,8 +1,12 @@
 #+TITLE: AcidDevTools
 #+STARTUP: content
 * Development
+** TODO Consider reexporting `rmdocs::rmd_help`.```
 ** TODO Ensure that notes don't pass through without error.
    https://cran.r-project.org/web/packages/rcmdcheck/rcmdcheck.pdf
    R CMD check convert notes to warnings
    rcmdcheck
    check_details
+** TODO `devtools::check()` is failing due to `requireNamespaces` in some
+   packages, whereas `rcmdcheck::rcmdcheck()` and `R CMD check` will pass as
+   expected. File an issue in the devtools repo?

@@ -1,7 +1,7 @@
 #' Install recommended R packages
 #'
 #' @export
-#' @note Updated 2021-05-19.
+#' @note Updated 2021-07-01.
 #'
 #' @section tidyverse packages:
 #'
@@ -155,6 +155,8 @@ installRecommendedPackages <- function(
         )
     }
     if (isTRUE(extra[["devtools"]])) {
+        # Consider:
+        # - milesmcbain/rmdocs
         pkgs <- c(
             pkgs,
             "R.oo",
