@@ -8,7 +8,7 @@ check(path = ".", cran = FALSE, biocCheck = TRUE, coverage = TRUE)
 }
 \arguments{
 \item{path}{\code{character(1)}.
-Directory path to package.}
+File path (e.g. to package).}
 
 \item{cran}{\code{logical(1)}.
 Perform additional CRAN submission checks.}
