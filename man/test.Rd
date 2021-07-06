@@ -4,11 +4,17 @@
 \alias{test}
 \title{Execute test_that tests in a package}
 \usage{
-test()
+test(path = ".", coverage = TRUE)
+}
+\value{
+Invisible \code{TRUE} on success, otherwise error.
 }
 \description{
 Execute test_that tests in a package
 }
 \note{
-Updated 2020-07-28.
+Updated 2021-07-06.
+}
+\examples{
+## > test()
 }

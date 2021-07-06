@@ -22,7 +22,7 @@ disable the installation of any extra packages by setting to \code{FALSE}.}
 Install recommended R packages
 }
 \note{
-Updated 2021-05-19.
+Updated 2021-07-06.
 }
 \section{tidyverse packages}{
 
