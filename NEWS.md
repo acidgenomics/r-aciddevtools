@@ -1,3 +1,11 @@
+## AcidDevTools 0.3.15 (2021-07-06)
+
+- Reorganized internal functions.
+- `check`: Now always runs `test` internally, since `rcmdcheck` in some cases
+  doesn't run unit tests in R 4.1.
+- Migrated from using pryr to lobstr.
+- Removed unused `memfree` function.
+
 ## AcidDevTools 0.3.14 (2021-06-04)
 
 - `check`: Added `biocCheck` and `coverage` arguments.
