@@ -1,7 +1,7 @@
 #' Attach developer packages
 #'
 #' @export
-#' @note Updated 2020-04-12.
+#' @note Updated 2021-07-06.
 #'
 #' @param quiet `logical(1)`.
 #'   Load packages quietly.
@@ -19,22 +19,15 @@ dev <- function(quiet = TRUE) {
     )
     ## Order is important here.
     pkgs <- c(
-        "SummarizedExperiment",
-        "SingleCellExperiment",
-        "Rcpp",
-        "rlang",
-        "R.utils",
         "magrittr",
-        "scales",
+        "rlang",
+        "tidyselect",
         "devtools",
-        "knitr",
-        "lintr",
-        "pkgdown",
-        "covr",
         "testthat",
         "goalie",
         "basejump",
-        "tidyselect",
+        "SummarizedExperiment",
+        "SingleCellExperiment",
         "tidyverse"
     )
     ## Stop on missing packages.

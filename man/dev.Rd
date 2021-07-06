@@ -18,7 +18,7 @@ this function call.
 Attach developer packages
 }
 \note{
-Updated 2020-04-12.
+Updated 2021-07-06.
 }
 \examples{
 ## Load the developer environment.
