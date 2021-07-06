@@ -1,7 +1,7 @@
 #' Install recommended R packages
 #'
 #' @export
-#' @note Updated 2021-07-01.
+#' @note Updated 2021-07-06.
 #'
 #' @section tidyverse packages:
 #'
@@ -149,6 +149,8 @@ installRecommendedPackages <- function(
         )
     }
     if (isTRUE(extra[["cancer"]])) {
+        ## Consider:
+        ## - cancerrxgene/gdscIC50
         pkgs <- c(
             pkgs,
             "cgdsr"  # cBioPortal
@@ -251,8 +253,11 @@ installRecommendedPackages <- function(
         )
     }
     if (isTRUE(extra[["shiny"]])) {
+        ## Consider:
+        ## - CancerRxGene/gdscDataViewR
         pkgs <- c(
             pkgs,
+            "InteractiveComplexHeatmap",
             "htmlwidgets",
             "rsconnect",  # shinyapps.io
             "shiny",
