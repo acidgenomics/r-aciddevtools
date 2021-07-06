@@ -20,6 +20,22 @@ Attach developer packages
 \note{
 Updated 2021-07-06.
 }
+\section{Current packages}{
+
+\itemize{
+\item magrittr
+\item rlang
+\item tidyselect
+\item devtools
+\item testthat
+\item goalie
+\item basejump
+\item SummarizedExperiment
+\item SingleCellExperiment
+\item tidyverse
+}
+}
+
 \examples{
 ## Load the developer environment.
 ## > dev()

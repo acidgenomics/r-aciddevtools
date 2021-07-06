@@ -1,5 +1,18 @@
 #' Attach developer packages
 #'
+#' @section Current packages:
+#'
+#' - magrittr
+#' - rlang
+#' - tidyselect
+#' - devtools
+#' - testthat
+#' - goalie
+#' - basejump
+#' - SummarizedExperiment
+#' - SingleCellExperiment
+#' - tidyverse
+#'
 #' @export
 #' @note Updated 2021-07-06.
 #'
