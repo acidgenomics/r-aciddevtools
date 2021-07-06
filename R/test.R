@@ -3,6 +3,8 @@
 #' @export
 #' @note Updated 2021-07-06.
 #'
+#' @inheritParams params
+#'
 #' @return Invisible `TRUE` on success, otherwise error.
 #'
 #' @examples

@@ -8,7 +8,7 @@ finder(path = ".")
 }
 \arguments{
 \item{path}{\code{character(1)}.
-File path.}
+File path (e.g. to package).}
 }
 \value{
 Opens window. No return.

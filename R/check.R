@@ -3,14 +3,12 @@
 #' @export
 #' @note Updated 2021-07-06.
 #'
-#' @param path `character(1)`.
-#'   Directory path to package.
+#' @inheritParams params
+#'
 #' @param cran `logical(1)`.
 #'   Perform additional CRAN submission checks.
 #' @param biocCheck `logical(1)`.
 #'   Perform additional Bioconductor checks.
-#' @param coverage `logical(1)`.
-#'   Check that unit tests provide sufficient coverage.
 #'
 #' @return `TRUE` on success, otherwise error.
 #'

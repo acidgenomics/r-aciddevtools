@@ -6,6 +6,13 @@
 \usage{
 test(path = ".", coverage = TRUE)
 }
+\arguments{
+\item{path}{\code{character(1)}.
+File path (e.g. to package).}
+
+\item{coverage}{\code{logical(1)}.
+Check that unit tests provide sufficient coverage.}
+}
 \value{
 Invisible \code{TRUE} on success, otherwise error.
 }
