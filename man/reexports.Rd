@@ -18,7 +18,6 @@
 \alias{lint_package}
 \alias{loadData}
 \alias{saveData}
-\alias{object_size}
 \alias{build_articles}
 \alias{build_home}
 \alias{build_news}

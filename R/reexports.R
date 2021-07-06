@@ -170,6 +170,19 @@ lint_package <- function(...) {
 
 
 
+## lobstr ======================================================================
+mem_used <- function(...) {
+    stopifnot(requireNamespace("lobstr", quietly = TRUE))
+    lobstr::mem_used(...)
+}
+
+obj_size <- function(...) {
+    stopifnot(requireNamespace("lobstr", quietly = TRUE))
+    lobstr::obj_size(...)
+}
+
+
+
 ## pipette =====================================================================
 #' @rdname reexports
 #' @usage NULL
@@ -185,17 +198,6 @@ loadData <- function(...) {
 saveData <- function(...) {
     stopifnot(requireNamespace("pipette", quietly = TRUE))
     pipette::saveData(...)
-}
-
-
-
-## pryr ========================================================================
-#' @rdname reexports
-#' @usage NULL
-#' @export
-object_size <- function(...) {
-    stopifnot(requireNamespace("pryr", quietly = TRUE))
-    pryr::object_size(...)
 }
 
 

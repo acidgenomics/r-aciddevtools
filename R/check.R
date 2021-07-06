@@ -1,13 +1,7 @@
-## FIXME Always run devtools::test here.
-## FIXME Disable covr::report by default for drat, but enable here by default.
-## FIXME For unit test, ensure exit on first failure.
-
-
-
 #' Check package
 #'
 #' @export
-#' @note Updated 2021-05-18.
+#' @note Updated 2021-07-06.
 #'
 #' @param path `character(1)`.
 #'   Directory path to package.
@@ -58,9 +52,7 @@ check <- function(
     }
     message("Running package checks with 'rcmdcheck()'.")
     rcmdcheck(path = path, cran = cran)
-
-    ## FIXME Add `test()` call here.
-
+    test(path = path, coverage = coverage)
     if (isTRUE(biocCheck)) {
         ## Only run BiocCheck if we detect "biocViews" in DESCRIPTION and when
         ## the directory name is identical to the package name. BiocCheck
@@ -74,9 +66,6 @@ check <- function(
             message("Running Bioconductor checks with 'BiocCheck()'.")
             BiocCheck(package = path)
         }
-    }
-    if (isTRUE(coverage)) {
-        .checkCoverage(path = path)
     }
     invisible(TRUE)
 }

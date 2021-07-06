@@ -150,15 +150,15 @@ installRecommendedPackages <- function(
     }
     if (isTRUE(extra[["cancer"]])) {
         ## Consider:
-        ## - cancerrxgene/gdscIC50
+        ## t - cancerrxgene gdscIC50
         pkgs <- c(
             pkgs,
             "cgdsr"  # cBioPortal
         )
     }
     if (isTRUE(extra[["devtools"]])) {
-        # Consider:
-        # - milesmcbain/rmdocs
+        ## Consider:
+        ## - milesmcbain rmdocs
         pkgs <- c(
             pkgs,
             "R.oo",
@@ -254,7 +254,7 @@ installRecommendedPackages <- function(
     }
     if (isTRUE(extra[["shiny"]])) {
         ## Consider:
-        ## - CancerRxGene/gdscDataViewR
+        ## - CancerRxGene gdscDataViewR
         pkgs <- c(
             pkgs,
             "InteractiveComplexHeatmap",
@@ -440,7 +440,7 @@ installRecommendedPackages <- function(
     if (isTRUE(extra[["singlecell"]])) {
         ## Consider:
         ## - VeloViz (submitted)
-        ## - immunogenomics/scpost (power calculations)
+        ## - immunogenomics / scpost (power calculations)
         pkgs <- c(
             pkgs,
             "DropletUtils",
