@@ -1,3 +1,8 @@
+## AcidDevTools 0.3.16 (2021-07-15)
+
+- Reworked `check`, `dev`, and `test` functions.
+- Tweaked `test` to call `testthat::test_dir` directly again.
+
 ## AcidDevTools 0.3.15 (2021-07-06)
 
 - Reorganized internal functions.

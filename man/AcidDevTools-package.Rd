@@ -9,7 +9,7 @@
 Toolkit for R package development
 }
 \details{
-Personal package with additional devtools utilities.
+Personal package with additional developer utilities.
 }
 \seealso{
 Useful links:
