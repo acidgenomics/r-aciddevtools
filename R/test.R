@@ -1,7 +1,7 @@
 #' Execute test_that tests in a package
 #'
 #' @export
-#' @note Updated 2021-07-06.
+#' @note Updated 2021-07-15.
 #'
 #' @inheritParams params
 #'
@@ -9,10 +9,7 @@
 #'
 #' @examples
 #' ## > test()
-test <- function(
-    path = ".",
-    coverage = TRUE
-) {
+test <- function(path = ".") {
     path <- normalizePath(path = path, mustWork = TRUE)
     testsDir <- file.path(path, "tests", "testthat")
     if (!isTRUE(dir.exists(testsDir))) {
@@ -23,35 +20,18 @@ test <- function(
         return(invisible(FALSE))
     }
     stopifnot(
-        requireNamespace("devtools", quietly = TRUE),
-        requireNamespace("testthat", quietly = TRUE)
+        requireNamespace("testthat", quietly = TRUE),
+        requireNamespace("pkgload", quietly = TRUE)
     )
-    devtools::load_all(
-        path = path,
-        reset = TRUE,
-        helpers = TRUE,
-        quiet = TRUE
-    )
+    maxFails <- getOption("testthat.progress.max_fails")
     options("testthat.progress.max_fails" = 1L)
-    devtools::test(
-        pkg = path,
-        stop_on_failure = TRUE
+    res <- testthat::test_dir(
+        path = testsDir,
+        load_helpers = TRUE,
+        load_package = "source",
+        stop_on_failure = TRUE,
+        stop_on_warning = TRUE
     )
-    ## Alternative approach:
-    ## > testthat::test_dir(
-    ## >     path = testsDir,
-    ## >     load_helpers = TRUE,
-    ## >     stop_on_failure = TRUE,
-    ## >     stop_on_warning = TRUE
-    ## > )
-    if (isTRUE(coverage)) {
-        .checkCoverage(path = path)
-        ## Alternative approach:
-        ## > stopifnot(requireNamespace("covr", quietly = TRUE))
-        ## > devtools::test_coverage(
-        ## >     pkg = path,
-        ## >     show_report = interactive()
-        ## > )
-    }
-    invisible(TRUE)
+    options("testthat.progress.max_fails" = maxFails)
+    invisible(res)
 }
