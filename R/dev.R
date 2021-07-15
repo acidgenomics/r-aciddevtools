@@ -4,8 +4,6 @@
 #'
 #' - magrittr
 #' - rlang
-#' - tidyselect
-#' - devtools
 #' - testthat
 #' - goalie
 #' - basejump
@@ -14,7 +12,7 @@
 #' - tidyverse
 #'
 #' @export
-#' @note Updated 2021-07-06.
+#' @note Updated 2021-07-15.
 #'
 #' @param quiet `logical(1)`.
 #'   Load packages quietly.
@@ -34,8 +32,6 @@ dev <- function(quiet = TRUE) {
     pkgs <- c(
         "magrittr",
         "rlang",
-        "tidyselect",
-        "devtools",
         "testthat",
         "goalie",
         "basejump",

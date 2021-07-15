@@ -105,17 +105,13 @@ document <- function(...) {
 #' @export
 load_all <- function(..., helpers = FALSE) {
     stopifnot(requireNamespace("pkgload", quietly = TRUE))
-    verbose <- getOption("verbose")
-    options(verbose = TRUE)
+    ## > verbose <- getOption("verbose")
+    ## > options(verbose = TRUE)
     pkgload::load_all(
         helpers = helpers,
         attach_testthat = FALSE
     )
-    ## > devtools::load_all(
-    ## >     ...,
-    ## >     helpers = helpers
-    ## > )
-    options(verbose = verbose)
+    ## > options(verbose = verbose)
     invisible(TRUE)
 }
 

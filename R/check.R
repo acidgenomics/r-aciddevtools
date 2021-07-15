@@ -1,7 +1,7 @@
 #' Check package
 #'
 #' @export
-#' @note Updated 2021-07-06.
+#' @note Updated 2021-07-15.
 #'
 #' @inheritParams params
 #'
@@ -50,7 +50,10 @@ check <- function(
     }
     message("Running package checks with 'rcmdcheck()'.")
     rcmdcheck(path = path, cran = cran)
-    test(path = path, coverage = coverage)
+    test(path = path)
+    if (isTRUE(coverage)) {
+        .checkCoverage(path = path)
+    }
     if (isTRUE(biocCheck)) {
         ## Only run BiocCheck if we detect "biocViews" in DESCRIPTION and when
         ## the directory name is identical to the package name. BiocCheck
