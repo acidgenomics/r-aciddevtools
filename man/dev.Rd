@@ -18,15 +18,13 @@ this function call.
 Attach developer packages
 }
 \note{
-Updated 2021-07-06.
+Updated 2021-07-15.
 }
 \section{Current packages}{
 
 \itemize{
 \item magrittr
 \item rlang
-\item tidyselect
-\item devtools
 \item testthat
 \item goalie
 \item basejump

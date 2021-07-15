@@ -4,14 +4,11 @@
 \alias{test}
 \title{Execute test_that tests in a package}
 \usage{
-test(path = ".", coverage = TRUE)
+test(path = ".")
 }
 \arguments{
 \item{path}{\code{character(1)}.
 File path (e.g. to package).}
-
-\item{coverage}{\code{logical(1)}.
-Check that unit tests provide sufficient coverage.}
 }
 \value{
 Invisible \code{TRUE} on success, otherwise error.
@@ -20,7 +17,7 @@ Invisible \code{TRUE} on success, otherwise error.
 Execute test_that tests in a package
 }
 \note{
-Updated 2021-07-06.
+Updated 2021-07-15.
 }
 \examples{
 ## > test()
