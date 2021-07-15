@@ -125,7 +125,7 @@ install <- function(
                     message(sprintf("'%s' is installed.", pkg))
                     return(pkg)
                 }
-                ## Alternatively, can use `devtools::install_version()`.
+                ## Alternatively, can use `devtools::install_version()` here.
                 message(sprintf(
                     "Installing '%s' from '%s' with '%s::%s'.",
                     pkg, url, "utils", "install.packages"
