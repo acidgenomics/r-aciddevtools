@@ -1,7 +1,11 @@
-## AcidDevTools 0.3.16 (2021-07-15)
+## AcidDevTools 0.3.16 (2021-07-19)
 
 - Reworked `check`, `dev`, and `test` functions.
 - Tweaked `test` to call `testthat::test_dir` directly again.
+- Reworked default handling of code coverage. Disabled automatic code
+  coverage report checking when calling `test`.
+- Simplified the number of default packages loaded in `dev`.
+- Cleaned up internal comments for `load_all`.
 
 ## AcidDevTools 0.3.15 (2021-07-06)
 
