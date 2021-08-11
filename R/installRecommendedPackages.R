@@ -228,6 +228,7 @@ installRecommendedPackages <- function(
     if (isTRUE(extra[["graphics"]])) {
         pkgs <- c(
             pkgs,
+            "ComplexUpset",
             "UpSetR",
             "cowplot",
             "dendextend",
@@ -241,6 +242,7 @@ installRecommendedPackages <- function(
             "ggupset",
             "hexbin",
             "magick",
+            "patchwork",
             "pheatmap",
             "prettyunits",
             "ragg"
