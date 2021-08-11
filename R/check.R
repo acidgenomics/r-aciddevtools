@@ -50,6 +50,7 @@ check <- function(
     }
     message("Running package checks with 'rcmdcheck()'.")
     rcmdcheck(path = path, cran = cran)
+    ## FIXME Still not stopping on error here.
     test(path = path)
     if (isTRUE(coverage)) {
         .checkCoverage(path = path)

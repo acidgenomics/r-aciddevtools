@@ -103,15 +103,9 @@ document <- function(...) {
 #' @rdname reexports
 #' @usage NULL
 #' @export
-load_all <- function(..., helpers = FALSE) {
+load_all <- function(...) {
     stopifnot(requireNamespace("pkgload", quietly = TRUE))
-    ## > verbose <- getOption("verbose")
-    ## > options(verbose = TRUE)
-    pkgload::load_all(
-        helpers = helpers,
-        attach_testthat = FALSE
-    )
-    ## > options(verbose = verbose)
+    pkgload::load_all(...)
     invisible(TRUE)
 }
 
