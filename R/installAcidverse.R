@@ -1,9 +1,13 @@
+## nocov start
+
+
+
 #' Install Acid Genomics packages
 #'
 #' @export
 #' @note Updated 2021-05-12.
 #'
-#' @return Status from [install()].
+#' @return Status from `install()`.
 #'
 #' @examples
 #' ## > installAcidverse()
@@ -37,3 +41,7 @@ installAcidverse <- function() {
         reinstall = FALSE
     )
 }
+
+
+
+## nocov end

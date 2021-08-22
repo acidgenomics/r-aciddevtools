@@ -7,7 +7,7 @@
 installAcidverse()
 }
 \value{
-Status from \code{\link[=install]{install()}}.
+Status from \code{install()}.
 }
 \description{
 Install Acid Genomics packages

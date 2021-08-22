@@ -1,3 +1,7 @@
+## nocov start
+
+
+
 #' Attach developer packages
 #'
 #' @section Current packages:
@@ -64,3 +68,7 @@ dev <- function(quiet = TRUE) {
     ## Invisibly return information on attached packages.
     invisible(attached)
 }
+
+
+
+## nocov end
