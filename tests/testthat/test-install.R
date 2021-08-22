@@ -115,3 +115,38 @@ test_that("GitHub", {
     )
     unlink(testlib, recursive = TRUE)
 })
+
+
+
+context("installGitHub")
+
+test_that("GitHub", {
+    unlink(testlib, recursive = TRUE)
+    dir.create(testlib)
+    pkgName <- "goalie"
+    repo <- paste0("acidgenomics/r-", pkgName)
+    tag <- "v0.5.4"
+    installGitHub(
+        repo = repo,
+        tag = tag,
+        lib = testlib,
+        reinstall = TRUE
+    )
+    expect_true(all(
+        pkgName %in% list.dirs(
+            path = testlib,
+            full.names = FALSE,
+            recursive = FALSE
+        )
+    ))
+    expect_message(
+        object = installGitHub(
+            repo = repo,
+            tag = tag,
+            lib = testlib,
+            reinstall = FALSE
+        ),
+        regexp = "is installed"
+    )
+    unlink(testlib, recursive = TRUE)
+})

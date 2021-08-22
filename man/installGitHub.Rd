@@ -4,34 +4,39 @@
 \alias{installGitHub}
 \title{Install packages from GitHub}
 \usage{
-installGitHub(repo, release = "latest", reinstall = TRUE)
+installGitHub(repo, tag, lib = .libPaths()[[1L]], reinstall = TRUE, ...)
 }
 \arguments{
 \item{repo}{\code{character}.
 Repository address(es) in the format \code{owner/repo}.}
 
-\item{release}{\code{character}.
-Release version tag.
-Defaults to latest version available.
-Specific release must match the tag on GitHub (e.g. "v1.0.0").}
+\item{lib}{\code{character}.
+Destination library directory path.
+Defaults to the first element of \code{.libPaths()}.}
 
 \item{reinstall}{\code{logical(1)}.
 Force reinstallation of any existing packages.}
+
+\item{...}{Passthrough arguments to \code{install()}.}
+
+\item{release}{\code{character}.
+Release version tag.
+Specific release must match the tag on GitHub (e.g. "v1.0.0").}
 }
 \value{
-Invisible \code{character}.
-Repository address defined in \code{repo} argument.
+Invisible \code{list}.
+Metadata containing \code{repo}, \code{lib}, and whether packages were installed.
 }
 \description{
 Install packages from GitHub
 }
 \details{
 This variant doesn't require \code{GITHUB_PAT}.
-If you have a \code{GITHUB_PAT} defined, can use \code{\link[=install]{install()}} directly instead.
+If you have a \code{GITHUB_PAT} defined, can use \code{install()} directly instead.
 Intended for use inside container images, where a PAT may not be used.
 }
 \note{
-Updated 2020-10-06.
+Updated 2021-08-22.
 }
 \section{GitHub API}{
 
@@ -48,23 +53,13 @@ Updated 2020-10-06.
 }
 
 \examples{
-## Install latest release, if necessary.
-## > installGitHub(
-## >     repo = c(
-## >         "acidgenomics/goalie",
-## >         "acidgenomics/syntactic"
-## >     ),
-## >     release = "latest",
-## >     reinstall = FALSE
-## > )
-
 ## Force reinstallation of specific versions.
 ## > installGitHub(
 ## >     repo = c(
 ## >         "acidgenomics/goalie",
 ## >         "acidgenomics/syntactic"
 ## >     ),
-## >     release = c(
+## >     tag = c(
 ## >         "v0.4.8",
 ## >         "v0.4.2"
 ## >     ),
@@ -73,7 +68,7 @@ Updated 2020-10-06.
 }
 \seealso{
 \itemize{
-\item \code{remotes::install_github}.
-\item \code{install.packages}.
+\item \code{remotes::install_github()}.
+\item \code{install.packages()}.
 }
 }
