@@ -1,3 +1,7 @@
+## nocov start
+
+
+
 #' Kill R session
 #'
 #' @name kill
@@ -35,3 +39,7 @@ kill <- function(pid = Sys.getpid()) {
 killAll <- function() {
     system2(command = "pkill", args = "rsession")
 }
+
+
+
+## nocov end

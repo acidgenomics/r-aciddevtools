@@ -2,17 +2,21 @@
 #'
 #' @export
 #' @note macOS only.
-#' @note Updated 2020-10-06.
+#' @note Updated 2021-08-22.
 #'
 #' @inheritParams params
 #'
 #' @return Opens window. No return.
-finder <- function(path = ".") {
+#'
+#' @examples
+#' ## > finder(path = "~")
+finder <- function(path = getwd()) {
     stopifnot(
         requireNamespace("AcidBase", quietly = TRUE),
         requireNamespace("goalie", quietly = TRUE),
         goalie::isMacOS(),
         goalie::isString(path)
     )
+    path <- normalizePath(path, mustWork = TRUE)
     AcidBase::shell(command = "open", args = path)
 }

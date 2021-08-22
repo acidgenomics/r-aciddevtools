@@ -4,7 +4,7 @@
 \alias{finder}
 \title{Open Finder to the current directory}
 \usage{
-finder(path = ".")
+finder(path = getwd())
 }
 \arguments{
 \item{path}{\code{character(1)}.
@@ -19,5 +19,8 @@ Open Finder to the current directory
 \note{
 macOS only.
 
-Updated 2020-10-06.
+Updated 2021-08-22.
+}
+\examples{
+## > finder(path = "~")
 }
