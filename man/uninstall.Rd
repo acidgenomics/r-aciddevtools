@@ -4,21 +4,26 @@
 \alias{uninstall}
 \title{Uninstall a package}
 \usage{
-uninstall(pkgs)
+uninstall(pkgs, lib = .libPaths()[[1L]])
 }
 \arguments{
 \item{pkgs}{\code{character}.
 Package names.}
+
+\item{lib}{\code{character}.
+Destination library directory path.
+Defaults to the first element of \code{.libPaths()}.}
 }
 \value{
-Invisible \code{character}.
-Names of packages that were removed.
+Invisible \code{list}.
+Metadata containing names of packages that were removed, and the package
+library path.
 }
 \description{
 Wrapper for \code{utils::remove.packages()}.
 }
 \note{
-Updated 2020-11-04.
+Updated 2021-08-22.
 }
 \examples{
 ## > uninstall("rlang")

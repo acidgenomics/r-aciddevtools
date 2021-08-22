@@ -5,28 +5,36 @@
 #' @inheritParams params
 #'
 #' @export
-#' @note Updated 2020-11-04.
+#' @note Updated 2021-08-22.
 #'
-#' @return Invisible `character`.
-#'   Names of packages that were removed.
+#' @return Invisible `list`.
+#'   Metadata containing names of packages that were removed, and the package
+#'   library path.
 #'
 #' @examples
 #' ## > uninstall("rlang")
-uninstall <- function(pkgs) {
+uninstall <- function(
+    pkgs,
+    lib = .libPaths()[[1L]]
+) {
     stopifnot(requireNamespace("utils", quietly = TRUE))
     ## Treat all warnings as errors.
     warn <- getOption("warn")
     options("warn" = 2L)
-    installed <- rownames(utils::installed.packages())
-    remove <- intersect(pkgs, installed)
-    skip <- setdiff(pkgs, installed)
-    if (length(skip) > 0L) {
-        message(sprintf("Skipping packages: %s", toString(skip)))
+    df <- utils::installed.packages(lib.loc = lib)
+    installedPkgs <- rownames(df)
+    removePkgs <- intersect(pkgs, installedPkgs)
+    skipPkgs <- setdiff(pkgs, installedPkgs)
+    if (isTRUE(length(skipPkgs) > 0L)) {
+        message(sprintf("Skipping packages: %s", toString(skipPkgs)))
     }
-    if (length(remove) > 0L) {
-        message(sprintf("Removing packages: %s", toString(remove)))
-        utils::remove.packages(remove)
+    if (isTRUE(length(removePkgs) > 0L)) {
+        message(sprintf("Removing packages: %s", toString(removePkgs)))
+        utils::remove.packages(pkgs = removePkgs, lib = lib)
     }
     options("warn" = warn)
-    invisible(remove)
+    invisible(list(
+        "pkgs" = removePkgs,
+        "lib" = lib
+    ))
 }
