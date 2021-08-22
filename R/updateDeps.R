@@ -1,3 +1,7 @@
+## nocov start
+
+
+
 #' Update outdated dependencies
 #'
 #' Supports Bioconductor, CRAN, and GitHub packages via BiocManager.
@@ -122,3 +126,7 @@ updateDeps <- function(
         invisible(NULL)
     }
 }
+
+
+
+## nocov end
