@@ -27,6 +27,17 @@ test_that("BiocManager", {
         ),
         regexp = "is installed"
     )
+    uninstall(
+        pkgs = pkgs,
+        lib = testlib
+    )
+    expect_false(all(
+        pkgs %in% list.dirs(
+            path = testlib,
+            full.names = FALSE,
+            recursive = FALSE
+        )
+    ))
     unlink(testlib, recursive = TRUE)
 })
 

@@ -20,20 +20,16 @@ updatePackages <- function(
         dir.create(lib)
     }
     lib <- normalizePath(lib, mustWork = TRUE)
-    if (!identical(
-        x = lib,
-        y = normalizePath(.libPaths()[[1L]], mustWork = TRUE)
-    )) {
-        .libPaths(new = lib, include.site = TRUE)
-    }
     .installIfNecessary("BiocManager")
     stopifnot(requireNamespace("BiocManager", quietly = TRUE))
     biocInstalled <- BiocManager::version()
     biocCurrent <- currentBiocVersion()
     if (isTRUE(biocInstalled < biocCurrent)) {
         message(sprintf(
-            "Updating %s to %s.",
-            "Bioconductor", as.character(biocCurrent)
+            "Updating %s to %s in '%s'.",
+            "Bioconductor",
+            as.character(biocCurrent),
+            lib
         ))
         BiocManager::install(
             update = TRUE,
@@ -42,7 +38,10 @@ updatePackages <- function(
             lib = lib
         )
     }
-    message("Updating Bioconductor and CRAN packages.")
+    message(sprintf(
+        "Updating %s and %s packages in '%s'.",
+        "Bioconductor", "CRAN", pkg
+    ))
     BiocManager::repositories()
     BiocManager::install(
         pkgs = character(),
@@ -53,7 +52,10 @@ updatePackages <- function(
         lib = lib
     )
     if (isTRUE(nzchar(Sys.getenv("GITHUB_PAT")))) {
-        message("Updating GitHub packages.")
+        message(sprintf(
+            "Updating %s packages in '%s'.",
+            "GitHub", lib
+        ))
         .installIfNecessary("remotes")
         stopifnot(requireNamespace("remotes", quietly = TRUE))
         ## Suppressing messages about packages ahead of CRAN here.
