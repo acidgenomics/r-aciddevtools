@@ -71,7 +71,7 @@ updatePackages <- function(
             )
         })
     }
-    out <- .valid()
+    out <- .valid(lib = lib)
     options("warn" = warn)
     if (isTRUE(out)) {
         invisible(TRUE)

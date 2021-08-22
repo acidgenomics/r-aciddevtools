@@ -22,9 +22,9 @@
 #' @inheritParams params
 #' @param repo `character`.
 #'   Repository address(es) in the format `owner/repo`.
-#' @param release `character`.
+#' @param tag `character`.
 #'   Release version tag.
-#'   Specific release must match the tag on GitHub (e.g. "v1.0.0").
+#'   Specific release must match the tag on GitHub (e.g. `"v1.0.0"`).
 #' @param ... Passthrough arguments to `install()`.
 #'
 #' @return Invisible `list`.
