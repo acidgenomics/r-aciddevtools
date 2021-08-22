@@ -10,6 +10,10 @@ Check that unit tests provide sufficient coverage.}
 \item{dir}{\code{character(1)}.
 Directory path.}
 
+\item{lib}{\code{character}.
+Destination library directory path.
+Defaults to the first element of \code{.libPaths()}.}
+
 \item{path}{\code{character(1)}.
 File path (e.g. to package).}
 

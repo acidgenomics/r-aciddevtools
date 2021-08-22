@@ -16,6 +16,9 @@
 #'   Check that unit tests provide sufficient coverage.
 #' @param dir `character(1)`.
 #'   Directory path.
+#' @param lib `character`.
+#'   Destination library directory path.
+#'   Defaults to the first element of `.libPaths()`.
 #' @param path `character(1)`.
 #'   File path (e.g. to package).
 #' @param pkgs `character`.
