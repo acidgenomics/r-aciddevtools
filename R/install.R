@@ -1,21 +1,26 @@
+## FIXME `.isInstalled` needs to support lib argument.
+## In this case, check to see if the directory exists.
+
+
+
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2021-05-18.
+#' @note Updated 2021-08-22.
 #'
 #' @inheritParams params
 #' @param pkgs `character`.
 #'   Package names to install.
-#'   By default, strings are passed to [BiocManager::install()].
+#'   By default, strings are passed to `BiocManager::install()`.
 #'
 #'   Special cases:
 #'
 #'   - Package tarball files and remote URLs (i.e. from CRAN or Bioconductor)
 #'     are supported.
 #'   - Strings matching  "USER/REPO" are treated as GitHub repositories,
-#'     and installed using [remotes::install_github()].
+#'     and installed using `remotes::install_github()`.
 #'   - Strings ending with ".git" are treated as Git repositories, and
-#'     installed using [remotes::install_git()].
+#'     installed using `remotes::install_git()`.
 #' @param configureArgs,configureVars `character` or named `list`.
 #'   *Used only for source installs.* If a character vector with no names is
 #'   supplied, the elements are concatenated into a single string (separated by
@@ -44,7 +49,7 @@
 #'    [`install.packages()`][utils::install.packages], which means
 #'    `c("Depends", "Imports", "LinkingTo")`.
 #' @param lib `character`.
-#'   Destination library directory paths.
+#'   Destination library directory path.
 #'   Defaults to the first element of `.libPaths()`.
 #' @param type `character(1)`.
 #'   Type of package to download and install. `"source"` is recommended by
@@ -81,113 +86,153 @@ install <- function(
         is.character(pkgs),
         is.logical(autoconf) && identical(length(autoconf), 1L),
         is.logical(reinstall) && identical(length(reinstall), 1L),
+        is.character(lib) && identical(length(lib), 1L),
         is.character(type) && identical(length(type), 1L),
         isFALSE(file.exists(makevarsFile))
     )
-    warn <- getOption("warn")
+    warnDefault <- getOption("warn")
     options("warn" = 2L)
-    .installIfNecessary(c("BiocManager", "remotes"))
-    out <- lapply(
+    if (isFALSE(dir.exists(lib))) {
+        dir.create(lib)
+    }
+    lib <- normalizePath(lib, mustWork = TRUE)
+    if (!identical(
+        x = lib,
+        y = normalizePath(.libPaths()[[1L]], mustWork = TRUE)
+    )) {
+        .libPaths(new = lib, include.site = TRUE)
+    }
+    out <- vapply(
         X = pkgs,
         FUN = function(pkg) {
             stopifnot(isFALSE(file.exists(makevarsFile)))
-            ## Direct install from Git repo.
-            if (grepl(pattern = "\\.git$", x = pkg)) {
-                url <- pkg
-                pkg <- sub(
-                    pattern = "\\.git$",
-                    replacement = "",
-                    x = basename(url)
-                )
-                if (isTRUE(.isInstalled(pkg)) && !isTRUE(reinstall)) {
-                    message(sprintf("'%s' is installed.", pkg))
-                    return(pkg)
-                }
-                message(sprintf(
-                    "Installing '%s' from '%s' with '%s::%s'.",
-                    pkg, url, "remotes", "install_git"
-                ))
-                stopifnot(requireNamespace("remotes", quietly = TRUE))
-                remotes::install_git(url)
-                return(pkg)
-            }
-            ## Enable version-specific install from package tarball URLs.
             if (
+                grepl(pattern = "\\.git$", x = pkg)
+            ) {
+                mode <- "gitRepo"
+            } else if (
                 file.exists(pkg) ||
                 grepl(pattern = "^http(s)?://", x = pkg)
             ) {
-                url <- pkg
-                if (file.exists(url)) {
-                    url <- normalizePath(url)
-                }
-                pkg <- strsplit(basename(url), "[_-]")[[1L]][[1L]]
-                if (isTRUE(.isInstalled(pkg)) && !isTRUE(reinstall)) {
-                    message(sprintf("'%s' is installed.", pkg))
-                    return(pkg)
-                }
-                ## Alternatively, can use `devtools::install_version()` here.
-                message(sprintf(
-                    "Installing '%s' from '%s' with '%s::%s'.",
-                    pkg, url, "utils", "install.packages"
-                ))
-                utils::install.packages(
-                    pkgs = url,
-                    repos = NULL,
-                    type = "source"
-                )
-                return(pkg)
-            }
-            if (isTRUE(.isInstalled(pkg)) && !isTRUE(reinstall)) {
-                message(sprintf("'%s' is installed.", basename(pkg)))
-                return(pkg)
-            }
-            stopifnot(requireNamespace("BiocManager", quietly = TRUE))
-            args <- list()
-            if (grepl(pattern = "^[^/]+/[^/]+$", x = pkg)) {
-                ## remotes-specific (Git).
-                args[["upgrade"]] <- "always"
+                mode <- "tarball"
+            } else if (
+                grepl(pattern = "^[^/]+/[^/]+$", x = pkg)
+            ) {
+                mode <- "gitHub"
             } else {
-                ## BiocManager-specific (Bioconductor/CRAN).
-                args <- append(
-                    x = args,
-                    values = list(
-                        "ask" = FALSE,
-                        "force" = TRUE,
-                        "site_repository" = "https://r.acidgenomics.com",
-                        "update" = FALSE
-                    )
-                )
+                mode <- "default"
             }
-            args <- append(
-                x = args,
-                values = list(
-                    "pkgs" = pkg,
-                    "checkBuilt" = TRUE,
-                    "configure.args" = configureArgs,
-                    "configure.vars" = configureVars,
-                    "dependencies" = dependencies,
-                    "type" = type
-                )
+            ## Standard arguments, shared across all installer calls.
+            args <- list(
+                "checkBuilt" = TRUE,
+                "configure.args" = configureArgs,
+                "configure.vars" = configureVars,
+                "dependencies" = dependencies,
+                "lib" = lib,
+                "type" = type
             )
+            switch(
+                EXPR = mode,
+                "default" = {
+                    whatPkg <- "BiocManager"
+                    whatFun <- "install"
+                    args <- append(
+                        x = list(
+                            "pkgs" = pkg,
+                            "ask" = FALSE,
+                            "force" = TRUE,
+                            "site_repository" = "https://r.acidgenomics.com",
+                            "update" = FALSE
+                        ),
+                        values = args
+                    )
+                },
+                "gitHub" = {
+                    whatPkg <- "remotes"
+                    whatFun <- "install_github"
+                    args <- append(
+                        x = list(
+                            "repo" = pkg,
+                            "upgrade" = "always"
+                        ),
+                        values = args
+                    )
+                },
+                "gitRepo" = {
+                    url <- pkg
+                    pkg <- sub(
+                        pattern = "\\.git$",
+                        replacement = "",
+                        x = basename(url)
+                    )
+                    whatPkg <- "remotes"
+                    whatFun <- "install_git"
+                    args <- append(
+                        x = list(
+                            "url" = url
+                        ),
+                        values = args
+                    )
+                },
+                "tarball" = {
+                    url <- pkg
+                    if (file.exists(url)) {
+                        url <- normalizePath(url)
+                    }
+                    pkg <- strsplit(basename(url), "[_-]")[[1L]][[1L]]
+                    whatPkg <- "utils"
+                    whatFun <- "install.packages"
+                    args <- append(
+                        x = list(
+                            "pkgs" = url,
+                            "repos" = NULL,
+                            "type" = "source"
+                        ),
+                        values = args
+                    )
+                }
+            )
+            args <- Filter(f = Negate(is.null), x = args)
+            if (
+                isTRUE(.isInstalled(pkg, lib = lib)) &&
+                !isTRUE(reinstall)
+            ) {
+                message(sprintf("'%s' is installed in '%s'.", pkg, lib))
+                return(pkg)
+            }
+            message(sprintf(
+                "Installing '%s' with '%s::%s' in '%s'.",
+                pkg, whatPkg, whatFun, lib
+            ))
+            .installIfNecessary(whatPkg, lib = lib)
+            stopifnot(requireNamespace(whatPkg, quietly = TRUE))
             if (isTRUE(autoconf)) {
                 args <- .autoconf(args)
             }
-            message(sprintf(
-                "Installing '%s' with '%s::%s'.",
-                pkg, "BiocManager", "install"
-            ))
-            pkgTypeDefault <- getOption("pkgType")
-            options("pkgType" = args[["type"]])
-            do.call(what = BiocManager::install, args = args)
-            options("pkgType" = pkgTypeDefault)
+            if (isTRUE("type" %in% names(args))) {
+                pkgTypeDefault <- getOption("pkgType")
+                options("pkgType" = args[["type"]])
+            }
+            what <- get(
+                x = whatFun,
+                envir = asNamespace(whatPkg),
+                inherits = FALSE
+            )
+            stopifnot(is.function(what))
+            do.call(what = what, args = args)
+            if (isTRUE("type" %in% names(args))) {
+                options("pkgType" = pkgTypeDefault)
+            }
             if (isTRUE(autoconf) && file.exists(makevarsFile)) {
                 file.remove(makevarsFile)
             }
             pkg
-        }
+        },
+        FUN.VALUE = character(1L),
+        USE.NAMES = FALSE
     )
-    options("warn" = warn)
-    invisible(out)
+    options("warn" = warnDefault)
+    invisible(file.path(lib, out))
 }
 
 

@@ -3,9 +3,17 @@
 #' @note Updated 2020-08-11.
 #' @noRd
 #'
+#' @param x `character`.
+#'   R package names.
+#' @param lib `character(1)` or `NULL`.
+#'   R package library.
+#'   If left `NULL`, checks all paths defined in `.libPaths`.
+#'
 #' @return `logical(1)`.
-.isInstalled <- function(pkgs) {
-    basename(pkgs) %in% rownames(utils::installed.packages())
+.isInstalled <- function(x, lib = NULL) {
+    stopifnot(requireNamespace("utils", quietly = TRUE))
+    df <- installed.packages(lib.loc = lib)
+    basename(x) %in% rownames(df)
 }
 
 
