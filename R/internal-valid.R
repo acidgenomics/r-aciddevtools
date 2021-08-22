@@ -1,15 +1,21 @@
 #' Wrapper for BiocManager validity checks
 #'
-#' @note Updated 2020-12-03.
+#' @note Updated 2021-08-22.
 #' @noRd
 #'
 #' @return Passthrough to `BiocManager::valid`.
-.valid <- function() {
+.valid <- function(
+    lib = NULL
+) {
     tryCatch(
-        expr = BiocManager::valid(),
+        expr = BiocManager::valid(
+            lib.loc = lib
+        ),
         warning = function(w) {
             result <- utils::capture.output(suppressWarnings({
-                BiocManager::valid()
+                BiocManager::valid(
+                    lib.loc = lib
+                )
             }))
             cat(result, sep = "\n")
             stop(w)

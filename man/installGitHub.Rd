@@ -10,6 +10,10 @@ installGitHub(repo, tag, lib = .libPaths()[[1L]], reinstall = TRUE, ...)
 \item{repo}{\code{character}.
 Repository address(es) in the format \code{owner/repo}.}
 
+\item{tag}{\code{character}.
+Release version tag.
+Specific release must match the tag on GitHub (e.g. \code{"v1.0.0"}).}
+
 \item{lib}{\code{character}.
 Destination library directory path.
 Defaults to the first element of \code{.libPaths()}.}
@@ -18,10 +22,6 @@ Defaults to the first element of \code{.libPaths()}.}
 Force reinstallation of any existing packages.}
 
 \item{...}{Passthrough arguments to \code{install()}.}
-
-\item{release}{\code{character}.
-Release version tag.
-Specific release must match the tag on GitHub (e.g. "v1.0.0").}
 }
 \value{
 Invisible \code{list}.
