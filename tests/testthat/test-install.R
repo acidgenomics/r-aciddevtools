@@ -1,18 +1,17 @@
 context("install")
 
 testlib <- "testlib"
-unlink(testlib, recursive = TRUE)
-dir.create(testlib)
 
 test_that("BiocManager", {
+    unlink(testlib, recursive = TRUE)
+    dir.create(testlib)
     pkgs <- "BiocGenerics"
-    out <- install(
+    install(
         pkgs = pkgs,
         lib = testlib,
         dependencies = FALSE,
         reinstall = TRUE
     )
-    expect_identical(basename(out), pkgs)
     expect_true(all(
         pkgs %in% list.dirs(
             path = testlib,
@@ -28,6 +27,91 @@ test_that("BiocManager", {
         ),
         regexp = "is installed"
     )
+    unlink(testlib, recursive = TRUE)
 })
 
-unlink(testlib, recursive = TRUE)
+test_that("Acid Genomics drat repo", {
+    unlink(testlib, recursive = TRUE)
+    dir.create(testlib)
+    pkgs <- "goalie"
+    install(
+        pkgs = pkgs,
+        lib = testlib,
+        dependencies = FALSE,
+        reinstall = TRUE
+    )
+    expect_true(all(
+        pkgs %in% list.dirs(
+            path = testlib,
+            full.names = FALSE,
+            recursive = FALSE
+        )
+    ))
+    expect_message(
+        object = install(
+            pkgs = pkgs,
+            lib = testlib,
+            reinstall = FALSE
+        ),
+        regexp = "is installed"
+    )
+    unlink(testlib, recursive = TRUE)
+})
+
+test_that("Git repo", {
+    unlink(testlib, recursive = TRUE)
+    dir.create(testlib)
+    pkgNames <- "goalie"
+    pkgs <- paste0("https://github.com/acidgenomics/r-", pkgNames, ".git")
+    install(
+        pkgs = pkgs,
+        lib = testlib,
+        dependencies = FALSE,
+        reinstall = TRUE
+    )
+    expect_true(all(
+        pkgNames %in% list.dirs(
+            path = testlib,
+            full.names = FALSE,
+            recursive = FALSE
+        )
+    ))
+    expect_message(
+        object = install(
+            pkgs = pkgs,
+            lib = testlib,
+            reinstall = FALSE
+        ),
+        regexp = "is installed"
+    )
+    unlink(testlib, recursive = TRUE)
+})
+
+test_that("GitHub", {
+    unlink(testlib, recursive = TRUE)
+    dir.create(testlib)
+    pkgNames <- "goalie"
+    pkgs <- paste0("acidgenomics/r-", pkgNames)
+    install(
+        pkgs = pkgs,
+        lib = testlib,
+        dependencies = FALSE,
+        reinstall = TRUE
+    )
+    expect_true(all(
+        pkgNames %in% list.dirs(
+            path = testlib,
+            full.names = FALSE,
+            recursive = FALSE
+        )
+    ))
+    expect_message(
+        object = install(
+            pkgs = pkgs,
+            lib = testlib,
+            reinstall = FALSE
+        ),
+        regexp = "is installed"
+    )
+    unlink(testlib, recursive = TRUE)
+})
