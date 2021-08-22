@@ -79,8 +79,8 @@ on macOS. Refer to \url{macOS development tools} for details.}
 Force reinstallation of any existing packages.}
 }
 \value{
-Invisible \code{character}.
-Package names defined in the \code{pkgs} argument.
+Invisible \code{list}.
+Contains information on \code{pkgs} and \code{lib} defined.
 }
 \description{
 Install packages from Bioconductor, CRAN, or a Git remote

@@ -57,8 +57,8 @@
 #'
 #'   [macOS development tools]: https://cran.r-project.org/bin/macosx/tools/
 #'
-#' @return Invisible `character`.
-#'   Package names defined in the `pkgs` argument.
+#' @return Invisible `list`.
+#'   Contains information on `pkgs` and `lib` defined.
 #'
 #' @examples
 #' ## > install(pkgs = c("DESeq2", "edgeR"))
@@ -143,11 +143,19 @@ install <- function(
                     )
                 },
                 "gitHub" = {
+                    repo <- pkg
+                    pkg <- basename(repo)
+                    pkg <- sub(
+                        pattern = "^r-",
+                        replacement = "",
+                        x = pkg
+                    )
                     whatPkg <- "remotes"
                     whatFun <- "install_github"
                     args <- append(
                         x = list(
-                            "repo" = pkg,
+                            "repo" = repo,
+                            "force" = TRUE,
                             "upgrade" = "always"
                         ),
                         values = args
@@ -158,13 +166,19 @@ install <- function(
                     pkg <- sub(
                         pattern = "\\.git$",
                         replacement = "",
-                        x = basename(url)
+                        x = basename(pkg)
+                    )
+                    pkg <- sub(
+                        pattern = "^r-",
+                        replacement = "",
+                        x = pkg
                     )
                     whatPkg <- "remotes"
                     whatFun <- "install_git"
                     args <- append(
                         x = list(
-                            "url" = url
+                            "url" = url,
+                            "force" = TRUE
                         ),
                         values = args
                     )
@@ -193,7 +207,7 @@ install <- function(
                 !isTRUE(reinstall)
             ) {
                 message(sprintf("'%s' is installed in '%s'.", pkg, lib))
-                return(pkg)
+                return(FALSE)
             }
             message(sprintf(
                 "Installing '%s' with '%s::%s' in '%s'.",
@@ -221,13 +235,17 @@ install <- function(
             if (isTRUE(autoconf) && file.exists(makevarsFile)) {
                 file.remove(makevarsFile)
             }
-            pkg
+            TRUE
         },
-        FUN.VALUE = character(1L),
+        FUN.VALUE = logical(1L),
         USE.NAMES = FALSE
     )
     options("warn" = warnDefault)
-    invisible(file.path(lib, out))
+    invisible(list(
+        "pkgs" = pkgs,
+        "lib" = lib,
+        "installed" = out
+    ))
 }
 
 
@@ -237,7 +255,7 @@ install <- function(
 #' This function will dynamically change configure arguments for some tricky
 #' to install packages.
 #'
-#' @note Updated 2021-05-03.
+#' @note Updated 2021-08-22.
 #' @noRd
 #'
 #' @param args `list`.
@@ -247,6 +265,17 @@ install <- function(
 #'   Arguments list to be passed to `BiocManager::install`.
 .autoconf <- function(args) {
     pkg <- args[["pkgs"]]
+    ## This handling currently applies to remotes `url` pass-in.
+    if (is.null(pkg)) {
+        if (!is.null(args[["repo"]])) {
+            pkg <- basename(args[["repo"]])
+            pkg <- sub(pattern = "^r-", replacement = "", x = pkg)
+        } else if (!is.null(args[["url"]])) {
+            pkg <- basename(args[["url"]])
+            pkg <- sub(pattern = "\\.git$", replacement = "", x = pkg)
+            pkg <- sub(pattern = "^r-", replacement = "", x = pkg)
+        }
+    }
     makevarsFile <- file.path("~", ".R", "Makevars")
     stopifnot(
         is.character(pkg) && length(pkg) == 1L,
