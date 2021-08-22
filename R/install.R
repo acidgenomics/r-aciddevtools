@@ -1,8 +1,3 @@
-## FIXME `.isInstalled` needs to support lib argument.
-## In this case, check to see if the directory exists.
-
-
-
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
