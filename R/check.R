@@ -1,3 +1,7 @@
+## nocov start
+
+
+
 #' Check package
 #'
 #' @export
@@ -76,3 +80,7 @@ check <- function(
     }
     invisible(TRUE)
 }
+
+
+
+## nocov end

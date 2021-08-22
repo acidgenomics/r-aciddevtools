@@ -1,3 +1,7 @@
+## nocov start
+
+
+
 #' Update all installed packages
 #'
 #' @export
@@ -17,7 +21,7 @@ updatePackages <- function(
     warn <- getOption("warn")
     options("warn" = 2L)
     if (isFALSE(dir.exists(lib))) {
-        dir.create(lib)
+        dir.create(lib)  # nocov
     }
     lib <- normalizePath(lib, mustWork = TRUE)
     .installIfNecessary("BiocManager")
@@ -79,3 +83,7 @@ updatePackages <- function(
         out
     }
 }
+
+
+
+## nocov end

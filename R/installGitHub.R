@@ -62,7 +62,7 @@ installGitHub <- function(
         identical(length(repo), length(tag))
     )
     if (isFALSE(dir.exists(lib))) {
-        dir.create(lib)
+        dir.create(lib)  # nocov
     }
     lib <- normalizePath(lib, mustWork = TRUE)
     if (!identical(
