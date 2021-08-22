@@ -1,3 +1,7 @@
+## nocov start
+
+
+
 #' Install recommended R packages
 #'
 #' @export
@@ -485,3 +489,7 @@ installRecommendedPackages <- function(
     message(okMsg)
     invisible(TRUE)
 }
+
+
+
+## nocov end

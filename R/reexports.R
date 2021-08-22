@@ -256,11 +256,13 @@ rcmdcheck <- function(path = ".", cran = FALSE) {
     if (isTRUE(cran)) {
         args <- c(args, "--as-cran")
     }
-    rcmdcheck::rcmdcheck(
+    out <- rcmdcheck::rcmdcheck(
         path = path,
         args = args,
         error_on = "note"
     )
+    stopifnot(identical(out[["status"]], 0L))
+    invisible(out)
 }
 
 

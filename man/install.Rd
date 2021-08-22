@@ -18,16 +18,16 @@ install(
 \arguments{
 \item{pkgs}{\code{character}.
 Package names to install.
-By default, strings are passed to \code{\link[BiocManager:install]{BiocManager::install()}}.
+By default, strings are passed to \code{BiocManager::install()}.
 
 Special cases:
 \itemize{
 \item Package tarball files and remote URLs (i.e. from CRAN or Bioconductor)
 are supported.
 \item Strings matching  "USER/REPO" are treated as GitHub repositories,
-and installed using \code{\link[remotes:install_github]{remotes::install_github()}}.
+and installed using \code{remotes::install_github()}.
 \item Strings ending with ".git" are treated as Git repositories, and
-installed using \code{\link[remotes:install_git]{remotes::install_git()}}.
+installed using \code{remotes::install_git()}.
 }}
 
 \item{configureArgs, configureVars}{\code{character} or named \code{list}.
@@ -63,7 +63,7 @@ these packages depend on/link to/import/suggest.
 }}
 
 \item{lib}{\code{character}.
-Destination library directory paths.
+Destination library directory path.
 Defaults to the first element of \code{.libPaths()}.}
 
 \item{type}{\code{character(1)}.
@@ -86,7 +86,7 @@ Package names defined in the \code{pkgs} argument.
 Install packages from Bioconductor, CRAN, or a Git remote
 }
 \note{
-Updated 2021-05-18.
+Updated 2021-05-20.
 }
 \examples{
 ## > install(pkgs = c("DESeq2", "edgeR"))

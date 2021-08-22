@@ -4,17 +4,33 @@
 \alias{check}
 \title{Check package}
 \usage{
-check(path = ".", cran = FALSE, biocCheck = TRUE, coverage = TRUE)
+check(
+  path = ".",
+  lints = TRUE,
+  urls = TRUE,
+  cran = FALSE,
+  biocCheck = TRUE,
+  coverage = TRUE
+)
 }
 \arguments{
 \item{path}{\code{character(1)}.
 File path (e.g. to package).}
 
+\item{lints}{\code{logical(1)}.
+Perform \code{lintr::lint_package()} checks.}
+
+\item{urls}{\code{logical(1)}.
+Perform \code{urlchecker::url_check()} checks.}
+
 \item{cran}{\code{logical(1)}.
 Perform additional CRAN submission checks.}
 
 \item{biocCheck}{\code{logical(1)}.
-Perform additional Bioconductor checks.}
+Perform additional Bioconductor checks. \code{BiocCheck} is only called when we
+detect \code{"biocViews"} metadata in \code{DESCRIPTION} file, and when the directory
+name is identical to the package name. \code{BiocCheck} currently errors on
+directory names that differ from package name.}
 
 \item{coverage}{\code{logical(1)}.
 Check that unit tests provide sufficient coverage.}
@@ -26,7 +42,7 @@ Check that unit tests provide sufficient coverage.}
 Check package
 }
 \note{
-Updated 2021-07-15.
+Updated 2021-08-20.
 }
 \examples{
 ## > check()

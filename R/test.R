@@ -1,7 +1,7 @@
 #' Execute test_that tests in a package
 #'
 #' @export
-#' @note Updated 2021-07-15.
+#' @note Updated 2021-08-20.
 #'
 #' @inheritParams params
 #'
@@ -25,13 +25,14 @@ test <- function(path = ".") {
     )
     maxFails <- getOption("testthat.progress.max_fails")
     options("testthat.progress.max_fails" = 1L)
-    res <- testthat::test_dir(
+    out <- testthat::test_dir(
         path = testsDir,
         load_helpers = TRUE,
         load_package = "source",
         stop_on_failure = TRUE,
         stop_on_warning = TRUE
     )
+    stopifnot(isTRUE(length(out[[length(out)]][["results"]]) > 0L))
     options("testthat.progress.max_fails" = maxFails)
-    invisible(res)
+    invisible(out)
 }
