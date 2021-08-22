@@ -254,6 +254,8 @@ install <- function(
 
 
 
+## nocov start
+
 #' Autoconfigure a specified package
 #'
 #' This function will dynamically change configure arguments for some tricky
@@ -361,3 +363,5 @@ install <- function(
     )
     args
 }
+
+## nocov end
