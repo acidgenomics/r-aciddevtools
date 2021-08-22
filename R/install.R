@@ -43,9 +43,6 @@
 #'  - Can pass `NA`, the default for
 #'    [`install.packages()`][utils::install.packages], which means
 #'    `c("Depends", "Imports", "LinkingTo")`.
-#' @param lib `character`.
-#'   Destination library directory path.
-#'   Defaults to the first element of `.libPaths()`.
 #' @param type `character(1)`.
 #'   Type of package to download and install. `"source"` is recommended by
 #'   default, but `"binary"` can be used on macOS or Windows to install
@@ -188,7 +185,14 @@ install <- function(
                     if (file.exists(url)) {
                         url <- normalizePath(url)
                     }
-                    pkg <- strsplit(basename(url), "[_-]")[[1L]][[1L]]
+                    pkg <- basename(url)
+                    pkg <- sub(pattern = "^r-", replacement = "", x = pkg)
+                    pkg <- strsplit(
+                        x = pkg,
+                        split = "[_-]",
+                        fixed = FALSE
+                    )
+                    pkg <- pkg[[1L]][[1L]]
                     whatPkg <- "utils"
                     whatFun <- "install.packages"
                     args <- append(
@@ -201,7 +205,7 @@ install <- function(
                     )
                 }
             )
-            args <- Filter(f = Negate(is.null), x = args)
+            args <- args[unique(names(args))]
             if (
                 isTRUE(.isInstalled(pkg, lib = lib)) &&
                 !isTRUE(reinstall)

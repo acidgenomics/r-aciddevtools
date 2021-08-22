@@ -1,15 +1,8 @@
-## Passing tar.gz release file from GitHub (`tarball_url` key) currently results
-## in untar2 "skipping pax global extended headers" warning in
-## `install.packages()` call below. Note that use of `zipball_url` doesn't work
-## well, resulting in `rawToChar` embedded nul error.
-
-
-
 #' Install packages from GitHub
 #'
 #' @details
 #' This variant doesn't require `GITHUB_PAT`.
-#' If you have a `GITHUB_PAT` defined, can use [install()] directly instead.
+#' If you have a `GITHUB_PAT` defined, can use `install()` directly instead.
 #' Intended for use inside container images, where a PAT may not be used.
 #'
 #' @section GitHub API:
@@ -24,41 +17,31 @@
 #'   `https://github.com/:owner/:repo/archive/:tag.tar.gz`
 #'
 #' @export
-#' @note Updated 2020-10-06.
+#' @note Updated 2021-08-22.
 #'
 #' @inheritParams params
 #' @param repo `character`.
 #'   Repository address(es) in the format `owner/repo`.
 #' @param release `character`.
 #'   Release version tag.
-#'   Defaults to latest version available.
 #'   Specific release must match the tag on GitHub (e.g. "v1.0.0").
+#' @param ... Passthrough arguments to `install()`.
 #'
-#' @return Invisible `character`.
-#'   Repository address defined in `repo` argument.
+#' @return Invisible `list`.
+#'   Metadata containing `repo`, `lib`, and whether packages were installed.
 #'
 #' @seealso
-#' - `remotes::install_github`.
-#' - `install.packages`.
+#' - `remotes::install_github()`.
+#' - `install.packages()`.
 #'
 #' @examples
-#' ## Install latest release, if necessary.
-#' ## > installGitHub(
-#' ## >     repo = c(
-#' ## >         "acidgenomics/goalie",
-#' ## >         "acidgenomics/syntactic"
-#' ## >     ),
-#' ## >     release = "latest",
-#' ## >     reinstall = FALSE
-#' ## > )
-#'
 #' ## Force reinstallation of specific versions.
 #' ## > installGitHub(
 #' ## >     repo = c(
 #' ## >         "acidgenomics/goalie",
 #' ## >         "acidgenomics/syntactic"
 #' ## >     ),
-#' ## >     release = c(
+#' ## >     tag = c(
 #' ## >         "v0.4.8",
 #' ## >         "v0.4.2"
 #' ## >     ),
@@ -66,68 +49,54 @@
 #' ## > )
 installGitHub <- function(
     repo,
-    release = "latest",
-    reinstall = TRUE
+    tag,
+    lib = .libPaths()[[1L]],
+    reinstall = TRUE,
+    ...
 ) {
     stopifnot(
         requireNamespace("utils", quietly = TRUE),
         all(grepl(x = repo, pattern = "^[^/]+/[^/]+$")),
-        is.character(release) && identical(length(release), 1L),
-        is.logical(reinstall) && identical(length(reinstall), 1L)
+        is.character(tag) && identical(length(tag), 1L),
+        is.logical(reinstall) && identical(length(reinstall), 1L),
+        identical(length(repo), length(tag))
     )
-    if (length(repo) > 1L && identical(release, "latest")) {
-        release <- rep(release, times = length(repo))
+    if (isFALSE(dir.exists(lib))) {
+        dir.create(lib)
     }
-    stopifnot(identical(length(repo), length(release)))
+    lib <- normalizePath(lib, mustWork = TRUE)
+    if (!identical(
+        x = lib,
+        y = normalizePath(.libPaths()[[1L]], mustWork = TRUE)
+    )) {
+        .libPaths(new = lib, include.site = TRUE)
+    }
     out <- mapply(
         repo = repo,
-        release = release,
-        MoreArgs = list(reinstall = reinstall),
-        FUN = function(repo, release, reinstall) {
-            ## > owner <- dirname(repo)
+        tag = tag,
+        MoreArgs = list("reinstall" = reinstall),
+        FUN = function(repo, tag, reinstall) {
             pkg <- basename(repo)
+            pkg <- sub(pattern = "^r-", replacement = "", x = pkg)
             if (
-                !isTRUE(reinstall) &&
-                isTRUE(pkg %in% rownames(utils::installed.packages()))
+                isFALSE(reinstall) &&
+                .isInstalled(pkg, lib = lib)
             ) {
-                message(sprintf("'%s' is already installed.", pkg))
-                return(repo)
+                message(sprintf(
+                    "'%s' is installed in '%s'.",
+                    pkg, lib
+                ))
+                return(FALSE)
             }
-            ## Get the tarball URL.
-            if (identical(release, "latest")) {
-                jsonUrl <- paste(
-                    "https://api.github.com",
-                    "repos",
-                    repo,
-                    "releases",
-                    "latest",
-                    sep = "/"
-                )
-                json <- withCallingHandlers(expr = {
-                    tryCatch(expr = readLines(jsonUrl))
-                }, warning = function(w) {
-                    ## Ignore warning about missing final line in JSON return.
-                    if (grepl(
-                        pattern = "incomplete final line",
-                        x = conditionMessage(w)
-                    )) {
-                        invokeRestart("muffleWarning")
-                    }
-                })
-                ## Extract the tarball URL from the JSON output using base R.
-                x <- unlist(strsplit(x = json, split = ",", fixed = TRUE))
-                x <- grep(pattern = "tarball_url", x = x, value = TRUE)
-                x <- strsplit(x = x, split = "\"", fixed = TRUE)[[1L]][[4L]]
-                url <- x
-            } else {
-                url <- paste(
-                    "https://github.com",
-                    repo,
-                    "archive",
-                    paste0(release, ".tar.gz"),
-                    sep = "/"
-                )
-            }
+            url <- paste(
+                "https://github.com",
+                repo,
+                "archive",
+                "refs",
+                "tags",
+                paste0(tag, ".tar.gz"),
+                sep = "/"
+            )
             tarfile <- tempfile(fileext = ".tar.gz")
             utils::download.file(
                 url = url,
@@ -160,16 +129,21 @@ installGitHub <- function(
                 identical(length(pkgdir), 1L),
                 isTRUE(dir.exists(pkgdir))
             )
-            utils::install.packages(
+            install(
                 pkgs = pkgdir,
-                repos = NULL,
-                type = "source"
+                lib = lib,
+                reinstall = reinstall,
+                ...
             )
             ## Clean up temporary files.
             file.remove(tarfile)
             unlink(exdir, recursive = TRUE)
-            repo
+            TRUE
         }
     )
-    invisible(out)
+    invisible(list(
+        "repo" = repo,
+        "lib" = lib,
+        "installed" = out
+    ))
 }
