@@ -4,18 +4,23 @@
 \alias{updatePackages}
 \title{Update all installed packages}
 \usage{
-updatePackages()
+updatePackages(lib = .libPaths()[[1L]])
+}
+\arguments{
+\item{lib}{\code{character}.
+Destination library directory path.
+Defaults to the first element of \code{.libPaths()}.}
 }
 \value{
 Invisible \code{TRUE} or console output.
 Whether installation passes Bioconductor validity checks.
-See \code{\link[BiocManager:valid]{BiocManager::valid()}} for details.
+See \code{BiocManager::valid()} for details.
 }
 \description{
 Update all installed packages
 }
 \note{
-Updated 2020-12-08.
+Updated 2021-08-22.
 }
 \examples{
 ## > updatePackages()
