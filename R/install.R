@@ -88,12 +88,6 @@ install <- function(
         dir.create(lib)
     }
     lib <- normalizePath(lib, mustWork = TRUE)
-    if (!identical(
-        x = lib,
-        y = normalizePath(.libPaths()[[1L]], mustWork = TRUE)
-    )) {
-        .libPaths(new = lib, include.site = TRUE)
-    }
     out <- vapply(
         X = pkgs,
         FUN = function(pkg) {
