@@ -12,7 +12,7 @@
 #' @return `logical(1)`.
 .isInstalled <- function(x, lib = NULL) {
     stopifnot(requireNamespace("utils", quietly = TRUE))
-    df <- installed.packages(lib.loc = lib)
+    df <- utils::installed.packages(lib.loc = lib)
     basename(x) %in% rownames(df)
 }
 

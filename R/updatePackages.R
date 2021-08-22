@@ -40,7 +40,7 @@ updatePackages <- function(
     }
     message(sprintf(
         "Updating %s and %s packages in '%s'.",
-        "Bioconductor", "CRAN", pkg
+        "Bioconductor", "CRAN", lib
     ))
     BiocManager::repositories()
     BiocManager::install(
