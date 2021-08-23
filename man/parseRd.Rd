@@ -2,13 +2,16 @@
 % Please edit documentation in R/parseRd.R
 \name{parseRd}
 \alias{parseRd}
+\alias{RdTags}
 \title{Parse R documentation}
 \usage{
 parseRd(object, tag)
+
+RdTags(object)
 }
 \arguments{
 \item{object}{\code{Rd}.
-R documentation, returned from \code{\link[tools:Rdutils]{tools::Rd_db()}}}
+R documentation, returned from \code{tools::Rd_db()}.}
 
 \item{tag}{\code{character(1)}.
 Desired metadata type.
@@ -29,6 +32,11 @@ These types are supported:
 Modified version of \code{tools:::.Rd_get_metadata()} that keeps whitespace and
 returns \code{character} instead of \code{matrix}.
 }
+\section{Functions}{
+\itemize{
+\item \code{RdTags}: Modified version of the unexported \code{tools:::RdTags()} function.
+}}
+
 \note{
 Updated 2020-04-12.
 }
@@ -43,5 +51,5 @@ examples <- parseRd(Rd, tag = "examples")
 print(examples)
 }
 \seealso{
-\code{\link[tools:Rdutils]{tools::Rd_db()}}.
+\code{tools::Rd_db()}.
 }
