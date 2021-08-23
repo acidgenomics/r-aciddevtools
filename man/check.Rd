@@ -5,7 +5,7 @@
 \title{Check package}
 \usage{
 check(
-  path = ".",
+  path = getwd(),
   lints = TRUE,
   urls = TRUE,
   cran = FALSE,

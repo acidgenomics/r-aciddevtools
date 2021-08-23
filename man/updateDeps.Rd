@@ -5,7 +5,7 @@
 \title{Update outdated dependencies}
 \usage{
 updateDeps(
-  pkg = ".",
+  pkg = getwd(),
   type = c("Depends", "Imports", "LinkingTo", "Suggests", "Enhances")
 )
 }

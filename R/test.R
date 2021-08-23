@@ -9,7 +9,7 @@
 #'
 #' @examples
 #' ## > test()
-test <- function(path = ".") {
+test <- function(path = getwd()) {
     path <- normalizePath(path = path, mustWork = TRUE)
     testsDir <- file.path(path, "tests", "testthat")
     if (!isTRUE(dir.exists(testsDir))) {
