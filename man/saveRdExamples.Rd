@@ -35,7 +35,5 @@ saveRdExamples(
     package = "base",
     dir = "example"
 )
-
-## Clean up.
 unlink("example", recursive = TRUE)
 }

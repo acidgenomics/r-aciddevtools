@@ -1,10 +1,16 @@
+## FIXME Move this to AcidBase.
+
+
+
 #' Find installed packages
 #'
-#' Includes "source" column, indicating whether package is from CRAN,
+#' Includes `"source"` column, indicating whether package is from CRAN,
 #' Bioconductor, or from a remote (i.e. GitHub, GitLab) install.
 #'
 #' @export
-#' @note Updated 2020-08-18.
+#' @note Updated 2021-08-23.
+#'
+#' @inheritParams params
 #'
 #' @seealso
 #' - `sessioninfo::package_info()`.
@@ -13,14 +19,15 @@
 #' @examples
 #' x <- installedPackages()
 #' table(x[["source"]])
-installedPackages <- function() {
+installedPackages <- function(lib = NULL) {
     stopifnot(
         requireNamespace("syntactic", quietly = TRUE),
         requireNamespace("utils", quietly = TRUE)
     )
-    data <- as.data.frame(utils::installed.packages())
-    colnames(data) <- syntactic::camelCase(colnames(data), strict = TRUE)
-    pkgs <- data[["package"]]
+    df <- utils::installed.packages(lib.loc = lib)
+    df <- as.data.frame(df)
+    colnames(df) <- syntactic::camelCase(colnames(df), strict = TRUE)
+    pkgs <- df[["package"]]
     isAcid <- function(desc) {
         grepl("^https://.+\\.acidgenomics\\.com", desc[["URL"]])
     }
@@ -55,13 +62,13 @@ installedPackages <- function() {
             } else if (isTRUE(isAcid(desc))) {
                 "Acid Genomics"
             } else {
-                ## Using "local" instead of `NA_character_` matches the
+                ## Using "local" instead of `NA_character_`, matching the
                 ## return of `sessioninfo::session_info()`.
                 "local"
             }
         },
         FUN.VALUE = character(1L)
     )
-    data[["source"]] <- as.factor(source)
-    data
+    df[["source"]] <- as.factor(source)
+    df
 }
