@@ -20,6 +20,7 @@
 #' tabular(df)
 tabular <- function(x) {
     stopifnot(is.data.frame(x))
+    ## nocov start
     align <- function(x) {
         if (is.numeric(x)) {
             "r"
@@ -27,6 +28,7 @@ tabular <- function(x) {
             "l"
         }
     }
+    ## nocov end
     align <- vapply(x, align, character(1L))
     cols <- lapply(x, format)
     contents <- do.call(

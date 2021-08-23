@@ -26,7 +26,7 @@ uninstall <- function(
     removePkgs <- intersect(pkgs, installedPkgs)
     skipPkgs <- setdiff(pkgs, installedPkgs)
     if (isTRUE(length(skipPkgs) > 0L)) {
-        message(sprintf("Skipping packages: %s", toString(skipPkgs)))
+        message(sprintf("Skipping packages: %s", toString(skipPkgs)))  # nocov
     }
     if (isTRUE(length(removePkgs) > 0L)) {
         message(sprintf("Removing packages: %s", toString(removePkgs)))

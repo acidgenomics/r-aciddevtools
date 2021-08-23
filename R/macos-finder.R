@@ -1,3 +1,7 @@
+## nocov start
+
+
+
 #' Open Finder to the current directory
 #'
 #' @export
@@ -20,3 +24,7 @@ finder <- function(path = getwd()) {
     path <- normalizePath(path, mustWork = TRUE)
     AcidBase::shell(command = "open", args = path)
 }
+
+
+
+## nocov end

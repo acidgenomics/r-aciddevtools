@@ -79,9 +79,6 @@ install <- function(
     reinstall = TRUE
 ) {
     makevarsFile <- file.path("~", ".R", "Makevars")
-    if (is.null(type)) {
-        type <- "source"
-    }
     stopifnot(
         requireNamespace("utils", quietly = TRUE),
         is.character(pkgs),

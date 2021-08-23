@@ -1,3 +1,7 @@
+## nocov start
+
+
+
 #' Is a package installed?
 #'
 #' @note Updated 2020-08-11.
@@ -43,3 +47,7 @@
 .isMacOS <- function() {
     isTRUE(grepl(pattern = "darwin", x = R.Version()[["os"]]))
 }
+
+
+
+## nocov end

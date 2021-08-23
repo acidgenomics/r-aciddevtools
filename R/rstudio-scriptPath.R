@@ -1,3 +1,7 @@
+## nocov start
+
+
+
 #' Script path
 #'
 #' @export
@@ -17,3 +21,7 @@ scriptPath <- function() {
     x <- normalizePath(x)
     x
 }
+
+
+
+## nocov end
