@@ -2,12 +2,12 @@ context("saveRdExamples")
 
 test_that("saveRdExamples", {
     rd <- c("do.call", "droplevels")
-    dir <- "testdata"
-    unlink(dir, recursive = TRUE)
+    testdir <- file.path(tempdir(), "testdata")
+    unlink(testdir, recursive = TRUE)
     out <- saveRdExamples(
         rd = rd,
         package = "base",
-        dir = dir
+        dir = testdir
     )
     expect_identical(
         object = basename(out),
@@ -15,12 +15,12 @@ test_that("saveRdExamples", {
     )
     expect_identical(
         object = sort(list.files(
-            path = dir,
+            path = testdir,
             pattern = "*.R",
             full.names = FALSE,
             recursive = FALSE
         )),
         expected = paste0(rd, ".R")
     )
-    unlink(dir, recursive = TRUE)
+    unlink(testdir, recursive = TRUE)
 })
