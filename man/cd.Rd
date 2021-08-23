@@ -11,7 +11,7 @@ cd(dir)
 Directory path.}
 }
 \description{
-Alias for \code{\link[=setwd]{setwd()}} function.
+Alias for \code{setwd()} function.
 }
 \note{
 Updated 2019-10-19.

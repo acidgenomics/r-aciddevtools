@@ -5,10 +5,10 @@
 #' requests in a single call.
 #'
 #' @export
-#' @note Updated 2020-04-12.
+#' @note Updated 2021-08-23.
 #'
 #' @inheritParams params
-#' @param Rd `character` or `NULL`.
+#' @param rd `character` or `NULL`.
 #'   R documentation name(s) from which to parse and save the working examples.
 #'   If `NULL`, all documentation files containing examples will be saved.
 #' @param package `character(1)`.
@@ -19,15 +19,13 @@
 #'
 #' @examples
 #' saveRdExamples(
-#'     Rd = c("do.call", "droplevels"),
+#'     rd = c("do.call", "droplevels"),
 #'     package = "base",
 #'     dir = "example"
 #' )
-#'
-#' ## Clean up.
 #' unlink("example", recursive = TRUE)
 saveRdExamples <- function(
-    Rd = NULL,  # nolint
+    rd = NULL,
     package,
     dir = "."
 ) {
@@ -35,41 +33,42 @@ saveRdExamples <- function(
         requireNamespace("goalie", quietly = TRUE),
         requireNamespace("readr", quietly = TRUE),
         requireNamespace("tools", quietly = TRUE),
-        goalie::isCharacter(Rd, nullOK = TRUE),
+        goalie::isCharacter(rd, nullOK = TRUE),
         goalie::isString(package),
         goalie::isString(dir)
     )
     dir.create(dir, showWarnings = FALSE, recursive = TRUE)
+    dir <- normalizePath(dir, mustWork = TRUE)
     ## Get a database of the Rd files available in the requested package.
     db <- tools::Rd_db(package)
     names(db) <- gsub("\\.Rd", "", names(db))
     ## If no Rd file is specified, save everything in package.
-    if (is.null(Rd)) {
-        Rd <- names(db)  # nolint
+    if (is.null(rd)) {
+        rd <- names(db)  # nolint
     }
     ## Check that the requiested function(s) are valid.
-    stopifnot(all(Rd %in% names(db)))
-    ## Parse the Rd files and return the working examples as a character.
+    stopifnot(all(rd %in% names(db)))
+    ## Parse the rd files and return the working examples as a character.
     list <- mapply(
-        Rd = Rd,
+        rd = rd,
         MoreArgs = list(
-            package = package,
-            dir = dir
+            "package" = package,
+            "dir" = dir
         ),
-        FUN = function(Rd, package, dir) {  # nolint
+        FUN = function(rd, package, dir) {  # nolint
             x <- tryCatch(
-                expr = parseRd(db[[Rd]], tag = "examples"),
+                expr = parseRd(db[[rd]], tag = "examples"),
                 error = function(e) character()
             )
             ## Early return if there are no examples.
             if (length(x) == 0L) {
-                message(sprintf("Skipped '%s'.", Rd))
+                message(sprintf("Skipped '%s'.", rd))
                 return(invisible(NULL))
             }
             ## Save to an R script.
-            path <- file.path(dir, paste0(Rd, ".R"))
+            path <- file.path(dir, paste0(rd, ".R"))
             unlink(path)
-            readr::write_lines(x = x, path = path)
+            readr::write_lines(x = x, file = path)
             path
         },
         SIMPLIFY = FALSE,

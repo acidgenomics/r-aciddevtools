@@ -4,10 +4,10 @@
 \alias{saveRdExamples}
 \title{Save R documentation examples}
 \usage{
-saveRdExamples(Rd = NULL, package, dir = ".")
+saveRdExamples(rd = NULL, package, dir = ".")
 }
 \arguments{
-\item{Rd}{\code{character} or \code{NULL}.
+\item{rd}{\code{character} or \code{NULL}.
 R documentation name(s) from which to parse and save the working examples.
 If \code{NULL}, all documentation files containing examples will be saved.}
 
@@ -27,11 +27,11 @@ script. Note that the \code{f} argument is parameterized and can handle multiple
 requests in a single call.
 }
 \note{
-Updated 2020-04-12.
+Updated 2021-08-23.
 }
 \examples{
 saveRdExamples(
-    Rd = c("do.call", "droplevels"),
+    rd = c("do.call", "droplevels"),
     package = "base",
     dir = "example"
 )

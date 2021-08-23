@@ -1,3 +1,7 @@
+## AcidDevTools 0.4.0 (2021-08-23)
+
+
+
 ## AcidDevTools 0.3.16 (2021-07-19)
 
 - Reworked `check`, `dev`, and `test` functions.
