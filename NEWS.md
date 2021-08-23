@@ -1,11 +1,28 @@
 ## AcidDevTools 0.4.0 (2021-08-23)
 
+### Major changes
+
+- Finally added code coverage for the package, using testthat.
+- Added working examples when feasible for all functions.
+- `install`, `installGitHub`, `installedPackages`, `updatePackages` now
+  support a `lib` argument.
+
 ### Minor changes
 
 - Consolidated alias functions: `cd`, `clear`, `d`, `la`.
 - `check`: Added support for `lints` and `urls` overrides. Still enabled by
   default (non-breaking change), and calls lintr, urlchecker packages
   internally.
+- `dev`: Reduced the number of packages loaded. Now calls magrittr, testthat,
+  goalie, and basejump.
+- `findAndReplace`: Reworked internal code using BiocParallel instead of
+  parallel package, and switched from readr to base R for line import/export.
+- `getCurrentGitHubVersion`: Now supports multiple version checks in a single
+  call, defined by the `repo` argument.
+- `installRecommendedPackages`: Updated default list.
+- Bioconductor validity with `valid` now passes `lib` argument (see above).
+- Default path in formal arguments has been changed from `"."` to `getwd()`.
+- `load_all`: Simplified default alias.
 
 ## AcidDevTools 0.3.16 (2021-07-19)
 
