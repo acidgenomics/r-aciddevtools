@@ -58,7 +58,16 @@
 #'   Contains information on `pkgs` and `lib` defined.
 #'
 #' @examples
-#' ## > install(pkgs = c("DESeq2", "edgeR"))
+#' testlib <- file.path(tempdir(), "testlib")
+#' unlink(testlib, recursive = TRUE)
+#' out <- install(
+#'     pkgs = "BiocGenerics",
+#'     dependencies = FALSE,
+#'     lib = file.path(tempdir(), "testlib")
+#' )
+#' print(out)
+#' list.dirs(path = testlib, full.names = FALSE, recursive = FALSE)
+#' unlink(testlib, recursive = TRUE)
 install <- function(
     pkgs,
     configureArgs = getOption("configure.args"),
