@@ -2,20 +2,28 @@
 % Please edit documentation in R/getCurrentGitHubVersion.R
 \name{getCurrentGitHubVersion}
 \alias{getCurrentGitHubVersion}
-\title{Get current version of package from GitHub}
+\title{Get current release version of package from GitHub}
 \usage{
 getCurrentGitHubVersion(repo)
 }
 \arguments{
-\item{repo}{\code{character(1)}.
-GitHub repository ("user/package").}
+\item{repo}{\code{character}.
+GitHub repository ("user/package").
+Vectorized, supporting multiple requests in a single call.}
+}
+\value{
+\code{package_version}.
+Package \code{repo} is defined in \code{names}.
 }
 \description{
-Get current version of package from GitHub
+Get current release version of package from GitHub
 }
 \note{
-Updated 2020-07-01.
+Updated 2021-08-23.
 }
 \examples{
-getCurrentGitHubVersion(repo = "r-lib/rlang")
+repo <- paste0("r-lib/", c("rlang", "testthat"))
+print(repo)
+x <- getCurrentGitHubVersion(repo)
+print(x)
 }

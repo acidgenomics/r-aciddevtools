@@ -1,3 +1,7 @@
+## nocov start
+
+
+
 #' Execute test_that tests in a package
 #'
 #' @export
@@ -36,3 +40,7 @@ test <- function(path = getwd()) {
     options("testthat.progress.max_fails" = maxFails)
     invisible(out)
 }
+
+
+
+## nocov end
