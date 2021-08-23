@@ -1,3 +1,7 @@
+## nocov start
+
+
+
 #' Install packages, if necessary
 #'
 #' @note Updated 2021-08-22.
@@ -7,7 +11,7 @@
 #'   R package names to install.
 #' @param lib `character(1)`.
 #'   R package library path.
-#'   See `.libPaths` for details.
+#'   See `.libPaths()` for details.
 #'
 #' @return Invisible `logical(1)`
 #'
@@ -34,3 +38,7 @@
     options("warn" = warn)
     invisible(TRUE)
 }
+
+
+
+## nocov end

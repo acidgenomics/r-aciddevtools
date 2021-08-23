@@ -43,6 +43,7 @@ installedPackages <- function(lib = NULL) {
     isGitLab <- function(desc) {
         identical(tolower(desc[["RemoteType"]]), "gitlab")
     }
+    ## nocov start
     source <- vapply(
         X = pkgs,
         FUN = function(pkg) {
@@ -65,6 +66,7 @@ installedPackages <- function(lib = NULL) {
         },
         FUN.VALUE = character(1L)
     )
+    ## nocov end
     df[["source"]] <- as.factor(source)
     df
 }
