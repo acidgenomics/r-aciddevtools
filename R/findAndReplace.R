@@ -24,7 +24,25 @@
 #' @return Invisibly return file paths.
 #'
 #' @examples
-#' print("FIXME This needs a working example.")
+#' unlink("testdata", recursive = TRUE)
+#' dir.create(file.path("testdata", "subdir"), recursive = TRUE)
+#' writeLines(
+#'     text = "print(\"foo\")",
+#'     con = file.path("testdata", "aaa.R"),
+#' )
+#' writeLines(
+#'     text = "print(\"foo\")",
+#'     con = file.path("testdata", "subdir", "bbb.R"),
+#' )
+#' out <- findAndReplace(
+#'     pattern = "foo",
+#'     replacement = "bar",
+#'     dir = "testdata",
+#'     recursive = TRUE
+#' )
+#' print(out)
+#' print(readLines(out[[1L]]))
+#' unlink("testdata", recursive = TRUE)
 findAndReplace <- function(
     pattern,
     replacement,
