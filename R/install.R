@@ -94,7 +94,7 @@ install <- function(
     warnDefault <- getOption("warn")
     options("warn" = 2L)
     if (isFALSE(dir.exists(lib))) {
-        dir.create(lib)  # nocov
+        dir.create(lib)
     }
     lib <- normalizePath(lib, mustWork = TRUE)
     out <- vapply(

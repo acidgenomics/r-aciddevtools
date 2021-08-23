@@ -5,7 +5,7 @@
 #' Update all installed packages
 #'
 #' @export
-#' @note Updated 2021-08-22.
+#' @note Updated 2021-08-23.
 #'
 #' @inheritParams params
 #'
@@ -20,9 +20,6 @@ updatePackages <- function(
 ) {
     warn <- getOption("warn")
     options("warn" = 2L)
-    if (isFALSE(dir.exists(lib))) {
-        dir.create(lib)  # nocov
-    }
     lib <- normalizePath(lib, mustWork = TRUE)
     .installIfNecessary("BiocManager")
     stopifnot(requireNamespace("BiocManager", quietly = TRUE))
