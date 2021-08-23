@@ -67,7 +67,7 @@ saveRdExamples <- function(
             ## Save to an R script.
             path <- file.path(dir, paste0(rd, ".R"))
             unlink(path, recursive = FALSE)
-            writeLines(x)
+            writeLines(text = x, con = path)
             path
         },
         SIMPLIFY = FALSE,
