@@ -1,7 +1,3 @@
-## FIXME Move this to AcidBase.
-
-
-
 #' Find installed packages
 #'
 #' Includes `"source"` column, indicating whether package is from CRAN,

@@ -1,9 +1,3 @@
-## FIXME Consider moving this to koopa package.
-## FIXME Can we switch to base read and writeLines here?
-## FIXME Move this to koopa package.
-
-
-
 #' Find and replace in files across a directory
 #'
 #' @export
