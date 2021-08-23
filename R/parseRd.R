@@ -27,56 +27,58 @@
 #' @examples
 #' db <- tools::Rd_db("base")
 #' head(names(db))
-#' Rd <- db[["nrow.Rd"]]
-#' class(Rd)
-#' summary(Rd)
-#' RdTags(Rd)
-#' examples <- parseRd(Rd, tag = "examples")
+#' rd <- db[["nrow.Rd"]]
+#' class(rd)
+#' summary(rd)
+#' RdTags(rd)
+#' examples <- parseRd(rd, tag = "examples")
 #' print(examples)
-parseRd <- function(object, tag) {
-    stopifnot(
-        requireNamespace("methods", quietly = TRUE),
-        methods::is(object, "Rd"),
-        is.character(tag) && identical(length(tag), 1L)
-    )
-    tags <- RdTags(object)
-    stopifnot(all(tag %in% tags))
-    ## Get the metadata that matches the requested tag.
-    data <- object[tags == tag]
-    data <- unlist(data)
-    ## Strip trailing newlines and superfluous whitespace.
-    data <- trimws(data, which = "right")
-    ## Strip leading and trailing carriage returns, if present.
-    if (data[[1L]] == "") {
-        data <- data[-1L]
+parseRd <-
+    function(object, tag) {
+        stopifnot(
+            requireNamespace("methods", quietly = TRUE),
+            methods::is(object, "Rd"),
+            is.character(tag) && identical(length(tag), 1L)
+        )
+        tags <- RdTags(object)
+        stopifnot(all(tag %in% tags))
+        ## Get the metadata that matches the requested tag.
+        data <- object[tags == tag]
+        data <- unlist(data)
+        ## Strip trailing newlines and superfluous whitespace.
+        data <- trimws(data, which = "right")
+        ## Strip leading and trailing carriage returns, if present.
+        if (data[[1L]] == "") {
+            data <- data[-1L]
+        }
+        if (data[[length(data)]] == "") {
+            data <- data[-length(data)]
+        }
+        data
     }
-    if (data[[length(data)]] == "") {
-        data <- data[-length(data)]
-    }
-    data
-}
 
 
 
 #' @describeIn parseRd
 #'   Modified version of the unexported `tools:::RdTags()` function.
 #' @export
-RdTags <- function(object) {  # nolint
-    stopifnot(
-        requireNamespace("methods", quietly = TRUE),
-        methods::is(object, "Rd")
-    )
-    tags <- vapply(
-        X = object,
-        FUN = attr,
-        FUN.VALUE = character(1L),
-        "Rd_tag"
-    )
-    if (identical(length(tags), 0L)) {
-        tags <- character()
-    } else {
-        ## Remove the leading "\\" backslashes.
-        tags <- gsub("^\\\\", "", tags)
+RdTags <-  # nolint
+    function(object) {
+        stopifnot(
+            requireNamespace("methods", quietly = TRUE),
+            methods::is(object, "Rd")
+        )
+        tags <- vapply(
+            X = object,
+            FUN = attr,
+            FUN.VALUE = character(1L),
+            "Rd_tag"
+        )
+        if (identical(length(tags), 0L)) {
+            tags <- character()
+        } else {
+            ## Remove the leading "\\" backslashes.
+            tags <- gsub("^\\\\", "", tags)
+        }
+        tags
     }
-    tags
-}
