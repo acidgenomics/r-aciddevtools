@@ -17,7 +17,7 @@
 #'   `https://github.com/:owner/:repo/archive/:tag.tar.gz`
 #'
 #' @export
-#' @note Updated 2021-08-22.
+#' @note Updated 2021-08-23.
 #'
 #' @inheritParams params
 #' @param repo `character`.
@@ -133,7 +133,9 @@ installGitHub <- function(
             file.remove(tarfile)
             unlink(exdir, recursive = TRUE)
             TRUE
-        }
+        },
+        SIMPLIFY = TRUE,
+        USE.NAMES = FALSE
     )
     invisible(list(
         "repo" = repo,
