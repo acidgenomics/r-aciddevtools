@@ -1,6 +1,6 @@
 ## FIXME Consider moving this to koopa package.
 ## FIXME Can we switch to base read and writeLines here?
-## FIXME Use pipette package instead?
+## FIXME Move this to koopa package.
 
 
 
@@ -14,6 +14,9 @@
 #'   Pattern string, supporting regular expressions.
 #' @param replacement `character(1)`.
 #'   Replacement string.
+#' @param filePattern `character(1)`.
+#'   File pattern matching string.
+#'   Defaults to matching against R files.
 #' @param recursive  `logical(1)`.
 #'   Search recursively?
 #'
@@ -21,29 +24,38 @@
 findAndReplace <- function(
     pattern,
     replacement,
+    filePattern = "\\.(r|R)$",
     dir = ".",
     recursive = FALSE
 ) {
-    stopifnot(
-        requireNamespace("parallel", quietly = TRUE),
-        requireNamespace("readr", quietly = TRUE)
-    )
+    dir <- normalizePath(dir, mustWork = TRUE)
     files <- sort(list.files(
         path = dir,
-        pattern = "(r|R)$",
+        pattern = filePattern,
         full.names = TRUE,
         recursive = recursive
     ))
-    invisible(parallel::mclapply(
+    ## FIXME Return with error if no files match.
+    ## Run the `lapply()` call in parallel, if possible.
+    if (.isInstalled("BiocParallel")) {
+        stopifnot(requireNamespace("BiocParallel", quietly = TRUE))
+        lapply <- BiocParallel::bplapply
+    } else if (.isInstalled("parallel")) {
+        stopifnot(requireNamespace("parallel", quietly = TRUE))
+        lapply <- parallel::mclapply
+    }
+    out <- lapply(
         X = files,
         FUN = function(file) {
-            x <- readr::read_lines(file)
+            x <- readLines(con = file)
             x <- gsub(
                 pattern = pattern,
                 replacement = replacement,
                 x = x
             )
-            readr::write_lines(x, file = file)
+            writeLines(text = x, con = file)
+            file
         }
-    ))
+    )
+    invisible(out)
 }

@@ -4,7 +4,13 @@
 \alias{findAndReplace}
 \title{Find and replace in files across a directory}
 \usage{
-findAndReplace(pattern, replacement, dir = ".", recursive = FALSE)
+findAndReplace(
+  pattern,
+  replacement,
+  filePattern = "\\\\.(r|R)$",
+  dir = ".",
+  recursive = FALSE
+)
 }
 \arguments{
 \item{pattern}{\code{character(1)}.
@@ -12,6 +18,10 @@ Pattern string, supporting regular expressions.}
 
 \item{replacement}{\code{character(1)}.
 Replacement string.}
+
+\item{filePattern}{\code{character(1)}.
+File pattern matching string.
+Defaults to matching against R files.}
 
 \item{dir}{\code{character(1)}.
 Directory path.}

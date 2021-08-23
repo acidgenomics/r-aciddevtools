@@ -31,7 +31,6 @@ saveRdExamples <- function(
 ) {
     stopifnot(
         requireNamespace("goalie", quietly = TRUE),
-        requireNamespace("readr", quietly = TRUE),
         requireNamespace("tools", quietly = TRUE),
         goalie::isCharacter(rd, nullOK = TRUE),
         goalie::isString(package),
@@ -61,14 +60,14 @@ saveRdExamples <- function(
                 error = function(e) character()
             )
             ## Early return if there are no examples.
-            if (length(x) == 0L) {
+            if (identical(length(x), 0L)) {
                 message(sprintf("Skipped '%s'.", rd))
                 return(invisible(NULL))
             }
             ## Save to an R script.
             path <- file.path(dir, paste0(rd, ".R"))
-            unlink(path)
-            readr::write_lines(x = x, file = path)
+            unlink(path, recursive = FALSE)
+            writeLines(x)
             path
         },
         SIMPLIFY = FALSE,
