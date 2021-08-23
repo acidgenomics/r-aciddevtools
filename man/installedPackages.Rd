@@ -4,14 +4,19 @@
 \alias{installedPackages}
 \title{Find installed packages}
 \usage{
-installedPackages()
+installedPackages(lib = NULL)
+}
+\arguments{
+\item{lib}{\code{character}.
+Destination library directory path.
+Defaults to the first element of \code{.libPaths()}.}
 }
 \description{
 Includes "source" column, indicating whether package is from CRAN,
 Bioconductor, or from a remote (i.e. GitHub, GitLab) install.
 }
 \note{
-Updated 2020-08-18.
+Updated 2021-08-23.
 }
 \examples{
 x <- installedPackages()
