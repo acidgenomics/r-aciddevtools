@@ -38,7 +38,7 @@ findAndReplace <- function(
         full.names = TRUE,
         recursive = recursive
     ))
-    ## FIXME Return with error if no files match.
+    stopifnot(length(files) > 0L)
     ## Run the `lapply()` call in parallel, if possible.
     if (.isInstalled("BiocParallel")) {
         stopifnot(requireNamespace("BiocParallel", quietly = TRUE))
@@ -60,5 +60,6 @@ findAndReplace <- function(
             file
         }
     )
+    out <- unlist(out, recursive = FALSE)
     invisible(out)
 }
