@@ -1,10 +1,9 @@
 context("install")
 
-testlib <- "testlib"
+testlib <- file.path(tempdir(), "testlib")
 
 test_that("BiocManager", {
     unlink(testlib, recursive = TRUE)
-    dir.create(testlib)
     pkgs <- "BiocGenerics"
     install(
         pkgs = pkgs,
@@ -43,7 +42,6 @@ test_that("BiocManager", {
 
 test_that("Acid Genomics drat repo", {
     unlink(testlib, recursive = TRUE)
-    dir.create(testlib)
     pkgs <- "goalie"
     install(
         pkgs = pkgs,
@@ -71,7 +69,6 @@ test_that("Acid Genomics drat repo", {
 
 test_that("Git repo", {
     unlink(testlib, recursive = TRUE)
-    dir.create(testlib)
     pkgNames <- "goalie"
     pkgs <- paste0("https://github.com/acidgenomics/r-", pkgNames, ".git")
     install(
@@ -100,7 +97,6 @@ test_that("Git repo", {
 
 test_that("GitHub", {
     unlink(testlib, recursive = TRUE)
-    dir.create(testlib)
     pkgNames <- "goalie"
     pkgs <- paste0("acidgenomics/r-", pkgNames)
     install(
@@ -133,7 +129,6 @@ context("installGitHub")
 
 test_that("GitHub", {
     unlink(testlib, recursive = TRUE)
-    dir.create(testlib)
     pkgName <- "goalie"
     repo <- paste0("acidgenomics/r-", pkgName)
     tag <- "v0.5.4"

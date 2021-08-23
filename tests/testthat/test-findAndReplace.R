@@ -1,20 +1,21 @@
 context("findAndReplace")
 
 test_that("Non-recursive", {
-    unlink("testdata", recursive = TRUE)
-    dir.create(file.path("testdata", "subdir"), recursive = TRUE)
+    testdir <- file.path(tempdir(), "testdata")
+    unlink(testdir, recursive = TRUE)
+    dir.create(file.path(testdir, "subdir"), recursive = TRUE)
     writeLines(
         text = "print(\"foo\")",
-        con = file.path("testdata", "aaa.R"),
+        con = file.path(testdir, "aaa.R"),
     )
     writeLines(
         text = "print(\"foo\")",
-        con = file.path("testdata", "subdir", "bbb.R"),
+        con = file.path(testdir, "subdir", "bbb.R"),
     )
     out <- findAndReplace(
         pattern = "foo",
         replacement = "bar",
-        dir = "testdata",
+        dir = testdir,
         recursive = FALSE
     )
     expect_identical(
@@ -25,24 +26,25 @@ test_that("Non-recursive", {
         object = readLines(out[[1L]]),
         expected = "print(\"bar\")"
     )
-    unlink("testdata", recursive = TRUE)
+    unlink(testdir, recursive = TRUE)
 })
 
 test_that("Recursive", {
-    unlink("testdata", recursive = TRUE)
-    dir.create(file.path("testdata", "subdir"), recursive = TRUE)
+    testdir <- file.path(tempdir(), "testdata")
+    unlink(testdir, recursive = TRUE)
+    dir.create(file.path(testdir, "subdir"), recursive = TRUE)
     writeLines(
         text = "print(\"foo\")",
-        con = file.path("testdata", "aaa.R"),
+        con = file.path(testdir, "aaa.R"),
     )
     writeLines(
         text = "print(\"foo\")",
-        con = file.path("testdata", "subdir", "bbb.R"),
+        con = file.path(testdir, "subdir", "bbb.R"),
     )
     out <- findAndReplace(
         pattern = "foo",
         replacement = "bar",
-        dir = "testdata",
+        dir = testdir,
         recursive = TRUE
     )
     expect_identical(
@@ -55,5 +57,5 @@ test_that("Recursive", {
             expected = "print(\"bar\")"
         )
     }
-    unlink("testdata", recursive = TRUE)
+    unlink(testdir, recursive = TRUE)
 })
