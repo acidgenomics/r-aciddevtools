@@ -1,11 +1,11 @@
-#' Find and replace across a directory
+#' Find and replace in files across a directory
 #'
 #' @export
-#' @note Updated 2020-04-12.
+#' @note Updated 2021-08-23.
 #'
 #' @inheritParams params
 #' @param pattern `character(1)`.
-#'   Pattern string.
+#'   Pattern string, supporting regular expressions.
 #' @param replacement `character(1)`.
 #'   Replacement string.
 #' @param recursive  `logical(1)`.
@@ -37,7 +37,7 @@ findAndReplace <- function(
                 replacement = replacement,
                 x = x
             )
-            readr::write_lines(x, path = file)
+            readr::write_lines(x, file = file)
         }
     ))
 }
