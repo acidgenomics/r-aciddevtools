@@ -1,6 +1,10 @@
+## nocov start
+
+
+
 #' Aliases
 #'
-#' Shortcut aliases to reduce common keystrokes.
+#' Mnemonic functions and shortcut aliases, to reduce common keystrokes.
 #'
 #' @name aliases
 #' @note Updated 2021-08-23.
@@ -48,3 +52,7 @@ d <- function(...) {
 la <- function(...) {
     load_all(...)
 }
+
+
+
+## nocov end

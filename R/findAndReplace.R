@@ -1,3 +1,7 @@
+## FIXME Consider moving this to koopa package.
+
+
+
 #' Find and replace in files across a directory
 #'
 #' @export
