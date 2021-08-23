@@ -12,7 +12,7 @@ Destination library directory path.
 Defaults to the first element of \code{.libPaths()}.}
 }
 \description{
-Includes "source" column, indicating whether package is from CRAN,
+Includes \code{"source"} column, indicating whether package is from CRAN,
 Bioconductor, or from a remote (i.e. GitHub, GitLab) install.
 }
 \note{

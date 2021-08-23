@@ -18,6 +18,17 @@ R documentation table
 \note{
 Updated 2019-08-13.
 }
+\examples{
+df <- data.frame(
+    "aaa" = seq(from = 1L, to = 4L),
+    "bbb" = seq(from = 2L, to = 5L),
+    "ccc" = seq(from = 3L, to = 6L),
+    row.names = c("AAA", "BBB", "CCC", "DDD")
+)
+tabular(df)
+}
 \seealso{
-http://r-pkgs.had.co.nz/man.html
+\itemize{
+\item http://r-pkgs.had.co.nz/man.html
+}
 }
