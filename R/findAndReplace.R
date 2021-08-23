@@ -8,6 +8,7 @@
 #'
 #' @export
 #' @note Updated 2021-08-23.
+#' @note Requires `BiocParallel` package to be installed.
 #'
 #' @inheritParams params
 #' @param pattern `character(1)`.
@@ -31,6 +32,7 @@ findAndReplace <- function(
     dir = getwd(),
     recursive = FALSE
 ) {
+    stopifnot(requireNamespace("BiocParallel", quietly = TRUE))
     dir <- normalizePath(dir, mustWork = TRUE)
     files <- sort(list.files(
         path = dir,
@@ -39,17 +41,7 @@ findAndReplace <- function(
         recursive = recursive
     ))
     stopifnot(length(files) > 0L)
-    ## Run the `lapply()` call in parallel, if possible.
-    ## nocov start
-    if (.isInstalled("BiocParallel")) {
-        stopifnot(requireNamespace("BiocParallel", quietly = TRUE))
-        lapply <- BiocParallel::bplapply
-    } else if (.isInstalled("parallel")) {
-        stopifnot(requireNamespace("parallel", quietly = TRUE))
-        lapply <- parallel::mclapply
-    }
-    ## nocov end
-    out <- lapply(
+    out <- BiocParallel::bplapply(
         X = files,
         FUN = function(file) {
             x <- readLines(con = file)
