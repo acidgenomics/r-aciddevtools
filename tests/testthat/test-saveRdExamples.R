@@ -2,7 +2,7 @@ context("saveRdExamples")
 
 test_that("saveRdExamples", {
     rd <- c("do.call", "droplevels")
-    dir <- "example"
+    dir <- "testdata"
     unlink(dir, recursive = TRUE)
     out <- saveRdExamples(
         rd = rd,
