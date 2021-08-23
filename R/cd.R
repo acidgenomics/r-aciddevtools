@@ -1,6 +1,10 @@
+## nocov start
+
+
+
 #' Change directory
 #'
-#' Alias for [setwd()] function.
+#' Alias for `setwd()` function.
 #'
 #' @export
 #' @note Updated 2019-10-19.
@@ -12,3 +16,7 @@
 cd <- function(dir) {
     setwd(dir)
 }
+
+
+
+## nocov end
