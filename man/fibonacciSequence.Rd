@@ -16,7 +16,7 @@ fibonacciSequence(len)
 Fibonacci sequence
 }
 \note{
-Updated 2020-04-09.
+Updated 2021-08-23.
 }
 \examples{
 fibonacciSequence(8L)

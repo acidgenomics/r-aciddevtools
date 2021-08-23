@@ -1,7 +1,7 @@
 #' Fibonacci sequence
 #'
 #' @export
-#' @note Updated 2020-04-09.
+#' @note Updated 2021-08-23.
 #'
 #' @param len `integer(1)`.
 #'
@@ -11,8 +11,7 @@
 #' fibonacciSequence(8L)
 fibonacciSequence <- function(len) {
     stopifnot(is.integer(len) && identical(length(len), 1L))
-    ## Set the lengh of the numeric vector.
-    x <- numeric(len)
+    x <- integer(len)
     x[1L] <- 1L  # nolint
     if (identical(length(x), 1L)) return(x)
     x[2L] <- 1L  # nolint
