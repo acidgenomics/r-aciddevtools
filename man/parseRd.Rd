@@ -43,11 +43,11 @@ Updated 2020-04-12.
 \examples{
 db <- tools::Rd_db("base")
 head(names(db))
-Rd <- db[["nrow.Rd"]]
-class(Rd)
-summary(Rd)
-RdTags(Rd)
-examples <- parseRd(Rd, tag = "examples")
+rd <- db[["nrow.Rd"]]
+class(rd)
+summary(rd)
+RdTags(rd)
+examples <- parseRd(rd, tag = "examples")
 print(examples)
 }
 \seealso{
