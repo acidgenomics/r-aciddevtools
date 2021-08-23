@@ -53,18 +53,18 @@ Updated 2021-08-22.
 }
 
 \examples{
-## Force reinstallation of specific versions.
-## > installGitHub(
-## >     repo = c(
-## >         "acidgenomics/goalie",
-## >         "acidgenomics/syntactic"
-## >     ),
-## >     tag = c(
-## >         "v0.4.8",
-## >         "v0.4.2"
-## >     ),
-## >     reinstall = TRUE
-## > )
+testlib <- file.path(tempdir(), "testlib")
+unlink(testlib, recursive = TRUE)
+out <- installGitHub(
+    repo = "acidgenomics/r-goalie",
+    tag = "v0.5.2",
+    dependencies = FALSE,
+    lib = testlib,
+    reinstall = TRUE
+)
+print(out)
+list.dirs(path = testlib, full.names = FALSE, recursive = FALSE)
+unlink(testlib, recursive = TRUE)
 }
 \seealso{
 \itemize{

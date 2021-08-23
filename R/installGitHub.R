@@ -35,18 +35,18 @@
 #' - `install.packages()`.
 #'
 #' @examples
-#' ## Force reinstallation of specific versions.
-#' ## > installGitHub(
-#' ## >     repo = c(
-#' ## >         "acidgenomics/goalie",
-#' ## >         "acidgenomics/syntactic"
-#' ## >     ),
-#' ## >     tag = c(
-#' ## >         "v0.4.8",
-#' ## >         "v0.4.2"
-#' ## >     ),
-#' ## >     reinstall = TRUE
-#' ## > )
+#' testlib <- file.path(tempdir(), "testlib")
+#' unlink(testlib, recursive = TRUE)
+#' out <- installGitHub(
+#'     repo = "acidgenomics/r-goalie",
+#'     tag = "v0.5.2",
+#'     dependencies = FALSE,
+#'     lib = testlib,
+#'     reinstall = TRUE
+#' )
+#' print(out)
+#' list.dirs(path = testlib, full.names = FALSE, recursive = FALSE)
+#' unlink(testlib, recursive = TRUE)
 installGitHub <- function(
     repo,
     tag,
@@ -62,15 +62,9 @@ installGitHub <- function(
         identical(length(repo), length(tag))
     )
     if (isFALSE(dir.exists(lib))) {
-        dir.create(lib)  # nocov
+        dir.create(lib)
     }
     lib <- normalizePath(lib, mustWork = TRUE)
-    if (!identical(
-        x = lib,
-        y = normalizePath(.libPaths()[[1L]], mustWork = TRUE)
-    )) {
-        .libPaths(new = lib, include.site = TRUE)
-    }
     out <- mapply(
         repo = repo,
         tag = tag,
