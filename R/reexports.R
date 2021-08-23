@@ -18,7 +18,7 @@ NULL
 #' @rdname reexports
 #' @usage NULL
 #' @export
-BiocCheck <- function(package = ".") {
+BiocCheck <- function(package = getwd()) {
     stopifnot(requireNamespace("BiocCheck", quietly = TRUE))
     BiocCheck::BiocCheck(
         package = package,
@@ -249,7 +249,7 @@ build_site <- function(..., devel = FALSE, preview = FALSE) {
 #' @rdname reexports
 #' @usage NULL
 #' @export
-rcmdcheck <- function(path = ".", cran = FALSE) {
+rcmdcheck <- function(path = getwd(), cran = FALSE) {
     stopifnot(requireNamespace("rcmdcheck", quietly = TRUE))
     ## See also `force_suggests` argument in `devtools::check()`.
     Sys.setenv("_R_CHECK_FORCE_SUGGESTS_" = "FALSE")

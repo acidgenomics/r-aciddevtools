@@ -4,7 +4,7 @@
 \alias{test}
 \title{Execute test_that tests in a package}
 \usage{
-test(path = ".")
+test(path = getwd())
 }
 \arguments{
 \item{path}{\code{character(1)}.

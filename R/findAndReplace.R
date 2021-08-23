@@ -21,11 +21,14 @@
 #'   Search recursively?
 #'
 #' @return Invisibly return file paths.
+#'
+#' @examples
+#' print("FIXME This needs a working example.")
 findAndReplace <- function(
     pattern,
     replacement,
     filePattern = "\\.(r|R)$",
-    dir = ".",
+    dir = getwd(),
     recursive = FALSE
 ) {
     dir <- normalizePath(dir, mustWork = TRUE)

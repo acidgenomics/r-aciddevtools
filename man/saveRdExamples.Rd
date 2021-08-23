@@ -4,7 +4,7 @@
 \alias{saveRdExamples}
 \title{Save R documentation examples}
 \usage{
-saveRdExamples(rd = NULL, package, dir = ".")
+saveRdExamples(rd = NULL, package, dir = getwd())
 }
 \arguments{
 \item{rd}{\code{character} or \code{NULL}.

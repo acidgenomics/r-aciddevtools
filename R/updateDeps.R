@@ -25,7 +25,7 @@
 #'
 #' @return `BiocManager::install()` call if packages need an update.
 updateDeps <- function(
-    pkg = ".",
+    pkg = getwd(),
     type = c(
         "Depends",
         "Imports",

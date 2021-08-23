@@ -27,7 +27,7 @@
 saveRdExamples <- function(
     rd = NULL,
     package,
-    dir = "."
+    dir = getwd()
 ) {
     stopifnot(
         requireNamespace("goalie", quietly = TRUE),

@@ -8,7 +8,7 @@ findAndReplace(
   pattern,
   replacement,
   filePattern = "\\\\.(r|R)$",
-  dir = ".",
+  dir = getwd(),
   recursive = FALSE
 )
 }
@@ -37,4 +37,7 @@ Find and replace in files across a directory
 }
 \note{
 Updated 2021-08-23.
+}
+\examples{
+print("FIXME This needs a working example.")
 }
