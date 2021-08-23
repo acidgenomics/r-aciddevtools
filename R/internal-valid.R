@@ -1,3 +1,7 @@
+## nocov start
+
+
+
 #' Wrapper for BiocManager validity checks
 #'
 #' @note Updated 2021-08-22.
@@ -22,3 +26,7 @@
         }
     )
 }
+
+
+
+## nocov end
