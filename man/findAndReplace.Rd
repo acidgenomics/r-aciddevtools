@@ -37,6 +37,8 @@ Find and replace in files across a directory
 }
 \note{
 Updated 2021-08-23.
+
+Requires \code{BiocParallel} package to be installed.
 }
 \examples{
 print("FIXME This needs a working example.")
