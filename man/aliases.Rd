@@ -2,10 +2,16 @@
 % Please edit documentation in R/aliases.R
 \name{aliases}
 \alias{aliases}
+\alias{cd}
+\alias{clear}
 \alias{d}
 \alias{la}
 \title{Aliases}
 \usage{
+cd(...)
+
+clear()
+
 d(...)
 
 la(...)
@@ -19,8 +25,19 @@ Varies, depending on the function.
 \description{
 Shortcut aliases to reduce common keystrokes.
 }
+\section{Functions}{
+\itemize{
+\item \code{cd}: Alias for \code{setwd()}.
+
+\item \code{clear}: Alias for \code{cat("\\f")}.
+
+\item \code{d}: Alias for \code{document()}.
+
+\item \code{la}: Alias for \code{load_all()}.
+}}
+
 \note{
-Updated 2021-02-02.
+Updated 2021-08-23.
 }
 \examples{
 ## > d()
