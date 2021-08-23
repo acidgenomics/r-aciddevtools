@@ -237,7 +237,7 @@ install <- function(
                 options("pkgType" = pkgTypeDefault)
             }
             if (isTRUE(autoconf) && file.exists(makevarsFile)) {
-                file.remove(makevarsFile)
+                file.remove(makevarsFile)  # nocov
             }
             TRUE
         },
