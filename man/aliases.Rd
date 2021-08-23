@@ -23,7 +23,7 @@ la(...)
 Varies, depending on the function.
 }
 \description{
-Shortcut aliases to reduce common keystrokes.
+Mnemonic functions and shortcut aliases, to reduce common keystrokes.
 }
 \section{Functions}{
 \itemize{
