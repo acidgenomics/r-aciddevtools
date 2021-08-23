@@ -7,7 +7,7 @@
 #' @note Updated 2020-04-12.
 #'
 #' @param object `Rd`.
-#'   R documentation, returned from [tools::Rd_db()]
+#'   R documentation, returned from `tools::Rd_db()`.
 #' @param tag `character(1)`.
 #'   Desired metadata type.
 #'
@@ -22,7 +22,7 @@
 #'   - `seealso`.
 #'   - `examples`.
 #'
-#' @seealso [tools::Rd_db()].
+#' @seealso `tools::Rd_db()`.
 #'
 #' @examples
 #' db <- tools::Rd_db("base")
@@ -54,4 +54,29 @@ parseRd <- function(object, tag) {
         data <- data[-length(data)]
     }
     data
+}
+
+
+
+#' @describeIn parseRd
+#'   Modified version of the unexported `tools:::RdTags()` function.
+#' @export
+RdTags <- function(object) {  # nolint
+    stopifnot(
+        requireNamespace("methods", quietly = TRUE),
+        methods::is(object, "Rd")
+    )
+    tags <- vapply(
+        X = object,
+        FUN = attr,
+        FUN.VALUE = character(1L),
+        "Rd_tag"
+    )
+    if (identical(length(tags), 0L)) {
+        tags <- character()
+    } else {
+        ## Remove the leading "\\" backslashes.
+        tags <- gsub("^\\\\", "", tags)
+    }
+    tags
 }

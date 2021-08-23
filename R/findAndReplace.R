@@ -1,4 +1,6 @@
 ## FIXME Consider moving this to koopa package.
+## FIXME Can we switch to base read and writeLines here?
+## FIXME Use pipette package instead?
 
 
 
