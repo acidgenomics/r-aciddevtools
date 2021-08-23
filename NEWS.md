@@ -6,6 +6,8 @@
 - Added working examples when feasible for all functions.
 - `install`, `installGitHub`, `installedPackages`, `updatePackages` now
   support a `lib` argument.
+- `installGitHub`: Switched `release` argument to `tag` argument. User must now
+  declare a specific tag instead of supporting install from default branch.
 
 ### Minor changes
 

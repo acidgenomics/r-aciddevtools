@@ -5,4 +5,3 @@ test_that("r-lib", {
     x <- getCurrentGitHubVersion(repo)
     expect_is(x, "package_version")
 })
-
