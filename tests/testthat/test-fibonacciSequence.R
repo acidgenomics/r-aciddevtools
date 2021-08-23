@@ -7,7 +7,7 @@ test_that("fibonacciSequence", {
     )
     expect_identical(
         object = fibonacciSequence(2L),
-        expected = c(1L, 2L)
+        expected = c(1L, 1L)
     )
     expect_identical(
         object = fibonacciSequence(8L),
