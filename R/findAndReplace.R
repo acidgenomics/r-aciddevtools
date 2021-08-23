@@ -40,6 +40,7 @@ findAndReplace <- function(
     ))
     stopifnot(length(files) > 0L)
     ## Run the `lapply()` call in parallel, if possible.
+    ## nocov start
     if (.isInstalled("BiocParallel")) {
         stopifnot(requireNamespace("BiocParallel", quietly = TRUE))
         lapply <- BiocParallel::bplapply
@@ -47,6 +48,7 @@ findAndReplace <- function(
         stopifnot(requireNamespace("parallel", quietly = TRUE))
         lapply <- parallel::mclapply
     }
+    ## nocov end
     out <- lapply(
         X = files,
         FUN = function(file) {
