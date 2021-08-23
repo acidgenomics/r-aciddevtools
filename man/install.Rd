@@ -89,14 +89,14 @@ Install packages from Bioconductor, CRAN, or a Git remote
 Updated 2021-08-22.
 }
 \examples{
-testlib <- file.path(tempdir(), "testlib")
-unlink(testlib, recursive = TRUE)
-out <- install(
-    pkgs = "BiocGenerics",
-    dependencies = FALSE,
-    lib = file.path(tempdir(), "testlib")
-)
-print(out)
-list.dirs(path = testlib, full.names = FALSE, recursive = FALSE)
-unlink(testlib, recursive = TRUE)
+## > testlib <- file.path(tempdir(), "testlib")
+## > unlink(testlib, recursive = TRUE)
+## > out <- install(
+## >     pkgs = "BiocGenerics",
+## >     dependencies = FALSE,
+## >     lib = file.path(tempdir(), "testlib")
+## > )
+## > print(out)
+## > list.dirs(path = testlib, full.names = FALSE, recursive = FALSE)
+## > unlink(testlib, recursive = TRUE)
 }
