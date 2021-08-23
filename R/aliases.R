@@ -3,7 +3,7 @@
 #' Shortcut aliases to reduce common keystrokes.
 #'
 #' @name aliases
-#' @note Updated 2021-02-02.
+#' @note Updated 2021-08-23.
 #'
 #' @param ... Passthrough arguments.
 #'
@@ -15,7 +15,26 @@ NULL
 
 
 
-#' @rdname aliases
+#' @describeIn aliases
+#'   Alias for `setwd()`.
+#' @export
+cd <- function(...) {
+    setwd(...)
+}
+
+
+
+#' @describeIn aliases
+#'   Alias for `cat("\f")`.
+#' @export
+clear <- function() {
+    cat("\f")
+}
+
+
+
+#' @describeIn aliases
+#'   Alias for `document()`.
 #' @export
 d <- function(...) {
     document(...)
@@ -23,7 +42,8 @@ d <- function(...) {
 
 
 
-#' @rdname aliases
+#' @describeIn aliases
+#'   Alias for `load_all()`.
 #' @export
 la <- function(...) {
     load_all(...)
