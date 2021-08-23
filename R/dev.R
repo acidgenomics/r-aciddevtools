@@ -7,16 +7,12 @@
 #' @section Current packages:
 #'
 #' - magrittr
-#' - rlang
 #' - testthat
 #' - goalie
 #' - basejump
-#' - SummarizedExperiment
-#' - SingleCellExperiment
-#' - tidyverse
 #'
 #' @export
-#' @note Updated 2021-07-15.
+#' @note Updated 2021-08-23.
 #'
 #' @param quiet `logical(1)`.
 #'   Load packages quietly.
@@ -35,13 +31,9 @@ dev <- function(quiet = TRUE) {
     ## Order is important here.
     pkgs <- c(
         "magrittr",
-        "rlang",
         "testthat",
         "goalie",
-        "basejump",
-        "SummarizedExperiment",
-        "SingleCellExperiment",
-        "tidyverse"
+        "basejump"
     )
     ## Stop on missing packages.
     installed <- rownames(utils::installed.packages())

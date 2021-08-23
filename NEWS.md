@@ -1,6 +1,11 @@
 ## AcidDevTools 0.4.0 (2021-08-23)
 
+### Minor changes
 
+- Consolidated alias functions: `cd`, `clear`, `d`, `la`.
+- `check`: Added support for `lints` and `urls` overrides. Still enabled by
+  default (non-breaking change), and calls lintr, urlchecker packages
+  internally.
 
 ## AcidDevTools 0.3.16 (2021-07-19)
 
