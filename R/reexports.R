@@ -39,9 +39,9 @@ BiocCheck <- function(package = getwd()) {
 #' @rdname reexports
 #' @usage NULL
 #' @export
-valid <- function() {
+valid <- function(...) {
     stopifnot(requireNamespace("BiocManager", quietly = TRUE))
-    BiocManager::valid()
+    BiocManager::valid(...)
 }
 
 
@@ -116,9 +116,9 @@ load_all <- function(...) {
 #' @rdname reexports
 #' @usage NULL
 #' @export
-run_examples <- function() {
+run_examples <- function(..., document = FALSE) {
     stopifnot(requireNamespace("devtools", quietly = TRUE))
-    devtools::run_examples(document = FALSE)
+    devtools::run_examples(..., document = document)
 }
 
 
