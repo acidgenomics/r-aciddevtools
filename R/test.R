@@ -36,7 +36,10 @@ test <- function(path = getwd()) {
         stop_on_failure = TRUE,
         stop_on_warning = TRUE
     )
-    stopifnot(isTRUE(length(out[[length(out)]][["results"]]) > 0L))
+    stopifnot(
+        "Unit test failure detected." =
+            isTRUE(length(out[[length(out)]][["results"]]) > 0L)
+    )
     options("testthat.progress.max_fails" = maxFails)
     invisible(out)
 }

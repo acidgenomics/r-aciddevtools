@@ -4,11 +4,11 @@
 
 #' Check package coverage using covr
 #'
-#' @note Updated 2021-08-23.
+#' @note Updated 2021-09-02.
 #' @noRd
 .checkCoverage <- function(
     path = getwd(),
-    cutoff = 0.80
+    cutoff = 0.95
 ) {
     if (!dir.exists(file.path(path, "tests"))) {
         return(invisible(FALSE))
