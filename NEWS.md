@@ -1,3 +1,12 @@
+## AcidDevTools 0.4.1 (2021-09-08)
+
+### Minor changes
+
+- `coverage`: Default coverage threshold bumped from 80% to 95%.
+- `installRecommendedPackages`: Added spatialreg package.
+- `test`: Improved error message on unit test failure. Now using named argument
+  in `stopifnot` call, which is supported in R 4.0.
+
 ## AcidDevTools 0.4.0 (2021-08-23)
 
 ### Major changes
