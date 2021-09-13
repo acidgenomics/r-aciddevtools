@@ -5,7 +5,7 @@
 #' Install recommended R packages
 #'
 #' @export
-#' @note Updated 2021-07-06.
+#' @note Updated 2021-09-13.
 #'
 #' @section tidyverse packages:
 #'
@@ -394,6 +394,7 @@ installRecommendedPackages <- function(
             "geneplotter",
             "ggbio",
             "ggtree",
+            "plotgardener",
             "vsn"
         )
     }
