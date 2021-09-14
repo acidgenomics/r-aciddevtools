@@ -1,3 +1,9 @@
+## AcidDevTools 0.4.2 (2021-09-14)
+
+### Minor changes
+
+- `installRecommendedPackages`: Need to remove `parallel` from this list.
+
 ## AcidDevTools 0.4.1 (2021-09-08)
 
 ### Minor changes
