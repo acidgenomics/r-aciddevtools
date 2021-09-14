@@ -393,7 +393,7 @@ installRecommendedPackages <- function(
             "geneplotter",
             "ggbio",
             "ggtree",
-            "plotgardener",
+            ## "plotgardener",  # Add when Bioc 3.14 is out.
             "vsn"
         )
     }
