@@ -93,7 +93,6 @@ installRecommendedPackages <- function(
         "knitr",
         "magrittr",
         "matrixStats",
-        "parallel",
         "reticulate",
         "rmarkdown",
         "sessioninfo",
