@@ -26,12 +26,12 @@
 
 #' Homebrew prefix
 #'
-#' @note Updated 2021-04-30.
+#' @note Updated 2021-09-22.
 #' @noRd
 .homebrewPrefix <- function() {
     x <- Sys.getenv("HOMEBREW_PREFIX")
     if (isTRUE(nchar(x) > 0L)) {
-        stopifnot(dir.exists(x))
+        if (isFALSE(dir.exists(x))) return("")
         return(x)
     }
     if (.isMacOS()) {
