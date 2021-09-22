@@ -12,13 +12,13 @@
 
 #' Homebrew opt prefix
 #'
-#' @note Updated 2021-04-30.
+#' @note Updated 2021-09-22.
 #' @noRd
 .homebrewOpt <- function() {
     x <- .homebrewPrefix()
     if (isFALSE(dir.exists(x))) return("")
     x <- file.path(x, "opt")
-    stopifnot(dir.exists(x))
+    if (isFALSE(dir.exists(x))) return("")
     x
 }
 
@@ -51,13 +51,13 @@
 
 #' Koopa opt prefix.
 #'
-#' @note Updated 2021-04-30.
+#' @note Updated 2021-09-22.
 #' @noRd
 .koopaOpt <- function() {
     x <- .koopaPrefix()
     if (isFALSE(dir.exists(x))) return("")
     x <- file.path(x, "opt")
-    stopifnot(dir.exists(x))
+    if (isFALSE(dir.exists(x))) return("")
     x
 }
 
