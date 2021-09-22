@@ -1,3 +1,11 @@
+## AcidDevTools 0.4.3 (2021-09-22)
+
+### Minor changes
+
+- Bug fix for autoconfiguration detection of Homebrew install prefix on Linux,
+  when `HOMEBREW_PREFIX` variable is defined, but the directory doesn't exist.
+  This is currently the case with our updated koopa Renviron config.
+
 ## AcidDevTools 0.4.2 (2021-09-14)
 
 ### Minor changes
