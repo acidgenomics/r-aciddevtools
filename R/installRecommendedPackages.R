@@ -5,7 +5,7 @@
 #' Install recommended R packages
 #'
 #' @export
-#' @note Updated 2021-09-13.
+#' @note Updated 2021-09-27.
 #'
 #' @section tidyverse packages:
 #'
@@ -180,6 +180,7 @@ installRecommendedPackages <- function(
             "drat",
             "git2r",
             "glue",
+            "lifecycle",
             "lintr",
             "lobstr",
             "memoise",
