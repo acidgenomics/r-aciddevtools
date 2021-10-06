@@ -5,7 +5,7 @@
 #' Install recommended R packages
 #'
 #' @export
-#' @note Updated 2021-09-27.
+#' @note Updated 2021-10-06.
 #'
 #' @section tidyverse packages:
 #'
