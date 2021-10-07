@@ -346,7 +346,8 @@ installRecommendedPackages <- function(
             pkgs,
             "TCGAbiolinks",
             "cBioPortalData",
-            "cbaf"  # cBioPortal
+            "cbaf",  # cBioPortal
+            "synergyfinder"
         )
     }
     if (isTRUE(extra[["chipseq"]])) {
