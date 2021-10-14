@@ -21,7 +21,7 @@
     pkgs,
     lib = .libPaths()[[1L]]
 ) {
-    warn <- getOption("warn")
+    warn <- getOption(x = "warn")
     options("warn" = 2L)
     invisible(lapply(
         X = pkgs,

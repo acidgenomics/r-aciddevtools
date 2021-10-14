@@ -18,7 +18,7 @@
 updatePackages <- function(
     lib = .libPaths()[[1L]]
 ) {
-    warn <- getOption("warn")
+    warn <- getOption(x = "warn")
     options("warn" = 2L)
     lib <- normalizePath(lib, mustWork = TRUE)
     .installIfNecessary("BiocManager")

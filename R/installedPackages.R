@@ -32,9 +32,13 @@ installedPackages <- function(lib = NULL) {
             pattern = "^https://git\\.bioconductor\\.org",
             x = desc[["git_url"]]
         )
-        if (isTRUE(ok)) return(TRUE)
+        if (isTRUE(ok)) {
+            return(TRUE)
+        }
         ok <- !is.null(desc[["biocViews"]])
-        if (isTRUE(ok)) return(TRUE)
+        if (isTRUE(ok)) {
+            return(TRUE)
+        }
         FALSE
     }
     isGitHub <- function(desc) {

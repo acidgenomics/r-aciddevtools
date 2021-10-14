@@ -27,7 +27,7 @@ test <- function(path = getwd()) {
         requireNamespace("testthat", quietly = TRUE),
         requireNamespace("pkgload", quietly = TRUE)
     )
-    maxFails <- getOption("testthat.progress.max_fails")
+    maxFails <- getOption(x = "testthat.progress.max_fails")
     options("testthat.progress.max_fails" = 1L)
     out <- testthat::test_dir(
         path = testsDir,

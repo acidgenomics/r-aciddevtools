@@ -19,7 +19,7 @@ uninstall <- function(
 ) {
     stopifnot(requireNamespace("utils", quietly = TRUE))
     ## Treat all warnings as errors.
-    warn <- getOption("warn")
+    warn <- getOption(x = "warn")
     options("warn" = 2L)
     df <- utils::installed.packages(lib.loc = lib)
     installedPkgs <- rownames(df)
