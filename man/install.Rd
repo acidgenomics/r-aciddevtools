@@ -6,12 +6,12 @@
 \usage{
 install(
   pkgs,
-  configureArgs = getOption("configure.args"),
-  configureVars = getOption("configure.vars"),
+  configureArgs = getOption(x = "configure.args"),
+  configureVars = getOption(x = "configure.vars"),
   autoconf = TRUE,
   dependencies = TRUE,
   lib = .libPaths()[[1L]],
-  type = getOption("pkgType", default = "source"),
+  type = getOption(x = "pkgType", default = "source"),
   reinstall = TRUE
 )
 }

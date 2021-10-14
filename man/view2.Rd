@@ -16,7 +16,7 @@ In RStudio, this will open a tabbed window.
 }
 \description{
 This variant performs internal coercion to data.frame, so we can easily
-view S4 DataFrame objects.
+view S4 DFrame objects.
 }
 \note{
 Updated 2020-04-12.
