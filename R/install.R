@@ -70,12 +70,12 @@
 #' ## > unlink(testlib, recursive = TRUE)
 install <- function(
     pkgs,
-    configureArgs = getOption("configure.args"),
-    configureVars = getOption("configure.vars"),
+    configureArgs = getOption(x = "configure.args"),
+    configureVars = getOption(x = "configure.vars"),
     autoconf = TRUE,
     dependencies = TRUE,
     lib = .libPaths()[[1L]],
-    type = getOption("pkgType", default = "source"),
+    type = getOption(x = "pkgType", default = "source"),
     reinstall = TRUE
 ) {
     makevarsFile <- file.path("~", ".R", "Makevars")
@@ -88,7 +88,7 @@ install <- function(
         is.character(type) && identical(length(type), 1L),
         isFALSE(file.exists(makevarsFile))
     )
-    warnDefault <- getOption("warn")
+    warnDefault <- getOption(x = "warn")
     options("warn" = 2L)
     if (isFALSE(dir.exists(lib))) {
         dir.create(lib)
@@ -223,7 +223,7 @@ install <- function(
                 args <- .autoconf(args)
             }
             if (isTRUE("type" %in% names(args))) {
-                pkgTypeDefault <- getOption("pkgType")
+                pkgTypeDefault <- getOption(x = "pkgType")
                 options("pkgType" = args[["type"]])
             }
             what <- get(

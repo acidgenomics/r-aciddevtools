@@ -95,7 +95,9 @@ updateDeps <- function(
         x = as.character(df[["current"]]),
         y = as.character(df[["required"]]),
         FUN = function(x, y) {
-            if (is.na(x)) return(FALSE)
+            if (is.na(x)) {
+                return(FALSE)
+            }
             x <- package_version(x)
             y <- package_version(y)
             x >= y

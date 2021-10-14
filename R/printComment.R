@@ -27,7 +27,7 @@ printComment <- function(
     prefix <- match.arg(prefix)
     ## Subtract the width of the prefix, including a space.
     width <- width - (length(prefix) + 1L)
-    defaultWidth <- getOption("width")
+    defaultWidth <- getOption(x = "width")
     options(width = width)
     out <- utils::capture.output(print(...))
     out <- paste(prefix, out)
