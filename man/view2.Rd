@@ -16,10 +16,10 @@ In RStudio, this will open a tabbed window.
 }
 \description{
 This variant performs internal coercion to data.frame, so we can easily
-view S4 DFrame objects.
+view S4 DataFrame and GenomicRanges objects.
 }
 \note{
-Updated 2020-04-12.
+Updated 2021-10-14.
 }
 \examples{
 ## > view2(mtcars)
