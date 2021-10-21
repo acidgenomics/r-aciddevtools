@@ -288,6 +288,7 @@ installRecommendedPackages <- function(
             "fastcluster",
             "fastmatch",
             "fdrtool",
+            "pvclust",
             "spatialreg",  # spdep
             "uwot"
         )
