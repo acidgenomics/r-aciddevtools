@@ -1,5 +1,9 @@
 ## AcidDevTools 0.4.4 (UNRELEASED)
 
+### Minor changes
+
+- Updated R dependency to 4.1, matching Bioconductor 3.14.
+
 ## AcidDevTools 0.4.3 (2021-09-22)
 
 ### Minor changes
