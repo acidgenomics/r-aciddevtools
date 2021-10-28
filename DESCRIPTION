@@ -2,7 +2,7 @@ Package: AcidDevTools
 Title: Acid Genomics Developer Tools
 Description: Toolkit for R package development.
 Version: 0.4.4.9000
-Date: 2020-10-14
+Date: 2020-10-28
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -20,7 +20,7 @@ URL:
 BugReports: https://github.com/acidgenomics/r-aciddevtools/issues/
 License: AGPL-3
 Encoding: UTF-8
-Depends: R (>= 4.0)
+Depends: R (>= 4.1)
 Suggests:
     AcidBase,
     BiocCheck,
