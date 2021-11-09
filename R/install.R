@@ -436,7 +436,14 @@ install <- function(
             }
         },
         "rgeos" = {
-            stop("FIXME This needs support.")
+            if (is.list(geospatial)) {
+                stopifnot(file.exists(geospatial[["geosConfig"]]))
+                args[["configure.args"]] <-
+                    paste0(
+                        "--with-geos-config=",
+                        geospatial[["geosConfig"]]
+                    )
+            }
         },
         "rgl" = {
             if (.isMacOS()) {
