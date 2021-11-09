@@ -1,7 +1,7 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2021-08-22.
+#' @note Updated 2021-11-09.
 #'
 #' @inheritParams params
 #' @param pkgs `character`.
@@ -261,7 +261,7 @@ install <- function(
 #' This function will dynamically change configure arguments for some tricky
 #' to install packages.
 #'
-#' @note Updated 2021-08-22.
+#' @note Updated 2021-11-09.
 #' @noRd
 #'
 #' @param args `list`.
@@ -289,6 +289,8 @@ install <- function(
     )
     homebrewOpt <- .homebrewOpt()
     koopaOpt <- .koopaOpt()
+    # FIXME Need to support:
+    # FIXME spatialreg
     switch(
         EXPR = pkg,
         "data.table" = {
@@ -308,6 +310,9 @@ install <- function(
             }
         },
         "geos" = {
+            ## FIXME Require this to install from source.
+            ## FIXME What about rgeos package? Same deal?
+            ## FIXME Need to rework this to improve config for Homebrew.
             if (.isLinux()) {
                 opt <- koopaOpt
                 geosDir <- file.path(opt, "geos")
@@ -319,6 +324,12 @@ install <- function(
                 }
             }
         },
+        "rgdal" = {
+            stop("FIXME This needs support.")
+        },
+        "rgeos" = {
+            stop("FIXME This needs support.")
+        },
         "rgl" = {
             if (.isMacOS()) {
                 ## https://github.com/dmurdoch/rgl/issues/45
@@ -326,15 +337,23 @@ install <- function(
             }
         },
         "sf" = {
+
+            ## FIXME Rework to support Linuxbrew here.
             if (.isMacOS()) {
                 opt <- homebrewOpt
             } else if (.isLinux()) {
                 opt <- koopaOpt
             }
+
+            ## FIXME Ensure we're not mixing and matching Homebrew / Koopa opt
+            ## here.
             gdalDir <- file.path(opt, "gdal")
             geosDir <- file.path(opt, "geos")
             projDir <- file.path(opt, "proj")
-            if (all(dir.exists(c(opt, gdalDir, geosDir, projDir)))) {
+
+            if (any(dir.exists(c(gdalDir, geosDir, projDir)))) {
+                stopifnot(all(dir.exists(c(gdalDir, geosDir, projDir))))
+                args[["type"]] <- "source"
                 gdalConfig <- file.path(gdalDir, "bin", "gdal-config")
                 geosConfig <- file.path(geosDir, "bin", "geos-config")
                 projData <- file.path(projDir, "share", "proj")
@@ -342,11 +361,8 @@ install <- function(
                 projLib <- file.path(projDir, "lib")
                 projShare <- file.path(projDir, "share")
                 stopifnot(
-                    file.exists(gdalConfig),
-                    file.exists(geosConfig),
-                    dir.exists(projData),
-                    dir.exists(projInclude),
-                    dir.exists(projLib)
+                    all(dir.exists(c(projData, projInclude, projLib))),
+                    all(file.exists(gdalConfig, geosConfig))
                 )
                 configureArgs <- c(
                     paste0("--with-gdal-config=", gdalConfig),
@@ -356,9 +372,16 @@ install <- function(
                     paste0("--with-proj-lib=", projLib),
                     paste0("--with-proj-share=", projShare)
                 )
+                invisible(lapply(X = configureArgs, FUN = message))
                 args[["configure.args"]] <- configureArgs
             }
             args[["dependencies"]] <- NA
+        },
+        "sp" = {
+            stop("FIXME Need to add support for this.")
+        },
+        "spatialreg" = {
+            stop("FIXME Need to add support for this.")
         }
     )
     args
