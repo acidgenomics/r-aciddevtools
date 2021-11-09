@@ -289,8 +289,72 @@ install <- function(
     )
     homebrewOpt <- .homebrewOpt()
     koopaOpt <- .koopaOpt()
-    # FIXME Need to support:
-    # FIXME spatialreg
+    ## Configure geospatial packages (GDAL, GEOS, PROJ) from OSGeo, if needed.
+    geospatial <- NULL
+    if (isTRUE(pkg %in% c(
+        "geos",
+        "rgdal",
+        "rgeos",
+        "sf",
+        "sp",
+        "spatialreg",
+        "spdep"
+    ))) {
+        geospatial <- list()
+        if (any(dir.exists(c(
+            file.path(koopaOpt, "gdal"),
+            file.path(koopaOpt, "geos"),
+            file.path(koopaOpt, "proj")
+        )))) {
+            geospatial[["opt"]] <- kooptOpt
+        } else if (any(dir.exists(c(
+            file.path(homebrewOpt, "gdal"),
+            file.path(homebrewOpt, "geos"),
+            file.path(homebrewOpt, "proj")
+        )))) {
+            geospatial[["opt"]] <- homebrewOpt
+        } else {
+            message("Using system packages for geospatial configuration.")
+            geospatial <- NULL
+        }
+        if (isTRUE(dir.exists(geospatial[["opt"]]))) {
+            geospatial[["gdalDir"]] <-
+                file.path(geospatial[["opt"]], "gdal")
+            geospatial[["geosDir"]] <-
+                file.path(geospatial[["opt"]], "geos")
+            geospatial[["projDir"]] <-
+                file.path(geospatial[["opt"]], "proj")
+            ## Configuration handlers.
+            geospatial[["gdalConfig"]] <-
+                file.path(geospatial[["gdalDir"]], "bin", "gdal-config")
+            geospatial[["geosConfig"]] <-
+                file.path(geospatial[["geosDir"]], "bin", "geos-config")
+            ## Directories.
+            geospatial[["projData"]] <-
+                file.path(geospatial[["projDir"]], "share", "proj")
+            geospatial[["projInclude"]] <-
+                file.path(geospatial[["projDir"]], "include")
+            geospatial[["projLib"]] <-
+                file.path(geospatial[["projDir"]], "lib")
+            geospatial[["projShare"]] <-
+                file.path(geospatial[["projDir"]], "share")
+            stopifnot(
+                all(dir.exists(c(
+                    geospatial[["gdalDir"]],
+                    geospatial[["geosDir"]],
+                    geospatial[["projDir"]],
+                    geospatial[["projData"]],
+                    geospatial[["projInclude"]],
+                    geospatial[["projLib"]],
+                    geospatial[["projShare"]]
+                ))),
+                all(file.exists(
+                    geospatial[["gdalConfig"]],
+                    geospatial[["geosConfig"]]
+                ))
+            )
+        }
+    }
     switch(
         EXPR = pkg,
         "data.table" = {
@@ -310,18 +374,11 @@ install <- function(
             }
         },
         "geos" = {
-            ## FIXME Require this to install from source.
-            ## FIXME What about rgeos package? Same deal?
-            ## FIXME Need to rework this to improve config for Homebrew.
-            if (.isLinux()) {
-                opt <- koopaOpt
-                geosDir <- file.path(opt, "geos")
-                if (all(dir.exists(c(opt, geosDir)))) {
-                    geosConfig <- file.path(geosDir, "bin", "geos-config")
-                    stopifnot(file.exists(geosConfig))
-                    args[["configure.args"]] <-
-                        paste0("--with-geos-config=", geosConfig)
-                }
+            args[["type"]] <- "source"
+            if (is.list(geospatial)) {
+                stopifnot(file.exists(geospatial[["geosConfig"]]))
+                args[["configure.args"]] <-
+                    paste0("--with-geos-config=", geospatial[["geosConfig"]])
             }
         },
         "rgdal" = {
@@ -337,43 +394,28 @@ install <- function(
             }
         },
         "sf" = {
-
-            ## FIXME Rework to support Linuxbrew here.
-            if (.isMacOS()) {
-                opt <- homebrewOpt
-            } else if (.isLinux()) {
-                opt <- koopaOpt
-            }
-
-            ## FIXME Ensure we're not mixing and matching Homebrew / Koopa opt
-            ## here.
-            gdalDir <- file.path(opt, "gdal")
-            geosDir <- file.path(opt, "geos")
-            projDir <- file.path(opt, "proj")
-
-            if (any(dir.exists(c(gdalDir, geosDir, projDir)))) {
-                stopifnot(all(dir.exists(c(gdalDir, geosDir, projDir))))
-                args[["type"]] <- "source"
-                gdalConfig <- file.path(gdalDir, "bin", "gdal-config")
-                geosConfig <- file.path(geosDir, "bin", "geos-config")
-                projData <- file.path(projDir, "share", "proj")
-                projInclude <- file.path(projDir, "include")
-                projLib <- file.path(projDir, "lib")
-                projShare <- file.path(projDir, "share")
+            args[["type"]] <- "source"
+            if (is.list(geospatial)) {
                 stopifnot(
-                    all(dir.exists(c(projData, projInclude, projLib))),
-                    all(file.exists(gdalConfig, geosConfig))
+                    all(file.exists(c(
+                        geospatial[["gdalConfig"]],
+                        geospatial[["geosConfig"]]
+                    ))),
+                    all(dir.exists(c(
+                        geospatial[["projData"]],
+                        geospatial[["projInclude"]],
+                        geospatial[["projLib"]],
+                        geospatial[["projShare"]]
+                    )))
                 )
-                configureArgs <- c(
-                    paste0("--with-gdal-config=", gdalConfig),
-                    paste0("--with-geos-config=", geosConfig),
-                    paste0("--with-proj-data=", projData),
-                    paste0("--with-proj-include=", projInclude),
-                    paste0("--with-proj-lib=", projLib),
-                    paste0("--with-proj-share=", projShare)
+                args[["configure.args"]] <- c(
+                    paste0("--with-gdal-config=", geospatial[["gdalConfig"]]),
+                    paste0("--with-geos-config=", geospatial[["geosConfig"]]),
+                    paste0("--with-proj-data=", geospatial[["projData"]]),
+                    paste0("--with-proj-include=", geospatial[["projInclude"]]),
+                    paste0("--with-proj-lib=", geospatial[["projLib"]]),
+                    paste0("--with-proj-share=", geospatial[["projShare"]])
                 )
-                invisible(lapply(X = configureArgs, FUN = message))
-                args[["configure.args"]] <- configureArgs
             }
             args[["dependencies"]] <- NA
         },
@@ -384,6 +426,10 @@ install <- function(
             stop("FIXME Need to add support for this.")
         }
     )
+    ## Inform the user about configuration argument overrides.
+    if (!is.null(args[["configure.args"]])) {
+        invisible(lapply(X = args[["configure.args"]], FUN = message))
+    }
     args
 }
 
