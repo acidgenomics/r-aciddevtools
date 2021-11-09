@@ -388,7 +388,26 @@ install <- function(
             }
         },
         "rgdal" = {
-            stop("FIXME This needs support.")
+            ## NOTE Please note that 'rgdal' will be retired by the end of 2023,
+            ## plan transition to sf/stars/'terra' functions using 'GDAL' and
+            ## 'PROJ' at your earliest convenience.
+            ##
+            ## See also:
+            ## https://cran.r-project.org/web/packages/rgdal/rgdal.pdf
+            if (is.list(geospatial)) {
+                stopifnot(
+                    all(dir.exists(
+                        geospatial[["projInclude"]],
+                        geospatial[["projLib"]]
+                    )),
+                    file.exists(geospatial[["gdalConfig"]])
+                )
+                args[["configure.args"]] <- c(
+                    paste0("--with-gdal-config=", geospatial[["geosConfig"]]),
+                    paste0("--with-proj-include=", geospatial[["projInclude"]]),
+                    paste0("--with-proj-lib=", geospatial[["projLib"]])
+                )
+            }
         },
         "rgeos" = {
             stop("FIXME This needs support.")
