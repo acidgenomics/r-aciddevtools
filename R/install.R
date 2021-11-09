@@ -422,6 +422,8 @@ install <- function(
                     ## NOTE Including "gdal-config" currently causes this error
                     ## on macOS with Homebrew:
                     ## > ld: library not found for -lgeos-3
+                    ## See also:
+                    ## https://stackoverflow.com/questions/61108783/
                     configureArgs <- c(
                         configureArgs,
                         paste0(
@@ -438,6 +440,7 @@ install <- function(
         },
         "rgl" = {
             if (.isMacOS()) {
+                ## See also:
                 ## https://github.com/dmurdoch/rgl/issues/45
                 args[["configure.args"]] <- "--disable-opengl"
             }
