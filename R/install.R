@@ -450,6 +450,8 @@ install <- function(
                 ## See also:
                 ## https://github.com/dmurdoch/rgl/issues/45
                 args[["configure.args"]] <- "--disable-opengl"
+                ## Avoid issue with missing webshot2 dependency.
+                args[["dependencies"]] <- NA
             }
         },
         "sf" = {
@@ -494,12 +496,6 @@ install <- function(
                 )
             }
             args[["dependencies"]] <- NA
-        },
-        "sp" = {
-            stop("FIXME Need to add support for this.")
-        },
-        "spatialreg" = {
-            stop("FIXME Need to add support for this.")
         }
     )
     ## Inform the user about configuration argument overrides.
