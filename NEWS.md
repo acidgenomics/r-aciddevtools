@@ -3,6 +3,8 @@
 ### Minor changes
 
 - Updated R dependency to 4.1, matching Bioconductor 3.14.
+- `install`: Now ensures that sf, and other r-spatial packages install from
+  source, with specific pinning to GEOS, GDAL, and PROJ.
 
 ## AcidDevTools 0.4.3 (2021-09-22)
 
