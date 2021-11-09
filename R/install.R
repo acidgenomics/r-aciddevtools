@@ -396,10 +396,10 @@ install <- function(
             ## https://cran.r-project.org/web/packages/rgdal/rgdal.pdf
             if (is.list(geospatial)) {
                 stopifnot(
-                    all(dir.exists(
+                    all(dir.exists(c(
                         geospatial[["projInclude"]],
                         geospatial[["projLib"]]
-                    )),
+                    ))),
                     file.exists(geospatial[["gdalConfig"]])
                 )
                 args[["configure.args"]] <- c(
