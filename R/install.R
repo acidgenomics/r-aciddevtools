@@ -387,7 +387,10 @@ install <- function(
             if (is.list(geospatial)) {
                 stopifnot(file.exists(geospatial[["geosConfig"]]))
                 args[["configure.args"]] <-
-                    paste0("--with-geos-config=", geospatial[["geosConfig"]])
+                    paste0(
+                        "--with-geos-config=",
+                        geospatial[["geosConfig"]]
+                    )
             }
         },
         "rgdal" = {
@@ -405,24 +408,29 @@ install <- function(
                     ))),
                     file.exists(geospatial[["gdalConfig"]])
                 )
-                ## FIXME Now seeing this error on macOS:
-                ## configure: GDAL: 3.10.1
-                ## checking GDAL version >= 1.11.4... yes
-                ## checking GDAL version <= 2.5 or >= 3.0... yes
-                ## checking GDAL: linking with --libs only... no
-                ## checking GDAL: linking with --libs and --dep-libs... no
-                ## ld: library not found for -lgeos-3
-                ## clang: error: linker command failed with exit code 1 (use -v to see invocation)
-                ## ld: library not found for -lgeos-3
-                ## clang: error: linker command failed with exit code 1 (use -v to see invocation)
-                ## configure: Install failure: compilation and/or linkage problems.
-                ## configure: error: GDALAllRegister not found in libgdal.
-                ## ERROR: configuration failed for package ‘rgdal’
-                args[["configure.args"]] <- c(
-                    paste0("--with-gdal-config=", geospatial[["geosConfig"]]),
-                    paste0("--with-proj-include=", geospatial[["projInclude"]]),
-                    paste0("--with-proj-lib=", geospatial[["projLib"]])
+                configureArgs <- c(
+                    paste0(
+                        "--with-proj-include=",
+                        geospatial[["projInclude"]]
+                    ),
+                    paste0(
+                        "--with-proj-lib=",
+                        geospatial[["projLib"]]
+                    )
                 )
+                if (!identical(geospatial[["opt"]], homebrewOpt)) {
+                    ## NOTE Including "gdal-config" currently causes this error
+                    ## on macOS with Homebrew:
+                    ## > ld: library not found for -lgeos-3
+                    configureArgs <- c(
+                        configureArgs,
+                        paste0(
+                            "--with-gdal-config=",
+                            geospatial[["geosConfig"]]
+                        )
+                    )
+                }
+                args[["configure.args"]] <- configureArgs
             }
         },
         "rgeos" = {
@@ -449,12 +457,30 @@ install <- function(
                     )))
                 )
                 args[["configure.args"]] <- c(
-                    paste0("--with-gdal-config=", geospatial[["gdalConfig"]]),
-                    paste0("--with-geos-config=", geospatial[["geosConfig"]]),
-                    paste0("--with-proj-data=", geospatial[["projData"]]),
-                    paste0("--with-proj-include=", geospatial[["projInclude"]]),
-                    paste0("--with-proj-lib=", geospatial[["projLib"]]),
-                    paste0("--with-proj-share=", geospatial[["projShare"]])
+                    paste0(
+                        "--with-gdal-config=",
+                        geospatial[["gdalConfig"]]
+                    ),
+                    paste0(
+                        "--with-geos-config=",
+                        geospatial[["geosConfig"]]
+                    ),
+                    paste0(
+                        "--with-proj-data=",
+                        geospatial[["projData"]]
+                    ),
+                    paste0(
+                        "--with-proj-include=",
+                        geospatial[["projInclude"]]
+                    ),
+                    paste0(
+                        "--with-proj-lib=",
+                        geospatial[["projLib"]]
+                    ),
+                    paste0(
+                        "--with-proj-share=",
+                        geospatial[["projShare"]]
+                    )
                 )
             }
             args[["dependencies"]] <- NA
