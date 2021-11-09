@@ -360,7 +360,7 @@ install <- function(
                     paste(
                         .li, "GDAL:",
                         normalizePath(geospatial[["gdalDir"]])
-                    ,
+                    ),
                     paste(
                         .li, "GEOS:",
                         normalizePath(geospatial[["geosDir"]])
