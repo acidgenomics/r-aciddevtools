@@ -353,6 +353,11 @@ install <- function(
                     geospatial[["geosConfig"]]
                 ))
             )
+            message(c(
+                paste("GDAL:", geospatial[["gdalDir"]]),
+                paste("GEOS:", geospatial[["geosDir"]]),
+                paste("PROJ:", geospatial[["projDir"]])
+            ))
             args[["type"]] <- "source"
         }
     }
@@ -375,6 +380,7 @@ install <- function(
             }
         },
         "geos" = {
+            ## NOTE May also need to configure "libgeos" dependency.
             if (is.list(geospatial)) {
                 stopifnot(file.exists(geospatial[["geosConfig"]]))
                 args[["configure.args"]] <-
