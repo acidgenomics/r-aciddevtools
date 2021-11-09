@@ -306,7 +306,7 @@ install <- function(
             file.path(koopaOpt, "geos"),
             file.path(koopaOpt, "proj")
         )))) {
-            geospatial[["opt"]] <- kooptOpt
+            geospatial[["opt"]] <- koopaOpt
         } else if (any(dir.exists(c(
             file.path(homebrewOpt, "gdal"),
             file.path(homebrewOpt, "geos"),
