@@ -353,12 +353,22 @@ install <- function(
                     geospatial[["geosConfig"]]
                 ))
             )
+            .li <- "  -"
             invisible(lapply(
                 X = c(
                     "Geospatial (OSGeo) libraries:",
-                    paste0("  - ", "GDAL: ", geospatial[["gdalDir"]]),
-                    paste0("  - ", "GEOS: ", geospatial[["geosDir"]]),
-                    paste0("  - ", "PROJ: ", geospatial[["projDir"]])
+                    paste(
+                        .li, "GDAL:",
+                        normalizePath(geospatial[["gdalDir"]])
+                    ,
+                    paste(
+                        .li, "GEOS:",
+                        normalizePath(geospatial[["geosDir"]])
+                    ),
+                    paste(
+                        .li, "PROJ:",
+                        normalizePath(geospatial[["projDir"]])
+                    )
                 ),
                 FUN = message
             ))
