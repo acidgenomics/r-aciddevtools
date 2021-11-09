@@ -353,10 +353,13 @@ install <- function(
                     geospatial[["geosConfig"]]
                 ))
             )
-            message(c(
-                paste("GDAL:", geospatial[["gdalDir"]]),
-                paste("GEOS:", geospatial[["geosDir"]]),
-                paste("PROJ:", geospatial[["projDir"]])
+            invisible(lapply(
+                X = c(
+                    paste("GDAL:", geospatial[["gdalDir"]]),
+                    paste("GEOS:", geospatial[["geosDir"]]),
+                    paste("PROJ:", geospatial[["projDir"]])
+                ),
+                FUN = message
             ))
             args[["type"]] <- "source"
         }
