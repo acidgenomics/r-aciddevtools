@@ -353,6 +353,7 @@ install <- function(
                     geospatial[["geosConfig"]]
                 ))
             )
+            args[["type"]] <- "source"
         }
     }
     switch(
@@ -374,7 +375,6 @@ install <- function(
             }
         },
         "geos" = {
-            args[["type"]] <- "source"
             if (is.list(geospatial)) {
                 stopifnot(file.exists(geospatial[["geosConfig"]]))
                 args[["configure.args"]] <-
@@ -394,7 +394,6 @@ install <- function(
             }
         },
         "sf" = {
-            args[["type"]] <- "source"
             if (is.list(geospatial)) {
                 stopifnot(
                     all(file.exists(c(
@@ -428,7 +427,12 @@ install <- function(
     )
     ## Inform the user about configuration argument overrides.
     if (!is.null(args[["configure.args"]])) {
+        message("Configuration via '--configure.args':")
         invisible(lapply(X = args[["configure.args"]], FUN = message))
+    }
+    if (!is.null(args[["configure.vars"]])) {
+        message("Configuration via 'configure-vars':")
+        invisible(lapply(X = args[["configure.vars"]], FUN = message))
     }
     args
 }
