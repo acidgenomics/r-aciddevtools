@@ -355,9 +355,10 @@ install <- function(
             )
             invisible(lapply(
                 X = c(
-                    paste("GDAL:", geospatial[["gdalDir"]]),
-                    paste("GEOS:", geospatial[["geosDir"]]),
-                    paste("PROJ:", geospatial[["projDir"]])
+                    "Geospatial (OSGeo) libraries:",
+                    paste0("  - ", "GDAL: ", geospatial[["gdalDir"]]),
+                    paste0("  - ", "GEOS: ", geospatial[["geosDir"]]),
+                    paste0("  - ", "PROJ: ", geospatial[["projDir"]])
                 ),
                 FUN = message
             ))
@@ -500,12 +501,22 @@ install <- function(
     )
     ## Inform the user about configuration argument overrides.
     if (!is.null(args[["configure.args"]])) {
-        message("Configuration via '--configure.args':")
-        invisible(lapply(X = args[["configure.args"]], FUN = message))
+        invisible(lapply(
+            X = c(
+                "Configuration via '--configure.args':",
+                paste0("  ", args[["configure.args"]])
+            ),
+            FUN = message
+        ))
     }
     if (!is.null(args[["configure.vars"]])) {
-        message("Configuration via 'configure-vars':")
-        invisible(lapply(X = args[["configure.vars"]], FUN = message))
+        invisible(lapply(
+            X = c(
+                "Configuration via 'configure-vars':",
+                paste0("  ", args[["configure.vars"]])
+            ),
+            FUN = message
+        ))
     }
     args
 }
