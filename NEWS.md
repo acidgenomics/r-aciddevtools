@@ -1,4 +1,4 @@
-## AcidDevTools 0.4.4 (UNRELEASED)
+## AcidDevTools 0.4.4 (2021-11-09)
 
 ### Minor changes
 
