@@ -146,7 +146,7 @@ installRecommendedPackages <- function(
         pkgs <- c(
             pkgs,
             "DT",
-            "languageserver",  # vscode
+            "languageserver",  # lsp (for vscode, nvim)
             "slam",
             "tidytext"
         )
