@@ -5,7 +5,7 @@
 #' Install recommended R packages
 #'
 #' @export
-#' @note Updated 2021-10-06.
+#' @note Updated 2021-12-16.
 #'
 #' @section tidyverse packages:
 #'
@@ -202,6 +202,7 @@ installRecommendedPackages <- function(
             "testthat",
             "usethis",
             "waldo",
+            "withr",
             "xmlparsedata"
         )
     }
