@@ -1,7 +1,15 @@
+## FIXME Rework custom overrides using withr.
+##     https://github.com/r-lib/withr
+## FIXME For example, set clang toolchain for httpuv install.
+##     https://github.com/rstudio/httpuv/issues/325
+##     https://github.com/rstudio/httpuv#debugging-builds
+
+
+
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2021-11-09.
+#' @note Updated 2021-12-16.
 #'
 #' @inheritParams params
 #' @param pkgs `character`.
