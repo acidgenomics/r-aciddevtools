@@ -3,6 +3,13 @@
 ## FIXME For example, set clang toolchain for httpuv install.
 ##     https://github.com/rstudio/httpuv/issues/325
 ##     https://github.com/rstudio/httpuv#debugging-builds
+##
+## Example:
+## > withr::with_makevars(
+## >   c(PKG_CPPFLAGS="-DDEBUG_TRACE -DDEBUG_THREAD -UNDEBUG"), {
+## >     devtools::install_github("rstudio/httpuv")
+## >  }, assignment = "+="
+## > )
 
 
 
