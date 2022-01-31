@@ -11,6 +11,13 @@
 ## >  }, assignment = "+="
 ## > )
 
+## FIXME Now hitting a cryptic file path error on Ubuntu 20 VM regarding
+## geospatial suite...need to improve this.
+## Installing 'rgdal' with 'BiocManager::install' in '/opt/koopa/app/r-packages/4.1'.
+## Using system packages for geospatial configuration.
+## Error in dir.exists(geospatial[["opt"]]) : invalid filename argument
+## Calls: <Anonymous> ... install -> vapply -> FUN -> .autoconf -> isTRUE -> dir.exists
+
 
 
 #' Install packages from Bioconductor, CRAN, or a Git remote
