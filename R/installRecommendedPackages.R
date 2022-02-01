@@ -5,7 +5,7 @@
 #' Install recommended R packages
 #'
 #' @export
-#' @note Updated 2021-12-16.
+#' @note Updated 2022-02-01.
 #'
 #' @section tidyverse packages:
 #'
@@ -83,6 +83,8 @@ installRecommendedPackages <- function(
         ## PROJ, GEOS, GDAL installed...need to rethink.
         "rgdal",
         "rgl",
+        ## FIXME This is also erroring with our current geospatial approach
+        ## on Ubuntu EC2 instance.
         "sf"
     )
     ## CRAN --------------------------------------------------------------- {{{2
