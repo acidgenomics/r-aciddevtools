@@ -79,6 +79,8 @@ installRecommendedPackages <- function(
         "RcppAnnoy",
         "XML",
         "rJava",
+        ## FIXME This is currently problematic on Ubuntu EC2 image with system
+        ## PROJ, GEOS, GDAL installed...need to rethink.
         "rgdal",
         "rgl",
         "sf"

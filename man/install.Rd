@@ -9,7 +9,7 @@ install(
   configureArgs = getOption(x = "configure.args"),
   configureVars = getOption(x = "configure.vars"),
   autoconf = TRUE,
-  dependencies = TRUE,
+  dependencies = NA,
   lib = .libPaths()[[1L]],
   type = getOption(x = "pkgType", default = "source"),
   reinstall = TRUE
@@ -86,7 +86,7 @@ Contains information on \code{pkgs} and \code{lib} defined.
 Install packages from Bioconductor, CRAN, or a Git remote
 }
 \note{
-Updated 2021-08-22.
+Updated 2022-02-01.
 }
 \examples{
 ## > testlib <- file.path(tempdir(), "testlib")
