@@ -23,7 +23,7 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2021-12-16.
+#' @note Updated 2022-02-01.
 #'
 #' @inheritParams params
 #' @param pkgs `character`.
@@ -95,7 +95,7 @@ install <- function(
     configureArgs = getOption(x = "configure.args"),
     configureVars = getOption(x = "configure.vars"),
     autoconf = TRUE,
-    dependencies = TRUE,
+    dependencies = NA,
     lib = .libPaths()[[1L]],
     type = getOption(x = "pkgType", default = "source"),
     reinstall = TRUE
