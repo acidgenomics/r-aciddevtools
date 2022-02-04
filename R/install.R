@@ -1,8 +1,9 @@
-## FIXME Rework custom overrides using withr.
-##     https://github.com/r-lib/withr
-## FIXME For example, set clang toolchain for httpuv install.
-##     https://github.com/rstudio/httpuv/issues/325
-##     https://github.com/rstudio/httpuv#debugging-builds
+## NOTE Consider reworking custom overrides using withr.
+## For example, set clang toolchain for httpuv install.
+##
+## See also:
+## - https://github.com/rstudio/httpuv/issues/325
+## - https://github.com/rstudio/httpuv#debugging-builds
 ##
 ## Example:
 ## > withr::with_makevars(
@@ -11,19 +12,12 @@
 ## >  }, assignment = "+="
 ## > )
 
-## FIXME Now hitting a cryptic file path error on Ubuntu 20 VM regarding
-## geospatial suite...need to improve this.
-## Installing 'rgdal' with 'BiocManager::install' in '/opt/koopa/app/r-packages/4.1'.
-## Using system packages for geospatial configuration.
-## Error in dir.exists(geospatial[["opt"]]) : invalid filename argument
-## Calls: <Anonymous> ... install -> vapply -> FUN -> .autoconf -> isTRUE -> dir.exists
-
 
 
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2022-02-01.
+#' @note Updated 2022-02-04.
 #'
 #' @inheritParams params
 #' @param pkgs `character`.
@@ -341,7 +335,8 @@ install <- function(
             message("Using system packages for geospatial configuration.")
             geospatial <- NULL
         }
-        if (isTRUE(dir.exists(geospatial[["opt"]]))) {
+        if (is.list(geospatial)) {
+            stopifnot(isTRUE(dir.exists(geospatial[["opt"]])))
             geospatial[["gdalDir"]] <-
                 file.path(geospatial[["opt"]], "gdal")
             geospatial[["geosDir"]] <-
