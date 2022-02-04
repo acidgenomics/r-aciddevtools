@@ -5,7 +5,7 @@
 #' Install recommended R packages
 #'
 #' @export
-#' @note Updated 2022-02-01.
+#' @note Updated 2022-02-04.
 #'
 #' @section tidyverse packages:
 #'
@@ -234,6 +234,7 @@ installRecommendedPackages <- function(
         pkgs <- c(
             pkgs,
             "ComplexUpset",
+            "GGally",
             "UpSetR",
             "cowplot",
             "dendextend",
