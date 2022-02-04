@@ -1,3 +1,10 @@
+# AcidDevTools 0.4.5 (2022-02-04)
+
+## Minor changes
+
+- `install`: Bug fix for incorrect handling of geospatial library checks on
+  Linux machines using system GDAL, GEOS, and PROJ.
+
 # AcidDevTools 0.4.4 (2021-11-09)
 
 ## Minor changes
