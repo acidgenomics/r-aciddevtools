@@ -306,8 +306,6 @@ install <- function(
     homebrewOpt <- .homebrewOpt()
     koopaOpt <- .koopaOpt()
     ## Configure geospatial packages (GDAL, GEOS, PROJ) from OSGeo, if needed.
-    ## FIXME Need to rethink support / approach for this on Ubuntu 20 EC2
-    ## instance without gdal, geos, proj installed from source...
     geospatial <- NULL
     if (isTRUE(pkg %in% c(
         "geos",

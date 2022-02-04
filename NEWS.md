@@ -2,6 +2,8 @@
 
 ## Minor changes
 
+- `install`: Switched back to `dependencies = NA` by default, matching
+  base R conventions.
 - `install`: Bug fix for incorrect handling of geospatial library checks on
   Linux machines using system GDAL, GEOS, and PROJ.
 - `install`: No longer checking for `~/.R/Makevars`.

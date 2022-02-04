@@ -79,12 +79,8 @@ installRecommendedPackages <- function(
         "RcppAnnoy",
         "XML",
         "rJava",
-        ## FIXME This is currently problematic on Ubuntu EC2 image with system
-        ## PROJ, GEOS, GDAL installed...need to rethink.
         "rgdal",
         "rgl",
-        ## FIXME This is also erroring with our current geospatial approach
-        ## on Ubuntu EC2 instance.
         "sf"
     )
     ## CRAN --------------------------------------------------------------- {{{2
