@@ -4,6 +4,7 @@
 
 - `install`: Bug fix for incorrect handling of geospatial library checks on
   Linux machines using system GDAL, GEOS, and PROJ.
+- `install`: No longer checking for `~/.R/Makevars`.
 
 # AcidDevTools 0.4.4 (2021-11-09)
 
