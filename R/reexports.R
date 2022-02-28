@@ -35,17 +35,6 @@ BiocCheck <- function(package = getwd()) {
 
 
 
-## BiocManager =================================================================
-#' @rdname reexports
-#' @usage NULL
-#' @export
-valid <- function(...) {
-    stopifnot(requireNamespace("BiocManager", quietly = TRUE))
-    BiocManager::valid(...)
-}
-
-
-
 ## covr ========================================================================
 #' @rdname reexports
 #' @usage NULL
