@@ -178,6 +178,7 @@ installRecommendedPackages <- function(
             "desc",
             "devtools",
             "drat",
+            "furrr",
             "git2r",
             "glue",
             "lifecycle",
