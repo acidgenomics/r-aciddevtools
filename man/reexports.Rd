@@ -3,7 +3,6 @@
 \name{reexports}
 \alias{reexports}
 \alias{BiocCheck}
-\alias{valid}
 \alias{package_coverage}
 \alias{percent_coverage}
 \alias{report}
