@@ -19,7 +19,10 @@ valid <- function(...) {
     }
     stopifnot(is.list(x))
     message("R package library is not valid.")
-    if (isTRUE("too_new" %in% names(x))) {
+    if (
+        isTRUE("too_new" %in% names(x)) &&
+        !is.null(x[["too_new"]])
+    ) {
         pkgs <- sort(
             x = rownames(x[["too_new"]]),
             method = "radix"
@@ -35,7 +38,10 @@ valid <- function(...) {
             sep = "\n"
         ))
     }
-    if (isTRUE("out_of_date" %in% names(x))) {
+    if (
+        isTRUE("out_of_date" %in% names(x)) &&
+        !is.null(x[["out_of_date"]])
+    ) {
         pkgs <- sort(
             x = rownames(x[["out_of_date"]]),
             method = "radix"
