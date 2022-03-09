@@ -5,7 +5,7 @@
 #' Install recommended R packages
 #'
 #' @export
-#' @note Updated 2022-02-04.
+#' @note Updated 2022-03-09.
 #'
 #' @section tidyverse packages:
 #'
@@ -198,6 +198,7 @@ installRecommendedPackages <- function(
             "reprex",
             "rlang",
             "roxygen2",
+            "servr",
             "sloop",
             "snow",
             "styler",
