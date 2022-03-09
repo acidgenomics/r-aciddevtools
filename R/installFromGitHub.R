@@ -1,9 +1,9 @@
 #' Install packages from GitHub
 #'
 #' @details
-#' This variant doesn't require `GITHUB_PAT`.
-#' If you have a `GITHUB_PAT` defined, can use `install()` directly instead.
-#' Intended for use inside container images, where a PAT may not be used.
+#' This variant doesn't require `GITHUB_PAT`. If you have a `GITHUB_PAT`
+#' defined, can use `install()` directly instead. Intended for use inside
+#' container images, where a PAT may not be used.
 #'
 #' @section GitHub API:
 #'
@@ -17,14 +17,18 @@
 #'   `https://github.com/:owner/:repo/archive/:tag.tar.gz`
 #'
 #' @export
-#' @note Updated 2021-08-23.
+#' @note Updated 2022-03-09.
 #'
 #' @inheritParams params
 #' @param repo `character`.
 #'   Repository address(es) in the format `owner/repo`.
-#' @param tag `character`.
+#' @param tag `character` or `missing`.
 #'   Release version tag.
 #'   Specific release must match the tag on GitHub (e.g. `"v1.0.0"`).
+#'   Required except when `branch` is declared.
+#' @param branch `character` or `missing`.
+#'   Branch name (e.g. `"develop"`).
+#'   Can specify this instead of `tag`.
 #' @param ... Passthrough arguments to `install()`.
 #'
 #' @return Invisible `list`.
@@ -37,29 +41,46 @@
 #' @examples
 #' testlib <- file.path(tempdir(), "testlib")
 #' unlink(testlib, recursive = TRUE)
-#' out <- installGitHub(
-#'     repo = "acidgenomics/r-goalie",
+#' out <- installFromGitHub(
+#'     repo = paste(
+#'         "acidgenomics",
+#'         "r-goalie",
+#'         sep = "/"
+#'     ),
 #'     tag = "v0.5.2",
 #'     dependencies = FALSE,
 #'     lib = testlib,
 #'     reinstall = TRUE
 #' )
 #' print(out)
-#' list.dirs(path = testlib, full.names = FALSE, recursive = FALSE)
+#' sort(list.dirs(path = testlib, full.names = FALSE, recursive = FALSE))
 #' unlink(testlib, recursive = TRUE)
-installGitHub <- function(
+installFromGitHub <- function(
     repo,
     tag,
+    branch,
     lib = .libPaths()[[1L]],
     reinstall = TRUE,
     ...
 ) {
+    if (
+        (missing(tag) && missing(branch)) ||
+        (!missing(tag) && !missing(branch))
+    ) {
+        stop("Specify either 'tag' or 'branch'.")
+    }
+    if (!missing(tag)) {
+        ref <- tag
+        refType <- "tag"
+    } else if (!missing(branch)) {
+        ref <- branch
+        refType <- "branch"
+    }
     stopifnot(
         requireNamespace("utils", quietly = TRUE),
         all(grepl(x = repo, pattern = "^[^/]+/[^/]+$")),
-        is.character(tag) && identical(length(tag), 1L),
-        is.logical(reinstall) && identical(length(reinstall), 1L),
-        identical(length(repo), length(tag))
+        identical(length(repo), length(ref)),
+        is.logical(reinstall) && identical(length(reinstall), 1L)
     )
     if (isFALSE(dir.exists(lib))) {
         dir.create(lib)
@@ -67,9 +88,12 @@ installGitHub <- function(
     lib <- normalizePath(lib, mustWork = TRUE)
     out <- mapply(
         repo = repo,
-        tag = tag,
-        MoreArgs = list("reinstall" = reinstall),
-        FUN = function(repo, tag, reinstall) {
+        ref = ref,
+        MoreArgs = list(
+            "refType" = refType,
+            "reinstall" = reinstall
+        ),
+        FUN = function(repo, ref, refType, reinstall) {
             pkg <- basename(repo)
             pkg <- sub(pattern = "^r-", replacement = "", x = pkg)
             if (
@@ -87,8 +111,12 @@ installGitHub <- function(
                 repo,
                 "archive",
                 "refs",
-                "tags",
-                paste0(tag, ".tar.gz"),
+                switch(
+                    EXPR = refType,
+                    "branch" = "heads",
+                    "tag" = "tags"
+                ),
+                paste0(ref, ".tar.gz"),
                 sep = "/"
             )
             tarfile <- tempfile(fileext = ".tar.gz")
