@@ -1,4 +1,4 @@
-# AcidDevTools 0.4.7 (2022-03-09)
+# AcidDevTools 0.4.7 (2022-03-11)
 
 ## Minor changes
 
