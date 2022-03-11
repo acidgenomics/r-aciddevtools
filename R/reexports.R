@@ -235,21 +235,37 @@ build_site <- function(..., devel = FALSE, preview = FALSE) {
 
 
 ## rcmdcheck ===================================================================
+
+## See also:
+## - R CMD check --help
+## - https://r-pkgs.org/r-cmd-check.html
+
 #' @rdname reexports
 #' @usage NULL
 #' @export
-rcmdcheck <- function(path = getwd(), cran = FALSE) {
+rcmdcheck <- function(
+    path = getwd(),
+    cran = FALSE
+) {
     stopifnot(requireNamespace("rcmdcheck", quietly = TRUE))
-    ## See also `force_suggests` argument in `devtools::check()`.
-    Sys.setenv("_R_CHECK_FORCE_SUGGESTS_" = "FALSE")
-    args <- "--no-manual"
+    Sys.setenv(
+        ## See also `force_suggests` argument in `devtools::check()`.
+        "_R_CHECK_FORCE_SUGGESTS_" = "FALSE"
+    )
+    args <- c(
+        "--no-manual",
+        "--timings"
+    )
     if (isTRUE(cran)) {
         args <- c(args, "--as-cran")
     }
     out <- rcmdcheck::rcmdcheck(
         path = path,
         args = args,
-        error_on = "note"
+        # Time out after 1 hour.
+        timeout = 3600L,
+        # Alternatively, can be stricter by setting this to "note".
+        error_on = Sys.getenv(x = "RCMDCHECK_ERROR_ON", unset = "warning")
     )
     stopifnot(identical(out[["status"]], 0L))
     invisible(out)
@@ -258,6 +274,7 @@ rcmdcheck <- function(path = getwd(), cran = FALSE) {
 
 
 ## remotes =====================================================================
+
 #' @rdname reexports
 #' @usage NULL
 #' @export
