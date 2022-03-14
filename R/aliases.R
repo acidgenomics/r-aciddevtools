@@ -20,7 +20,7 @@ NULL
 
 
 #' @describeIn aliases
-#'   Alias for `setwd()`.
+#' Alias for `setwd()`.
 #' @export
 cd <- function(...) {
     setwd(...)
@@ -29,7 +29,7 @@ cd <- function(...) {
 
 
 #' @describeIn aliases
-#'   Alias for `cat("\f")`.
+#' Alias for `cat("\f")`.
 #' @export
 clear <- function() {
     cat("\f")
@@ -38,7 +38,7 @@ clear <- function() {
 
 
 #' @describeIn aliases
-#'   Alias for `document()`.
+#' Alias for `document()`.
 #' @export
 d <- function(...) {
     document(...)
@@ -47,7 +47,7 @@ d <- function(...) {
 
 
 #' @describeIn aliases
-#'   Alias for `load_all()`.
+#' Alias for `load_all()`.
 #' @export
 la <- function(...) {
     load_all(...)

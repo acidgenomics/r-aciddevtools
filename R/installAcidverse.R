@@ -15,27 +15,27 @@ installAcidverse <- function() {
     message("Installing Acid Genomics packages.")
     install(
         pkgs = c(
-            "AcidGSEA",                                 # RNASeq
-            "AcidGenerics",                             # Infrastructure
-            "AcidPlots",                                # Visualization
-            "AcidRoxygen",                              # Infrastructure
-            "AcidTest",                                 # Infrastructure
-            "Cellosaurus",                              # CancerData
-            "Chromium",                                 # SingleCell
-            "DESeqAnalysis",                            # RNASeq
-            "DepMapAnalysis",                           # CancerData
-            "EggNOG",                                   # Annotation
-            "PANTHER",                                  # Annotation
-            "WormBase",                                 # Annotation
-            "basejump",                                 # Infrastructure
-            "bcbioBase",                                # Infrastructure
-            "bcbioRNASeq",                              # RNASeq
-            "bcbioSingleCell",                          # SingleCell
-            "cBioPortalAnalysis",                       # CancerData
-            "goalie",                                   # Infrastructure
-            "koopa",                                    # Infrastructure
-            "pointillism",                              # SingleCell
-            "syntactic"                                 # Infrastructure
+            "AcidGSEA",
+            "AcidGenerics",
+            "AcidPlots",
+            "AcidRoxygen",
+            "AcidTest",
+            "Cellosaurus",
+            "Chromium",
+            "DESeqAnalysis",
+            "DepMapAnalysis",
+            "EggNOG",
+            "PANTHER",
+            "WormBase",
+            "basejump",
+            "bcbioBase",
+            "bcbioRNASeq",
+            "bcbioSingleCell",
+            "cBioPortalAnalysis",
+            "goalie",
+            "koopa",
+            "pointillism",
+            "syntactic"
         ),
         dependencies = TRUE,
         reinstall = FALSE

@@ -7,20 +7,20 @@
 #' @note Updated 2020-04-12.
 #'
 #' @param object `Rd`.
-#'   R documentation, returned from `tools::Rd_db()`.
+#' R documentation, returned from `tools::Rd_db()`.
 #' @param tag `character(1)`.
-#'   Desired metadata type.
+#' Desired metadata type.
 #'
-#'   These types are supported:
+#' These types are supported:
 #'
-#'   - `title`.
-#'   - `description`.
-#'   - `usage`.
-#'   - `arguments`.
-#'   - `value`.
-#'   - `references`.
-#'   - `seealso`.
-#'   - `examples`.
+#' - `title`.
+#' - `description`.
+#' - `usage`.
+#' - `arguments`.
+#' - `value`.
+#' - `references`.
+#' - `seealso`.
+#' - `examples`.
 #'
 #' @seealso `tools::Rd_db()`.
 #'
@@ -52,7 +52,7 @@ parseRd <-
             data <- data[-1L]
         }
         if (data[[length(data)]] == "") {
-            data <- data[-length(data)]  # nocov
+            data <- data[-length(data)] # nocov
         }
         data
     }
@@ -60,9 +60,9 @@ parseRd <-
 
 
 #' @describeIn parseRd
-#'   Modified version of the unexported `tools:::RdTags()` function.
+#' Modified version of the unexported `tools:::RdTags()` function.
 #' @export
-RdTags <-  # nolint
+RdTags <- # nolint
     function(object) {
         stopifnot(
             requireNamespace("methods", quietly = TRUE),
@@ -75,7 +75,7 @@ RdTags <-  # nolint
             "Rd_tag"
         )
         if (identical(length(tags), 0L)) {
-            tags <- character()  # nocov
+            tags <- character() # nocov
         } else {
             ## Remove the leading "\\" backslashes.
             tags <- gsub("^\\\\", "", tags)

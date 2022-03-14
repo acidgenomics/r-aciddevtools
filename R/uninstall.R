@@ -8,15 +8,12 @@
 #' @note Updated 2021-08-22.
 #'
 #' @return Invisible `list`.
-#'   Metadata containing names of packages that were removed, and the package
-#'   library path.
+#' Metadata containing names of packages that were removed, and the package
+#' library path.
 #'
 #' @examples
 #' ## > uninstall("rlang")
-uninstall <- function(
-    pkgs,
-    lib = .libPaths()[[1L]]
-) {
+uninstall <- function(pkgs, lib = .libPaths()[[1L]]) {
     stopifnot(requireNamespace("utils", quietly = TRUE))
     ## Treat all warnings as errors.
     warn <- getOption(x = "warn")
@@ -26,7 +23,7 @@ uninstall <- function(
     removePkgs <- intersect(pkgs, installedPkgs)
     skipPkgs <- setdiff(pkgs, installedPkgs)
     if (isTRUE(length(skipPkgs) > 0L)) {
-        message(sprintf("Skipping packages: %s", toString(skipPkgs)))  # nocov
+        message(sprintf("Skipping packages: %s", toString(skipPkgs))) # nocov
     }
     if (isTRUE(length(removePkgs) > 0L)) {
         message(sprintf("Removing packages: %s", toString(removePkgs)))

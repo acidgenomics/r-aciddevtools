@@ -9,7 +9,7 @@
 #' @note Updated 2020-04-12.
 #'
 #' @return `character(1)`.
-#'   Normalized path to current script.
+#' Normalized path to current script.
 #'
 scriptPath <- function() {
     stopifnot(

@@ -13,8 +13,8 @@
 #' @inheritParams params
 #'
 #' @return Invisible `NULL`.
-#'   This function puts up a window and returns immediately.
-#'   In RStudio, this will open a tabbed window.
+#' This function puts up a window and returns immediately.
+#' In RStudio, this will open a tabbed window.
 #'
 #' @examples
 #' ## > view2(mtcars)
@@ -28,7 +28,7 @@ view2 <- function(object) {
         object <- as.data.frame(object)
     }
     if (!goalie::isRStudio()) {
-        View <- utils::View  # nolint
+        View <- utils::View # nolint
     }
     View(object)
 }

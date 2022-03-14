@@ -8,10 +8,11 @@
 #' @noRd
 #'
 #' @param x `character`.
-#'   R package names.
+#' R package names.
+#'
 #' @param lib `character(1)` or `NULL`.
-#'   R package library.
-#'   If left `NULL`, checks all paths defined in `.libPaths`.
+#' R package library.
+#' If left `NULL`, checks all paths defined in `.libPaths`.
 #'
 #' @return `logical(1)`.
 .isInstalled <- function(x, lib = NULL) {

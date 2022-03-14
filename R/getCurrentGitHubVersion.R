@@ -4,11 +4,11 @@
 #' @note Updated 2021-08-23.
 #'
 #' @param repo `character`.
-#'   GitHub repository ("user/package").
-#'   Vectorized, supporting multiple requests in a single call.
+#' GitHub repository ("user/package").
+#' Vectorized, supporting multiple requests in a single call.
 #'
 #' @return `package_version`.
-#'   Package `repo` is defined in `names`.
+#' Package `repo` is defined in `names`.
 #'
 #' @examples
 #' repo <- paste0("r-lib/", c("rlang", "testthat"))

@@ -8,31 +8,35 @@
 #' @section GitHub API:
 #'
 #' - All releases JSON:
-#'   `https://api.github.com/repos/:owner/:repo/releases`
+#' `https://api.github.com/repos/:owner/:repo/releases`
 #' - Latest release JSON:
-#'   `https://api.github.com/repos/:owner/:repo/releases/latest`
+#' `https://api.github.com/repos/:owner/:repo/releases/latest`
 #' - Specific release JSON (requires numeric release ID, not tag name):
-#'   `https://api.github.com/repos/:owner/:repo/releases/:release_id`
+#' `https://api.github.com/repos/:owner/:repo/releases/:release_id`
 #' - Specific tagged release tarball:
-#'   `https://github.com/:owner/:repo/archive/:tag.tar.gz`
+#' `https://github.com/:owner/:repo/archive/:tag.tar.gz`
 #'
 #' @export
 #' @note Updated 2022-03-09.
 #'
 #' @inheritParams params
+#'
 #' @param repo `character`.
-#'   Repository address(es) in the format `owner/repo`.
+#' Repository address(es) in the format `owner/repo`.
+#'
 #' @param tag `character` or `missing`.
-#'   Release version tag.
-#'   Specific release must match the tag on GitHub (e.g. `"v1.0.0"`).
-#'   Required except when `branch` is declared.
+#' Release version tag.
+#' Specific release must match the tag on GitHub (e.g. `"v1.0.0"`).
+#' Required except when `branch` is declared.
+#'
 #' @param branch `character` or `missing`.
-#'   Branch name (e.g. `"develop"`).
-#'   Can specify this instead of `tag`.
+#' Branch name (e.g. `"develop"`).
+#' Can specify this instead of `tag`.
+#'
 #' @param ... Passthrough arguments to `install()`.
 #'
 #' @return Invisible `list`.
-#'   Metadata containing `repo`, `lib`, and whether packages were installed.
+#' Metadata containing `repo`, `lib`, and whether packages were installed.
 #'
 #' @seealso
 #' - `remotes::install_github()`.
@@ -55,119 +59,118 @@
 #' print(out)
 #' sort(list.dirs(path = testlib, full.names = FALSE, recursive = FALSE))
 #' unlink(testlib, recursive = TRUE)
-installFromGitHub <- function(
-    repo,
-    tag,
-    branch,
-    lib = .libPaths()[[1L]],
-    reinstall = TRUE,
-    ...
-) {
-    if (
-        (missing(tag) && missing(branch)) ||
-        (!missing(tag) && !missing(branch))
-    ) {
-        stop("Specify either 'tag' or 'branch'.")
-    }
-    if (!missing(tag)) {
-        ref <- tag
-        refType <- "tag"
-    } else if (!missing(branch)) {
-        ref <- branch
-        refType <- "branch"
-    }
-    stopifnot(
-        requireNamespace("utils", quietly = TRUE),
-        all(grepl(x = repo, pattern = "^[^/]+/[^/]+$")),
-        identical(length(repo), length(ref)),
-        is.logical(reinstall) && identical(length(reinstall), 1L)
-    )
-    if (isFALSE(dir.exists(lib))) {
-        dir.create(lib)
-    }
-    lib <- normalizePath(lib, mustWork = TRUE)
-    out <- mapply(
-        repo = repo,
-        ref = ref,
-        MoreArgs = list(
-            "refType" = refType,
-            "reinstall" = reinstall
-        ),
-        FUN = function(repo, ref, refType, reinstall) {
-            pkg <- basename(repo)
-            pkg <- sub(pattern = "^r-", replacement = "", x = pkg)
-            if (
-                isFALSE(reinstall) &&
-                .isInstalled(pkg, lib = lib)
-            ) {
-                message(sprintf(
-                    "'%s' is installed in '%s'.",
-                    pkg, lib
-                ))
-                return(FALSE)
-            }
-            url <- paste(
-                "https://github.com",
-                repo,
-                "archive",
-                "refs",
-                switch(
-                    EXPR = refType,
-                    "branch" = "heads",
-                    "tag" = "tags"
-                ),
-                paste0(ref, ".tar.gz"),
-                sep = "/"
-            )
-            tarfile <- tempfile(fileext = ".tar.gz")
-            utils::download.file(
-                url = url,
-                destfile = tarfile,
-                quiet = FALSE
-            )
-            ## Using a random string of 'A-Za-z' here for extracted directory.
-            exdir <- file.path(
-                tempdir(),
-                paste0(
-                    "untar-",
+installFromGitHub <-
+    function(repo,
+             tag,
+             branch,
+             lib = .libPaths()[[1L]],
+             reinstall = TRUE,
+             ...) {
+        if (
+            (missing(tag) && missing(branch)) ||
+                (!missing(tag) && !missing(branch))
+        ) {
+            stop("Specify either 'tag' or 'branch'.")
+        }
+        if (!missing(tag)) {
+            ref <- tag
+            refType <- "tag"
+        } else if (!missing(branch)) {
+            ref <- branch
+            refType <- "branch"
+        }
+        stopifnot(
+            requireNamespace("utils", quietly = TRUE),
+            all(grepl(x = repo, pattern = "^[^/]+/[^/]+$")),
+            identical(length(repo), length(ref)),
+            is.logical(reinstall) && identical(length(reinstall), 1L)
+        )
+        if (isFALSE(dir.exists(lib))) {
+            dir.create(lib)
+        }
+        lib <- normalizePath(lib, mustWork = TRUE)
+        out <- mapply(
+            repo = repo,
+            ref = ref,
+            MoreArgs = list(
+                "refType" = refType,
+                "reinstall" = reinstall
+            ),
+            FUN = function(repo, ref, refType, reinstall) {
+                pkg <- basename(repo)
+                pkg <- sub(pattern = "^r-", replacement = "", x = pkg)
+                if (
+                    isFALSE(reinstall) &&
+                        .isInstalled(pkg, lib = lib)
+                ) {
+                    message(sprintf(
+                        "'%s' is installed in '%s'.",
+                        pkg, lib
+                    ))
+                    return(FALSE)
+                }
+                url <- paste(
+                    "https://github.com",
+                    repo,
+                    "archive",
+                    "refs",
+                    switch(
+                        EXPR = refType,
+                        "branch" = "heads",
+                        "tag" = "tags"
+                    ),
+                    paste0(ref, ".tar.gz"),
+                    sep = "/"
+                )
+                tarfile <- tempfile(fileext = ".tar.gz")
+                utils::download.file(
+                    url = url,
+                    destfile = tarfile,
+                    quiet = FALSE
+                )
+                ## Using a random string of 'A-Za-z' here for extracted directory.
+                exdir <- file.path(
+                    tempdir(),
                     paste0(
-                        sample(c(LETTERS, letters))[1L:6L],
-                        collapse = ""
+                        "untar-",
+                        paste0(
+                            sample(c(LETTERS, letters))[1L:6L],
+                            collapse = ""
+                        )
                     )
                 )
-            )
-            utils::untar(
-                tarfile = tarfile,
-                exdir = exdir,
-                verbose = TRUE
-            )
-            ## Locate the extracted package directory.
-            pkgdir <- list.dirs(
-                path = exdir,
-                full.names = TRUE,
-                recursive = FALSE
-            )
-            stopifnot(
-                identical(length(pkgdir), 1L),
-                isTRUE(dir.exists(pkgdir))
-            )
-            install(
-                pkgs = pkgdir,
-                lib = lib,
-                reinstall = reinstall,
-                ...
-            )
-            ## Clean up temporary files.
-            file.remove(tarfile)
-            unlink(exdir, recursive = TRUE)
-            TRUE
-        },
-        SIMPLIFY = TRUE,
-        USE.NAMES = FALSE
-    )
-    invisible(list(
-        "repo" = repo,
-        "lib" = lib,
-        "installed" = out
-    ))
-}
+                utils::untar(
+                    tarfile = tarfile,
+                    exdir = exdir,
+                    verbose = TRUE
+                )
+                ## Locate the extracted package directory.
+                pkgdir <- list.dirs(
+                    path = exdir,
+                    full.names = TRUE,
+                    recursive = FALSE
+                )
+                stopifnot(
+                    identical(length(pkgdir), 1L),
+                    isTRUE(dir.exists(pkgdir))
+                )
+                install(
+                    pkgs = pkgdir,
+                    lib = lib,
+                    reinstall = reinstall,
+                    ...
+                )
+                ## Clean up temporary files.
+                file.remove(tarfile)
+                unlink(exdir, recursive = TRUE)
+                TRUE
+            },
+            SIMPLIFY = TRUE,
+            USE.NAMES = FALSE
+        )
+        invisible(list(
+            "repo" = repo,
+            "lib" = lib,
+            "installed" = out
+        ))
+    }

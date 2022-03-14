@@ -20,58 +20,63 @@
 #' @note Updated 2022-02-04.
 #'
 #' @inheritParams params
+#'
 #' @param pkgs `character`.
-#'   Package names to install.
-#'   By default, strings are passed to `BiocManager::install()`.
+#' Package names to install.
+#' By default, strings are passed to `BiocManager::install()`.
 #'
-#'   Special cases:
+#' Special cases:
 #'
-#'   - Package tarball files and remote URLs (i.e. from CRAN or Bioconductor)
-#'     are supported.
-#'   - Strings matching  "USER/REPO" are treated as GitHub repositories,
-#'     and installed using `remotes::install_github()`.
-#'   - Strings ending with ".git" are treated as Git repositories, and
-#'     installed using `remotes::install_git()`.
+#' - Package tarball files and remote URLs (i.e. from CRAN or Bioconductor)
+#' are supported.
+#' - Strings matching  "USER/REPO" are treated as GitHub repositories,
+#' and installed using `remotes::install_github()`.
+#' - Strings ending with ".git" are treated as Git repositories, and
+#' installed using `remotes::install_git()`.
+#'
 #' @param configureArgs,configureVars `character` or named `list`.
-#'   *Used only for source installs.* If a character vector with no names is
-#'   supplied, the elements are concatenated into a single string (separated by
-#'   a space) and used as the value for the `--configure-args` or
-#'   `configure-vars` flag in the call to `R CMD INSTALL`. If the character
-#'   vector has names, these are assumed to identify values for
-#'   `--configure-args` or `--configure-vars` for individual packages. This
-#'   allows one to specify settings for an entire collection of packages which
-#'   will be used if any of those packages are to be installed.
+#' *Used only for source installs.* If a character vector with no names is
+#' supplied, the elements are concatenated into a single string (separated by
+#' a space) and used as the value for the `--configure-args` or
+#' `configure-vars` flag in the call to `R CMD INSTALL`. If the character
+#' vector has names, these are assumed to identify values for
+#' `--configure-args` or `--configure-vars` for individual packages. This
+#' allows one to specify settings for an entire collection of packages which
+#' will be used if any of those packages are to be installed.
 #'
-#'   A named list can be used also to the same effect, and that allows
-#'   multi-element character strings for each package which are concatenated to
-#'   a single string to be used as the value for `--configure-args` and/or
-#'   `--configure-vars`.
+#' A named list can be used also to the same effect, and that allows
+#' multi-element character strings for each package which are concatenated to
+#' a single string to be used as the value for `--configure-args` and/or
+#' `--configure-vars`.
+#'
 #' @param autoconf `logical(1)`.
-#'   Smartly Set configuration options internally automatically for some
-#'   packages that are problematic to install from source. Note that this will
-#'   override `configureArgs` and `configureVars` settings, when applicable.
-#'   Currently applies to: rgl.
+#' Smartly Set configuration options internally automatically for some
+#' packages that are problematic to install from source. Note that this will
+#' override `configureArgs` and `configureVars` settings, when applicable.
+#' Currently applies to: rgl.
+#'
 #' @param dependencies `logical(1)`, `character`, or `NA`.
-#'  - `TRUE`/`FALSE` indicating whether to install uninstalled packages which
-#'    these packages depend on/link to/import/suggest.
-#'  - Can pass a `character` vector, a subset of
-#'    `c("Depends", "Imports", " LinkingTo", "Suggests", "Enhances")`.
-#'  - Can pass `NA`, the default for
-#'    [`install.packages()`][utils::install.packages], which means
-#'    `c("Depends", "Imports", "LinkingTo")`.
+#' - `TRUE`/`FALSE` indicating whether to install uninstalled packages which
+#' these packages depend on/link to/import/suggest.
+#' - Can pass a `character` vector, a subset of
+#' `c("Depends", "Imports", " LinkingTo", "Suggests", "Enhances")`.
+#' - Can pass `NA`, the default for
+#' [`install.packages()`][utils::install.packages], which means
+#' `c("Depends", "Imports", "LinkingTo")`.
+#'
 #' @param type `character(1)`.
-#'   Type of package to download and install. `"source"` is recommended by
-#'   default, but `"binary"` can be used on macOS or Windows to install
-#'   pre-built binaries from CRAN or Bioconductor.
+#' Type of package to download and install. `"source"` is recommended by
+#' default, but `"binary"` can be used on macOS or Windows to install
+#' pre-built binaries from CRAN or Bioconductor.
 #'
-#'   Note that installing from source requires the correct GCC and GNU Fortran
-#'   binaries to be installed, and Apple LLVM/Clang compilers should not be used
-#'   on macOS. Refer to [macOS development tools]() for details.
+#' Note that installing from source requires the correct GCC and GNU Fortran
+#' binaries to be installed, and Apple LLVM/Clang compilers should not be used
+#' on macOS. Refer to [macOS development tools]() for details.
 #'
-#'   [macOS development tools]: https://cran.r-project.org/bin/macosx/tools/
+#' [macOS development tools]: https://cran.r-project.org/bin/macosx/tools/
 #'
 #' @return Invisible `list`.
-#'   Contains information on `pkgs` and `lib` defined.
+#' Contains information on `pkgs` and `lib` defined.
 #'
 #' @examples
 #' ## > testlib <- file.path(tempdir(), "testlib")
@@ -84,16 +89,14 @@
 #' ## > print(out)
 #' ## > list.dirs(path = testlib, full.names = FALSE, recursive = FALSE)
 #' ## > unlink(testlib, recursive = TRUE)
-install <- function(
-    pkgs,
-    configureArgs = getOption(x = "configure.args"),
-    configureVars = getOption(x = "configure.vars"),
-    autoconf = TRUE,
-    dependencies = NA,
-    lib = .libPaths()[[1L]],
-    type = getOption(x = "pkgType", default = "source"),
-    reinstall = TRUE
-) {
+install <- function(pkgs,
+                    configureArgs = getOption(x = "configure.args"),
+                    configureVars = getOption(x = "configure.vars"),
+                    autoconf = TRUE,
+                    dependencies = NA,
+                    lib = .libPaths()[[1L]],
+                    type = getOption(x = "pkgType", default = "source"),
+                    reinstall = TRUE) {
     makevarsFile <- file.path("~", ".R", "Makevars")
     stopifnot(
         requireNamespace("utils", quietly = TRUE),
@@ -120,7 +123,7 @@ install <- function(
                 mode <- "gitRepo"
             } else if (
                 file.exists(pkg) ||
-                grepl(pattern = "^http(s)?://", x = pkg)
+                    grepl(pattern = "^http(s)?://", x = pkg)
             ) {
                 mode <- "tarball"
             } else if (
@@ -224,7 +227,7 @@ install <- function(
             args <- args[unique(names(args))]
             if (
                 isTRUE(.isInstalled(pkg, lib = lib)) &&
-                !isTRUE(reinstall)
+                    !isTRUE(reinstall)
             ) {
                 message(sprintf("'%s' is installed in '%s'.", pkg, lib))
                 return(FALSE)
@@ -253,7 +256,7 @@ install <- function(
                 options("pkgType" = pkgTypeDefault)
             }
             if (isTRUE(autoconf) && file.exists(makevarsFile)) {
-                file.remove(makevarsFile)  # nocov
+                file.remove(makevarsFile) # nocov
             }
             TRUE
         },
@@ -281,10 +284,10 @@ install <- function(
 #' @noRd
 #'
 #' @param args `list`.
-#'   Named list of arguments.
+#' Named list of arguments.
 #'
 #' @return `list`.
-#'   Arguments list to be passed to `BiocManager::install`.
+#' Arguments list to be passed to `BiocManager::install`.
 .autoconf <- function(args) {
     pkg <- args[["pkgs"]]
     ## This handling currently applies to remotes `url` pass-in.
@@ -397,16 +400,13 @@ install <- function(
         "data.table" = {
             if (
                 .isMacOS() &&
-                isTRUE(grepl(
-                    pattern = "^/Library/Frameworks/R.framework/Resources",
-                    x = Sys.getenv("R_HOME")
-                ))
+                    isTRUE(grepl(
+                        pattern = "^/Library/Frameworks/R.framework/Resources",
+                        x = Sys.getenv("R_HOME")
+                    ))
             ) {
                 ## The prebuilt CRAN binary for macOS doesn't support parallel
                 ## threads via OpenMP by default.
-                ## See also:
-                ## - https://github.com/Rdatatable/data.table/wiki/
-                ##     Installation#openmp-enabled-compiler-for-mac
                 args[["type"]] <- "source"
             }
         },
