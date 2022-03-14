@@ -121,10 +121,8 @@ run_examples <- function(..., document = FALSE) {
 #' @rdname reexports
 #' @usage NULL
 #' @export
-tidy_dir <- function(
-        path = getwd(),
-        recursive = TRUE
-    ) {
+tidy_dir <- function(path = getwd(),
+                     recursive = TRUE) {
     stopifnot(requireNamespace("formatR", quietly = TRUE))
     formatR::tidy_dir(
         path = path,
