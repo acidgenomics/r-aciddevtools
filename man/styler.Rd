@@ -23,6 +23,7 @@ Updated 2022-03-14.
 \item https://styler.r-lib.org/articles/customizing_styler.html
 \item https://styler.r-lib.org/articles/remove_rules.html
 \item https://styler.r-lib.org/reference/styler_addins.html
+\item https://github.com/r-lib/styler/issues/319
 \item https://github.com/r-lib/lintr/issues/43
 }
 }

@@ -31,6 +31,7 @@ Suggests:
     desc,
     devtools,
     drat,
+    formatR,
     gh,
     goalie,
     lintr,

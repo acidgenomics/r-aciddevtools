@@ -115,6 +115,33 @@ run_examples <- function(..., document = FALSE) {
 
 
 
+
+## formatR =====================================================================
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+tidy_dir <- function(
+        path = getwd(),
+        recursive = TRUE
+    ) {
+    stopifnot(requireNamespace("formatR", quietly = TRUE))
+    formatR::tidy_dir(
+        path = path,
+        recursive = recursive
+    )
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+tidy_file <- function(file) {
+    stopifnot(requireNamespace("formatR", quietly = TRUE))
+    formatR::tidy_file(file = file)
+}
+
+
+
 ## gh ==========================================================================
 
 #' @rdname reexports

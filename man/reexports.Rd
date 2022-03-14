@@ -11,6 +11,8 @@
 \alias{document}
 \alias{load_all}
 \alias{run_examples}
+\alias{tidy_dir}
+\alias{tidy_file}
 \alias{gh}
 \alias{lint}
 \alias{lint_dir}
