@@ -8,6 +8,7 @@
 #'
 #' @param object `Rd`.
 #' R documentation, returned from `tools::Rd_db()`.
+#'
 #' @param tag `character(1)`.
 #' Desired metadata type.
 #'
