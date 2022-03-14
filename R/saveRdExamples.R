@@ -9,10 +9,10 @@
 #'
 #' @inheritParams params
 #' @param rd `character` or `NULL`.
-#'   R documentation name(s) from which to parse and save the working examples.
-#'   If `NULL`, all documentation files containing examples will be saved.
+#' R documentation name(s) from which to parse and save the working examples.
+#' If `NULL`, all documentation files containing examples will be saved.
 #' @param package `character(1)`.
-#'   Package name.
+#' Package name.
 #'
 #' @return Invisible `character`.
 #' File path(s).
@@ -26,11 +26,9 @@
 #' )
 #' print(out)
 #' unlink(dir, recursive = TRUE)
-saveRdExamples <- function(
-    rd = NULL,
-    package,
-    dir = getwd()
-) {
+saveRdExamples <- function(rd = NULL,
+                           package,
+                           dir = getwd()) {
     stopifnot(
         requireNamespace("goalie", quietly = TRUE),
         requireNamespace("tools", quietly = TRUE),
@@ -45,7 +43,7 @@ saveRdExamples <- function(
     names(db) <- gsub("\\.Rd", "", names(db))
     ## If no Rd file is specified, save everything in package.
     if (is.null(rd)) {
-        rd <- names(db)  # nocov
+        rd <- names(db) # nocov
     }
     ## Check that the requiested function(s) are valid.
     stopifnot(all(rd %in% names(db)))
@@ -56,7 +54,7 @@ saveRdExamples <- function(
             "package" = package,
             "dir" = dir
         ),
-        FUN = function(rd, package, dir) {  # nolint
+        FUN = function(rd, package, dir) { # nolint
             x <- tryCatch(
                 expr = parseRd(db[[rd]], tag = "examples"),
                 error = function(e) character()

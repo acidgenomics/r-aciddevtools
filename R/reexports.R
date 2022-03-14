@@ -251,10 +251,8 @@ build_site <- function(..., devel = FALSE, preview = FALSE) {
 #' @rdname reexports
 #' @usage NULL
 #' @export
-rcmdcheck <- function(
-    path = getwd(),
-    cran = FALSE
-) {
+rcmdcheck <- function(path = getwd(),
+                      cran = FALSE) {
     stopifnot(requireNamespace("rcmdcheck", quietly = TRUE))
     Sys.setenv(
         ## See also `force_suggests` argument in `devtools::check()`.

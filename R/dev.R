@@ -15,10 +15,10 @@
 #' @note Updated 2021-08-23.
 #'
 #' @param quiet `logical(1)`.
-#'   Load packages quietly.
+#' Load packages quietly.
 #'
 #' @return Invisible character vector of packages attached specifically by
-#'   this function call.
+#' this function call.
 #'
 #' @examples
 #' ## Load the developer environment.
@@ -55,7 +55,8 @@ dev <- function(quiet = TRUE) {
                 }
                 pkg
             }
-        })
+        }
+    )
     attached <- unlist(attached)
     ## Invisibly return information on attached packages.
     invisible(attached)

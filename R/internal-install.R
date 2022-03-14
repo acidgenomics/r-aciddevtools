@@ -8,19 +8,17 @@
 #' @noRd
 #'
 #' @param pkgs `character`.
-#'   R package names to install.
+#' R package names to install.
+#'
 #' @param lib `character(1)`.
-#'   R package library path.
-#'   See `.libPaths()` for details.
+#' R package library path.
+#' See `.libPaths()` for details.
 #'
 #' @return Invisible `logical(1)`
 #'
 #' @examples
 #' ## > .installIfNecessary("BiocManager")
-.installIfNecessary <- function(
-    pkgs,
-    lib = .libPaths()[[1L]]
-) {
+.installIfNecessary <- function(pkgs, lib = .libPaths()[[1L]]) {
     warn <- getOption(x = "warn")
     options("warn" = 2L)
     invisible(lapply(

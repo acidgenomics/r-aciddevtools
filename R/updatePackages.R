@@ -10,14 +10,12 @@
 #' @inheritParams params
 #'
 #' @return Invisible `TRUE` or console output.
-#'   Whether installation passes Bioconductor validity checks.
-#'   See `BiocManager::valid()` for details.
+#' Whether installation passes Bioconductor validity checks.
+#' See `BiocManager::valid()` for details.
 #'
 #' @examples
 #' ## > updatePackages()
-updatePackages <- function(
-    lib = .libPaths()[[1L]]
-) {
+updatePackages <- function(lib = .libPaths()[[1L]]) {
     warn <- getOption(x = "warn")
     options("warn" = 2L)
     lib <- normalizePath(lib, mustWork = TRUE)

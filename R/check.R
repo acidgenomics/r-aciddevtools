@@ -10,29 +10,30 @@
 #' @inheritParams params
 #'
 #' @param lints `logical(1)`.
-#'   Perform `lintr::lint_package()` checks.
+#' Perform `lintr::lint_package()` checks.
+#'
 #' @param urls `logical(1)`.
-#'   Perform `urlchecker::url_check()` checks.
+#' Perform `urlchecker::url_check()` checks.
+#'
 #' @param cran `logical(1)`.
-#'   Perform additional CRAN submission checks.
+#' Perform additional CRAN submission checks.
+#'
 #' @param biocCheck `logical(1)`.
-#'   Perform additional Bioconductor checks. `BiocCheck` is only called when we
-#'   detect `"biocViews"` metadata in `DESCRIPTION` file, and when the directory
-#'   name is identical to the package name. `BiocCheck` currently errors on
-#'   directory names that differ from package name.
+#' Perform additional Bioconductor checks. `BiocCheck` is only called when we
+#' detect `"biocViews"` metadata in `DESCRIPTION` file, and when the directory
+#' name is identical to the package name. `BiocCheck` currently errors on
+#' directory names that differ from package name.
 #'
 #' @return `TRUE` on success, otherwise error.
 #'
 #' @examples
 #' ## > check()
-check <- function(
-    path = getwd(),
-    lints = TRUE,
-    urls = TRUE,
-    cran = FALSE,
-    biocCheck = TRUE,
-    coverage = TRUE
-) {
+check <- function(path = getwd(),
+                  lints = TRUE,
+                  urls = TRUE,
+                  cran = FALSE,
+                  biocCheck = TRUE,
+                  coverage = TRUE) {
     stopifnot(
         requireNamespace("desc", quietly = TRUE),
         requireNamespace("rcmdcheck", quietly = TRUE),

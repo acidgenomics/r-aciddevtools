@@ -8,7 +8,7 @@
 #' @note Updated 2019-10-23.
 #'
 #' @param pid `integer(1)`.
-#'   Process ID.
+#' Process ID.
 #'
 #' @seealso
 #' - RStudio: Session > Restart R (Ctrl + Shift + F10)

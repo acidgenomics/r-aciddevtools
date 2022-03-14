@@ -8,9 +8,7 @@
 #' @noRd
 #'
 #' @return Passthrough to `BiocManager::valid`.
-.valid <- function(
-    lib = NULL
-) {
+.valid <- function(lib = NULL) {
     tryCatch(
         expr = BiocManager::valid(
             lib.loc = lib

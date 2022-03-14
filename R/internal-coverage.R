@@ -6,10 +6,7 @@
 #'
 #' @note Updated 2022-03-09.
 #' @noRd
-.checkCoverage <- function(
-    path = getwd(),
-    cutoff = 0.9
-) {
+.checkCoverage <- function(path = getwd(), cutoff = 0.9) {
     if (!dir.exists(file.path(path, "tests"))) {
         return(invisible(FALSE))
     }

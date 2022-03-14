@@ -12,11 +12,11 @@
 fibonacciSequence <- function(len) {
     stopifnot(is.integer(len) && identical(length(len), 1L))
     x <- integer(len)
-    x[1L] <- 1L  # nolint
+    x[1L] <- 1L # nolint
     if (identical(length(x), 1L)) {
         return(x)
     }
-    x[2L] <- 1L  # nolint
+    x[2L] <- 1L # nolint
     if (identical(length(x), 2L)) {
         return(x)
     }
