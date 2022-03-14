@@ -37,6 +37,9 @@
 \alias{use_virtualenv}
 \alias{virtualenv_list}
 \alias{render}
+\alias{style_dir}
+\alias{style_file}
+\alias{style_pkg}
 \alias{camelCase}
 \alias{kebabCase}
 \alias{makeNames}

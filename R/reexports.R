@@ -11,6 +11,7 @@ NULL
 
 
 ## BiocCheck ===================================================================
+
 ## Run `BiocCheck::usage()` for options.
 ## See also r-cmd-check bioc-check script.
 ## https://github.com/acidgenomics/r-cmd-check/blob/master/checks/bioc-check
@@ -36,6 +37,7 @@ BiocCheck <- function(package = getwd()) {
 
 
 ## covr ========================================================================
+
 #' @rdname reexports
 #' @usage NULL
 #' @export
@@ -66,6 +68,7 @@ report <- function(...) {
 
 
 ## devtools ====================================================================
+
 #' @rdname reexports
 #' @usage NULL
 #' @export
@@ -113,6 +116,7 @@ run_examples <- function(..., document = FALSE) {
 
 
 ## gh ==========================================================================
+
 #' @rdname reexports
 #' @usage NULL
 #' @export
@@ -124,6 +128,7 @@ gh <- function(...) {
 
 
 ## lintr =======================================================================
+
 #' @rdname reexports
 #' @usage NULL
 #' @export
@@ -151,6 +156,7 @@ lint_package <- function(...) {
 
 
 ## lobstr ======================================================================
+
 mem_used <- function(...) {
     stopifnot(requireNamespace("lobstr", quietly = TRUE))
     lobstr::mem_used(...)
@@ -164,6 +170,7 @@ obj_size <- function(...) {
 
 
 ## pipette =====================================================================
+
 #' @rdname reexports
 #' @usage NULL
 #' @export
@@ -183,6 +190,7 @@ saveData <- function(...) {
 
 
 ## pkgdown =====================================================================
+
 #' @rdname reexports
 #' @usage NULL
 #' @export
@@ -342,6 +350,7 @@ install_url <- function(...) {
 
 
 ## reticulate ==================================================================
+
 #' @rdname reexports
 #' @usage NULL
 #' @export
@@ -377,6 +386,7 @@ virtualenv_list <- function(...) {
 
 
 ## rmarkdown ===================================================================
+
 #' @rdname reexports
 #' @usage NULL
 #' @export
@@ -387,7 +397,46 @@ render <- function(...) {
 
 
 
+
+## styler ======================================================================
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+style_dir <- function(path = getwd()) {
+    stopifnot(requireNamespace("styler", quietly = TRUE))
+    styler::style_dir(
+        path = path,
+        style = acid_style
+    )
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+style_file <- function(path) {
+    stopifnot(requireNamespace("styler", quietly = TRUE))
+    styler::style_file(
+        path = path,
+        style = acid_style
+    )
+}
+
+#' @rdname reexports
+#' @usage NULL
+#' @export
+style_pkg <- function(pkg = getwd()) {
+    stopifnot(requireNamespace("styler", quietly = TRUE))
+    styler::style_pkg(
+        pkg = pkg,
+        style = acid_style
+    )
+}
+
+
+
 ## syntactic ===================================================================
+
 #' @rdname reexports
 #' @usage NULL
 #' @export
@@ -423,6 +472,7 @@ snakeCase <- function(...) {
 
 
 ## testthat ====================================================================
+
 #' @rdname reexports
 #' @usage NULL
 #' @export
@@ -434,6 +484,7 @@ test_file <- function(...) {
 
 
 ## tibble ======================================================================
+
 #' @rdname reexports
 #' @usage NULL
 #' @export
@@ -445,6 +496,7 @@ view <- function(...) {
 
 
 ## usethis =====================================================================
+
 #' @rdname reexports
 #' @usage NULL
 #' @export
@@ -456,6 +508,7 @@ use_data <- function(..., overwrite = TRUE) {
 
 
 ## Custom ======================================================================
+
 #' @rdname reexports
 #' @usage NULL
 #' @export
