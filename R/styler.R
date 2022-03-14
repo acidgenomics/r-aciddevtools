@@ -22,7 +22,7 @@ NULL
 acid_style <- # nolint
     function() {
         stopifnot(requireNamespace("styler", quietly = TRUE))
-        x <- styler::tidyverse_style(
+        styler::tidyverse_style(
             scope = "tokens",
             strict = TRUE,
             indent_by = 4L,
@@ -30,5 +30,4 @@ acid_style <- # nolint
             reindention = styler::tidyverse_reindention(),
             math_token_spacing = styler::tidyverse_math_token_spacing()
         )
-        return(x)
     }
