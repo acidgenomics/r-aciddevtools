@@ -1,3 +1,10 @@
+# AcidDevTools 0.4.8 (UNRELEASED)
+
+- Added support for custom styler theme defined as `acid_style`.
+- Added wrapper support for `style_dir`, `style_file`, and `style_pkg`, which
+  uses our `acid_style` styler theme by default, instead of tidyverse
+  conventions. In particular, this enforces 4 spaces instead of 2.
+
 # AcidDevTools 0.4.7 (2022-03-11)
 
 ## Minor changes
