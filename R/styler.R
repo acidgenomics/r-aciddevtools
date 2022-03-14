@@ -4,7 +4,7 @@
 #' @note Updated 2022-03-14.
 #'
 #' @return `list`.
-#'   List containing styler rule definitions.
+#' List containing styler rule definitions.
 #'
 #' @seealso
 #' - `styler::tidyverse_style`.
@@ -17,7 +17,7 @@ NULL
 
 #' @rdname styler
 #' @export
-acid_style <-  # nolint
+acid_style <- # nolint
     function() {
         stopifnot(requireNamespace("styler", quietly = TRUE))
         styler::tidyverse_style(
