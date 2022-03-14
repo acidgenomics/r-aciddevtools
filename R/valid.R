@@ -57,5 +57,5 @@ valid <- function(...) {
             sep = "\n"
         ))
     }
-    return(invisible(FALSE))
+    invisible(FALSE)
 }
