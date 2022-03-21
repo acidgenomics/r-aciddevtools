@@ -128,7 +128,7 @@ installFromGitHub <-
                     destfile = tarfile,
                     quiet = FALSE
                 )
-                ## Using a random string of 'A-Za-z' here for extracted directory.
+                ## Using a random string of 'A-Za-z' here for directory.
                 exdir <- file.path(
                     tempdir(),
                     paste0(

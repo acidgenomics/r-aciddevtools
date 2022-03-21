@@ -65,9 +65,9 @@ installRecommendedPackages <-
         }
         message(sprintf("Installing Bioconductor %s.", biocVersion))
         BiocManager::install(update = FALSE, ask = FALSE, version = biocVersion)
-        ## Default packages =================================================== {{{1
+        ## Default packages =============================================== {{{1
         pkgs <- character()
-        ## Tricky to build ---------------------------------------------------- {{{2
+        ## Tricky to build ------------------------------------------------ {{{2
         ## Order is important here.
         pkgs <- c(
             pkgs,
@@ -80,7 +80,7 @@ installRecommendedPackages <-
             "rgl",
             "sf"
         )
-        ## CRAN --------------------------------------------------------------- {{{2
+        ## CRAN ----------------------------------------------------------- {{{2
         pkgs <- c(
             pkgs,
             "Matrix",
@@ -96,7 +96,7 @@ installRecommendedPackages <-
             "stringi",
             "viridis"
         )
-        ## Bioconductor ------------------------------------------------------- {{{2
+        ## Bioconductor --------------------------------------------------- {{{2
         pkgs <- c(
             pkgs,
             "AnnotationDbi",
@@ -129,13 +129,13 @@ installRecommendedPackages <-
             message(okMsg)
             return(invisible(TRUE))
         }
-        ## Extra packages ===================================================== {{{1
+        ## Extra packages ================================================= {{{1
         pkgs <- character()
-        ## Acid Genomics ------------------------------------------------------ {{{2
+        ## Acid Genomics -------------------------------------------------- {{{2
         if (isTRUE(extra[["acidverse"]])) {
             installAcidverse()
         }
-        ## CRAN --------------------------------------------------------------- {{{2
+        ## CRAN ----------------------------------------------------------- {{{2
         if (isTRUE(extra[["tidyverse"]])) {
             pkgs <- c(pkgs, "tidyverse")
         }
@@ -297,7 +297,7 @@ installRecommendedPackages <-
                 "uwot"
             )
         }
-        ## Bioconductor ------------------------------------------------------- {{{2
+        ## Bioconductor --------------------------------------------------- {{{2
         ## New packages in 3.13 worth a look:
         ## (from https://twitter.com/mikelove/status/1395615161260650497)
         ## - GenomicDistributions
