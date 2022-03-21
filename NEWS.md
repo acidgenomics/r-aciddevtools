@@ -1,4 +1,4 @@
-# AcidDevTools 0.4.8 (UNRELEASED)
+# AcidDevTools 0.4.8 (2022-03-21)
 
 - Added support for custom styler theme defined as `acid_style`.
 - Added wrapper support for `style_dir`, `style_file`, and `style_pkg`, which
