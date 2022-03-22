@@ -1,4 +1,6 @@
 #+TITLE: AcidDevTools
 #+STARTUP: content
 * Development
+** TODO `install`: Consider reinstalling other Rcpp packages on Rcpp update.
+    Applies to RcppAnnoy (for Seurat), RcppArmadillo, etc...
 ** TODO Expand branch automatically to match input of multiple repos.
