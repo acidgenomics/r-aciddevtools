@@ -1,23 +1,12 @@
-## NOTE Consider reworking custom overrides using withr.
-## For example, set clang toolchain for httpuv install.
-##
-## See also:
-## - https://github.com/rstudio/httpuv/issues/325
-## - https://github.com/rstudio/httpuv#debugging-builds
-##
-## Example:
-## > withr::with_makevars(
-## >   c(PKG_CPPFLAGS="-DDEBUG_TRACE -DDEBUG_THREAD -UNDEBUG"), {
-## >     devtools::install_github("rstudio/httpuv")
-## >  }, assignment = "+="
-## > )
+## FIXME Improve default rJava install with:
+# install.packages("rJava", configure.args = "--disable-jri")
 
 
 
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2022-02-04.
+#' @note Updated 2022-03-26.
 #'
 #' @inheritParams params
 #'
@@ -97,7 +86,6 @@ install <- function(pkgs,
                     lib = .libPaths()[[1L]],
                     type = getOption(x = "pkgType", default = "source"),
                     reinstall = TRUE) {
-    makevarsFile <- file.path("~", ".R", "Makevars")
     stopifnot(
         requireNamespace("utils", quietly = TRUE),
         is.character(pkgs),
@@ -105,7 +93,7 @@ install <- function(pkgs,
         is.logical(reinstall) && identical(length(reinstall), 1L),
         is.character(lib) && identical(length(lib), 1L),
         is.character(type) && identical(length(type), 1L),
-        isFALSE(file.exists(makevarsFile))
+        isFALSE(file.exists(file.path("~", ".R", "Makevars")))
     )
     warnDefault <- getOption(x = "warn")
     options("warn" = 2L)
@@ -116,14 +104,13 @@ install <- function(pkgs,
     out <- vapply(
         X = pkgs,
         FUN = function(pkg) {
-            stopifnot(isFALSE(file.exists(makevarsFile)))
             if (
                 grepl(pattern = "\\.git$", x = pkg)
             ) {
                 mode <- "gitRepo"
             } else if (
                 file.exists(pkg) ||
-                    grepl(pattern = "^http(s)?://", x = pkg)
+                grepl(pattern = "^http(s)?://", x = pkg)
             ) {
                 mode <- "tarball"
             } else if (
@@ -227,7 +214,7 @@ install <- function(pkgs,
             args <- args[unique(names(args))]
             if (
                 isTRUE(.isInstalled(pkg, lib = lib)) &&
-                    !isTRUE(reinstall)
+                !isTRUE(reinstall)
             ) {
                 message(sprintf("'%s' is installed in '%s'.", pkg, lib))
                 return(FALSE)
@@ -255,9 +242,6 @@ install <- function(pkgs,
             if (isTRUE("type" %in% names(args))) {
                 options("pkgType" = pkgTypeDefault)
             }
-            if (isTRUE(autoconf) && file.exists(makevarsFile)) {
-                file.remove(makevarsFile) # nocov
-            }
             TRUE
         },
         FUN.VALUE = logical(1L),
@@ -273,6 +257,116 @@ install <- function(pkgs,
 
 
 
+#' macOS clang Makevars
+#'
+#' @note Updated 2022-03-25.
+#' @noRd
+.macosClangMakevars <- c(
+    "CC" = paste(
+        "clang",
+        "-mmacosx-version-min=10.13"
+    ),
+    "CFLAGS" = paste(
+        "-Wall",
+        "-g",
+        "-O2",
+        "$(LTO)"
+    ),
+    "CPPFLAGS" = paste0(
+        "-I",
+        file.path("", "usr", "local", "include")
+    ),
+    "CXX" = paste(
+        "clang++",
+        "-mmacosx-version-min=10.13",
+        "-std=gnu++14"
+    ),
+    "CXXFLAGS" = paste(
+        "-Wall",
+        "-g",
+        "-O2",
+        "$(LTO)"
+    ),
+    "CXX11" = paste(
+        "clang++",
+        "-mmacosx-version-min=10.13"
+    ),
+    "CXX11FLAGS" = paste(
+        "-Wall",
+        "-g",
+        "-O2",
+        "$(LTO)"
+    ),
+    "CXX14" = paste(
+        "clang++",
+        "-mmacosx-version-min=10.13"
+    ),
+    "CXX14FLAGS" = paste(
+        "-Wall",
+        "-g",
+        "-O2",
+        "$(LTO)"
+    ),
+    "CXX17" = paste(
+        "clang++",
+        "-mmacosx-version-min=10.13"
+    ),
+    "CXX17FLAGS" = paste(
+        "-Wall",
+        "-g",
+        "-O2",
+        "$(LTO)"
+    ),
+    "CXX20" = paste(
+        "clang++",
+        "-mmacosx-version-min=10.13"
+    ),
+    "CXX20FLAGS" = paste(
+        "-Wall",
+        "-g",
+        "-O2",
+        "$(LTO)"
+    ),
+    "FC" = paste(
+        "gfortran",
+        "-mmacosx-version-min=10.13"
+    ),
+    "FCFLAGS" = paste(
+        "-Wall",
+        "-g",
+        "-O2",
+        "$(LTO)"
+    ),
+    "FLIBS" = paste(
+        paste0(
+            "-L",
+            file.path(
+                "",
+                "usr",
+                "local",
+                "gfortran",
+                "lib",
+                "gcc",
+                "x86_64-apple-darwin18",
+                "8.2.0"
+            )
+        ),
+        paste0(
+            "-L",
+            file.path("", "usr", "local", "gfortran", "lib")
+        ),
+        "-lgfortran",
+        "-lquadmath",
+        "-lm"
+    ),
+    "LDFLAGS" = paste0(
+        "-L",
+        file.path("", "usr", "local", "lib")
+    )
+)
+
+
+
 ## nocov start
 
 #' Autoconfigure a specified package
@@ -280,7 +374,7 @@ install <- function(pkgs,
 #' This function will dynamically change configure arguments for some tricky
 #' to install packages.
 #'
-#' @note Updated 2021-11-09.
+#' @note Updated 2022-03-26.
 #' @noRd
 #'
 #' @param args `list`.
@@ -301,11 +395,7 @@ install <- function(pkgs,
             pkg <- sub(pattern = "^r-", replacement = "", x = pkg)
         }
     }
-    makevarsFile <- file.path("~", ".R", "Makevars")
-    stopifnot(
-        is.character(pkg) && length(pkg) == 1L,
-        !file.exists(makevarsFile)
-    )
+    stopifnot(is.character(pkg) && length(pkg) == 1L)
     homebrewOpt <- .homebrewOpt()
     koopaOpt <- .koopaOpt()
     ## Configure geospatial packages (GDAL, GEOS, PROJ) from OSGeo, if needed.
@@ -401,7 +491,16 @@ install <- function(pkgs,
             if (
                 .isMacOS() &&
                     isTRUE(grepl(
-                        pattern = "^/Library/Frameworks/R.framework/Resources",
+                        pattern = paste0(
+                            "^",
+                            file.path(
+                                "",
+                                "Library",
+                                "Frameworks",
+                                "R.framework",
+                                "Resources"
+                            )
+                        ),
                         x = Sys.getenv("R_HOME")
                     ))
             ) {
@@ -481,6 +580,10 @@ install <- function(pkgs,
                 ## Avoid issue with missing webshot2 dependency.
                 args[["dependencies"]] <- NA
             }
+        },
+        "sass" = {
+            # FIXME Also do this for readxl.
+            # FIXME Need to move out of autoconfig, rethink clang config...
         },
         "sf" = {
             if (is.list(geospatial)) {
