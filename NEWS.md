@@ -1,3 +1,8 @@
+# AcidDevTools 0.4.9 (2022-04-13)
+
+- Simplified R package configuration on macOS, enforcing binary installs for
+  difficult to build packages, when possible.
+
 # AcidDevTools 0.4.8 (2022-03-21)
 
 - Added support for custom styler theme defined as `acid_style`.
