@@ -75,10 +75,10 @@ installRecommendedPackages <-
             "RcppArmadillo",
             "RcppAnnoy",
             "XML",
-            "rJava",
-            "rgdal",
-            "rgl",
-            "sf"
+            "rJava"
+            ## > "rgdal",
+            ## > "rgl",
+            ## > "sf"
         )
         ## CRAN ----------------------------------------------------------- {{{2
         pkgs <- c(
