@@ -1,5 +1,8 @@
 ## nocov start
 
+## FIXME Alternatively for rgdal, rgeos, sf, etc...
+## ALWAYS install the binary relaese from CRAN on macOS.
+
 
 
 #' Install recommended R packages
