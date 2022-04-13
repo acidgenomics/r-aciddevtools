@@ -418,6 +418,9 @@ install <- function(pkgs,
             stopifnot(
                 "Run 'koopa install r-openmp'." = {
                     .isMacOpenmpEnabled()
+                },
+                "Run 'koopa install zlib'." = {
+                    dir.exists(file.path(opt), "zlib"))
                 }
             )
             args[["type"]] <- "source"
