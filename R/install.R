@@ -233,7 +233,9 @@ install <- function(pkgs,
                 inherits = FALSE
             )
             stopifnot(is.function(what))
-            do.call(what = what, args = args)
+            suppressMessages({
+                do.call(what = what, args = args)
+            })
             if (isTRUE("type" %in% names(args))) {
                 options("pkgType" = pkgTypeDefault)
             }
@@ -420,7 +422,7 @@ install <- function(pkgs,
                     .isMacOpenmpEnabled()
                 },
                 "Run 'koopa install zlib'." = {
-                    all(dir.exists(file.path(opt), "zlib")))
+                    all(dir.exists(file.path(opt), "zlib"))
                 }
             )
             args[["type"]] <- "source"
