@@ -51,4 +51,46 @@
 
 
 
+#' Is the current environment running in macOS R CRAN binary?
+#'
+#' @note Updated 2022-04-13.
+.isMacRCranBinary <- function() {
+    isTRUE(grepl(
+        pattern = paste0(
+            "^",
+            file.path(
+                "",
+                "Library",
+                "Frameworks",
+                "R.framework",
+                "Resources"
+            )
+        ),
+        x = Sys.getenv("R_HOME")
+    ))
+}
+
+
+
+#' Does the macOS R CRAN binary have OpenMP enabled?
+#'
+#' @note Updated 2022-04-13.
+#'
+#' @seealso
+#' - https://mac.r-project.org/openmp/
+.isMacOpenmpEnabled <- function() {
+    all(file.exists(
+        file.path(
+            "", "usr", "local", "include",
+            c("omp-tools.h", "omp.h", "ompt.h")
+        ),
+        file.path(
+            "", "usr", "local", "lib", "libomp.dylib"
+        )
+    ))
+}
+
+
+
+
 ## nocov end

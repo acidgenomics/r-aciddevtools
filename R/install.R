@@ -1,18 +1,7 @@
-## FIXME Improve default rJava install with:
-# install.packages("rJava", configure.args = "--disable-jri")
-
-## FIXME Need to nuke the custom workarounds for geospatial...what a mess.
-## GDAL is a terrible package to maintain across platforms.
-
-## FIXME Need to suppress spam message from BiocManager:
-## replaces Bioconductor standard repositories
-
-
-
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2022-03-26.
+#' @note Updated 2022-04-13.
 #'
 #' @inheritParams params
 #'
@@ -263,10 +252,28 @@ install <- function(pkgs,
 
 
 
+## FIXME Consider taking out /usr/local from here...
+
 #' macOS clang Makevars
 #'
-#' @note Updated 2022-03-25.
+#' @note Updated 2022-04-13.
 #' @noRd
+#'
+#' @section Harden against `/usr/local`:
+#'
+#' Keep references to `/usr/local` disabled to avoid potential collision with
+#' compilers managed by Homebrew.
+#'
+#' ```r
+#' ## > c(
+#' ## >     "CPPFLAGS" = paste0(
+#' ## >         "-I",
+#' ## >         file.path("", "usr", "local", "include"),
+#' ## >     "LDFLAGS" = paste0(
+#' ## >         "-L",
+#' ## >         file.path("", "usr", "local", "lib")
+#' ## > )
+#' ```
 .macosClangMakevars <- c(
     "CC" = paste(
         "clang",
@@ -277,10 +284,6 @@ install <- function(pkgs,
         "-g",
         "-O2",
         "$(LTO)"
-    ),
-    "CPPFLAGS" = paste0(
-        "-I",
-        file.path("", "usr", "local", "include")
     ),
     "CXX" = paste(
         "clang++",
@@ -364,10 +367,6 @@ install <- function(pkgs,
         "-lgfortran",
         "-lquadmath",
         "-lm"
-    ),
-    "LDFLAGS" = paste0(
-        "-L",
-        file.path("", "usr", "local", "lib")
     )
 )
 
@@ -380,7 +379,7 @@ install <- function(pkgs,
 #' This function will dynamically change configure arguments for some tricky
 #' to install packages.
 #'
-#' @note Updated 2022-03-26.
+#' @note Updated 2022-04-13.
 #' @noRd
 #'
 #' @param args `list`.
@@ -402,181 +401,26 @@ install <- function(pkgs,
         }
     }
     stopifnot(is.character(pkg) && length(pkg) == 1L)
-    homebrewOpt <- .homebrewOpt()
-    koopaOpt <- .koopaOpt()
-    ## Configure geospatial packages (GDAL, GEOS, PROJ) from OSGeo, if needed.
-    geospatial <- NULL
-    if (isTRUE(pkg %in% c(
-        "geos",
-        "rgdal",
-        "rgeos",
-        "sf",
-        "sp",
-        "spatialreg",
-        "spdep"
-    ))) {
-        geospatial <- list()
-        if (any(dir.exists(c(
-            file.path(koopaOpt, "gdal"),
-            file.path(koopaOpt, "geos"),
-            file.path(koopaOpt, "proj")
-        )))) {
-            geospatial[["opt"]] <- koopaOpt
-        } else if (any(dir.exists(c(
-            file.path(homebrewOpt, "gdal"),
-            file.path(homebrewOpt, "geos"),
-            file.path(homebrewOpt, "proj")
-        )))) {
-            geospatial[["opt"]] <- homebrewOpt
-        } else {
-            message("Using system packages for geospatial configuration.")
-            geospatial <- NULL
-        }
-        if (is.list(geospatial)) {
-            stopifnot(isTRUE(dir.exists(geospatial[["opt"]])))
-            geospatial[["gdalDir"]] <-
-                file.path(geospatial[["opt"]], "gdal")
-            geospatial[["geosDir"]] <-
-                file.path(geospatial[["opt"]], "geos")
-            geospatial[["projDir"]] <-
-                file.path(geospatial[["opt"]], "proj")
-            ## Configuration handlers.
-            geospatial[["gdalConfig"]] <-
-                file.path(geospatial[["gdalDir"]], "bin", "gdal-config")
-            geospatial[["geosConfig"]] <-
-                file.path(geospatial[["geosDir"]], "bin", "geos-config")
-            ## Directories.
-            geospatial[["projData"]] <-
-                file.path(geospatial[["projDir"]], "share", "proj")
-            geospatial[["projInclude"]] <-
-                file.path(geospatial[["projDir"]], "include")
-            geospatial[["projLib"]] <-
-                file.path(geospatial[["projDir"]], "lib")
-            geospatial[["projShare"]] <-
-                file.path(geospatial[["projDir"]], "share")
-            stopifnot(
-                all(dir.exists(c(
-                    geospatial[["gdalDir"]],
-                    geospatial[["geosDir"]],
-                    geospatial[["projDir"]],
-                    geospatial[["projData"]],
-                    geospatial[["projInclude"]],
-                    geospatial[["projLib"]],
-                    geospatial[["projShare"]]
-                ))),
-                all(file.exists(
-                    geospatial[["gdalConfig"]],
-                    geospatial[["geosConfig"]]
-                ))
-            )
-            .li <- "  -"
-            invisible(lapply(
-                X = c(
-                    "Geospatial (OSGeo) libraries:",
-                    paste(
-                        .li, "GDAL:",
-                        normalizePath(geospatial[["gdalDir"]])
-                    ),
-                    paste(
-                        .li, "GEOS:",
-                        normalizePath(geospatial[["geosDir"]])
-                    ),
-                    paste(
-                        .li, "PROJ:",
-                        normalizePath(geospatial[["projDir"]])
-                    )
-                ),
-                FUN = message
-            ))
-            args[["type"]] <- "source"
+    opt <- .koopaOpt()
+    ## Enforce that some tricky packages always install as binary on macOS.
+    if (.isMacRCranBinary()) {
+        if (isTRUE(pkg %in% c(
+            "geos", "readxl", "rgdal", "rgeos", "sass", "sf"
+        ))) {
+            args[["type"]] <- "binary"
         }
     }
     switch(
         EXPR = pkg,
         "data.table" = {
-            if (
-                .isMacOS() &&
-                    isTRUE(grepl(
-                        pattern = paste0(
-                            "^",
-                            file.path(
-                                "",
-                                "Library",
-                                "Frameworks",
-                                "R.framework",
-                                "Resources"
-                            )
-                        ),
-                        x = Sys.getenv("R_HOME")
-                    ))
-            ) {
-                ## The prebuilt CRAN binary for macOS doesn't support parallel
-                ## threads via OpenMP by default.
-                args[["type"]] <- "source"
-            }
-        },
-        "geos" = {
-            ## NOTE May also need to configure "libgeos" dependency.
-            if (is.list(geospatial)) {
-                stopifnot(file.exists(geospatial[["geosConfig"]]))
-                args[["configure.args"]] <-
-                    paste0(
-                        "--with-geos-config=",
-                        geospatial[["geosConfig"]]
-                    )
-            }
-        },
-        "rgdal" = {
-            ## NOTE Please note that 'rgdal' will be retired by the end of 2023,
-            ## plan transition to sf/stars/'terra' functions using 'GDAL' and
-            ## 'PROJ' at your earliest convenience.
-            ##
-            ## See also:
-            ## https://cran.r-project.org/web/packages/rgdal/rgdal.pdf
-            if (is.list(geospatial)) {
-                stopifnot(
-                    all(dir.exists(c(
-                        geospatial[["projInclude"]],
-                        geospatial[["projLib"]]
-                    ))),
-                    file.exists(geospatial[["gdalConfig"]])
-                )
-                configureArgs <- c(
-                    paste0(
-                        "--with-proj-include=",
-                        geospatial[["projInclude"]]
-                    ),
-                    paste0(
-                        "--with-proj-lib=",
-                        geospatial[["projLib"]]
-                    )
-                )
-                if (!identical(geospatial[["opt"]], homebrewOpt)) {
-                    ## NOTE Including "gdal-config" currently causes this error
-                    ## on macOS with Homebrew:
-                    ## > ld: library not found for -lgeos-3
-                    ## See also:
-                    ## https://stackoverflow.com/questions/61108783/
-                    configureArgs <- c(
-                        configureArgs,
-                        paste0(
-                            "--with-gdal-config=",
-                            geospatial[["geosConfig"]]
-                        )
-                    )
+            ## The prebuilt CRAN binary for macOS doesn't support parallel
+            ## threads via OpenMP by default.
+            stopifnot(
+                "Run 'koopa install r-openmp'." = {
+                    .isMacOpenmpEnabled()
                 }
-                args[["configure.args"]] <- configureArgs
-            }
-        },
-        "rgeos" = {
-            if (is.list(geospatial)) {
-                stopifnot(file.exists(geospatial[["geosConfig"]]))
-                args[["configure.args"]] <-
-                    paste0(
-                        "--with-geos-config=",
-                        geospatial[["geosConfig"]]
-                    )
-            }
+            )
+            args[["type"]] <- "source"
         },
         "rgl" = {
             if (.isMacOS()) {
@@ -586,53 +430,6 @@ install <- function(pkgs,
                 ## Avoid issue with missing webshot2 dependency.
                 args[["dependencies"]] <- NA
             }
-        },
-        "sass" = {
-            # FIXME Also do this for readxl.
-            # FIXME Need to move out of autoconfig, rethink clang config...
-        },
-        "sf" = {
-            if (is.list(geospatial)) {
-                stopifnot(
-                    all(file.exists(c(
-                        geospatial[["gdalConfig"]],
-                        geospatial[["geosConfig"]]
-                    ))),
-                    all(dir.exists(c(
-                        geospatial[["projData"]],
-                        geospatial[["projInclude"]],
-                        geospatial[["projLib"]],
-                        geospatial[["projShare"]]
-                    )))
-                )
-                args[["configure.args"]] <- c(
-                    paste0(
-                        "--with-gdal-config=",
-                        geospatial[["gdalConfig"]]
-                    ),
-                    paste0(
-                        "--with-geos-config=",
-                        geospatial[["geosConfig"]]
-                    ),
-                    paste0(
-                        "--with-proj-data=",
-                        geospatial[["projData"]]
-                    ),
-                    paste0(
-                        "--with-proj-include=",
-                        geospatial[["projInclude"]]
-                    ),
-                    paste0(
-                        "--with-proj-lib=",
-                        geospatial[["projLib"]]
-                    ),
-                    paste0(
-                        "--with-proj-share=",
-                        geospatial[["projShare"]]
-                    )
-                )
-            }
-            args[["dependencies"]] <- NA
         }
     )
     ## Inform the user about configuration argument overrides.
