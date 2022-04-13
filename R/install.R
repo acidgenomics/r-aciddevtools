@@ -4,6 +4,9 @@
 ## FIXME Need to nuke the custom workarounds for geospatial...what a mess.
 ## GDAL is a terrible package to maintain across platforms.
 
+## FIXME Need to suppress spam message from BiocManager:
+## replaces Bioconductor standard repositories
+
 
 
 #' Install packages from Bioconductor, CRAN, or a Git remote
