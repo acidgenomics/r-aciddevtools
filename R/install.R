@@ -1,6 +1,9 @@
 ## FIXME Improve default rJava install with:
 # install.packages("rJava", configure.args = "--disable-jri")
 
+## FIXME Need to nuke the custom workarounds for geospatial...what a mess.
+## GDAL is a terrible package to maintain across platforms.
+
 
 
 #' Install packages from Bioconductor, CRAN, or a Git remote
