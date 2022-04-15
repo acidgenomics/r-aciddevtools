@@ -1,14 +1,11 @@
 ## nocov start
 
-## FIXME Alternatively for rgdal, rgeos, sf, etc...
-## ALWAYS install the binary relaese from CRAN on macOS.
-
 
 
 #' Install recommended R packages
 #'
 #' @export
-#' @note Updated 2022-03-11.
+#' @note Updated 2022-04-15.
 #'
 #' @section tidyverse packages:
 #'
@@ -48,9 +45,12 @@ installRecommendedPackages <-
                  "variation" = FALSE
              )) {
         stopifnot(is.logical(extra))
-        .install <- function(...,
-                             reinstall = FALSE,
-                             dependencies = NA) {
+        .install <-
+            function(
+                ...,
+                reinstall = FALSE,
+                dependencies = NA
+        ) {
             install(
                 ...,
                 dependencies = dependencies,
@@ -79,9 +79,6 @@ installRecommendedPackages <-
             "RcppAnnoy",
             "XML",
             "rJava"
-            ## > "rgdal",
-            ## > "rgl",
-            ## > "sf"
         )
         ## CRAN ----------------------------------------------------------- {{{2
         pkgs <- c(

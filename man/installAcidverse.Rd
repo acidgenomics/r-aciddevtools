@@ -4,7 +4,11 @@
 \alias{installAcidverse}
 \title{Install Acid Genomics packages}
 \usage{
-installAcidverse()
+installAcidverse(reinstall = FALSE)
+}
+\arguments{
+\item{reinstall}{\code{logical(1)}.
+Force reinstallation of any existing packages.}
 }
 \value{
 Status from \code{install()}.
@@ -13,7 +17,7 @@ Status from \code{install()}.
 Install Acid Genomics packages
 }
 \note{
-Updated 2021-05-12.
+Updated 2022-04-15.
 }
 \examples{
 ## > installAcidverse()

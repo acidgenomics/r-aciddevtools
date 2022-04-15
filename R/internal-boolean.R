@@ -53,7 +53,10 @@
 
 #' Is the current environment running in macOS R CRAN binary?
 #'
-#' @note Updated 2022-04-13.
+#' @note Updated 2022-04-15.
+#' @noRd
+#'
+#' @return `logical(1)`.
 .isMacRCranBinary <- function() {
     isTRUE(grepl(
         pattern = paste0(
@@ -74,7 +77,10 @@
 
 #' Does the macOS R CRAN binary have OpenMP enabled?
 #'
-#' @note Updated 2022-04-13.
+#' @note Updated 2022-04-15.
+#' @noRd
+#'
+#' @return `logical(1)`.
 #'
 #' @seealso
 #' - https://mac.r-project.org/openmp/

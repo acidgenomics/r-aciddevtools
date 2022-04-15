@@ -86,7 +86,7 @@ Contains information on \code{pkgs} and \code{lib} defined.
 Install packages from Bioconductor, CRAN, or a Git remote
 }
 \note{
-Updated 2022-02-04.
+Updated 2022-04-13.
 }
 \examples{
 ## > testlib <- file.path(tempdir(), "testlib")
