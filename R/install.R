@@ -1,7 +1,38 @@
+## FIXME How to support withr handoff here?
+## FIXME Failing to compile on macOS:
+## FIXME Test that these work in r-devel install environment.
+## This needs to use default clang compiler chain.
+## - sass
+## - systemfonts
+
+## FIXME ragg now missing jpeglib.h
+## FIXME May be related: 'https://github.com/r-lib/ragg/issues/86'
+## FIXME ragg may require static libs for freetype, jpeg, libpng, and libtiff.
+## Configuration currently required for ragg to install from source:
+## > PKG_CONFIG_PATH=""
+## > PKG_CONFIG_PATH="/usr/local/opt/freetype/lib/pkgconfig:${PKG_CONFIG_PATH}"
+## > PKG_CONFIG_PATH="/usr/local/opt/jpeg-turbo/lib/pkgconfig:${PKG_CONFIG_PATH}"
+## > PKG_CONFIG_PATH="/usr/local/opt/libpng/lib/pkgconfig:${PKG_CONFIG_PATH}"
+## > PKG_CONFIG_PATH="/usr/local/opt/libtiff/lib/pkgconfig:${PKG_CONFIG_PATH}"
+## # Including this will cause ragg install to fail.
+## # > PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig:${PKG_CONFIG_PATH}"
+
+## FIXME Need to add install override support for httpuv, which currently
+## only compiles with clang chain on macOS:
+## > withr::with_makevars(
+## >     new = AcidDevTools:::.macosClangMakevars,
+## >     assignment = "=",
+## >     code = {
+## >         install.packages(pkgs = "httpuv", type = "source")
+## >     }
+## > )
+
+
+
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2022-04-13.
+#' @note Updated 2022-04-19.
 #'
 #' @inheritParams params
 #'
@@ -252,11 +283,9 @@ install <- function(pkgs,
 
 
 
-## FIXME Consider taking out /usr/local from here...
-
 #' macOS clang Makevars
 #'
-#' @note Updated 2022-04-13.
+#' @note Updated 2022-04-19.
 #' @noRd
 #'
 #' @section Harden against `/usr/local`:
