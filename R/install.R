@@ -444,17 +444,19 @@ install <- function(pkgs,
     switch(
         EXPR = pkg,
         "data.table" = {
-            ## The prebuilt CRAN binary for macOS doesn't support parallel
-            ## threads via OpenMP by default.
-            stopifnot(
-                "Run 'koopa install r-openmp'." = {
-                    .isMacOpenmpEnabled()
-                },
-                "Run 'koopa install zlib'." = {
-                    all(dir.exists(file.path(opt, "zlib")))
-                }
-            )
-            args[["type"]] <- "source"
+            if (.isMacOS()) {
+                ## The prebuilt CRAN binary for macOS doesn't support parallel
+                ## threads via OpenMP by default.
+                stopifnot(
+                    "Run 'koopa install r-openmp'." = {
+                        .isMacOpenmpEnabled()
+                    },
+                    "Run 'koopa install zlib'." = {
+                        all(dir.exists(file.path(opt, "zlib")))
+                    }
+                )
+                args[["type"]] <- "source"
+            }
         },
         "rgl" = {
             if (.isMacOS()) {
