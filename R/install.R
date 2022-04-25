@@ -1,3 +1,59 @@
+## SDK_LOC = /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr
+
+## FIXME Use this in our AcidDevTools lib:
+## > R.version[["arch"]]
+
+# > GCC_LOC = $(OPT_LOC)/gcc
+# > ARCH = x86_64
+# > DARWIN_MAJ_VER = 21
+# > GCC_VER = 12.3
+
+# C and C++.
+# > CC = $(GCC_LOC)/bin/gcc
+# > CFLAGS = -O3 -Wall -g -pedantic -pipe -mtune=native -std=gnu99 $(LTO)
+# > CPPFLAGS = -I$(GCC_LOC)/include -I$(SDK_LOC)/include
+# > CXX = $(GCC_LOC)/bin/g++
+# > CXX11 = $(GCC_LOC)/bin/g++
+# > CXX14 = $(GCC_LOC)/bin/g++
+# > CXX17 = $(GCC_LOC)/bin/g++
+# > CXX20 = $(GCC_LOC)/bin/g++
+# > CXXFLAGS = -O3 -Wall -Wno-unused -g -pedantic -pipe -mtune=native $(LTO)
+# > CXX11FLAGS = -O3 -Wall -Wno-unused -g -pedantic -pipe -mtune=native $(LTO)
+# > CXX14FLAGS = -O3 -Wall -Wno-unused -g -pedantic -pipe -mtune=native $(LTO)
+# > CXX17FLAGS = -O3 -Wall -Wno-unused -g -pedantic -pipe -mtune=native $(LTO)
+# > CXX20FLAGS = -O3 -Wall -Wno-unused -g -pedantic -pipe -mtune=native $(LTO)
+# > LDFLAGS = -L$(GCC_LOC)/lib -Wl,-rpath,$(GCC_LOC)/lib
+
+# Fortran.
+# > FC = $(GCC_LOC)/bin/gfortran
+# > FCFLAGS = -O3 -Wall -g $(LTO_FC)
+# > FLIBS = -L$(LOC)/lib/gcc/$(ARCH)-apple-darwin$(DARWIN_MAJ_VER)/$(GCC_VER) -L$(GCC_LOC)/lib -lgfortran -lquadmath -lm
+
+# Objective C++.
+# > OBJCXX = clang++
+
+
+# FIXME Only use these with default clang compiler.
+# FIXME Only use these when installing data.table.
+## > CPPFLAGS += -Xclang -fopenmp
+## > LDFLAGS += -lomp
+
+# > SHLIB_OPENMP_CFLAGS += -fopenmp
+# > SHLIB_OPENMP_CXXFLAGS += -fopenmp
+# > SHLIB_OPENMP_CXX11FLAGS += -fopenmp
+# > SHLIB_OPENMP_CXX14FLAGS += -# > fopenmp
+# > SHLIB_OPENMP_CXX17FLAGS += -fopenmp
+# > SHLIB_OPENMP_CXX20FLAGS += -fopenmp
+# > SHLIB_OPENMP_FCFLAGS += -fopenmp
+# > SHLIB_OPENMP_FFLAGS += -fopenmp
+
+
+
+
+
+
+
+
 ## FIXME How to support withr handoff here?
 ## FIXME Failing to compile on macOS:
 ## FIXME Test that these work in r-devel install environment.
