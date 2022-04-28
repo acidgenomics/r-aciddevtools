@@ -1,51 +1,4 @@
-## SDK_LOC = /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr
 
-## FIXME Use this in our AcidDevTools lib:
-## > R.version[["arch"]]
-
-# > GCC_LOC = $(OPT_LOC)/gcc
-# > ARCH = x86_64
-# > DARWIN_MAJ_VER = 21
-# > GCC_VER = 12.3
-
-# C and C++.
-# > CC = $(GCC_LOC)/bin/gcc
-# > CFLAGS = -O3 -Wall -g -pedantic -pipe -mtune=native -std=gnu99 $(LTO)
-# > CPPFLAGS = -I$(GCC_LOC)/include -I$(SDK_LOC)/include
-# > CXX = $(GCC_LOC)/bin/g++
-# > CXX11 = $(GCC_LOC)/bin/g++
-# > CXX14 = $(GCC_LOC)/bin/g++
-# > CXX17 = $(GCC_LOC)/bin/g++
-# > CXX20 = $(GCC_LOC)/bin/g++
-# > CXXFLAGS = -O3 -Wall -Wno-unused -g -pedantic -pipe -mtune=native $(LTO)
-# > CXX11FLAGS = -O3 -Wall -Wno-unused -g -pedantic -pipe -mtune=native $(LTO)
-# > CXX14FLAGS = -O3 -Wall -Wno-unused -g -pedantic -pipe -mtune=native $(LTO)
-# > CXX17FLAGS = -O3 -Wall -Wno-unused -g -pedantic -pipe -mtune=native $(LTO)
-# > CXX20FLAGS = -O3 -Wall -Wno-unused -g -pedantic -pipe -mtune=native $(LTO)
-# > LDFLAGS = -L$(GCC_LOC)/lib -Wl,-rpath,$(GCC_LOC)/lib
-
-# Fortran.
-# > FC = $(GCC_LOC)/bin/gfortran
-# > FCFLAGS = -O3 -Wall -g $(LTO_FC)
-# > FLIBS = -L$(LOC)/lib/gcc/$(ARCH)-apple-darwin$(DARWIN_MAJ_VER)/$(GCC_VER) -L$(GCC_LOC)/lib -lgfortran -lquadmath -lm
-
-# Objective C++.
-# > OBJCXX = clang++
-
-
-# FIXME Only use these with default clang compiler.
-# FIXME Only use these when installing data.table.
-## > CPPFLAGS += -Xclang -fopenmp
-## > LDFLAGS += -lomp
-
-# > SHLIB_OPENMP_CFLAGS += -fopenmp
-# > SHLIB_OPENMP_CXXFLAGS += -fopenmp
-# > SHLIB_OPENMP_CXX11FLAGS += -fopenmp
-# > SHLIB_OPENMP_CXX14FLAGS += -# > fopenmp
-# > SHLIB_OPENMP_CXX17FLAGS += -fopenmp
-# > SHLIB_OPENMP_CXX20FLAGS += -fopenmp
-# > SHLIB_OPENMP_FCFLAGS += -fopenmp
-# > SHLIB_OPENMP_FFLAGS += -fopenmp
 
 
 
@@ -88,7 +41,7 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2022-04-19.
+#' @note Updated 2022-04-28.
 #'
 #' @inheritParams params
 #'
@@ -105,27 +58,6 @@
 #' - Strings ending with ".git" are treated as Git repositories, and
 #' installed using `remotes::install_git()`.
 #'
-#' @param configureArgs,configureVars `character` or named `list`.
-#' *Used only for source installs.* If a character vector with no names is
-#' supplied, the elements are concatenated into a single string (separated by
-#' a space) and used as the value for the `--configure-args` or
-#' `configure-vars` flag in the call to `R CMD INSTALL`. If the character
-#' vector has names, these are assumed to identify values for
-#' `--configure-args` or `--configure-vars` for individual packages. This
-#' allows one to specify settings for an entire collection of packages which
-#' will be used if any of those packages are to be installed.
-#'
-#' A named list can be used also to the same effect, and that allows
-#' multi-element character strings for each package which are concatenated to
-#' a single string to be used as the value for `--configure-args` and/or
-#' `--configure-vars`.
-#'
-#' @param autoconf `logical(1)`.
-#' Smartly Set configuration options internally automatically for some
-#' packages that are problematic to install from source. Note that this will
-#' override `configureArgs` and `configureVars` settings, when applicable.
-#' Currently applies to: rgl.
-#'
 #' @param dependencies `logical(1)`, `character`, or `NA`.
 #' - `TRUE`/`FALSE` indicating whether to install uninstalled packages which
 #' these packages depend on/link to/import/suggest.
@@ -134,17 +66,6 @@
 #' - Can pass `NA`, the default for
 #' [`install.packages()`][utils::install.packages], which means
 #' `c("Depends", "Imports", "LinkingTo")`.
-#'
-#' @param type `character(1)`.
-#' Type of package to download and install. `"source"` is recommended by
-#' default, but `"binary"` can be used on macOS or Windows to install
-#' pre-built binaries from CRAN or Bioconductor.
-#'
-#' Note that installing from source requires the correct GCC and GNU Fortran
-#' binaries to be installed, and Apple LLVM/Clang compilers should not be used
-#' on macOS. Refer to [macOS development tools]() for details.
-#'
-#' [macOS development tools]: https://cran.r-project.org/bin/macosx/tools/
 #'
 #' @return Invisible `list`.
 #' Contains information on `pkgs` and `lib` defined.
@@ -160,390 +81,209 @@
 #' ## > print(out)
 #' ## > list.dirs(path = testlib, full.names = FALSE, recursive = FALSE)
 #' ## > unlink(testlib, recursive = TRUE)
-install <- function(pkgs,
-                    configureArgs = getOption(x = "configure.args"),
-                    configureVars = getOption(x = "configure.vars"),
-                    autoconf = TRUE,
-                    dependencies = NA,
-                    lib = .libPaths()[[1L]],
-                    type = getOption(x = "pkgType", default = "source"),
-                    reinstall = TRUE) {
-    stopifnot(
-        requireNamespace("utils", quietly = TRUE),
-        is.character(pkgs),
-        is.logical(autoconf) && identical(length(autoconf), 1L),
-        is.logical(reinstall) && identical(length(reinstall), 1L),
-        is.character(lib) && identical(length(lib), 1L),
-        is.character(type) && identical(length(type), 1L),
-        isFALSE(file.exists(file.path("~", ".R", "Makevars")))
-    )
-    warnDefault <- getOption(x = "warn")
-    options("warn" = 2L)
-    if (isFALSE(dir.exists(lib))) {
-        dir.create(lib)
+install <-
+    function(pkgs,
+             dependencies = NA,
+             lib = .libPaths()[[1L]],
+             reinstall = TRUE) {
+        stopifnot(
+            requireNamespace("utils", quietly = TRUE),
+            is.character(pkgs),
+            is.character(lib) && identical(length(lib), 1L),
+            is.logical(reinstall) && identical(length(reinstall), 1L)
+        )
+        warnDefault <- getOption(x = "warn")
+        options("warn" = 2L)
+        if (isFALSE(dir.exists(lib))) {
+            message(sprintf("Creating R package library at '%s'.", lib))
+            dir.create(lib)
+        }
+        lib <- normalizePath(lib, mustWork = TRUE)
+        out <- vapply(
+            X = pkgs,
+            FUN = .install,
+            FUN.VALUE = logical(1L),
+            lib = lib,
+            USE.NAMES = FALSE
+        )
+        options("warn" = warnDefault)
+        invisible(list(
+            "pkgs" = pkgs,
+            "lib" = lib,
+            "installed" = out
+        ))
     }
-    lib <- normalizePath(lib, mustWork = TRUE)
-    out <- vapply(
-        X = pkgs,
-        FUN = function(pkg) {
-            if (
-                grepl(pattern = "\\.git$", x = pkg)
-            ) {
-                mode <- "gitRepo"
-            } else if (
-                file.exists(pkg) ||
-                grepl(pattern = "^http(s)?://", x = pkg)
-            ) {
-                mode <- "tarball"
-            } else if (
-                grepl(pattern = "^[^/]+/[^/]+$", x = pkg)
-            ) {
-                mode <- "gitHub"
-            } else {
-                mode <- "default"
-            }
-            ## Standard arguments, shared across all installer calls.
-            args <- list(
-                "checkBuilt" = TRUE,
-                "configure.args" = configureArgs,
-                "configure.vars" = configureVars,
-                "dependencies" = dependencies,
-                "lib" = lib,
-                "type" = type
+
+
+
+#' Install an individual package
+#'
+#' @note Updated 2022-04-28.
+#' @noRd
+.install <- function(pkg, lib) {
+    if (
+        grepl(pattern = "\\.git$", x = pkg)
+    ) {
+        mode <- "gitRepo"
+    } else if (
+        file.exists(pkg) ||
+        grepl(pattern = "^http(s)?://", x = pkg)
+    ) {
+        mode <- "tarball"
+    } else if (
+        grepl(pattern = "^[^/]+/[^/]+$", x = pkg)
+    ) {
+        mode <- "gitHub"
+    } else {
+        mode <- "default"
+    }
+    ## Standard arguments, shared across all installer calls.
+    args <- list(
+        "checkBuilt" = TRUE,
+        "dependencies" = dependencies,
+        "lib" = lib
+    )
+    switch(
+        EXPR = mode,
+        "default" = {
+            whatPkg <- "BiocManager"
+            whatFun <- "install"
+            args <- append(
+                x = list(
+                    "pkgs" = pkg,
+                    "ask" = FALSE,
+                    "force" = TRUE,
+                    "site_repository" = "https://r.acidgenomics.com",
+                    "update" = FALSE
+                ),
+                values = args
             )
-            switch(
-                EXPR = mode,
-                "default" = {
-                    whatPkg <- "BiocManager"
-                    whatFun <- "install"
-                    args <- append(
-                        x = list(
-                            "pkgs" = pkg,
-                            "ask" = FALSE,
-                            "force" = TRUE,
-                            "site_repository" = "https://r.acidgenomics.com",
-                            "update" = FALSE
-                        ),
-                        values = args
-                    )
-                },
-                "gitHub" = {
-                    repo <- pkg
-                    pkg <- basename(repo)
-                    pkg <- sub(
-                        pattern = "^r-",
-                        replacement = "",
-                        x = pkg
-                    )
-                    whatPkg <- "remotes"
-                    whatFun <- "install_github"
-                    args <- append(
-                        x = list(
-                            "repo" = repo,
-                            "force" = TRUE,
-                            "upgrade" = "always"
-                        ),
-                        values = args
-                    )
-                },
-                "gitRepo" = {
-                    url <- pkg
-                    pkg <- sub(
-                        pattern = "\\.git$",
-                        replacement = "",
-                        x = basename(pkg)
-                    )
-                    pkg <- sub(
-                        pattern = "^r-",
-                        replacement = "",
-                        x = pkg
-                    )
-                    whatPkg <- "remotes"
-                    whatFun <- "install_git"
-                    args <- append(
-                        x = list(
-                            "url" = url,
-                            "force" = TRUE
-                        ),
-                        values = args
-                    )
-                },
-                "tarball" = {
-                    url <- pkg
-                    if (file.exists(url)) {
-                        url <- normalizePath(url)
-                    }
-                    pkg <- basename(url)
-                    pkg <- sub(pattern = "^r-", replacement = "", x = pkg)
-                    pkg <- strsplit(
-                        x = pkg,
-                        split = "[_-]",
-                        fixed = FALSE
-                    )
-                    pkg <- pkg[[1L]][[1L]]
-                    whatPkg <- "utils"
-                    whatFun <- "install.packages"
-                    args <- append(
-                        x = list(
-                            "pkgs" = url,
-                            "repos" = NULL,
-                            "type" = "source"
-                        ),
-                        values = args
-                    )
-                }
-            )
-            args <- args[unique(names(args))]
-            if (
-                isTRUE(.isInstalled(pkg, lib = lib)) &&
-                !isTRUE(reinstall)
-            ) {
-                message(sprintf("'%s' is installed in '%s'.", pkg, lib))
-                return(FALSE)
-            }
-            message(sprintf(
-                "Installing '%s' with '%s::%s' in '%s'.",
-                pkg, whatPkg, whatFun, lib
-            ))
-            .installIfNecessary(whatPkg, lib = lib)
-            stopifnot(requireNamespace(whatPkg, quietly = TRUE))
-            if (isTRUE(autoconf)) {
-                args <- .autoconf(args)
-            }
-            if (isTRUE("type" %in% names(args))) {
-                pkgTypeDefault <- getOption(x = "pkgType")
-                options("pkgType" = args[["type"]])
-            }
-            what <- get(
-                x = whatFun,
-                envir = asNamespace(whatPkg),
-                inherits = FALSE
-            )
-            stopifnot(is.function(what))
-            suppressMessages({
-                do.call(what = what, args = args)
-            })
-            if (isTRUE("type" %in% names(args))) {
-                options("pkgType" = pkgTypeDefault)
-            }
-            TRUE
         },
-        FUN.VALUE = logical(1L),
-        USE.NAMES = FALSE
-    )
-    options("warn" = warnDefault)
-    invisible(list(
-        "pkgs" = pkgs,
-        "lib" = lib,
-        "installed" = out
-    ))
-}
-
-
-
-#' macOS clang Makevars
-#'
-#' @note Updated 2022-04-19.
-#' @noRd
-#'
-#' @section Harden against `/usr/local`:
-#'
-#' Keep references to `/usr/local` disabled to avoid potential collision with
-#' compilers managed by Homebrew.
-#'
-#' ```r
-#' ## > c(
-#' ## >     "CPPFLAGS" = paste0(
-#' ## >         "-I",
-#' ## >         file.path("", "usr", "local", "include"),
-#' ## >     "LDFLAGS" = paste0(
-#' ## >         "-L",
-#' ## >         file.path("", "usr", "local", "lib")
-#' ## > )
-#' ```
-.macosClangMakevars <- c(
-    "CC" = paste(
-        "clang",
-        "-mmacosx-version-min=10.13"
-    ),
-    "CFLAGS" = paste(
-        "-Wall",
-        "-g",
-        "-O2",
-        "$(LTO)"
-    ),
-    "CXX" = paste(
-        "clang++",
-        "-mmacosx-version-min=10.13",
-        "-std=gnu++14"
-    ),
-    "CXXFLAGS" = paste(
-        "-Wall",
-        "-g",
-        "-O2",
-        "$(LTO)"
-    ),
-    "CXX11" = paste(
-        "clang++",
-        "-mmacosx-version-min=10.13"
-    ),
-    "CXX11FLAGS" = paste(
-        "-Wall",
-        "-g",
-        "-O2",
-        "$(LTO)"
-    ),
-    "CXX14" = paste(
-        "clang++",
-        "-mmacosx-version-min=10.13"
-    ),
-    "CXX14FLAGS" = paste(
-        "-Wall",
-        "-g",
-        "-O2",
-        "$(LTO)"
-    ),
-    "CXX17" = paste(
-        "clang++",
-        "-mmacosx-version-min=10.13"
-    ),
-    "CXX17FLAGS" = paste(
-        "-Wall",
-        "-g",
-        "-O2",
-        "$(LTO)"
-    ),
-    "CXX20" = paste(
-        "clang++",
-        "-mmacosx-version-min=10.13"
-    ),
-    "CXX20FLAGS" = paste(
-        "-Wall",
-        "-g",
-        "-O2",
-        "$(LTO)"
-    ),
-    "FC" = paste(
-        "gfortran",
-        "-mmacosx-version-min=10.13"
-    ),
-    "FCFLAGS" = paste(
-        "-Wall",
-        "-g",
-        "-O2",
-        "$(LTO)"
-    ),
-    "FLIBS" = paste(
-        paste0(
-            "-L",
-            file.path(
-                "",
-                "usr",
-                "local",
-                "gfortran",
-                "lib",
-                "gcc",
-                "x86_64-apple-darwin18",
-                "8.2.0"
+        "gitHub" = {
+            repo <- pkg
+            pkg <- basename(repo)
+            pkg <- sub(
+                pattern = "^r-",
+                replacement = "",
+                x = pkg
             )
-        ),
-        paste0(
-            "-L",
-            file.path("", "usr", "local", "gfortran", "lib")
-        ),
-        "-lgfortran",
-        "-lquadmath",
-        "-lm"
+            whatPkg <- "remotes"
+            whatFun <- "install_github"
+            args <- append(
+                x = list(
+                    "repo" = repo,
+                    "force" = TRUE,
+                    "upgrade" = "always"
+                ),
+                values = args
+            )
+        },
+        "gitRepo" = {
+            url <- pkg
+            pkg <- sub(
+                pattern = "\\.git$",
+                replacement = "",
+                x = basename(pkg)
+            )
+            pkg <- sub(
+                pattern = "^r-",
+                replacement = "",
+                x = pkg
+            )
+            whatPkg <- "remotes"
+            whatFun <- "install_git"
+            args <- append(
+                x = list(
+                    "url" = url,
+                    "force" = TRUE
+                ),
+                values = args
+            )
+        },
+        "tarball" = {
+            url <- pkg
+            if (file.exists(url)) {
+                url <- normalizePath(url)
+            }
+            pkg <- basename(url)
+            pkg <- sub(pattern = "^r-", replacement = "", x = pkg)
+            pkg <- strsplit(
+                x = pkg,
+                split = "[_-]",
+                fixed = FALSE
+            )
+            pkg <- pkg[[1L]][[1L]]
+            whatPkg <- "utils"
+            whatFun <- "install.packages"
+            args <- append(
+                x = list(
+                    "pkgs" = url,
+                    "repos" = NULL,
+                    "type" = "source"
+                ),
+                values = args
+            )
+        }
     )
-)
-
-
-
-## nocov start
-
-#' Autoconfigure a specified package
-#'
-#' This function will dynamically change configure arguments for some tricky
-#' to install packages.
-#'
-#' @note Updated 2022-04-13.
-#' @noRd
-#'
-#' @param args `list`.
-#' Named list of arguments.
-#'
-#' @return `list`.
-#' Arguments list to be passed to `BiocManager::install`.
-.autoconf <- function(args) {
-    pkg <- args[["pkgs"]]
-    ## This handling currently applies to remotes `url` pass-in.
-    if (is.null(pkg)) {
-        if (!is.null(args[["repo"]])) {
-            pkg <- basename(args[["repo"]])
-            pkg <- sub(pattern = "^r-", replacement = "", x = pkg)
-        } else if (!is.null(args[["url"]])) {
-            pkg <- basename(args[["url"]])
-            pkg <- sub(pattern = "\\.git$", replacement = "", x = pkg)
-            pkg <- sub(pattern = "^r-", replacement = "", x = pkg)
-        }
-    }
     stopifnot(is.character(pkg) && length(pkg) == 1L)
-    opt <- .koopaOpt()
-    ## Enforce that some tricky packages always install as binary on macOS.
-    if (.isMacRCranBinary()) {
-        if (isTRUE(pkg %in% c(
-            "geos", "readxl", "rgdal", "rgeos", "sass", "sf"
-        ))) {
-            args[["type"]] <- "binary"
-        }
+    args <- args[unique(names(args))]
+    if (
+        isTRUE(.isInstalled(pkg, lib = lib)) &&
+        !isTRUE(reinstall)
+    ) {
+        message(sprintf("'%s' is installed in '%s'.", pkg, lib))
+        return(FALSE)
     }
+    message(sprintf(
+        "Installing '%s' with '%s::%s' in '%s'.",
+        pkg, whatPkg, whatFun, lib
+    ))
+    .installIfNecessary(pkgs = whatPkg, lib = lib)
+    stopifnot(requireNamespace(whatPkg, quietly = TRUE))
+    what <- get(
+        x = whatFun,
+        envir = asNamespace(whatPkg),
+        inherits = FALSE
+    )
+    stopifnot(is.function(what))
+    ## FIXME Rethink the override approach here...can we make it simpler?
     switch(
         EXPR = pkg,
         "data.table" = {
-            if (.isMacOS()) {
-                ## The prebuilt CRAN binary for macOS doesn't support parallel
-                ## threads via OpenMP by default.
-                stopifnot(
-                    "Run 'koopa install r-openmp'." = {
-                        .isMacOpenmpEnabled()
-                    },
-                    "Run 'koopa install zlib'." = {
-                        all(dir.exists(file.path(opt, "zlib")))
-                    }
+            if (.isMacosFramework()) {
+                ## FIXME Try alternate approach with:
+                ## > CPPFLAGS += -Xclang -fopenmp
+                ## > LDFLAGS += -lomp
+                .installWithMakevars(
+                    what = what,
+                    args = args,
+                    makevars = .macosGccMakevars()
                 )
-                args[["type"]] <- "source"
-            }
-        },
-        "rgl" = {
-            if (.isMacOS()) {
-                ## See also:
-                ## https://github.com/dmurdoch/rgl/issues/45
-                args[["configure.args"]] <- "--disable-opengl"
-                ## Avoid issue with missing webshot2 dependency.
-                args[["dependencies"]] <- NA
+                return(TRUE)
             }
         }
     )
-    ## Inform the user about configuration argument overrides.
-    if (!is.null(args[["configure.args"]])) {
-        invisible(lapply(
-            X = c(
-                "Configuration via '--configure.args':",
-                paste0("  ", args[["configure.args"]])
-            ),
-            FUN = message
-        ))
-    }
-    if (!is.null(args[["configure.vars"]])) {
-        invisible(lapply(
-            X = c(
-                "Configuration via 'configure-vars':",
-                paste0("  ", args[["configure.vars"]])
-            ),
-            FUN = message
-        ))
-    }
-    args
+    suppressMessages({
+        do.call(what = what, args = args)
+    })
+    TRUE
 }
 
-## nocov end
+
+
+#' Install with Makevars
+#'
+#' @note Updated 2022-04-28.
+#' @noRd
+.installWithMakevars <-
+    function(what, args, makevars) {
+        .installIfNecessary(pkgs = "withr", lib = lib)
+        stopifnot(requireNamespace("withr", quietly = TRUE))
+        args[["type"]] <- "source"
+        withr::with_makevars(
+            new = makevars,
+            code = {
+                do.call(what = what, args = args)
+            }
+        )
+}

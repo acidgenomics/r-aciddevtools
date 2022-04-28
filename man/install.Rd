@@ -6,9 +6,6 @@
 \usage{
 install(
   pkgs,
-  configureArgs = getOption(x = "configure.args"),
-  configureVars = getOption(x = "configure.vars"),
-  autoconf = TRUE,
   dependencies = NA,
   lib = .libPaths()[[1L]],
   type = getOption(x = "pkgType", default = "source"),
@@ -29,27 +26,6 @@ and installed using \code{remotes::install_github()}.
 \item Strings ending with ".git" are treated as Git repositories, and
 installed using \code{remotes::install_git()}.
 }}
-
-\item{configureArgs, configureVars}{\code{character} or named \code{list}.
-\emph{Used only for source installs.} If a character vector with no names is
-supplied, the elements are concatenated into a single string (separated by
-a space) and used as the value for the \code{--configure-args} or
-\code{configure-vars} flag in the call to \verb{R CMD INSTALL}. If the character
-vector has names, these are assumed to identify values for
-\code{--configure-args} or \code{--configure-vars} for individual packages. This
-allows one to specify settings for an entire collection of packages which
-will be used if any of those packages are to be installed.
-
-A named list can be used also to the same effect, and that allows
-multi-element character strings for each package which are concatenated to
-a single string to be used as the value for \code{--configure-args} and/or
-\code{--configure-vars}.}
-
-\item{autoconf}{\code{logical(1)}.
-Smartly Set configuration options internally automatically for some
-packages that are problematic to install from source. Note that this will
-override \code{configureArgs} and \code{configureVars} settings, when applicable.
-Currently applies to: rgl.}
 
 \item{dependencies}{\code{logical(1)}, \code{character}, or \code{NA}.
 \itemize{
@@ -86,7 +62,7 @@ Contains information on \code{pkgs} and \code{lib} defined.
 Install packages from Bioconductor, CRAN, or a Git remote
 }
 \note{
-Updated 2022-04-13.
+Updated 2022-04-28.
 }
 \examples{
 ## > testlib <- file.path(tempdir(), "testlib")
