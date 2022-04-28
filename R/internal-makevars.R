@@ -106,6 +106,18 @@
 
 
 
+## Potentially useful:
+## > SHLIB_OPENMP_CFLAGS += -fopenmp
+## > SHLIB_OPENMP_CXXFLAGS += -fopenmp
+## > SHLIB_OPENMP_CXX11FLAGS += -fopenmp
+## > SHLIB_OPENMP_CXX14FLAGS += -# > fopenmp
+## > SHLIB_OPENMP_CXX17FLAGS += -fopenmp
+## > SHLIB_OPENMP_CXX20FLAGS += -fopenmp
+## > SHLIB_OPENMP_FCFLAGS += -fopenmp
+## > SHLIB_OPENMP_FFLAGS += -fopenmp
+
+
+
 #' macOS GCC / fortran Makevars
 #'
 #' @note Updated 2022-04-28.
