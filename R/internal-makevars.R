@@ -62,6 +62,14 @@
             "-O2",
             "$(LTO)"
         )
+    ## These settings are required to build data.table with OpenMP support.
+    ## https://mac.r-project.org/openmp/
+    dict[["cppflags"]] <-
+        paste(
+            "-Xclang",
+            "-fopenmp"
+        )
+    dict[["ldflags"]] <- "-lomp"
     ## Locate R CRAN GCC / gfortran compiler.
     ## [1] "/usr/local/gfortran/lib/gcc/x86_64-apple-darwin18/8.2.0"
     ## [2] "/usr/local/gfortran/lib"
@@ -87,6 +95,7 @@
     out <- c(
         "CC" = dict[["cc"]],
         "CFLAGS" = dict[["cflags"]],
+        "CPPFLAGS" = dict[["cppflags"]],
         "CXX" = dict[["cxx"]],
         "CXXFLAGS" = dict[["cflags"]],
         "CXX11" = dict[["cxx"]],
@@ -99,22 +108,11 @@
         "CXX20FLAGS" = dict[["cflags"]],
         "FC" = dict[["fc"]],
         "FCFLAGS" = dict[["cflags"]],
-        "FLIBS" = dict[["flibs"]]
+        "FLIBS" = dict[["flibs"]],
+        "LDFLAGS" = dict[["ldflags"]]
     )
     out
 }
-
-
-
-## Potentially useful:
-## > SHLIB_OPENMP_CFLAGS += -fopenmp
-## > SHLIB_OPENMP_CXXFLAGS += -fopenmp
-## > SHLIB_OPENMP_CXX11FLAGS += -fopenmp
-## > SHLIB_OPENMP_CXX14FLAGS += -# > fopenmp
-## > SHLIB_OPENMP_CXX17FLAGS += -fopenmp
-## > SHLIB_OPENMP_CXX20FLAGS += -fopenmp
-## > SHLIB_OPENMP_FCFLAGS += -fopenmp
-## > SHLIB_OPENMP_FFLAGS += -fopenmp
 
 
 
@@ -239,6 +237,8 @@
                 sep = ","
             )
         )
+    ## This is required to build data.table with OpenMP support.
+    dict[["shlibOpenmpCflags"]] <- "-fopenmp"
     out <- c(
         "CC" = dict[["cc"]],
         "CFLAGS" = dict[["cflags"]],
@@ -256,7 +256,15 @@
         "FC" = dict[["fc"]],
         "FCFLAGS" = dict[["fcflags"]],
         "FLIBS" = dict[["flibs"]],
-        "LDFLAGS" = dict[["ldflags"]]
+        "LDFLAGS" = dict[["ldflags"]],
+        "SHLIB_OPENMP_CFLAGS" = dict[["shlibOpenmpCflags"]],
+        "SHLIB_OPENMP_CXXFLAGS" = dict[["shlibOpenmpCflags"]],
+        "SHLIB_OPENMP_CXX11FLAGS" = dict[["shlibOpenmpCflags"]],
+        "SHLIB_OPENMP_CXX14FLAGS" = dict[["shlibOpenmpCflags"]],
+        "SHLIB_OPENMP_CXX17FLAGS" = dict[["shlibOpenmpCflags"]],
+        "SHLIB_OPENMP_CXX20FLAGS" = dict[["shlibOpenmpCflags"]],
+        "SHLIB_OPENMP_FCFLAGS" = dict[["shlibOpenmpCflags"]],
+        "SHLIB_OPENMP_FFLAGS" = dict[["shlibOpenmpCflags"]]
     )
     out
 }

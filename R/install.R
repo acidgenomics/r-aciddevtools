@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 ## FIXME How to support withr handoff here?
 ## FIXME Failing to compile on macOS:
 ## FIXME Test that these work in r-devel install environment.
@@ -103,7 +94,9 @@ install <-
             X = pkgs,
             FUN = .install,
             FUN.VALUE = logical(1L),
+            dependencies = dependencies,
             lib = lib,
+            reinstall = reinstall,
             USE.NAMES = FALSE
         )
         options("warn" = warnDefault)
@@ -120,153 +113,196 @@ install <-
 #'
 #' @note Updated 2022-04-28.
 #' @noRd
-.install <- function(pkg, lib) {
-    if (
-        grepl(pattern = "\\.git$", x = pkg)
-    ) {
-        mode <- "gitRepo"
-    } else if (
-        file.exists(pkg) ||
-        grepl(pattern = "^http(s)?://", x = pkg)
-    ) {
-        mode <- "tarball"
-    } else if (
-        grepl(pattern = "^[^/]+/[^/]+$", x = pkg)
-    ) {
-        mode <- "gitHub"
-    } else {
-        mode <- "default"
-    }
-    ## Standard arguments, shared across all installer calls.
-    args <- list(
-        "checkBuilt" = TRUE,
-        "dependencies" = dependencies,
-        "lib" = lib
-    )
-    switch(
-        EXPR = mode,
-        "default" = {
-            whatPkg <- "BiocManager"
-            whatFun <- "install"
-            args <- append(
-                x = list(
-                    "pkgs" = pkg,
-                    "ask" = FALSE,
-                    "force" = TRUE,
-                    "site_repository" = "https://r.acidgenomics.com",
-                    "update" = FALSE
-                ),
-                values = args
-            )
-        },
-        "gitHub" = {
-            repo <- pkg
-            pkg <- basename(repo)
-            pkg <- sub(
-                pattern = "^r-",
-                replacement = "",
-                x = pkg
-            )
-            whatPkg <- "remotes"
-            whatFun <- "install_github"
-            args <- append(
-                x = list(
-                    "repo" = repo,
-                    "force" = TRUE,
-                    "upgrade" = "always"
-                ),
-                values = args
-            )
-        },
-        "gitRepo" = {
-            url <- pkg
-            pkg <- sub(
-                pattern = "\\.git$",
-                replacement = "",
-                x = basename(pkg)
-            )
-            pkg <- sub(
-                pattern = "^r-",
-                replacement = "",
-                x = pkg
-            )
-            whatPkg <- "remotes"
-            whatFun <- "install_git"
-            args <- append(
-                x = list(
-                    "url" = url,
-                    "force" = TRUE
-                ),
-                values = args
-            )
-        },
-        "tarball" = {
-            url <- pkg
-            if (file.exists(url)) {
-                url <- normalizePath(url)
-            }
-            pkg <- basename(url)
-            pkg <- sub(pattern = "^r-", replacement = "", x = pkg)
-            pkg <- strsplit(
-                x = pkg,
-                split = "[_-]",
-                fixed = FALSE
-            )
-            pkg <- pkg[[1L]][[1L]]
-            whatPkg <- "utils"
-            whatFun <- "install.packages"
-            args <- append(
-                x = list(
-                    "pkgs" = url,
-                    "repos" = NULL,
-                    "type" = "source"
-                ),
-                values = args
-            )
+.install <-
+    function(
+        pkg,
+        lib,
+        dependencies,
+        reinstall) {
+        if (
+            grepl(pattern = "\\.git$", x = pkg)
+        ) {
+            mode <- "gitRepo"
+        } else if (
+            file.exists(pkg) ||
+            grepl(pattern = "^http(s)?://", x = pkg)
+        ) {
+            mode <- "tarball"
+        } else if (
+            grepl(pattern = "^[^/]+/[^/]+$", x = pkg)
+        ) {
+            mode <- "gitHub"
+        } else {
+            mode <- "default"
         }
-    )
-    stopifnot(is.character(pkg) && length(pkg) == 1L)
-    args <- args[unique(names(args))]
-    if (
-        isTRUE(.isInstalled(pkg, lib = lib)) &&
-        !isTRUE(reinstall)
-    ) {
-        message(sprintf("'%s' is installed in '%s'.", pkg, lib))
-        return(FALSE)
-    }
-    message(sprintf(
-        "Installing '%s' with '%s::%s' in '%s'.",
-        pkg, whatPkg, whatFun, lib
-    ))
-    .installIfNecessary(pkgs = whatPkg, lib = lib)
-    stopifnot(requireNamespace(whatPkg, quietly = TRUE))
-    what <- get(
-        x = whatFun,
-        envir = asNamespace(whatPkg),
-        inherits = FALSE
-    )
-    stopifnot(is.function(what))
-    ## FIXME Rethink the override approach here...can we make it simpler?
-    switch(
-        EXPR = pkg,
-        "data.table" = {
-            if (.isMacosFramework()) {
-                ## FIXME Try alternate approach with:
-                ## > CPPFLAGS += -Xclang -fopenmp
-                ## > LDFLAGS += -lomp
-                .installWithMakevars(
-                    what = what,
-                    args = args,
-                    makevars = .macosGccMakevars()
+        ## Standard arguments, shared across all installer calls.
+        args <- list(
+            "checkBuilt" = TRUE,
+            "dependencies" = dependencies,
+            "lib" = lib
+        )
+        switch(
+            EXPR = mode,
+            "default" = {
+                whatPkg <- "BiocManager"
+                whatFun <- "install"
+                args <- append(
+                    x = list(
+                        "pkgs" = pkg,
+                        "ask" = FALSE,
+                        "force" = TRUE,
+                        "site_repository" = "https://r.acidgenomics.com",
+                        "update" = FALSE
+                    ),
+                    values = args
                 )
-                return(TRUE)
+            },
+            "gitHub" = {
+                repo <- pkg
+                pkg <- basename(repo)
+                pkg <- sub(
+                    pattern = "^r-",
+                    replacement = "",
+                    x = pkg
+                )
+                whatPkg <- "remotes"
+                whatFun <- "install_github"
+                args <- append(
+                    x = list(
+                        "repo" = repo,
+                        "force" = TRUE,
+                        "upgrade" = "always"
+                    ),
+                    values = args
+                )
+            },
+            "gitRepo" = {
+                url <- pkg
+                pkg <- sub(
+                    pattern = "\\.git$",
+                    replacement = "",
+                    x = basename(pkg)
+                )
+                pkg <- sub(
+                    pattern = "^r-",
+                    replacement = "",
+                    x = pkg
+                )
+                whatPkg <- "remotes"
+                whatFun <- "install_git"
+                args <- append(
+                    x = list(
+                        "url" = url,
+                        "force" = TRUE
+                    ),
+                    values = args
+                )
+            },
+            "tarball" = {
+                url <- pkg
+                if (file.exists(url)) {
+                    url <- normalizePath(url)
+                }
+                pkg <- basename(url)
+                pkg <- sub(pattern = "^r-", replacement = "", x = pkg)
+                pkg <- strsplit(
+                    x = pkg,
+                    split = "[_-]",
+                    fixed = FALSE
+                )
+                pkg <- pkg[[1L]][[1L]]
+                whatPkg <- "utils"
+                whatFun <- "install.packages"
+                args <- append(
+                    x = list(
+                        "pkgs" = url,
+                        "repos" = NULL,
+                        "type" = "source"
+                    ),
+                    values = args
+                )
+            }
+        )
+        stopifnot(is.character(pkg) && length(pkg) == 1L)
+        args <- args[unique(names(args))]
+        if (
+            isTRUE(.isInstalled(pkg, lib = lib)) &&
+            !isTRUE(reinstall)
+        ) {
+            message(sprintf("'%s' is installed in '%s'.", pkg, lib))
+            return(FALSE)
+        }
+        message(sprintf(
+            "Installing '%s' with '%s::%s' in '%s'.",
+            pkg, whatPkg, whatFun, lib
+        ))
+        .installIfNecessary(pkgs = whatPkg, lib = lib)
+        stopifnot(requireNamespace(whatPkg, quietly = TRUE))
+        what <- get(
+            x = whatFun,
+            envir = asNamespace(whatPkg),
+            inherits = FALSE
+        )
+        stopifnot(is.function(what))
+        ## FIXME Rethink the override approach here...can we make it simpler?
+        switch(
+            EXPR = pkg,
+            "data.table" = {
+                if (.isMacosFramework()) {
+                    ## FIXME Try alternate approach with:
+                    ## > CPPFLAGS += -Xclang -fopenmp
+                    ## > LDFLAGS += -lomp
+                    .installWithMakevars(
+                        what = what,
+                        args = args,
+                        makevars = .macosGccMakevars(),
+                        lib = lib
+                    )
+                    return(TRUE)
+                }
+            }
+        )
+        suppressMessages({
+            do.call(what = what, args = args)
+        })
+        TRUE
+    }
+
+
+
+#' Install packages, if necessary
+#'
+#' @note Updated 2021-08-22.
+#' @noRd
+#'
+#' @param pkgs `character`.
+#' R package names to install.
+#'
+#' @param lib `character(1)`.
+#' R package library path.
+#' See `.libPaths()` for details.
+#'
+#' @return Invisible `logical(1)`
+#'
+#' @examples
+#' ## > .installIfNecessary("BiocManager")
+.installIfNecessary <- function(pkgs, lib = .libPaths()[[1L]]) {
+    warn <- getOption(x = "warn")
+    options("warn" = 2L)
+    invisible(lapply(
+        X = pkgs,
+        FUN = function(pkg) {
+            if (!requireNamespace(pkg, quietly = TRUE)) {
+                utils::install.packages(
+                    pkgs = pkg,
+                    repos = .cran,
+                    lib = lib
+                )
             }
         }
-    )
-    suppressMessages({
-        do.call(what = what, args = args)
-    })
-    TRUE
+    ))
+    options("warn" = warn)
+    invisible(TRUE)
 }
 
 
@@ -276,7 +312,7 @@ install <-
 #' @note Updated 2022-04-28.
 #' @noRd
 .installWithMakevars <-
-    function(what, args, makevars) {
+    function(what, args, makevars, lib) {
         .installIfNecessary(pkgs = "withr", lib = lib)
         stopifnot(requireNamespace("withr", quietly = TRUE))
         args[["type"]] <- "source"
@@ -284,6 +320,7 @@ install <-
             new = makevars,
             code = {
                 do.call(what = what, args = args)
-            }
+            },
+            assignment = "="
         )
 }
