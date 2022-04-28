@@ -223,8 +223,11 @@ install <-
         ## Ensure data.table always installs from source on macOS, to enable
         ## support for OpenMP and multiple threads.
         if (
-            .isMacosFramework() &&
-            isTRUE(pkg %in% c("data.table", "gert"))
+            .isMacosFramework() && 
+                isTRUE(pkg %in% "data.table") ||
+            !.isMacosFramework() && 
+                .isMacOS() && 
+                isTRUE(pkg %in% "gert")
         ) {
             .installWithMakevars(
                 what = what,
