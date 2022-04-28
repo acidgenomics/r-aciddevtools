@@ -226,17 +226,16 @@ install <-
             {
                 .isMacosFramework() &&
                     isTRUE(pkg %in% "data.table")
-            } ||
-            {
-                !.isMacosFramework() &&
-                    .isMacOS() &&
-                    isTRUE(pkg %in% "gert")
-            }
+            } # > ||
+            # > {
+            # >     .isMacOS() &&
+            # >         !.isMacosFramework() &&
+            # >         isTRUE(pkg %in% "gert")
+            # > }
         ) {
             .installWithMakevars(
                 what = what,
                 args = args,
-                ## Usage of `.macosGccMakevars()` should also work here.
                 makevars = .macosClangMakevars(),
                 lib = lib
             )

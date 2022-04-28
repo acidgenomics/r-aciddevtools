@@ -259,11 +259,6 @@
         "LDFLAGS" = dict[["ldflags"]],
         "SHLIB_OPENMP_CFLAGS" = dict[["shlibOpenmpCflags"]],
         "SHLIB_OPENMP_CXXFLAGS" = dict[["shlibOpenmpCflags"]],
-        "SHLIB_OPENMP_CXX11FLAGS" = dict[["shlibOpenmpCflags"]],
-        "SHLIB_OPENMP_CXX14FLAGS" = dict[["shlibOpenmpCflags"]],
-        "SHLIB_OPENMP_CXX17FLAGS" = dict[["shlibOpenmpCflags"]],
-        "SHLIB_OPENMP_CXX20FLAGS" = dict[["shlibOpenmpCflags"]],
-        "SHLIB_OPENMP_FCFLAGS" = dict[["shlibOpenmpCflags"]],
         "SHLIB_OPENMP_FFLAGS" = dict[["shlibOpenmpCflags"]]
     )
     out
