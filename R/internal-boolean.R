@@ -51,13 +51,13 @@
 
 
 
-#' Is the current environment running in macOS R CRAN binary?
+#' Is the current environment running in macOS R CRAN binary framework?
 #'
-#' @note Updated 2022-04-15.
+#' @note Updated 2022-04-28.
 #' @noRd
 #'
 #' @return `logical(1)`.
-.isMacRCranBinary <- function() {
+.isMacosFramework <- function() {
     isTRUE(grepl(
         pattern = paste0(
             "^",
