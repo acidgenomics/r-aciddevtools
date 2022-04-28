@@ -203,7 +203,7 @@ install <-
         args <- args[unique(names(args))]
         if (
             isTRUE(.isInstalled(pkg, lib = lib)) &&
-            !isTRUE(reinstall)
+            isFALSE(reinstall)
         ) {
             message(sprintf("'%s' is installed in '%s'.", pkg, lib))
             return(FALSE)
@@ -223,11 +223,15 @@ install <-
         ## Ensure data.table always installs from source on macOS, to enable
         ## support for OpenMP and multiple threads.
         if (
-            .isMacosFramework() && 
-                isTRUE(pkg %in% "data.table") ||
-            !.isMacosFramework() && 
-                .isMacOS() && 
-                isTRUE(pkg %in% "gert")
+            {
+                .isMacosFramework() &&
+                    isTRUE(pkg %in% "data.table")
+            } ||
+            {
+                !.isMacosFramework() &&
+                    .isMacOS() &&
+                    isTRUE(pkg %in% "gert")
+            }
         ) {
             .installWithMakevars(
                 what = what,
@@ -237,7 +241,7 @@ install <-
                 lib = lib
             )
             return(TRUE)
-        )
+        }
         suppressMessages({
             do.call(what = what, args = args)
         })
