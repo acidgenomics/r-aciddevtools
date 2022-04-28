@@ -244,23 +244,20 @@ install <-
             inherits = FALSE
         )
         stopifnot(is.function(what))
-        ## FIXME Rethink the override approach here...can we make it simpler?
-        switch(
-            EXPR = pkg,
-            "data.table" = {
-                if (.isMacosFramework()) {
-                    ## FIXME Try alternate approach with:
-                    ## > CPPFLAGS += -Xclang -fopenmp
-                    ## > LDFLAGS += -lomp
-                    .installWithMakevars(
-                        what = what,
-                        args = args,
-                        makevars = .macosGccMakevars(),
-                        lib = lib
-                    )
-                    return(TRUE)
-                }
-            }
+        ## Ensure data.table always installs from source on macOS, to enable
+        ## support for OpenMP and multiple threads.
+        if (
+            .isMacosFramework() &&
+            isTRUE(pkg %in% "data.table")
+        ) {
+            .installWithMakevars(
+                what = what,
+                args = args,
+                ## Usage of `.macosGccMakevars()` should also work here.
+                makevars = .macosClangMakevars(),
+                lib = lib
+            )
+            return(TRUE)
         )
         suppressMessages({
             do.call(what = what, args = args)
