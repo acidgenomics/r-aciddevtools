@@ -66,7 +66,6 @@ installRecommendedPackages <-
         if (!isTRUE(nzchar(biocVersion))) {
             biocVersion <- BiocManager::version()
         }
-        ## FIXME Skip this if BiocVersion, BiocGenerics already installed...
         message(sprintf("Installing Bioconductor %s.", biocVersion))
         BiocManager::install(update = FALSE, ask = FALSE, version = biocVersion)
         ## Default packages =============================================== {{{1
