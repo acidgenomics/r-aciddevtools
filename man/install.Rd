@@ -4,13 +4,7 @@
 \alias{install}
 \title{Install packages from Bioconductor, CRAN, or a Git remote}
 \usage{
-install(
-  pkgs,
-  dependencies = NA,
-  lib = .libPaths()[[1L]],
-  type = getOption(x = "pkgType", default = "source"),
-  reinstall = TRUE
-)
+install(pkgs, dependencies = NA, lib = .libPaths()[[1L]], reinstall = TRUE)
 }
 \arguments{
 \item{pkgs}{\code{character}.
@@ -41,15 +35,6 @@ these packages depend on/link to/import/suggest.
 \item{lib}{\code{character}.
 Destination library directory path.
 Defaults to the first element of \code{.libPaths()}.}
-
-\item{type}{\code{character(1)}.
-Type of package to download and install. \code{"source"} is recommended by
-default, but \code{"binary"} can be used on macOS or Windows to install
-pre-built binaries from CRAN or Bioconductor.
-
-Note that installing from source requires the correct GCC and GNU Fortran
-binaries to be installed, and Apple LLVM/Clang compilers should not be used
-on macOS. Refer to \url{macOS development tools} for details.}
 
 \item{reinstall}{\code{logical(1)}.
 Force reinstallation of any existing packages.}
