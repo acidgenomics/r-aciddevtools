@@ -22,7 +22,7 @@ packageDependencies <- function(pkg) {
     repos <- append(x = repos, values = BiocManager::repositories())
     options("repos" = repos)
     out <- tools::package_dependencies(
-        packages = package,
+        packages = pkg,
         db = NULL,
         which = c("Depends", "Imports", "LinkingTo"),
         recursive = TRUE,
