@@ -10,7 +10,7 @@ check(
   urls = TRUE,
   cran = FALSE,
   biocCheck = TRUE,
-  coverage = TRUE
+  coverage = FALSE
 )
 }
 \arguments{
@@ -42,7 +42,7 @@ Check that unit tests provide sufficient coverage.}
 Check package
 }
 \note{
-Updated 2021-08-20.
+Updated 2022-04-29.
 }
 \examples{
 ## > check()

@@ -5,7 +5,7 @@
 #' Check package
 #'
 #' @export
-#' @note Updated 2021-08-20.
+#' @note Updated 2022-04-29.
 #'
 #' @inheritParams params
 #'
@@ -33,7 +33,7 @@ check <- function(path = getwd(),
                   urls = TRUE,
                   cran = FALSE,
                   biocCheck = TRUE,
-                  coverage = TRUE) {
+                  coverage = FALSE) {
     stopifnot(
         requireNamespace("desc", quietly = TRUE),
         requireNamespace("rcmdcheck", quietly = TRUE),
