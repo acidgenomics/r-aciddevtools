@@ -3,6 +3,9 @@
 #' @export
 #' @note Updated 2022-04-30.
 #'
+#' @details
+#' Files get built into temporary directory, defined in `tempdir()`.
+#'
 #' @param package `character`.
 #' Directory path to R package.
 #'
