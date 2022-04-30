@@ -72,14 +72,6 @@ report <- function(...) {
 #' @rdname reexports
 #' @usage NULL
 #' @export
-build <- function(..., vignettes = FALSE) {
-    stopifnot(requireNamespace("devtools", quietly = TRUE))
-    devtools::build(..., vignettes = vignettes)
-}
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
 build_vignettes <- function(..., clean = FALSE) {
     stopifnot(requireNamespace("devtools", quietly = TRUE))
     devtools::build_vignettes(..., clean = clean)

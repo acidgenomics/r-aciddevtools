@@ -3,6 +3,11 @@
     AcidCLI::alert(...)
 }
 
+.alertSuccess <- function(...) {
+    stopifnot(requireNamespace("AcidCLI", quietly = TRUE))
+    AcidCLI::alertSuccess(...)
+}
+
 .alertWarning <- function(...) {
     stopifnot(requireNamespace("AcidCLI", quietly = TRUE))
     AcidCLI::alertWarning(...)
@@ -13,9 +18,19 @@
     goalie::allAreDirs(...)
 }
 
+.allAreSystemCommands <- function(...) {
+    stopifnot(requireNamespace("goalie", quietly = TRUE))
+    goalie::allAreSystemCommands(...)
+}
+
 .assert <- function(...) {
     stopifnot(requireNamespace("goalie", quietly = TRUE))
     goalie::assert(...)
+}
+
+.isADir <- function(...) {
+    stopifnot(requireNamespace("goalie", quietly = TRUE))
+    goalie::isADir(...)
 }
 
 .isAFile <- function(...) {
@@ -26,6 +41,11 @@
 .isASystemCommand <- function(...) {
     stopifnot(requireNamespace("goalie", quietly = TRUE))
     goalie::isASystemCommand(...)
+}
+
+.isFlag <- function(...) {
+    stopifnot(requireNamespace("goalie", quietly = TRUE))
+    goalie::isFlag(...)
 }
 
 .isString <- function(...) {
