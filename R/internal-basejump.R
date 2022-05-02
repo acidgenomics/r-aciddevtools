@@ -38,6 +38,11 @@
     goalie::isAFile(...)
 }
 
+.isAGitRepo <- function(...) {
+    stopifnot(requireNamespace("goalie", quietly = TRUE))
+    goalie::isAGitRepo(...)
+}
+
 .isASystemCommand <- function(...) {
     stopifnot(requireNamespace("goalie", quietly = TRUE))
     goalie::isASystemCommand(...)
@@ -51,6 +56,11 @@
 .isString <- function(...) {
     stopifnot(requireNamespace("goalie", quietly = TRUE))
     goalie::isString(...)
+}
+
+.isSubset <- function(...) {
+    stopifnot(requireNamespace("goalie", quietly = TRUE))
+    goalie::isSubset(...)
 }
 
 .pasteURL <- function(...) {
