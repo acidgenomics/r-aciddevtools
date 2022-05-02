@@ -8,7 +8,6 @@ drat(
   package = getwd(),
   repo = file.path("~", "monorepo", "r-acidgenomics-com"),
   check = TRUE,
-  coverage = FALSE,
   tag = TRUE,
   pkgdown = TRUE,
   deploy = TRUE
@@ -24,9 +23,6 @@ Directory path to local R drat repository (e.g. \code{"r-acidgenomics-com"}).}
 
 \item{check}{\code{logical(1)}.
 Perform package checks prior to building package.}
-
-\item{coverage}{\code{logical(1)}.
-Require that package passes minimum coverage checks.}
 
 \item{tag}{\code{logical(1)}.
 Tag release on GitHub.}

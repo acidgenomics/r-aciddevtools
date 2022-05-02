@@ -34,9 +34,6 @@
 #' @param check `logical(1)`.
 #' Perform package checks prior to building package.
 #'
-#' @param coverage `logical(1)`.
-#' Require that package passes minimum coverage checks.
-#'
 #' @param tag `logical(1)`.
 #' Tag release on GitHub.
 #'
@@ -70,7 +67,6 @@ drat <-
     function(package = getwd(),
              repo = file.path("~", "monorepo", "r-acidgenomics-com"),
              check = TRUE,
-             coverage = FALSE,
              tag = TRUE,
              pkgdown = TRUE,
              deploy = TRUE) {
@@ -81,7 +77,6 @@ drat <-
             .allAreDirs(package),
             .isADir(repo),
             .isFlag(check),
-            .isFlag(coverage),
             .isFlag(tag),
             .isFlag(pkgdown),
             .isFlag(deploy)
@@ -98,7 +93,7 @@ drat <-
                 descFile <- file.path(package, "DESCRIPTION")
                 .assert(.isAFile(descFile))
                 if (isTRUE(check)) {
-                    check(path = package, coverage = coverage)
+                    check(package)
                 }
                 if (isTRUE(pkgdown)) {
                     pkgdownDeployToAWS(package)
