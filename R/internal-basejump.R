@@ -33,6 +33,16 @@
     goalie::assert(...)
 }
 
+.gitCurrentBranch <- function(...) {
+    stopifnot(requireNamespace("AcidBase", quietly = TRUE))
+    AcidBase::gitCurrentBranch(...)
+}
+
+.gitDefaultBranch <- function(...) {
+    stopifnot(requireNamespace("AcidBase", quietly = TRUE))
+    AcidBase::gitDefaultBranch(...)
+}
+
 .isADir <- function(...) {
     stopifnot(requireNamespace("goalie", quietly = TRUE))
     goalie::isADir(...)
