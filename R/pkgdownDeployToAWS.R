@@ -34,7 +34,11 @@ pkgdownDeployToAWS <-
             .allAreDirs(package),
             .isString(bucketDir)
         )
-        bucket <- sub(pattern = "/$", replacement = "", x = bucket)
+        bucketDir <- sub(
+            pattern = "/$",
+            replacement = "",
+            x = bucketDir
+        )
         out <- vapply(
             X = .realpath(package),
             FUN = function(pkgDir) {
