@@ -81,7 +81,7 @@ build <- function(package = getwd()) {
             tarballs[["source"]]
         ))
     }
-    if (isTRUE(file.size(tarballs[["binary"]]) > 3e6L)) {
+    if (isTRUE(file.size(tarballs[["binary"]]) > 5e6L)) {
         .abort(sprintf(
             "Binary package is too large: {.file %s}.",
             tarballs[["binary"]]
