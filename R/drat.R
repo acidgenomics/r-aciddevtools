@@ -67,7 +67,7 @@
 #' ## >     )
 #' ## > )
 drat <-
-    function(package,
+    function(package = getwd(),
              repo = file.path("~", "monorepo", "r-acidgenomics-com"),
              check = TRUE,
              coverage = FALSE,

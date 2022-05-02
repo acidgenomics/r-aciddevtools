@@ -5,7 +5,7 @@
 \title{Build packages and commit to drat repo}
 \usage{
 drat(
-  package,
+  package = getwd(),
   repo = file.path("~", "monorepo", "r-acidgenomics-com"),
   check = TRUE,
   coverage = FALSE,
