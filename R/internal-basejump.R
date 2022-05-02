@@ -1,3 +1,8 @@
+.abort <- function(...) {
+    stopifnot(requireNamespace("AcidCLI", quietly = TRUE))
+    AcidCLI::abort(...)
+}
+
 .alert <- function(...) {
     stopifnot(requireNamespace("AcidCLI", quietly = TRUE))
     AcidCLI::alert(...)

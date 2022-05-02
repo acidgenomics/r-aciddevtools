@@ -10,7 +10,7 @@
 #' Names of dependency packages.
 #'
 #' @examples
-#' packageDependencies("stats")
+#' ## > packageDependencies("stats")
 packageDependencies <- function(pkg) {
     stopifnot(
         requireNamespace("BiocManager", quietly = TRUE),
