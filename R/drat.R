@@ -142,8 +142,8 @@ drat <-
                             "push",
                             "origin",
                             paste(
-                                gitCurrentBranch(),
-                                gitDefaultBranch(),
+                                .gitCurrentBranch(),
+                                .gitDefaultBranch(),
                                 sep = ":"
                             )
                         )
@@ -167,7 +167,7 @@ drat <-
                 setwd(repo)
                 .shell(
                     command = "git",
-                    args = c("checkout", gitDefaultBranch())
+                    args = c("checkout", .gitDefaultBranch())
                 )
                 .shell(
                     command = "git",
