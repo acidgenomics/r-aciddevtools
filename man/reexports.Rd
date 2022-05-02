@@ -6,7 +6,6 @@
 \alias{package_coverage}
 \alias{percent_coverage}
 \alias{report}
-\alias{build}
 \alias{build_vignettes}
 \alias{document}
 \alias{load_all}
