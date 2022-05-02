@@ -1,3 +1,11 @@
+# AcidDevTools 0.5.0 (2022-05-02)
+
+- Updated minimum R dependency to 4.2.
+- Migrated `drat` and `pkgdownDeployToAWS` from r-koopa package to here.
+- Improved `drat` engine to use `R CMD build` and `R CMD INSTALL --build`
+  instead of devtools, which handles vignettes inside of binary packages
+  properly.
+
 # AcidDevTools 0.4.9 (2022-04-13)
 
 - Simplified R package configuration on macOS, enforcing binary installs for

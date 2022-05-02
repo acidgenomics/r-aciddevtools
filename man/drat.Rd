@@ -5,8 +5,8 @@
 \title{Build packages and commit to drat repo}
 \usage{
 drat(
-  pkgDirs,
-  repoDir = file.path("~", "monorepo", "r-acidgenomics-com"),
+  package,
+  repo = file.path("~", "monorepo", "r-acidgenomics-com"),
   check = TRUE,
   coverage = FALSE,
   tag = TRUE,
@@ -15,11 +15,11 @@ drat(
 )
 }
 \arguments{
-\item{pkgDirs}{\code{character}.
+\item{package}{\code{character}.
 Directory paths to R package source code.
 Vectorized, supporting the building of multiple packages in a single call.}
 
-\item{repoDir}{\code{character(1)}.
+\item{repo}{\code{character(1)}.
 Directory path to local R drat repository (e.g. \code{"r-acidgenomics-com"}).}
 
 \item{check}{\code{logical(1)}.
@@ -45,7 +45,7 @@ Boolean, indicating if drat build was successful.
 Build packages and commit to drat repo
 }
 \note{
-Updated 2022-04-30.
+Updated 2022-05-02.
 }
 \section{Building from the command line}{
 \if{html}{\out{<div class="sourceCode sh">}}\preformatted{R CMD build ~/monorepo/r-packages/r-syntactic
@@ -71,7 +71,7 @@ for binary packages correctly.
 
 \examples{
 ## > drat(
-## >     pkgDirs = file.path(
+## >     package = file.path(
 ## >         "~",
 ## >         "monorepo",
 ## >         "r-packages",
