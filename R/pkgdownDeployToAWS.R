@@ -1,8 +1,3 @@
-## FIXME Move this to AcidDevTools.
-## FIXME Need to rework in base R.
-
-
-
 #' Deploy a pkgdown website to AWS S3 bucket
 #'
 #' @export
@@ -39,7 +34,7 @@ pkgdownDeployToAWS <-
             .allAreDirs(package),
             .isString(bucketDir)
         )
-        # FIXME Need to strip trailing slash of S3 bucket here...
+        bucket <- sub(pattern = "/$", replacement = "", x = bucket)
         out <- vapply(
             X = .realpath(package),
             FUN = function(pkgDir) {
