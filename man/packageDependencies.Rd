@@ -21,5 +21,5 @@ Package dependencies
 Updated 2022-04-29.
 }
 \examples{
-packageDependencies("stats")
+## > packageDependencies("stats")
 }

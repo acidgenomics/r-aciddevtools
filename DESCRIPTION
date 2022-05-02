@@ -23,6 +23,7 @@ Encoding: UTF-8
 Depends: R (>= 4.2)
 Suggests:
     AcidBase,
+    AcidCLI,
     BiocCheck,
     BiocManager,
     BiocParallel,
