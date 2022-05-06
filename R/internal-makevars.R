@@ -1,3 +1,5 @@
+## FIXME Rework using koopa opt prefix here for GCC instead.
+
 #' macOS clang Makevars
 #'
 #' @note Updated 2022-04-28.
@@ -115,6 +117,10 @@
 }
 
 
+
+## FIXME Rework this to use koopa opt prefix instead.
+## FIXME Need to detect the GCC architecture and version automatically,
+## rather than pinning to x86 and 8.2.0 (see below)
 
 #' macOS GCC / fortran Makevars
 #'
