@@ -1,5 +1,7 @@
 ## nocov start
 
+## FIXME Need to lint all Rmd files in package.
+
 
 
 #' Check package
@@ -15,6 +17,9 @@
 #' @param urls `logical(1)`.
 #' Perform `urlchecker::url_check()` checks.
 #'
+#' @param style `logical(1)`.
+#' Perform `styler::style_pkg()` checks.
+#'
 #' @param cran `logical(1)`.
 #' Perform additional CRAN submission checks.
 #'
@@ -29,6 +34,7 @@
 #' @examples
 #' ## > check()
 check <- function(path = getwd(),
+                  style = TRUE,
                   lints = TRUE,
                   urls = TRUE,
                   cran = FALSE,
@@ -44,6 +50,12 @@ check <- function(path = getwd(),
     keys <- desc::desc_get(keys = c("Package", "biocViews"), file = descFile)
     pkgName <- keys[["Package"]]
     message(sprintf("Checking '%s' package at '%s'.", pkgName, path))
+    if (isTRUE(style) && .isInstalled("styler")) {
+        stopifnot(requireNamespace("styler", quietly = TRUE))
+        message("Checking style with 'style_pkg()'.")
+        df <- style_pkg()
+        stopifnot(!any(df[["changed"]]))
+    }
     if (isTRUE(lints) && .isInstalled("lintr")) {
         stopifnot(requireNamespace("lintr", quietly = TRUE))
         message("Checking for lints with 'lint_package()'.")
