@@ -68,6 +68,7 @@ check <- function(path = getwd(),
                 ngettext(n = length(lints), msg1 = "lint", msg2 = "lints")
             ))
         }
+        # FIXME Also need to ensure Rmd files in package are checked.
     }
     if (isTRUE(urls) && .isInstalled("urlchecker")) {
         stopifnot(requireNamespace("urlchecker", quietly = TRUE))
