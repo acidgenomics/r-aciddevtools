@@ -82,6 +82,7 @@ drat <-
             .isFlag(deploy)
         )
         package <- .realpath(package)
+        repo <- .realpath(repo)
         lapply(
             X = package,
             repo = repo,
@@ -98,7 +99,7 @@ drat <-
                     pkgdownDeployToAWS(package = package)
                 }
                 tarballs <- build(package = package)
-                Map(
+                invisible(Map(
                     file = tarballs,
                     MoreArgs = list(
                         "repodir" = repo,
@@ -113,10 +114,8 @@ drat <-
                         "validate" = TRUE
                     ),
                     f = drat::insertPackage
-                )
-                invisible({
-                    lapply(X = tarballs, FUN = file.remove)
-                })
+                ))
+                invisible(lapply(X = tarballs, FUN = file.remove))
                 if (isTRUE(tag)) {
                     .alert("Tagging on GitHub.")
                     name <-
