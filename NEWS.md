@@ -1,8 +1,8 @@
 # AcidDevTools 0.5.1 (2022-05-23)
 
 - `check`: Added automatic package style checking using styler.
-- Updated lintr and testthat checks.
 - `install`: Now using koopa GCC for gfortran by default.
+- Updated lintr and testthat checks.
 
 # AcidDevTools 0.5.0 (2022-05-02)
 
