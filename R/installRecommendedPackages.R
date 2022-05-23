@@ -148,6 +148,12 @@ installRecommendedPackages <-
                 "tidytext"
             )
         }
+        if (isTRUE(extra[["annotation"]])) {
+            pkgs <- c(
+                pkgs,
+                "ontologyIndex"
+            )
+        }
         if (isTRUE(extra[["cancer"]])) {
             ## Consider:
             ## t - cancerrxgene gdscIC50
@@ -331,6 +337,7 @@ installRecommendedPackages <-
             pkgs <- c(
                 pkgs,
                 "AnnotationFilter",
+                ## > "BiocSet",
                 "BSgenome.Hsapiens.NCBI.GRCh38",
                 "BSgenome.Hsapiens.UCSC.hg19",
                 "BSgenome.Hsapiens.UCSC.hg38",
