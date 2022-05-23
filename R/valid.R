@@ -32,7 +32,7 @@ valid <- function(...) {
             paste(length(pkgs), "pre-release:"),
             paste0(
                 "AcidDevTools::install(pkgs = c(",
-                paste(paste0("\"", pkgs, "\""), collapse = ", "),
+                toString(paste0("\"", pkgs, "\"")),
                 "), reinstall = TRUE)"
             ),
             sep = "\n"
@@ -51,7 +51,7 @@ valid <- function(...) {
             paste(length(pkgs), "outdated:"),
             paste0(
                 "AcidDevTools::install(pkgs = c(",
-                paste(paste0("\"", pkgs, "\""), collapse = ", "),
+                toString(paste0("\"", pkgs, "\"")),
                 "), reinstall = TRUE)"
             ),
             sep = "\n"

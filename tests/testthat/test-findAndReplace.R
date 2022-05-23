@@ -4,11 +4,11 @@ test_that("Non-recursive", {
     dir.create(file.path(testdir, "subdir"), recursive = TRUE)
     writeLines(
         text = "print(\"foo\")",
-        con = file.path(testdir, "aaa.R"),
+        con = file.path(testdir, "aaa.R")
     )
     writeLines(
         text = "print(\"foo\")",
-        con = file.path(testdir, "subdir", "bbb.R"),
+        con = file.path(testdir, "subdir", "bbb.R")
     )
     out <- findAndReplace(
         pattern = "foo",
@@ -33,11 +33,11 @@ test_that("Recursive", {
     dir.create(file.path(testdir, "subdir"), recursive = TRUE)
     writeLines(
         text = "print(\"foo\")",
-        con = file.path(testdir, "aaa.R"),
+        con = file.path(testdir, "aaa.R")
     )
     writeLines(
         text = "print(\"foo\")",
-        con = file.path(testdir, "subdir", "bbb.R"),
+        con = file.path(testdir, "subdir", "bbb.R")
     )
     out <- findAndReplace(
         pattern = "foo",

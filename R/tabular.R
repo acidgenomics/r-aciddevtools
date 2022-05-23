@@ -33,13 +33,12 @@ tabular <- function(x) {
         what = "paste",
         args = c(cols, list(sep = " \\tab ", collapse = "\\cr\n  "))
     )
-    out <- paste(
+    out <- paste0(
         "\\tabular{",
         paste(align, collapse = ""),
         "}{\n  ",
         contents,
-        "\n}\n",
-        sep = ""
+        "\n}\n"
     )
     cat(out)
 }
