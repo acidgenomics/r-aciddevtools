@@ -6,6 +6,7 @@
 \usage{
 check(
   path = getwd(),
+  style = TRUE,
   lints = TRUE,
   urls = TRUE,
   cran = FALSE,
@@ -16,6 +17,9 @@ check(
 \arguments{
 \item{path}{\code{character(1)}.
 File path (e.g. to package).}
+
+\item{style}{\code{logical(1)}.
+Perform \code{styler::style_pkg()} checks.}
 
 \item{lints}{\code{logical(1)}.
 Perform \code{lintr::lint_package()} checks.}

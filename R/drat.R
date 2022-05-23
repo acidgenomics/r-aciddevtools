@@ -13,7 +13,7 @@
 #' R CMD INSTALL syntactic_0.5.2.tar.gz
 #' # Or how to install binary (on macOS).
 #' R CMD INSTALL syntactic_0.5.2.tgz
-#  ```
+#' ```
 #'
 #' @section Building vignettes:
 #'
