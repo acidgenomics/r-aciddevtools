@@ -18,7 +18,7 @@ Names of dependency packages.
 Package dependencies
 }
 \note{
-Updated 2022-04-29.
+Updated 2022-05-23.
 }
 \examples{
 ## > packageDependencies("stats")

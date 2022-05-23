@@ -51,7 +51,7 @@
 install <-
     function(pkgs,
              dependencies = NA,
-             lib = .libPaths()[[1L]],
+             lib = .libPaths()[[1L]], # nolint
              reinstall = TRUE) {
         stopifnot(
             requireNamespace("utils", quietly = TRUE),
@@ -60,7 +60,7 @@ install <-
             is.logical(reinstall) && identical(length(reinstall), 1L)
         )
         warnDefault <- getOption(x = "warn")
-        options("warn" = 2L)
+        options("warn" = 2L) # nolint
         if (isFALSE(dir.exists(lib))) {
             message(sprintf("Creating R package library at '%s'.", lib))
             dir.create(lib)
@@ -75,7 +75,7 @@ install <-
             reinstall = reinstall,
             USE.NAMES = FALSE
         )
-        options("warn" = warnDefault)
+        options("warn" = warnDefault) # nolint
         invisible(list(
             "pkgs" = pkgs,
             "lib" = lib,
@@ -198,7 +198,10 @@ install <-
                 )
             }
         )
-        stopifnot(is.character(pkg) && length(pkg) == 1L)
+        stopifnot(
+            is.character(pkg),
+            length(pkg) == 1L
+        )
         args <- args[unique(names(args))]
         if (
             isTRUE(.isInstalled(pkg, lib = lib)) &&
@@ -221,16 +224,7 @@ install <-
         stopifnot(is.function(what))
         ## Ensure data.table always installs from source on macOS, to enable
         ## support for OpenMP and multiple threads.
-        if ({
-            .isMacosFramework() &&
-                isTRUE(pkg %in% "data.table")
-        } # > ||
-        # > {
-        # >     .isMacOS() &&
-        # >         !.isMacosFramework() &&
-        # >         isTRUE(pkg %in% "gert")
-        # > }
-        ) {
+        if (.isMacosFramework() && isTRUE(pkg %in% "data.table")) {
             .installWithMakevars(
                 what = what,
                 args = args,
@@ -249,7 +243,7 @@ install <-
 
 #' Install packages, if necessary
 #'
-#' @note Updated 2021-08-22.
+#' @note Updated 2022-05-23.
 #' @noRd
 #'
 #' @param pkgs `character`.
@@ -263,24 +257,28 @@ install <-
 #'
 #' @examples
 #' ## > .installIfNecessary("BiocManager")
-.installIfNecessary <- function(pkgs, lib = .libPaths()[[1L]]) {
-    warn <- getOption(x = "warn")
-    options("warn" = 2L)
-    invisible(lapply(
-        X = pkgs,
-        FUN = function(pkg) {
-            if (!requireNamespace(pkg, quietly = TRUE)) {
-                utils::install.packages(
-                    pkgs = pkg,
-                    repos = .cran,
-                    lib = lib
-                )
+.installIfNecessary <-
+    function(
+        pkgs,
+        lib = .libPaths()[[1L]] # nolint
+    ) {
+        warn <- getOption(x = "warn")
+        options("warn" = 2L) # nolint
+        invisible(lapply(
+            X = pkgs,
+            FUN = function(pkg) {
+                if (!requireNamespace(pkg, quietly = TRUE)) {
+                    utils::install.packages(
+                        pkgs = pkg,
+                        repos = .cran,
+                        lib = lib
+                    )
+                }
             }
-        }
-    ))
-    options("warn" = warn)
-    invisible(TRUE)
-}
+        ))
+        options("warn" = warn) # nolint
+        invisible(TRUE)
+    }
 
 
 

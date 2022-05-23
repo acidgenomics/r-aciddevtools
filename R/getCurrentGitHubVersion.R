@@ -11,7 +11,7 @@
 #' Package `repo` is defined in `names`.
 #'
 #' @examples
-#' repo <- paste0("r-lib/", c("rlang", "testthat"))
+#' repo <- paste("r-lib", c("rlang", "testthat"), sep = "/")
 #' print(repo)
 #' x <- getCurrentGitHubVersion(repo)
 #' print(x)
@@ -19,7 +19,10 @@ getCurrentGitHubVersion <- function(repo) {
     x <- vapply(
         X = repo,
         FUN = function(repo) {
-            url <- paste0("https://github.com/", repo, "/releases/latest")
+            url <- paste(
+                "https:", "", "github.com", repo, "releases", "latest",
+                sep = "/"
+            )
             x <- readLines(url)
             x <- grep(
                 pattern = "v[.0-9]+.tar.gz",
