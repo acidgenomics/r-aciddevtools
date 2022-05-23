@@ -1,7 +1,7 @@
 #' Build source and binary packages
 #'
 #' @export
-#' @note Updated 2022-04-30.
+#' @note Updated 2022-05-23.
 #'
 #' @details
 #' Files get built into temporary directory, defined in `tempdir()`.
@@ -23,9 +23,7 @@ build <- function(package = getwd()) {
         requireNamespace("desc", quietly = TRUE)
     )
     package <- .realpath(package)
-    wd <- getwd()
     tempdir <- tempdir()
-    setwd(tempdir)
     descFile <- file.path(package, "DESCRIPTION")
     .assert(.isAFile(descFile))
     pkgName <- desc::desc_get_field(key = "Package", file = descFile)
@@ -53,7 +51,8 @@ build <- function(package = getwd()) {
             "CMD", "build",
             buildArgs,
             package
-        )
+        ),
+        wd = tempdir
     )
     tarballs[["source"]] <-
         file.path(
@@ -67,7 +66,8 @@ build <- function(package = getwd()) {
         args = c(
             "CMD", "INSTALL", "--build",
             tarballs[["source"]]
-        )
+        ),
+        wd = tempdir
     )
     tarballs[["binary"]] <-
         file.path(
@@ -87,6 +87,5 @@ build <- function(package = getwd()) {
             tarballs[["binary"]]
         ))
     }
-    setwd(wd)
     tarballs
 }
