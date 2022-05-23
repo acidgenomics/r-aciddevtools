@@ -19,8 +19,8 @@ uninstall <-
         lib = .libPaths()[[1L]] # nolint
     ) {
         stopifnot(requireNamespace("utils", quietly = TRUE))
-        warn <- getOption(x = "warn") # nolint
-        options("warn" = 2L)
+        warn <- getOption(x = "warn")
+        options("warn" = 2L) # nolint
         df <- utils::installed.packages(lib.loc = lib)
         installedPkgs <- rownames(df)
         removePkgs <- intersect(pkgs, installedPkgs)

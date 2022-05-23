@@ -11,10 +11,11 @@
 #' [r-cmd-check]: https://github.com/acidgenomics/r-cmd-check
 #'
 #' @export
-#' @note Updated 2020-10-20.
+#' @note Updated 2022-05-23.
 #'
 #' @param pkg `character(1)`.
 #' Package path. Must contain a `DESCRIPTION` file.
+#'
 #' @param type `character`.
 #' Dependency type.
 #' See `utils::install.packages()` for details.
@@ -90,20 +91,19 @@ updateDeps <-
             df[["package"]] <- table
         }
         ## Get a logical vector of which packages pass requirement.
-        df[["pass"]] <- mapply(
+        pass <- Map(
             x = as.character(df[["current"]]),
             y = as.character(df[["required"]]),
-            FUN = function(x, y) {
+            f = function(x, y) {
                 if (is.na(x)) {
                     return(FALSE)
                 }
                 x <- package_version(x)
                 y <- package_version(y)
                 x >= y
-            },
-            SIMPLIFY = TRUE,
-            USE.NAMES = FALSE
+            }
         )
+        df[["pass"]] <- unlist(pass, recursive = FALSE, use.names = FALSE)
         if (!all(df[["pass"]])) {
             message(paste(
                 utils::capture.output(print(df, row.names = FALSE)),
