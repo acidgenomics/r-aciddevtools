@@ -258,9 +258,8 @@ install <-
 #' @examples
 #' ## > .installIfNecessary("BiocManager")
 .installIfNecessary <-
-    function(
-        pkgs,
-        lib = .libPaths()[[1L]] # nolint
+    function(pkgs,
+             lib = .libPaths()[[1L]] # nolint
     ) {
         warn <- getOption(x = "warn")
         options("warn" = 2L) # nolint
