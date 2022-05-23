@@ -23,7 +23,7 @@ NULL
 #' Alias for `setwd()`.
 #' @export
 cd <- function(...) {
-    setwd(...)
+    setwd(...) # nolint
 }
 
 

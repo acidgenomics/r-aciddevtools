@@ -1,7 +1,7 @@
 #' Build packages and commit to drat repo
 #'
 #' @export
-#' @note Updated 2022-05-02.
+#' @note Updated 2022-05-23.
 #'
 #' @section Building from the command line:
 #'
@@ -82,7 +82,6 @@ drat <-
             .isFlag(deploy)
         )
         package <- .realpath(package)
-        wd <- getwd()
         lapply(
             X = package,
             repo = repo,
@@ -96,10 +95,10 @@ drat <-
                     check(package)
                 }
                 if (isTRUE(pkgdown)) {
-                    pkgdownDeployToAWS(package)
+                    pkgdownDeployToAWS(package = package)
                 }
-                tarballs <- build(package)
-                mapply(
+                tarballs <- build(package = package)
+                Map(
                     file = tarballs,
                     MoreArgs = list(
                         "repodir" = repo,
@@ -113,15 +112,13 @@ drat <-
                         "rds_compress" = "xz",
                         "validate" = TRUE
                     ),
-                    FUN = drat::insertPackage,
-                    SIMPLIFY = FALSE
+                    f = drat::insertPackage
                 )
                 invisible({
                     lapply(X = tarballs, FUN = file.remove)
                 })
                 if (isTRUE(tag)) {
                     .alert("Tagging on GitHub.")
-                    setwd(package)
                     name <-
                         desc::desc_get_field(key = "Package", file = descFile)
                     version <-
@@ -129,7 +126,8 @@ drat <-
                     today <- Sys.Date()
                     .shell(
                         command = "git",
-                        args = c("fetch", "--force", "--tags")
+                        args = c("fetch", "--force", "--tags"),
+                        wd = package
                     )
                     .shell(
                         command = "git",
@@ -141,7 +139,8 @@ drat <-
                                 .gitDefaultBranch(),
                                 sep = ":"
                             )
-                        )
+                        ),
+                        wd = package
                     )
                     .shell(
                         command = "git",
@@ -152,29 +151,35 @@ drat <-
                             paste0("'v", version, "'"),
                             "-m",
                             paste0("'", name, " v", version, " (", today, ")'")
-                        )
+                        ),
+                        wd = package
                     )
                     .shell(
                         command = "git",
-                        args = c("push", "--force", "--tags")
+                        args = c("push", "--force", "--tags"),
+                        wd = package
                     )
                 }
                 setwd(repo)
                 .shell(
                     command = "git",
-                    args = c("checkout", .gitDefaultBranch())
+                    args = c("checkout", .gitDefaultBranch()),
+                    wd = repo
                 )
                 .shell(
                     command = "git",
-                    args = c("fetch", "--all")
+                    args = c("fetch", "--all"),
+                    wd = repo
                 )
                 .shell(
                     command = "git",
-                    args = "merge"
+                    args = "merge",
+                    wd = repo
                 )
                 .shell(
                     command = "git",
-                    args = c("add", "./")
+                    args = c("add", "./"),
+                    wd = repo
                 )
                 .shell(
                     command = "git",
@@ -185,13 +190,14 @@ drat <-
                             basename(tarballs[["source"]]),
                             ".'"
                         )
-                    )
+                    ),
+                    wd = repo
                 )
                 .shell(
                     command = "git",
-                    args = "push"
+                    args = "push",
+                    wd = repo
                 )
-                setwd(wd)
                 .alertSuccess(sprintf(
                     "Successfully added {.file %s}.",
                     basename(tarballs[["source"]])
@@ -204,10 +210,10 @@ drat <-
                 "Deploying packages to {.var %s}.",
                 "r.acidgenomics.com"
             ))
-            setwd(repo)
-            .assert(.isAFile("deploy"))
-            .shell(command = "./deploy")
-            setwd(wd)
+            .shell(
+                command = file.path(repo, "deploy"),
+                wd = repo
+            )
         }
         invisible(TRUE)
     }
