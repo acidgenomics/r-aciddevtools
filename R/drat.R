@@ -160,7 +160,6 @@ drat <-
                         wd = package
                     )
                 }
-                setwd(repo)
                 .shell(
                     command = "git",
                     args = c("checkout", .gitDefaultBranch()),

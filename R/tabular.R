@@ -20,17 +20,15 @@
 #' tabular(df)
 tabular <- function(x) {
     stopifnot(is.data.frame(x))
-    ## nocov start
     align <- function(x) {
-        if (is.numeric(x)) {
-            "r"
-        } else {
-            "l"
-        }
+        ifelse(
+            test = is.numeric(x),
+            yes = "r",
+            no = "l"
+        )
     }
-    ## nocov end
-    align <- vapply(x, align, character(1L))
-    cols <- lapply(x, format)
+    align <- vapply(X = x, FUN = align, FUN.VALUE = character(1L))
+    cols <- lapply(X = x, FUN = format)
     contents <- do.call(
         what = "paste",
         args = c(cols, list(sep = " \\tab ", collapse = "\\cr\n  "))

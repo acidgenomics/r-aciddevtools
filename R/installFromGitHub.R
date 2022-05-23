@@ -63,7 +63,7 @@ installFromGitHub <-
     function(repo,
              tag,
              branch,
-             lib = .libPaths()[[1L]],
+             lib = .libPaths()[[1L]], # nolint
              reinstall = TRUE,
              ...) {
         if (
@@ -89,14 +89,14 @@ installFromGitHub <-
             dir.create(lib)
         }
         lib <- normalizePath(lib, mustWork = TRUE)
-        out <- mapply(
+        out <- Map(
             repo = repo,
             ref = ref,
             MoreArgs = list(
                 "refType" = refType,
                 "reinstall" = reinstall
             ),
-            FUN = function(repo, ref, refType, reinstall) {
+            f = function(repo, ref, refType, reinstall) {
                 pkg <- basename(repo)
                 pkg <- sub(pattern = "^r-", replacement = "", x = pkg)
                 if (
@@ -164,10 +164,9 @@ installFromGitHub <-
                 file.remove(tarfile)
                 unlink(exdir, recursive = TRUE)
                 TRUE
-            },
-            SIMPLIFY = TRUE,
-            USE.NAMES = FALSE
+            }
         )
+        out <- unlist(out, recursive = FALSE)
         invisible(list(
             "repo" = repo,
             "lib" = lib,

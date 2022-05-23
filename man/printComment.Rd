@@ -27,5 +27,8 @@ Console output.
 Print as comment
 }
 \note{
-Updated 2021-01-15.
+Updated 2022-05-23.
+}
+\examples{
+printComment(c("hello", "world"))
 }
