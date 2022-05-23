@@ -72,9 +72,7 @@ saveRdExamples <-
                 unlink(path, recursive = FALSE)
                 writeLines(text = x, con = path)
                 path
-            },
-            SIMPLIFY = FALSE,
-            USE.NAMES = TRUE
+            }
         )
         ## Coerce to character and remove NULL items.
         paths <- Filter(Negate(is.null), list)
