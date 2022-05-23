@@ -1,7 +1,5 @@
 ## nocov start
 
-## FIXME Need to lint all Rmd files in package.
-
 
 
 #' Check package
