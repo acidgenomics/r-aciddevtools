@@ -1,5 +1,3 @@
-context("installFromGitHub")
-
 testlib <- file.path(tempdir(), "testlib")
 
 test_that("tag", {

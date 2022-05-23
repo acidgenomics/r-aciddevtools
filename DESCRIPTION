@@ -48,7 +48,7 @@ Suggests:
     rstudioapi,
     styler,
     syntactic,
-    testthat,
+    testthat (>= 3.0.0),
     tibble,
     tools,
     urlchecker,
@@ -58,3 +58,4 @@ Suggests:
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Additional_repositories: https://r.acidgenomics.com
+Config/testthat/edition: 3
