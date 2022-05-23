@@ -1,8 +1,3 @@
-## FIXME Rework using koopa opt prefix here for GCC instead.
-## FIXME Need to add a gccPrefix function.
-
-
-
 #' Koopa installation prefix
 #'
 #' @note Updated 2022-05-23.

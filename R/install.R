@@ -90,18 +90,17 @@ install <-
 #' @note Updated 2022-04-28.
 #' @noRd
 .install <-
-    function(
-        pkg,
-        lib,
-        dependencies,
-        reinstall) {
+    function(pkg,
+             lib,
+             dependencies,
+             reinstall) {
         if (
             grepl(pattern = "\\.git$", x = pkg)
         ) {
             mode <- "gitRepo"
         } else if (
             file.exists(pkg) ||
-            grepl(pattern = "^http(s)?://", x = pkg)
+                grepl(pattern = "^http(s)?://", x = pkg)
         ) {
             mode <- "tarball"
         } else if (
@@ -203,7 +202,7 @@ install <-
         args <- args[unique(names(args))]
         if (
             isTRUE(.isInstalled(pkg, lib = lib)) &&
-            isFALSE(reinstall)
+                isFALSE(reinstall)
         ) {
             message(sprintf("'%s' is installed in '%s'.", pkg, lib))
             return(FALSE)
@@ -222,16 +221,15 @@ install <-
         stopifnot(is.function(what))
         ## Ensure data.table always installs from source on macOS, to enable
         ## support for OpenMP and multiple threads.
-        if (
-            {
-                .isMacosFramework() &&
-                    isTRUE(pkg %in% "data.table")
-            } # > ||
-            # > {
-            # >     .isMacOS() &&
-            # >         !.isMacosFramework() &&
-            # >         isTRUE(pkg %in% "gert")
-            # > }
+        if ({
+            .isMacosFramework() &&
+                isTRUE(pkg %in% "data.table")
+        } # > ||
+        # > {
+        # >     .isMacOS() &&
+        # >         !.isMacosFramework() &&
+        # >         isTRUE(pkg %in% "gert")
+        # > }
         ) {
             .installWithMakevars(
                 what = what,
@@ -302,4 +300,4 @@ install <-
             },
             assignment = "="
         )
-}
+    }

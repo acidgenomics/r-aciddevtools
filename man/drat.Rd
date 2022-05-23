@@ -44,6 +44,8 @@ Build packages and commit to drat repo
 Updated 2022-05-02.
 }
 \section{Building from the command line}{
+
+
 \if{html}{\out{<div class="sourceCode sh">}}\preformatted{R CMD build ~/monorepo/r-packages/r-syntactic
 R CMD INSTALL --build syntactic_0.5.2.tar.gz
 R CMD check --as-cran syntactic_0.5.2.tar.gz

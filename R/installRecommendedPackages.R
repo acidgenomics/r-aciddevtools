@@ -46,17 +46,15 @@ installRecommendedPackages <-
              )) {
         stopifnot(is.logical(extra))
         .install <-
-            function(
-                ...,
-                reinstall = FALSE,
-                dependencies = NA
-        ) {
-            install(
-                ...,
-                dependencies = dependencies,
-                reinstall = reinstall
-            )
-        }
+            function(...,
+                     reinstall = FALSE,
+                     dependencies = NA) {
+                install(
+                    ...,
+                    dependencies = dependencies,
+                    reinstall = reinstall
+                )
+            }
         okMsg <- "Installation of R packages was successful."
         ## Enable versioned Bioconductor install.
         if (!requireNamespace("BiocManager", quietly = TRUE)) {
