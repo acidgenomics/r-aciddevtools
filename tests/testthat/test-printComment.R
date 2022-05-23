@@ -1,5 +1,3 @@
-context("printComment")
-
 test_that("printComment", {
     out <- capture.output({
         printComment(c("hello", "world"))

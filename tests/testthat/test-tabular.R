@@ -1,5 +1,3 @@
-context("tabular")
-
 test_that("tabular", {
     df <- data.frame(
         "aaa" = seq(from = 1L, to = 4L),
