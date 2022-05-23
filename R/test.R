@@ -28,7 +28,7 @@ test <- function(path = getwd()) {
         requireNamespace("pkgload", quietly = TRUE)
     )
     maxFails <- getOption(x = "testthat.progress.max_fails")
-    options("testthat.progress.max_fails" = 1L)
+    options("testthat.progress.max_fails" = 1L) # nolint
     out <- testthat::test_dir(
         path = testsDir,
         load_helpers = TRUE,
@@ -40,7 +40,7 @@ test <- function(path = getwd()) {
         "Unit test failure detected." =
             isTRUE(length(out[[length(out)]][["results"]]) > 0L)
     )
-    options("testthat.progress.max_fails" = maxFails)
+    options("testthat.progress.max_fails" = maxFails) # nolint
     invisible(out)
 }
 
