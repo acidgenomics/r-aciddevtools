@@ -1,8 +1,28 @@
 ## FIXME Rework using koopa opt prefix here for GCC instead.
+## FIXME Need to add a gccPrefix function.
+
+
+
+#' Koopa installation prefix
+#'
+#' @note Updated 2022-05-23.
+#' @noRd
+#'
+#' @return `character(1)` or error.
+.koopaPrefix <-
+    function() {
+        prefix <- Sys.getenv("KOOPA_PREFIX")
+        stopifnot(
+            "Failed to detect koopa." = isTRUE(dir.exists(prefix))
+        )
+        prefix
+    }
+
+
 
 #' macOS clang Makevars
 #'
-#' @note Updated 2022-04-28.
+#' @note Updated 2022-05-23.
 #' @noRd
 #'
 #' @section Hardening against Homebrew:
@@ -15,10 +35,9 @@
     dict <- list()
     dict[["gccPrefix"]] <-
         file.path(
-            "",
-            "usr",
-            "local",
-            "gfortran"
+            .koopaPrefix(),
+            "opt",
+            "gcc"
         )
     dict[["sdkPrefix"]] <-
         file.path(
@@ -72,9 +91,9 @@
             "-fopenmp"
         )
     dict[["ldflags"]] <- "-lomp"
-    ## Locate R CRAN GCC / gfortran compiler.
-    ## [1] "/usr/local/gfortran/lib/gcc/x86_64-apple-darwin18/8.2.0"
-    ## [2] "/usr/local/gfortran/lib"
+    ## Locate gfortran compiler.
+    ## [1] "/opt/koopa/opt/gcc/lib/gcc/x86_64-apple-darwin21/12.1.0"
+    ## [2] "/opt/koopa/opt/gcc/lib"
     dict[["flibs"]] <-
         unique(dirname(sort(list.files(
             path = dict[["gccPrefix"]],
@@ -118,13 +137,9 @@
 
 
 
-## FIXME Rework this to use koopa opt prefix instead.
-## FIXME Need to detect the GCC architecture and version automatically,
-## rather than pinning to x86 and 8.2.0 (see below)
-
 #' macOS GCC / fortran Makevars
 #'
-#' @note Updated 2022-04-28.
+#' @note Updated 2022-05-23.
 #' @noRd
 #'
 #' @return `character`.
@@ -132,10 +147,9 @@
     dict <- list()
     dict[["gccPrefix"]] <-
         file.path(
-            "",
-            "usr",
-            "local",
-            "gfortran"
+            .koopaPrefix(),
+            "opt",
+            "gcc"
         )
     dict[["sdkPrefix"]] <-
         file.path(
@@ -208,9 +222,9 @@
             "-g",
             "$(LTO_FC)"
         )
-    ## Locate R CRAN GCC / gfortran compiler.
-    ## [1] "/usr/local/gfortran/lib/gcc/x86_64-apple-darwin18/8.2.0"
-    ## [2] "/usr/local/gfortran/lib"
+    ## Locate gfortran compiler.
+    ## [1] "/opt/koopa/opt/gcc/lib/gcc/x86_64-apple-darwin21/12.1.0"
+    ## [2] "/opt/koopa/opt/gcc/lib"
     dict[["flibs"]] <-
         unique(dirname(sort(list.files(
             path = dict[["gccPrefix"]],
