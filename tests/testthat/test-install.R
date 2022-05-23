@@ -1,5 +1,3 @@
-context("install")
-
 testlib <- file.path(tempdir(), "testlib")
 
 test_that("BiocManager", {

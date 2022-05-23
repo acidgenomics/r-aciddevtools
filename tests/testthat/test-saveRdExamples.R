@@ -1,5 +1,3 @@
-context("saveRdExamples")
-
 test_that("saveRdExamples", {
     rd <- c("do.call", "droplevels")
     testdir <- file.path(tempdir(), "testdata")

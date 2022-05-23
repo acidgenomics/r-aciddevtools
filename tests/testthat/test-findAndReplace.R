@@ -1,5 +1,3 @@
-context("findAndReplace")
-
 test_that("Non-recursive", {
     testdir <- file.path(tempdir(), "testdata")
     unlink(testdir, recursive = TRUE)

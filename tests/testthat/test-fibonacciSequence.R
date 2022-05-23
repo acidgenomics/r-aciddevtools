@@ -1,5 +1,3 @@
-context("fibonacciSequence")
-
 test_that("fibonacciSequence", {
     expect_identical(
         object = fibonacciSequence(1L),
