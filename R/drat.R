@@ -161,7 +161,10 @@ drat <-
                 }
                 .shell(
                     command = "git",
-                    args = c("checkout", .gitDefaultBranch()),
+                    args = c(
+                        "checkout",
+                        .gitDefaultBranch(repo = repo)
+                    ),
                     wd = repo
                 )
                 .shell(
