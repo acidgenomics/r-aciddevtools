@@ -66,7 +66,7 @@ pkgdownDeployToAWS <-
                 if (isTRUE(clean)) {
                     unlink(docsDir, recursive = TRUE)
                 }
-                pkgdown::build_site(pkg = pkgDir)
+                build_site(pkg = pkgDir)
                 .shell(
                     command = "aws",
                     args = c(
