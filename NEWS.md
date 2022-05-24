@@ -1,3 +1,7 @@
+# AcidDevTools 0.5.2 (2022-05-24)
+
+- `drat`: Bug fix for default branch handling in drat repo.
+
 # AcidDevTools 0.5.1 (2022-05-23)
 
 - `check`: Added automatic package style checking using styler.
