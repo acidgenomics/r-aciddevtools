@@ -5,7 +5,7 @@
 #' Update all installed packages
 #'
 #' @export
-#' @note Updated 2022-05-23.
+#' @note Updated 2022-05-31.
 #'
 #' @inheritParams params
 #'
@@ -21,7 +21,7 @@ updatePackages <-
         stopifnot(requireNamespace("BiocManager", quietly = TRUE))
         warn <- getOption(x = "warn")
         options("warn" = 2L) # nolint
-        lib <- normalizePath(lib, mustWork = TRUE)
+        lib <- .realpath(lib)
         biocInstalled <- BiocManager::version()
         biocCurrent <- currentBiocVersion()
         if (isTRUE(biocInstalled < biocCurrent)) {

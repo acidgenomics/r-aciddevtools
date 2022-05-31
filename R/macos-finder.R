@@ -21,7 +21,7 @@ finder <- function(path = getwd()) {
         goalie::isMacOS(),
         goalie::isString(path)
     )
-    path <- normalizePath(path, mustWork = TRUE)
+    path <- .realpath(path)
     AcidBase::shell(command = "open", args = path)
 }
 

@@ -5,7 +5,7 @@
 #' requests in a single call.
 #'
 #' @export
-#' @note Updated 2022-05-23.
+#' @note Updated 2022-05-31.
 #'
 #' @inheritParams params
 #' @param rd `character` or `NULL`.
@@ -38,7 +38,7 @@ saveRdExamples <-
             goalie::isString(dir)
         )
         dir.create(dir, showWarnings = FALSE, recursive = TRUE)
-        dir <- normalizePath(dir, mustWork = TRUE)
+        dir <- .realpath(dir)
         ## Get a database of the Rd files available in the requested package.
         db <- tools::Rd_db(package)
         names(db) <- gsub("\\.Rd", "", names(db))

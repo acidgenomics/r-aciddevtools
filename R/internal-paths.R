@@ -90,4 +90,18 @@
 
 
 
+#' Normalize file path
+#'
+#' @note Updated 2022-05-31.
+#' @noRd
+.realpath <- function(path) {
+    normalizePath(
+        path = path,
+        winslash = .Platform[["file.sep"]],
+        mustWork = TRUE
+    )
+}
+
+
+
 ## nocov end

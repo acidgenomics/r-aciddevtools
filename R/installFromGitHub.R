@@ -17,7 +17,7 @@
 #' `https://github.com/:owner/:repo/archive/:tag.tar.gz`
 #'
 #' @export
-#' @note Updated 2022-03-09.
+#' @note Updated 2022-05-31.
 #'
 #' @inheritParams params
 #'
@@ -88,7 +88,7 @@ installFromGitHub <-
         if (isFALSE(dir.exists(lib))) {
             dir.create(lib)
         }
-        lib <- normalizePath(lib, mustWork = TRUE)
+        lib <- .realpath(lib)
         out <- Map(
             repo = repo,
             ref = ref,

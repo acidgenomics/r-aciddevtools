@@ -5,7 +5,7 @@
 #' Execute test_that tests in a package
 #'
 #' @export
-#' @note Updated 2021-08-20.
+#' @note Updated 2022-05-31.
 #'
 #' @inheritParams params
 #'
@@ -14,7 +14,7 @@
 #' @examples
 #' ## > test()
 test <- function(path = getwd()) {
-    path <- normalizePath(path = path, mustWork = TRUE)
+    path <- .realpath(path)
     testsDir <- file.path(path, "tests", "testthat")
     if (!isTRUE(dir.exists(testsDir))) {
         message(sprintf(
