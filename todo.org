@@ -1,6 +1,8 @@
 #+TITLE: AcidDevTools
 #+STARTUP: content
 * Development
+** TODO `install`: Direct zip file input isn't working correctly here.
+    At least this is the case on Windows.
 ** TODO Need to buy a Windows laptop and test all packages.
 ** TODO `check`: Consider adding direct tarball and/or ZIP file checking.
     This is useful in particular for Windows.
