@@ -4,13 +4,13 @@
 
 #' Check package coverage using covr
 #'
-#' @note Updated 2022-03-09.
+#' @note Updated 2022-05-31.
 #' @noRd
 .checkCoverage <- function(path = getwd(), cutoff = 0.9) {
     if (!dir.exists(file.path(path, "tests"))) {
         return(invisible(FALSE))
     }
-    path <- normalizePath(path, mustWork = TRUE)
+    path <- .realpath(path)
     message(sprintf(
         "Checking coverage in '%s' with %s package.",
         path, "covr"

@@ -43,7 +43,7 @@ check <- function(path = getwd(),
         requireNamespace("rcmdcheck", quietly = TRUE),
         isTRUE(dir.exists(path))
     )
-    path <- normalizePath(path, mustWork = TRUE)
+    path <- .realpath(path)
     descFile <- file.path(path, "DESCRIPTION")
     keys <- desc::desc_get(keys = c("Package", "biocViews"), file = descFile)
     pkgName <- keys[["Package"]]

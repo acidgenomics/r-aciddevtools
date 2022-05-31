@@ -1,7 +1,7 @@
 #' Find and replace in files across a directory
 #'
 #' @export
-#' @note Updated 2021-08-23.
+#' @note Updated 2022-05-31.
 #' @note Requires `BiocParallel` package to be installed.
 #'
 #' @inheritParams params
@@ -48,7 +48,7 @@ findAndReplace <-
              dir = getwd(),
              recursive = FALSE) {
         stopifnot(requireNamespace("BiocParallel", quietly = TRUE))
-        dir <- normalizePath(dir, mustWork = TRUE)
+        dir <- .realpath(dir)
         files <- sort(list.files(
             path = dir,
             pattern = filePattern,

@@ -8,7 +8,7 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2022-04-28.
+#' @note Updated 2022-05-31.
 #'
 #' @inheritParams params
 #'
@@ -65,7 +65,7 @@ install <-
             message(sprintf("Creating R package library at '%s'.", lib))
             dir.create(lib)
         }
-        lib <- normalizePath(lib, mustWork = TRUE)
+        lib <- .realpath(lib)
         out <- vapply(
             X = pkgs,
             FUN = .install,
@@ -176,7 +176,7 @@ install <-
             "tarball" = {
                 url <- pkg
                 if (file.exists(url)) {
-                    url <- normalizePath(url)
+                    url <- .realpath(url)
                 }
                 pkg <- basename(url)
                 pkg <- sub(pattern = "^r-", replacement = "", x = pkg)

@@ -6,7 +6,7 @@
 #'
 #' @export
 #' @note Only currently works inside RStudio.
-#' @note Updated 2020-04-12.
+#' @note Updated 2022-05-31.
 #'
 #' @return `character(1)`.
 #' Normalized path to current script.
@@ -18,7 +18,7 @@ scriptPath <- function() {
         requireNamespace("rstudioapi", quietly = TRUE)
     )
     x <- rstudioapi::getSourceEditorContext()[["path"]]
-    x <- normalizePath(x)
+    x <- .realpath(x)
     x
 }
 
