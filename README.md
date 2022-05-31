@@ -7,11 +7,14 @@ Trusty sidekick for [R][] package development.
 This is an [R][] package.
 
 ```r
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+    install.packages("BiocManager")
+}
 install.packages(
     pkgs = "AcidDevTools",
     repos = c(
         "https://r.acidgenomics.com",
-        getOption("repos")
+        BiocManager::repositories()
     ),
     dependencies = TRUE
 )
