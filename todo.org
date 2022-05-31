@@ -1,6 +1,7 @@
 #+TITLE: AcidDevTools
 #+STARTUP: content
 * Development
+** TODO Need to buy a Windows laptop and test all packages.
 ** TODO `check`: Consider adding direct tarball and/or ZIP file checking.
     This is useful in particular for Windows.
 ** TODO `check`: Consider checking all R Markdown templates in packages that
