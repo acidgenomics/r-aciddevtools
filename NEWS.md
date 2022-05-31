@@ -1,3 +1,9 @@
+# AcidDevTools 0.5.3 (2022-05-31)
+
+- Improved file path normalization consistency using `.realpath` internally,
+  matching our conventions defined in AcidBase. This helps improve file
+  path message consistency on Windows.
+
 # AcidDevTools 0.5.2 (2022-05-24)
 
 - `drat`: Bug fix for default branch handling in drat repo.
