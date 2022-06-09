@@ -27,7 +27,7 @@ script. Note that the \code{f} argument is parameterized and can handle multiple
 requests in a single call.
 }
 \note{
-Updated 2021-08-23.
+Updated 2022-05-31.
 }
 \examples{
 dir <- file.path(tempdir(), "testdata")

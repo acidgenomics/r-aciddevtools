@@ -36,7 +36,7 @@ Invisibly return file paths.
 Find and replace in files across a directory
 }
 \note{
-Updated 2021-08-23.
+Updated 2022-05-31.
 
 Requires \code{BiocParallel} package to be installed.
 }

@@ -1,3 +1,8 @@
+# AcidDevTools 0.5.4 (2022-06-09)
+
+- `installRecommendedPackages`: Simplified this function. No longer allowing
+  selection of specific optional packages to install, as this is too confusing.
+
 # AcidDevTools 0.5.3 (2022-05-31)
 
 - Improved file path normalization consistency using `.realpath` internally,

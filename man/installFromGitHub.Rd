@@ -48,7 +48,7 @@ defined, can use \code{install()} directly instead. Intended for use inside
 container images, where a PAT may not be used.
 }
 \note{
-Updated 2022-03-09.
+Updated 2022-05-31.
 }
 \section{GitHub API}{
 
