@@ -4,34 +4,14 @@
 \alias{installRecommendedPackages}
 \title{Install recommended R packages}
 \usage{
-installRecommendedPackages(
-  extra = c(acidverse = TRUE, alignment = FALSE, annotation = FALSE, cancer = FALSE,
-    chipseq = FALSE, devtools = TRUE, enrichment = FALSE, filesystem = TRUE, general =
-    TRUE, graphics = TRUE, pharma = TRUE, riboseq = FALSE, rnaseq = FALSE, shiny = TRUE,
-    singlecell = FALSE, smallrna = FALSE, statistics = FALSE, tidyverse = TRUE, variation
-    = FALSE)
-)
-}
-\arguments{
-\item{extra}{\code{logical} or \code{logical(1)}.
-Named logical vector of which types of extra packages to install.
-Alternatively, can install all extra packages by setting to \code{TRUE}, or
-disable the installation of any extra packages by setting to \code{FALSE}.}
+installRecommendedPackages()
 }
 \description{
 Install recommended R packages
 }
 \note{
-Updated 2022-04-15.
+Updated 2022-06-09.
 }
-\section{tidyverse packages}{
-
-
-The \href{https://www.tidyverse.org/packages/}{tidyverse} is a data science meta-package containing: DBI, dplyr,
-forcats, ggplot2, googledrive, googlesheets4, haven, httr, jsonlite,
-lubridate, purrr, readr, readxl, rvest, stringr, tibble, tidyr, and xml2.
-}
-
 \examples{
 ## > installRecommendedPackages()
 }

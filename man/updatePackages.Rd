@@ -20,7 +20,7 @@ See \code{BiocManager::valid()} for details.
 Update all installed packages
 }
 \note{
-Updated 2021-08-23.
+Updated 2022-05-31.
 }
 \examples{
 ## > updatePackages()
