@@ -143,7 +143,6 @@ installRecommendedPackages <-
                     reinstall = reinstall
                 )
             }
-        okMsg <- "Installation of R packages was successful."
         ## Enable versioned Bioconductor install.
         if (!requireNamespace("BiocManager", quietly = TRUE)) {
             utils::install.packages("BiocManager")
