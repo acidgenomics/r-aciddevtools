@@ -1,3 +1,7 @@
+# AcidDevTools 0.5.5 (2022-06-10)
+
+- `check`: Hardened URL checker to error on failure.
+
 # AcidDevTools 0.5.4 (2022-06-09)
 
 - `installRecommendedPackages`: Simplified this function. No longer allowing

@@ -23,11 +23,8 @@ See \code{utils::install.packages()} for details.}
 \description{
 Supports Bioconductor, CRAN, and GitHub packages via BiocManager.
 }
-\details{
-This is used by \href{https://github.com/acidgenomics/r-cmd-check}{r-cmd-check} for continuous integration (CI) testing.
-}
 \note{
-Updated 2022-05-23.
+Updated 2022-06-10.
 }
 \seealso{
 \itemize{

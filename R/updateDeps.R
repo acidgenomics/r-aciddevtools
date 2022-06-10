@@ -6,12 +6,8 @@
 #'
 #' Supports Bioconductor, CRAN, and GitHub packages via BiocManager.
 #'
-#' This is used by [r-cmd-check][] for continuous integration (CI) testing.
-#'
-#' [r-cmd-check]: https://github.com/acidgenomics/r-cmd-check
-#'
 #' @export
-#' @note Updated 2022-05-23.
+#' @note Updated 2022-06-10.
 #'
 #' @param pkg `character(1)`.
 #' Package path. Must contain a `DESCRIPTION` file.
