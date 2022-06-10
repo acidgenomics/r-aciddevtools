@@ -70,7 +70,9 @@ check <- function(path = getwd(),
     if (isTRUE(urls) && .isInstalled("urlchecker")) {
         stopifnot(requireNamespace("urlchecker", quietly = TRUE))
         message("Checking URLs with 'urlchecker::url_check()'.")
-        urlchecker::url_check(path = path)
+        out <- urlchecker::url_check(path = path)
+        print(out)
+        stopifnot(nrow(out) == 0L)
     }
     message("Running package checks with 'rcmdcheck()'.")
     rcmdcheck(path = path, cran = cran)
