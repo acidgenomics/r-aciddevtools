@@ -1,3 +1,8 @@
+# AcidDevTools 0.5.6 (2022-06-20)
+
+- `installRecommendedPackages`: No longer recommending RDAVIDWebService,
+  which was removed in Bioconductor 3.14 update.
+
 # AcidDevTools 0.5.5 (2022-06-10)
 
 - `check`: Hardened URL checker to error on failure.

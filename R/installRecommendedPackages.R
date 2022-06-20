@@ -64,6 +64,7 @@
 ## - KEGGREST
 ## - KEGGgraph
 ## - MultiAssayExperiment
+## - RDAVIDWebService (removed in 3.14).
 ## - PANTHER.db
 ## - Rhdf5lib
 ## - Rhtslib
@@ -274,7 +275,6 @@ installRecommendedPackages <-
             "IRanges",
             "InteractiveComplexHeatmap",
             "MAST",
-            "RDAVIDWebService",
             "ReactomePA",
             "Rsamtools",
             "Rsubread",
