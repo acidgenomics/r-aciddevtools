@@ -1,6 +1,9 @@
 #+TITLE: AcidDevTools
 #+STARTUP: content
 * Development
+** TODO Need to improve our package updater.
+    Need to run this during our package updates
+    update.packages(checkBuilt = TRUE)
 ** TODO `install`: Direct zip file input isn't working correctly here.
     At least this is the case on Windows.
 ** TODO Need to buy a Windows laptop and test all packages.
