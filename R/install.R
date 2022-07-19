@@ -4,9 +4,18 @@
 ## - systemfonts
 
 ## FIXME Problematic packages to build from source on macOS (2022-07-19):
+## These all currently depend on system clang to compile.
 ## - httpuv
 ## - readxl
 ## - sass
+
+## FIXME Need a solution for using our copy of graphviz:
+## > BiocManager::install(
+## >     pkgs = "Rgraphviz",
+## >     configure.args = "--with-graphviz=/opt/koopa/opt/graphviz"
+## > )
+## FIXME We then hit this error:
+## common.h:22:8: error: unknown type name ‘Agdict_t’
 
 
 
