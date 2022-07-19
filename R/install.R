@@ -3,6 +3,11 @@
 ## - sass
 ## - systemfonts
 
+## FIXME Problematic packages to build from source on macOS (2022-07-19):
+## - httpuv
+## - readxl
+## - sass
+
 
 
 #' Install packages from Bioconductor, CRAN, or a Git remote
