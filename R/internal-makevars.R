@@ -17,7 +17,7 @@
 
 #' macOS clang Makevars
 #'
-#' @note Updated 2022-05-23.
+#' @note Updated 2022-07-19.
 #' @noRd
 #'
 #' @section Hardening against Homebrew:
@@ -28,11 +28,18 @@
 #' @return `character`.
 .macosClangMakevars <- function() {
     dict <- list()
+    dict[["koopaPrefix"]] <- .koopaPrefix()
     dict[["gccPrefix"]] <-
         file.path(
-            .koopaPrefix(),
+            dict[["koopaPrefix"]],
             "opt",
             "gcc"
+        )
+    dict[["gettextPrefix"]] <-
+        file.path(
+            dict[["koopaPrefix"]],
+            "opt",
+            "gettext"
         )
     dict[["sdkPrefix"]] <-
         file.path(
@@ -85,7 +92,13 @@
             "-Xclang",
             "-fopenmp"
         )
-    dict[["ldflags"]] <- "-lomp"
+    dict[["ldflags"]] <- paste(
+        # gettext is needed to resolve '-lintl'.
+        paste0("-I", file.path(dict[["gettextPrefix"]], "include")),
+        paste0("-L", file.path(dict[["gettextPrefix"]], "lib")),
+        "-lomp",
+        collapse = " "
+    )
     ## Locate gfortran compiler.
     ## [1] "/opt/koopa/opt/gcc/lib/gcc/x86_64-apple-darwin21/12.1.0"
     ## [2] "/opt/koopa/opt/gcc/lib"
