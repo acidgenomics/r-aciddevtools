@@ -1,6 +1,12 @@
 ## nocov start
 
 
+## FIXME Now seeing this at start with system R on Ubuntu:
+## Installation paths not writeable, unable to update packages
+##   path: /usr/lib/R/library
+##   packages:
+#     nlme
+
 
 ## Consider including these packages:
 ##
