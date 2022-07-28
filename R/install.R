@@ -1,33 +1,17 @@
-## Tricky to install in r-devel:
+## Tricky to install in r-devel on macOS:
+## - Rgraphviz
 ## - gert
-## - sass
-## - systemfonts
-
-## FIXME Problematic packages to build from source on macOS (2022-07-19):
-## These all currently depend on system clang to compile.
 ## - httpuv
 ## - readxl
 ## - sass
-
-## FIXME Failing to build Rgraphviz from source on macOS, for R built
-## from source.
-## FIXME Need a solution for using our copy of graphviz:
-## > BiocManager::install(
-## >     pkgs = "Rgraphviz",
-## >     configure.args = "--with-graphviz=/opt/koopa/app/graphviz/5.0.0"
-## > )
-## FIXME We then hit this error:
-## common.h:22:8: error: unknown type name ‘Agdict_t’
-
-## https://support.bioconductor.org/p/125094/
-## https://support.bioconductor.org/p/59215/
+## - systemfonts
 
 
 
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2022-05-31.
+#' @note Updated 2022-07-28.
 #'
 #' @inheritParams params
 #'

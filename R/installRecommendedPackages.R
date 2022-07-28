@@ -1,13 +1,5 @@
 ## nocov start
 
-
-## FIXME Now seeing this at start with system R on Ubuntu:
-## Installation paths not writeable, unable to update packages
-##   path: /usr/lib/R/library
-##   packages:
-#     nlme
-
-
 ## Consider including these packages:
 ##
 ## CRAN:
@@ -45,6 +37,12 @@
 ## - spatialreg
 ## - waldo
 ## - xmlparsedata
+##
+## Bioc2022 recommendations:
+## - dreamlet (Bioc 3.16; 2022-09 release)
+## - netZooR
+## - scChromHMM
+## - variancePartition
 ##
 ## Bioconductor:
 ## - AnnotationFilter
