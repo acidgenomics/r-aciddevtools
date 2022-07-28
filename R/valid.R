@@ -11,7 +11,6 @@
 #' valid()
 valid <- function(...) {
     stopifnot(requireNamespace("BiocManager", quietly = TRUE))
-    ok <- TRUE
     pkgs <- list("new" = character(), "old" = character())
     suppressWarnings({
         bioc <- BiocManager::valid(
@@ -30,20 +29,6 @@ valid <- function(...) {
             values = rownames(bioc[["too_new"]])
         )
     }
-    if (length(pkgs[["new"]]) > 0L) {
-        ok <- FALSE
-        pkgs[["new"]] <- sort(unique(pkgs[["new"]]), method = "radix")
-        message(paste(
-            "",
-            paste(length(pkgs[["new"]]), "pre-release:"),
-            paste0(
-                "AcidDevTools::install(pkgs = c(",
-                toString(paste0("\"", pkgs[["new"]], "\"")),
-                "), reinstall = TRUE)"
-            ),
-            sep = "\n"
-        ))
-    }
     ## Too old.
     if (
         is.list(bioc) &&
@@ -57,13 +42,28 @@ valid <- function(...) {
     }
     old <- old.packages(checkBuilt = TRUE)
     if (is.matrix(old)) {
-        pkgs[["old"]] <- append(
-            x = pkgs[["old"]],
-            values = rownames(old)
-        )
+        pkgs[["old"]] <- append(pkgs[["old"]], values = rownames(old))
+    }
+    if (length(pkgs[["new"]]) > 0L || length(pkgs[["old"]]) > 0L) {
+        ok <- FALSE
+        message("R package library is not valid.")
+    } else {
+        ok <- TRUE
+    }
+    if (length(pkgs[["new"]]) > 0L) {
+        pkgs[["new"]] <- sort(unique(pkgs[["new"]]), method = "radix")
+        message(paste(
+            "",
+            paste(length(pkgs[["new"]]), "pre-release:"),
+            paste0(
+                "AcidDevTools::install(pkgs = c(",
+                toString(paste0("\"", pkgs[["new"]], "\"")),
+                "), reinstall = TRUE)"
+            ),
+            sep = "\n"
+        ))
     }
     if (length(pkgs[["old"]]) > 0L) {
-        ok <- FALSE
         pkgs[["old"]] <- sort(unique(pkgs[["old"]]), method = "radix")
         message(paste(
             "",
@@ -75,9 +75,6 @@ valid <- function(...) {
             ),
             sep = "\n"
         ))
-    }
-    if (isFALSE(ok)) {
-        message("\nR package library is not valid.")
     }
     invisible(ok)
 }
