@@ -1,7 +1,3 @@
-# FIXME Rework to not use rownames here.
-
-
-
 #' Validate installed package versions against correct versions
 #'
 #' @export
@@ -15,57 +11,73 @@
 #' valid()
 valid <- function(...) {
     stopifnot(requireNamespace("BiocManager", quietly = TRUE))
+    ok <- TRUE
+    pkgs <- list("new" = character(), "old" = character())
     suppressWarnings({
-        x <- BiocManager::valid(
+        bioc <- BiocManager::valid(
             checkBuilt = TRUE,
             site_repository = "https://r.acidgenomics.com"
         )
     })
-    ## FIXME Need to rework this.
-    xx <- old.packages(checkBuilt = TRUE)
-    ## > xx[, "Package"]
-    if (isTRUE(x)) {
-        return(invisible(TRUE))
-    }
-    stopifnot(is.list(x))
-    message("R package library is not valid.")
+    ## Too new.
     if (
-        isTRUE("too_new" %in% names(x)) &&
-            isTRUE(length(x[["too_new"]]) > 0L)
+        is.list(bioc) &&
+            isTRUE("too_new" %in% names(bioc)) &&
+            isTRUE(length(bioc[["too_new"]]) > 0L)
     ) {
-        pkgs <- sort(
-            x = rownames(x[["too_new"]]),
-            method = "radix"
+        pkgs[["new"]] <- append(
+            x = pkgs[["new"]],
+            values = rownames(bioc[["too_new"]])
         )
+    }
+    if (length(pkgs[["new"]]) > 0L) {
+        ok <- FALSE
+        pkgs[["new"]] <- sort(unique(pkgs[["new"]]), method = "radix")
         message(paste(
             "",
-            paste(length(pkgs), "pre-release:"),
+            paste(length(pkgs[["new"]]), "pre-release:"),
             paste0(
                 "AcidDevTools::install(pkgs = c(",
-                toString(paste0("\"", pkgs, "\"")),
+                toString(paste0("\"", pkgs[["new"]], "\"")),
                 "), reinstall = TRUE)"
             ),
             sep = "\n"
         ))
     }
+    ## Too old.
     if (
-        isTRUE("out_of_date" %in% names(x)) &&
-            isTRUE(length(x[["out_of_date"]]) > 0L)
+        is.list(bioc) &&
+            isTRUE("out_of_date" %in% names(bioc)) &&
+            isTRUE(length(bioc[["out_of_date"]]) > 0L)
     ) {
-        pkgs <- sort(
-            x = rownames(x[["out_of_date"]]),
-            method = "radix"
+        pkgs[["old"]] <- append(
+            x = pkgs[["old"]],
+            values = rownames(bioc[["out_of_date"]])
         )
+    }
+    old <- old.packages(checkBuilt = TRUE)
+    if (is.matrix(old)) {
+        pkgs[["old"]] <- append(
+            x = pkgs[["old"]],
+            values = rownames(old)
+        )
+    }
+    if (length(pkgs[["old"]]) > 0L) {
+        ok <- FALSE
+        pkgs[["old"]] <- sort(unique(pkgs[["old"]]), method = "radix")
         message(paste(
             "",
-            paste(length(pkgs), "outdated:"),
+            paste(length(pkgs[["old"]]), "outdated:"),
             paste0(
                 "AcidDevTools::install(pkgs = c(",
-                toString(paste0("\"", pkgs, "\"")),
+                toString(paste0("\"", pkgs[["old"]], "\"")),
                 "), reinstall = TRUE)"
             ),
             sep = "\n"
         ))
     }
-    invisible(FALSE)
+    if (isFALSE(ok)) {
+        message("\nR package library is not valid.")
+    }
+    invisible(ok)
 }
