@@ -9,13 +9,18 @@
 ## - readxl
 ## - sass
 
+## FIXME Failing to build Rgraphviz from source on macOS, for R built
+## from source.
 ## FIXME Need a solution for using our copy of graphviz:
 ## > BiocManager::install(
 ## >     pkgs = "Rgraphviz",
-## >     configure.args = "--with-graphviz=/opt/koopa/opt/graphviz"
+## >     configure.args = "--with-graphviz=/opt/koopa/app/graphviz/5.0.0"
 ## > )
 ## FIXME We then hit this error:
 ## common.h:22:8: error: unknown type name ‘Agdict_t’
+
+## https://support.bioconductor.org/p/125094/
+## https://support.bioconductor.org/p/59215/
 
 
 
