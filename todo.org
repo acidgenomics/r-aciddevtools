@@ -1,17 +1,6 @@
 #+TITLE: AcidDevTools
 #+STARTUP: content
 * Development
-** TODO AcidDevTools::valid needs to include outdated built packages.
-** TODO Need to improve our package updater.
-    Need to run this during our package updates
-    update.packages(checkBuilt = TRUE)
 ** TODO `install`: Direct zip file input isn't working correctly here.
     At least this is the case on Windows.
-** TODO Need to buy a Windows laptop and test all packages.
-** TODO `check`: Consider adding direct tarball and/or ZIP file checking.
-    This is useful in particular for Windows.
-** TODO `check`: Consider checking all R Markdown templates in packages that
-    provide them, such as bcbioRNASeq.
-** TODO `install`: Consider reinstalling other Rcpp packages on Rcpp update.
-    Applies to RcppAnnoy (for Seurat), RcppArmadillo, etc...
 ** TODO Expand branch automatically to match input of multiple repos.
