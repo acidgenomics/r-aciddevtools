@@ -3,7 +3,7 @@
 - `valid`: Improved checks for old built system packages, by calling
   `old.packages` internally. Currently, BiocManager `valid` variant doesn't
   check if built system packages are out of date.
-- Now including gettext in clang Makevars on macOS.
+- Removed internal usage of custom Makevars.
 
 # AcidDevTools 0.5.6 (2022-06-20)
 
