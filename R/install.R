@@ -1,13 +1,3 @@
-## Tricky to install in r-devel on macOS:
-## - Rgraphviz
-## - gert
-## - httpuv
-## - readxl
-## - sass
-## - systemfonts
-
-
-
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
@@ -228,13 +218,7 @@ install <-
         ## Ensure data.table always installs from source on macOS, to enable
         ## support for OpenMP and multiple threads.
         if (.isMacosFramework() && isTRUE(pkg %in% "data.table")) {
-            .installWithMakevars(
-                what = what,
-                args = args,
-                makevars = .macosClangMakevars(),
-                lib = lib
-            )
-            return(TRUE)
+            args[["type"]] <- "source"
         }
         suppressMessages({
             do.call(what = what, args = args)
@@ -280,24 +264,4 @@ install <-
         ))
         options("warn" = warn) # nolint
         invisible(TRUE)
-    }
-
-
-
-#' Install with Makevars
-#'
-#' @note Updated 2022-04-28.
-#' @noRd
-.installWithMakevars <-
-    function(what, args, makevars, lib) {
-        .installIfNecessary(pkgs = "withr", lib = lib)
-        stopifnot(requireNamespace("withr", quietly = TRUE))
-        args[["type"]] <- "source"
-        withr::with_makevars(
-            new = makevars,
-            code = {
-                do.call(what = what, args = args)
-            },
-            assignment = "="
-        )
     }
