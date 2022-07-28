@@ -1,3 +1,10 @@
+# AcidDevTools 0.5.7 (2022-07-28)
+
+- `valid`: Improved checks for old built system packages, by calling
+  `old.packages` internally. Currently, BiocManager `valid` variant doesn't
+  check if built system packages are out of date.
+- Now including gettext in clang Makevars on macOS.
+
 # AcidDevTools 0.5.6 (2022-06-20)
 
 - `installRecommendedPackages`: No longer recommending RDAVIDWebService,
