@@ -1,7 +1,11 @@
+# FIXME Rework to not use rownames here.
+
+
+
 #' Validate installed package versions against correct versions
 #'
 #' @export
-#' @note Updated 2022-05-31.
+#' @note Updated 2022-07-28.
 #'
 #' @param ... Passthrough arguments to `BiocManager::valid()`.
 #'
@@ -13,9 +17,13 @@ valid <- function(...) {
     stopifnot(requireNamespace("BiocManager", quietly = TRUE))
     suppressWarnings({
         x <- BiocManager::valid(
+            checkBuilt = TRUE,
             site_repository = "https://r.acidgenomics.com"
         )
     })
+    ## FIXME Need to rework this.
+    xx <- old.packages(checkBuilt = TRUE)
+    ## > xx[, "Package"]
     if (isTRUE(x)) {
         return(invisible(TRUE))
     }

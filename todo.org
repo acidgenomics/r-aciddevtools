@@ -1,6 +1,7 @@
 #+TITLE: AcidDevTools
 #+STARTUP: content
 * Development
+** TODO AcidDevTools::valid needs to include outdated built packages.
 ** TODO Need to improve our package updater.
     Need to run this during our package updates
     update.packages(checkBuilt = TRUE)
