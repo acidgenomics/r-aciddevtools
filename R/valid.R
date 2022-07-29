@@ -8,7 +8,7 @@
 #' @return `logical(1)`.
 #'
 #' @examples
-#' valid()
+#' ## > valid()
 valid <- function(...) {
     stopifnot(
         requireNamespace("BiocManager", quietly = TRUE),
@@ -43,11 +43,7 @@ valid <- function(...) {
             values = rownames(bioc[["out_of_date"]])
         )
     }
-    repos <- getOption("repos")
-    if (!is.character(repos[["CRAN"]])) {
-        repos[["CRAN"]] <- "https://cloud.r-project.org"
-    }
-    old <- utils::old.packages(repos = repos, checkBuilt = TRUE)
+    old <- utils::old.packages(checkBuilt = TRUE)
     if (is.matrix(old)) {
         pkgs[["old"]] <- append(pkgs[["old"]], values = rownames(old))
     }

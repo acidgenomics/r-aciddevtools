@@ -19,5 +19,5 @@ Validate installed package versions against correct versions
 Updated 2022-07-28.
 }
 \examples{
-valid()
+## > valid()
 }
