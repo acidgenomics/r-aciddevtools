@@ -10,7 +10,10 @@
 #' @examples
 #' valid()
 valid <- function(...) {
-    stopifnot(requireNamespace("BiocManager", quietly = TRUE))
+    stopifnot(
+        requireNamespace("BiocManager", quietly = TRUE),
+        requireNamespace("utils", quietly = TRUE)
+    )
     pkgs <- list("new" = character(), "old" = character())
     suppressWarnings({
         bioc <- BiocManager::valid(
@@ -40,7 +43,7 @@ valid <- function(...) {
             values = rownames(bioc[["out_of_date"]])
         )
     }
-    old <- old.packages(checkBuilt = TRUE)
+    old <- utils::old.packages(checkBuilt = TRUE)
     if (is.matrix(old)) {
         pkgs[["old"]] <- append(pkgs[["old"]], values = rownames(old))
     }
