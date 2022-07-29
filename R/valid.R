@@ -43,7 +43,11 @@ valid <- function(...) {
             values = rownames(bioc[["out_of_date"]])
         )
     }
-    old <- utils::old.packages(checkBuilt = TRUE)
+    repos <- getOption("repos")
+    if (!is.character(repos[["CRAN"]])) {
+        repos[["CRAN"]] <- "https://cloud.r-project.org"
+    }
+    old <- utils::old.packages(repos = repos, checkBuilt = TRUE)
     if (is.matrix(old)) {
         pkgs[["old"]] <- append(pkgs[["old"]], values = rownames(old))
     }
