@@ -1,4 +1,4 @@
-# AcidDevTools 0.5.7 (2022-07-28)
+# AcidDevTools 0.5.7 (2022-07-29)
 
 - `valid`: Improved checks for old built system packages, by calling
   `old.packages` internally. Currently, BiocManager `valid` variant doesn't
