@@ -34,9 +34,9 @@ returns \code{character} instead of \code{matrix}.
 }
 \section{Functions}{
 \itemize{
-\item \code{RdTags}: Modified version of the unexported \code{tools:::RdTags()} function.
-}}
+\item \code{RdTags()}: Modified version of the unexported \code{tools:::RdTags()} function.
 
+}}
 \note{
 Updated 2020-04-12.
 }

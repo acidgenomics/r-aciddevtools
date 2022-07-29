@@ -172,20 +172,6 @@ lint_package <- function(...) {
 
 
 
-## lobstr ======================================================================
-
-mem_used <- function(...) {
-    stopifnot(requireNamespace("lobstr", quietly = TRUE))
-    lobstr::mem_used(...)
-}
-
-obj_size <- function(...) {
-    stopifnot(requireNamespace("lobstr", quietly = TRUE))
-    lobstr::obj_size(...)
-}
-
-
-
 ## pipette =====================================================================
 
 #' @rdname reexports
