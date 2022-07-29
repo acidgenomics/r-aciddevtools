@@ -16,7 +16,7 @@ valid(...)
 Validate installed package versions against correct versions
 }
 \note{
-Updated 2022-05-31.
+Updated 2022-07-28.
 }
 \examples{
 valid()

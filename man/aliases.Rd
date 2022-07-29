@@ -27,15 +27,15 @@ Mnemonic functions and shortcut aliases, to reduce common keystrokes.
 }
 \section{Functions}{
 \itemize{
-\item \code{cd}: Alias for \code{setwd()}.
+\item \code{cd()}: Alias for \code{setwd()}.
 
-\item \code{clear}: Alias for \code{cat("\\f")}.
+\item \code{clear()}: Alias for \code{cat("\\f")}.
 
-\item \code{d}: Alias for \code{document()}.
+\item \code{d()}: Alias for \code{document()}.
 
-\item \code{la}: Alias for \code{load_all()}.
+\item \code{la()}: Alias for \code{load_all()}.
+
 }}
-
 \note{
 Updated 2021-08-23.
 }

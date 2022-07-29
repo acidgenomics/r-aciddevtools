@@ -36,7 +36,6 @@ Suggests:
     gh,
     goalie,
     lintr,
-    lobstr,
     methods,
     pipette,
     pkgdown,
@@ -56,6 +55,6 @@ Suggests:
     utils,
     withr
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
 Additional_repositories: https://r.acidgenomics.com
 Config/testthat/edition: 3

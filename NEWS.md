@@ -4,6 +4,7 @@
   `old.packages` internally. Currently, BiocManager `valid` variant doesn't
   check if built system packages are out of date.
 - Removed internal usage of custom Makevars.
+- Removed reexports from lobstr package.
 
 # AcidDevTools 0.5.6 (2022-06-20)
 
