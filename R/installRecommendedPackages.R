@@ -132,7 +132,7 @@
 #' Install recommended R packages
 #'
 #' @export
-#' @note Updated 2022-06-09.
+#' @note Updated 2022-07-29.
 #'
 #' @examples
 #' ## > installRecommendedPackages()
@@ -164,7 +164,8 @@ installRecommendedPackages <-
             "RcppArmadillo",
             "RcppAnnoy",
             "XML",
-            "rJava"
+            "rJava",
+            "data.table"
         ))
         installAcidverse()
         ## CRAN packages.
@@ -184,7 +185,6 @@ installRecommendedPackages <-
             "covr",
             "crayon",
             "curl",
-            "data.table",
             "dbplyr",
             "dendextend",
             "dendsort",
