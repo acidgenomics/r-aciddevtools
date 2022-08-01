@@ -1,3 +1,10 @@
+# AcidDevTools 0.5.8 (2022-08-01)
+
+- `installRecommendedPackages`: Increased the priority of data.table package,
+  to ensure it builds from source to enable multiple cores with OpenMP support
+  on macOS. The binary package of data.table is currently compiled with support
+  for single core mode only on macOS.
+
 # AcidDevTools 0.5.7 (2022-07-29)
 
 - `valid`: Improved checks for old built system packages, by calling
