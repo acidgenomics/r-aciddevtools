@@ -1,3 +1,8 @@
+## FIXME Can we improve this to not error for binary packages that are behind
+## the current source version on CRAN?
+
+
+
 #' Validate installed package versions against correct versions
 #'
 #' @export
