@@ -132,7 +132,7 @@
 #' Install recommended R packages
 #'
 #' @export
-#' @note Updated 2022-07-29.
+#' @note Updated 2022-08-28.
 #'
 #' @examples
 #' ## > installRecommendedPackages()
@@ -160,6 +160,7 @@ installRecommendedPackages <-
         BiocManager::install(update = FALSE, ask = FALSE, version = biocVersion)
         ## These can be tricky to build. Order is important here.
         .install(c(
+            "codetools",
             "Rcpp",
             "RcppArmadillo",
             "RcppAnnoy",
