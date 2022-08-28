@@ -160,6 +160,9 @@ installRecommendedPackages <-
         BiocManager::install(update = FALSE, ask = FALSE, version = biocVersion)
         ## These can be tricky to build. Order is important here.
         .install(c(
+            ## FIXME Instead of installing codetools manually here, what if we
+            ## just install all recommended packages for Rcpp and the below
+            ## packages here?
             "codetools",
             "Rcpp",
             "RcppArmadillo",
