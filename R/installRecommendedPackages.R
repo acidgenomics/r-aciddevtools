@@ -132,7 +132,7 @@
 #' Install recommended R packages
 #'
 #' @export
-#' @note Updated 2022-08-28.
+#' @note Updated 2022-08-30.
 #'
 #' @examples
 #' ## > installRecommendedPackages()
@@ -175,6 +175,7 @@ installRecommendedPackages <-
             "GGally",
             "Matrix",
             "R.utils",
+            "RSQLite",
             "Seurat",
             "WGCNA",
             "ashr",
