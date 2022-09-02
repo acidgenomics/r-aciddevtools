@@ -1,7 +1,7 @@
 #' Migrate recommended packages
 #'
 #' @export
-#' @note Updated 2022-08-30.
+#' @note Updated 2022-09-02.
 #'
 #' @details
 #' Currently includes these packages:
@@ -29,13 +29,18 @@
 migrateRecommendedPackages <-
     function() {
         pkgs <- character()
+        ## FIXME We need to conditionally load utils here.
         x <- installed.packages(lib.loc = .Library)
         lgl <- x[, "Priority"] != "base"
         if (any(lgl)) {
             idx <- which(lgl)
             pkgs <- names(idx)
+            ## FIXME We need to conditionally load utils here.
             install.packages(pkgs, lib = .Library.site)
+            ## FIXME We need to conditionally load utils here.
             remove.packages(pkgs, lib = .Library)
         }
+        ## FIXME We need to conditionally load utils here.
+        stopifnot(anyDuplicated(rownames(installed.packages())) > 0L)
         invisible(pkgs)
     }
