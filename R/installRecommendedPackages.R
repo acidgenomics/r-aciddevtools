@@ -132,7 +132,7 @@
 #' Install recommended R packages
 #'
 #' @export
-#' @note Updated 2022-08-30.
+#' @note Updated 2022-09-02.
 #'
 #' @examples
 #' ## > installRecommendedPackages()
@@ -244,6 +244,7 @@ installRecommendedPackages <-
             "testthat",
             "tidytext",
             "tidyverse",
+            "uniqtag",
             "usethis",
             "uwot",
             "viridis",
