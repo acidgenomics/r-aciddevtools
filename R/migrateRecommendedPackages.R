@@ -1,26 +1,12 @@
 #' Migrate recommended packages
 #'
 #' @export
-#' @note Updated 2022-09-02.
+#' @note Updated 2022-09-06.
 #'
 #' @details
-#' Currently includes these packages:
-#'
-#' - KernSmooth
-#' - MASS
-#' - Matrix
-#' - boot
-#' - class
-#' - cluster
-#' - codetools
-#' - foreign
-#' - lattice
-#' - mgcv
-#' - nlme
-#' - nnet
-#' - rpart
-#' - spatial
-#' - survival
+#' Currently includes these packages: KernSmooth, MASS, Matrix, boot, class,
+#' cluster, codetools, foreign, lattice, mgcv, nlme, nnet, rpart, spatial,
+#' survival.
 #'
 #' @seealso
 #' - `.libPaths()`
@@ -28,19 +14,16 @@
 #' - `.installed.packages()`, `install.packages()`.
 migrateRecommendedPackages <-
     function() {
+        stopifnot(requireNamespace("utils", quietly = TRUE))
         pkgs <- character()
-        ## FIXME We need to conditionally load utils here.
-        x <- installed.packages(lib.loc = .Library)
+        x <- utils::installed.packages(lib.loc = .Library)
         lgl <- x[, "Priority"] != "base"
         if (any(lgl)) {
             idx <- which(lgl)
             pkgs <- names(idx)
-            ## FIXME We need to conditionally load utils here.
-            install.packages(pkgs, lib = .Library.site)
-            ## FIXME We need to conditionally load utils here.
-            remove.packages(pkgs, lib = .Library)
+            utils::install.packages(pkgs, lib = .Library.site)
+            utils::remove.packages(pkgs, lib = .Library)
         }
-        ## FIXME We need to conditionally load utils here.
-        stopifnot(anyDuplicated(rownames(installed.packages())) > 0L)
+        stopifnot(anyDuplicated(rownames(utils::installed.packages())) > 0L)
         invisible(pkgs)
     }

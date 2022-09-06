@@ -1,11 +1,3 @@
-## FIXME Can we improve this to not error for binary packages that are behind
-## the current source version on CRAN?
-
-## FIXME This is now returning invalid for MASS, nlme, survival (built packages)
-## How do we avoid this issue? Disabling `checkBuilt = FALSE` right?
-
-
-
 #' Validate installed package versions against correct versions
 #'
 #' @export
