@@ -332,6 +332,10 @@ installRecommendedPackages <-
         )
         install(pkgs = pkgs, dependencies = NA, reinstall = FALSE)
         installAcidverse()
+        stopifnot(
+            requireNamespace("utils", quietly = TRUE),
+            anyDuplicated(rownames(utils::installed.packages())) == 0L
+        )
         invisible(TRUE)
     }
 
