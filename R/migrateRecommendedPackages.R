@@ -24,6 +24,6 @@ migrateRecommendedPackages <-
             utils::install.packages(pkgs, lib = .Library.site)
             utils::remove.packages(pkgs, lib = .Library)
         }
-        stopifnot(anyDuplicated(rownames(utils::installed.packages())) > 0L)
+        stopifnot(anyDuplicated(rownames(utils::installed.packages())) == 0L)
         invisible(pkgs)
     }
