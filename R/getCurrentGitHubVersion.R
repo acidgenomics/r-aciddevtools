@@ -16,24 +16,23 @@
 #' x <- getCurrentGitHubVersion(repo)
 #' print(x)
 getCurrentGitHubVersion <- function(repo) {
+    stopifnot(requireNamespace("pipette", quietly = TRUE))
     x <- vapply(
         X = repo,
         FUN = function(repo) {
             url <- paste(
-                "https:", "", "github.com", repo, "releases", "latest",
+                "https://api.github.com", "repos", repo, "releases", "latest",
                 sep = "/"
             )
-            x <- readLines(url)
-            x <- grep(
-                pattern = "v[.0-9]+.tar.gz",
-                x = x,
-                value = TRUE
-            )
-            x <- gsub(
-                pattern = "^.+\\bv([.0-9]+).tar.gz\\b.+$",
-                replacement = "\\1",
-                x = x
-            )
+            nullcon <- file(nullfile(), open = "wb")
+            sink(nullcon, type = "message")
+            suppressMessages({
+                x <- pipette::import(url, format = "json", quiet = TRUE)
+            })
+            sink(type = "message")
+            close(nullcon)
+            x <- x[["tag_name"]]
+            x <- gsub(pattern = "^v", replacement = "", x = x)
             x
         },
         FUN.VALUE = character(1L),
