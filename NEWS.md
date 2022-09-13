@@ -1,5 +1,10 @@
 # Release notes
 
+## AcidDevTools 0.5.10 (2022-09-13)
+
+- `migrateRecommendedPackages`: Fixed function export and final assert check
+  that assesses whether migration was successful.
+
 ## AcidDevTools 0.5.9 (2022-09-06)
 
 - `migrateRecommendedPackages`: Added new function to migrate recommended
