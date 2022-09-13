@@ -1,5 +1,7 @@
 ## nocov start
 
+## FIXME lasso2 removal in 2022-08 is now breaking this function.
+
 ## FIXME Need to ensure we install the system recommended packages here.
 ## Currently includes these packages: KernSmooth, MASS, Matrix, boot, class,
 ## cluster, codetools, foreign, lattice, mgcv, nlme, nnet, rpart, spatial,
