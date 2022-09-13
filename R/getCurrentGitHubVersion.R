@@ -24,13 +24,7 @@ getCurrentGitHubVersion <- function(repo) {
                 "https://api.github.com", "repos", repo, "releases", "latest",
                 sep = "/"
             )
-            nullcon <- file(nullfile(), open = "wb")
-            sink(nullcon, type = "message")
-            suppressMessages({
-                x <- pipette::import(url, format = "json", quiet = TRUE)
-            })
-            sink(type = "message")
-            close(nullcon)
+            x <- pipette::import(url, format = "json", quiet = TRUE)
             x <- x[["tag_name"]]
             x <- gsub(pattern = "^v", replacement = "", x = x)
             x
