@@ -1,5 +1,12 @@
 # Release notes
 
+## AcidDevTools 0.5.11 (2022-09-13)
+
+- `installRecommendedPackages`: Added base R recommended packages that are
+  normally included with binary installs: KernSmooth, MASS, Matrix, boot, class,
+  cluster, codetools, foreign, lattice, mgcv, nlme, nnet, rpart, spatial,
+  survival.
+
 ## AcidDevTools 0.5.10 (2022-09-13)
 
 - `migrateRecommendedPackages`: Fixed function export and final assert check
