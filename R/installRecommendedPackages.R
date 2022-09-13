@@ -1,5 +1,10 @@
 ## nocov start
 
+## FIXME Need to ensure we install the system recommended packages here.
+## Currently includes these packages: KernSmooth, MASS, Matrix, boot, class,
+## cluster, codetools, foreign, lattice, mgcv, nlme, nnet, rpart, spatial,
+## survival.
+
 ## Consider including these packages:
 ##
 ## CRAN:
