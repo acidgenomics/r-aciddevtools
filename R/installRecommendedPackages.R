@@ -1,12 +1,5 @@
 ## nocov start
 
-## FIXME lasso2 removal in 2022-08 is now breaking this function.
-
-## FIXME Need to ensure we install the system recommended packages here.
-## Currently includes these packages: KernSmooth, MASS, Matrix, boot, class,
-## cluster, codetools, foreign, lattice, mgcv, nlme, nnet, rpart, spatial,
-## survival.
-
 ## Consider including these packages:
 ##
 ## CRAN:
@@ -139,22 +132,12 @@
 #' Install recommended R packages
 #'
 #' @export
-#' @note Updated 2022-09-02.
+#' @note Updated 2022-09-13.
 #'
 #' @examples
 #' ## > installRecommendedPackages()
 installRecommendedPackages <-
     function() {
-        .install <-
-            function(...,
-                     reinstall = FALSE,
-                     dependencies = NA) {
-                install(
-                    ...,
-                    dependencies = dependencies,
-                    reinstall = reinstall
-                )
-            }
         ## Enable versioned Bioconductor install.
         if (!requireNamespace("BiocManager", quietly = TRUE)) {
             utils::install.packages("BiocManager")
@@ -165,159 +148,190 @@ installRecommendedPackages <-
         }
         message(sprintf("Installing Bioconductor %s.", biocVersion))
         BiocManager::install(update = FALSE, ask = FALSE, version = biocVersion)
-        ## These can be tricky to build. Order is important here.
-        .install(c(
-            "codetools",
-            "Rcpp",
-            "RcppArmadillo",
-            "RcppAnnoy",
-            "XML",
-            "rJava",
-            "data.table"
-        ))
-        installAcidverse()
+        pkgs <- character()
+        ## Base R recommended packages.
+        pkgs <- append(
+            x = pkgs,
+            values = c(
+                "KernSmooth",
+                "MASS",
+                "Matrix",
+                "boot",
+                "class",
+                "cluster",
+                "codetools",
+                "foreign",
+                "lattice",
+                "mgcv",
+                "nlme",
+                "nnet",
+                "rpart",
+                "spatial",
+                "survival"
+            )
+        )
+        ## These can be tricky to build.
+        pkgs <- append(
+            x = pkgs,
+            values = c(
+                "Rcpp",
+                "RcppArmadillo",
+                "RcppAnnoy",
+                "XML",
+                "rJava",
+                "data.table"
+            )
+        )
         ## CRAN packages.
-        .install(c(
-            "DT",
-            "GGally",
-            "Matrix",
-            "R.utils",
-            "RSQLite",
-            "Seurat",
-            "WGCNA",
-            "ashr",
-            "backports",
-            "bench",
-            "bookdown",
-            "broom",
-            "cli",
-            "covr",
-            "crayon",
-            "curl",
-            "dbplyr",
-            "dendextend",
-            "dendsort",
-            "desc",
-            "devtools",
-            "drat",
-            "dynamicTreeCut",
-            "enrichR",
-            "fastICA",
-            "fastcluster",
-            "fastmatch",
-            "fdrtool",
-            "furrr",
-            "future",
-            "ggdendro",
-            "ggpubr",
-            "ggrepel",
-            "ggrepel",
-            "ggridges",
-            "ggstatsplot",
-            "ggupset",
-            "gprofiler2",
-            "hexbin",
-            "janitor",
-            "jsonlite",
-            "knitr",
-            "languageserver",
-            "lintr",
-            "magick",
-            "magrittr",
-            "matrixStats",
-            "memoise",
-            "ontologyIndex",
-            "openxlsx",
-            "patchwork",
-            "pheatmap",
-            "pkgdown",
-            "processx",
-            "profvis",
-            "pvclust",
-            "pzfx",
-            "ragg",
-            "rcmdcheck",
-            "remotes",
-            "reprex",
-            "rio",
-            "rlang",
-            "rmarkdown",
-            "roxygen2",
-            "shiny",
-            "shinycssloaders",
-            "shinydashboard",
-            "stringi",
-            "styler",
-            "testthat",
-            "tidytext",
-            "tidyverse",
-            "uniqtag",
-            "usethis",
-            "uwot",
-            "viridis",
-            "vroom",
-            "withr"
-        ))
+        pkgs <- append(
+            x = pkgs,
+            values = c(
+                "DT",
+                "GGally",
+                "Matrix",
+                "R.utils",
+                "RSQLite",
+                "Seurat",
+                "WGCNA",
+                "ashr",
+                "backports",
+                "bench",
+                "bookdown",
+                "broom",
+                "cli",
+                "covr",
+                "crayon",
+                "curl",
+                "dbplyr",
+                "dendextend",
+                "dendsort",
+                "desc",
+                "devtools",
+                "drat",
+                "dynamicTreeCut",
+                "enrichR",
+                "fastICA",
+                "fastcluster",
+                "fastmatch",
+                "fdrtool",
+                "furrr",
+                "future",
+                "ggdendro",
+                "ggpubr",
+                "ggrepel",
+                "ggrepel",
+                "ggridges",
+                "ggstatsplot",
+                "ggupset",
+                "gprofiler2",
+                "hexbin",
+                "janitor",
+                "jsonlite",
+                "knitr",
+                "languageserver",
+                "lintr",
+                "magick",
+                "magrittr",
+                "matrixStats",
+                "memoise",
+                "ontologyIndex",
+                "openxlsx",
+                "patchwork",
+                "pheatmap",
+                "pkgdown",
+                "processx",
+                "profvis",
+                "pvclust",
+                "pzfx",
+                "ragg",
+                "rcmdcheck",
+                "remotes",
+                "reprex",
+                "rio",
+                "rlang",
+                "rmarkdown",
+                "roxygen2",
+                "shiny",
+                "shinycssloaders",
+                "shinydashboard",
+                "stringi",
+                "styler",
+                "testthat",
+                "tidytext",
+                "tidyverse",
+                "uniqtag",
+                "usethis",
+                "uwot",
+                "viridis",
+                "vroom",
+                "withr"
+            )
+        )
         ## Bioconductor packages.
-        .install(c(
-            "AnnotationDbi",
-            "AnnotationHub",
-            "Biobase",
-            "BiocCheck",
-            "BiocFileCache",
-            "BiocGenerics",
-            "BiocParallel",
-            "BiocStyle",
-            "Biostrings",
-            "ChIPpeakAnno",
-            "ComplexHeatmap",
-            "ConsensusClusterPlus",
-            "DESeq2",
-            "DEXSeq",
-            "DOSE",
-            "DiffBind",
-            "DropletUtils",
-            "EnhancedVolcano",
-            "GRmetrics",
-            "GenomeInfoDb",
-            "GenomeInfoDbData",
-            "GenomicAlignments",
-            "GenomicFeatures",
-            "GenomicRanges",
-            "Gviz",
-            "IHW",
-            "IRanges",
-            "InteractiveComplexHeatmap",
-            "MAST",
-            "ReactomePA",
-            "Rsamtools",
-            "Rsubread",
-            "S4Vectors",
-            "STRINGdb",
-            "SingleCellExperiment",
-            "SummarizedExperiment",
-            "apeglm",
-            "biomaRt",
-            "clusterProfiler",
-            "csaw",
-            "edgeR",
-            "enrichplot",
-            "ensembldb",
-            "fgsea",
-            "fishpond",
-            "gage",
-            "ggbio",
-            "ggtree",
-            "limma",
-            "multtest",
-            "pathview",
-            "pcaMethods",
-            "plotgardener",
-            "rtracklayer",
-            "tximeta",
-            "tximport",
-            "vsn"
-        ))
+        pkgs <- append(
+            x = pkgs,
+            values = c(
+                "AnnotationDbi",
+                "AnnotationHub",
+                "Biobase",
+                "BiocCheck",
+                "BiocFileCache",
+                "BiocGenerics",
+                "BiocParallel",
+                "BiocStyle",
+                "Biostrings",
+                "ChIPpeakAnno",
+                "ComplexHeatmap",
+                "ConsensusClusterPlus",
+                "DESeq2",
+                "DEXSeq",
+                "DOSE",
+                "DiffBind",
+                "DropletUtils",
+                "EnhancedVolcano",
+                "GRmetrics",
+                "GenomeInfoDb",
+                "GenomeInfoDbData",
+                "GenomicAlignments",
+                "GenomicFeatures",
+                "GenomicRanges",
+                "Gviz",
+                "IHW",
+                "IRanges",
+                "InteractiveComplexHeatmap",
+                "MAST",
+                "ReactomePA",
+                "Rsamtools",
+                "Rsubread",
+                "S4Vectors",
+                "STRINGdb",
+                "SingleCellExperiment",
+                "SummarizedExperiment",
+                "apeglm",
+                "biomaRt",
+                "clusterProfiler",
+                "csaw",
+                "edgeR",
+                "enrichplot",
+                "ensembldb",
+                "fgsea",
+                "fishpond",
+                "gage",
+                "ggbio",
+                "ggtree",
+                "limma",
+                "multtest",
+                "pathview",
+                "pcaMethods",
+                "plotgardener",
+                "rtracklayer",
+                "tximeta",
+                "tximport",
+                "vsn"
+            )
+        )
+        install(pkgs = pkgs, dependencies = NA, reinstall = FALSE)
+        installAcidverse()
         invisible(TRUE)
     }
 
