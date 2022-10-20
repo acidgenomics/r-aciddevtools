@@ -1,5 +1,25 @@
 # Release notes
 
+## AcidDevTools 0.6.0 (2022-10-20)
+
+- `install`: Added back `type` argument, to install from source when required
+  on macOS, as a lot of binaries are still not being built in a timely manner.
+- Removed unused `dev` function.
+- Reworked internal functions to rely less upon goalie package when possible.
+  Switched back to using `stopifnot` instead of `assert`, and `message` instead
+  of `alert`.
+- Added a simplified internal variant of `requireNamespaces`, which makes
+  conditional loading of packages easier. Follows the conventions of the
+  function defined in AcidBase, with the exception that our internal version
+  here always returns a logical, instead of erroring on failure. This is
+  intended to be called within `stopifnot`.
+- `updatePackages`: Simplified validity check after packages are installed.
+- Using styler instead of formatR for code formatting.
+- Removed formatR, gh, and reticulate, rmarkdown, tibble as suggested packages.
+- Removed pipette and syntactic functions (e.g. `loadData`, `saveData`;
+  `camelCase`, `snakeCase`, etc.) as reexports, to avoid unwanted NAMESPACE
+  collision message when loading pipette package.
+
 ## AcidDevTools 0.5.11 (2022-09-13)
 
 - `installRecommendedPackages`: Added base R recommended packages that are

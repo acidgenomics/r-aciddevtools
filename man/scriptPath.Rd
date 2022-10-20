@@ -16,5 +16,5 @@ Script path
 \note{
 Only currently works inside RStudio.
 
-Updated 2022-05-31.
+Updated 2022-10-20.
 }

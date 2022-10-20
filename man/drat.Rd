@@ -41,7 +41,7 @@ Boolean, indicating if drat build was successful.
 Build packages and commit to drat repo
 }
 \note{
-Updated 2022-05-23.
+Updated 2022-10-20.
 }
 \section{Building from the command line}{
 

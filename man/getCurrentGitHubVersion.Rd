@@ -19,7 +19,7 @@ Package \code{repo} is defined in \code{names}.
 Get current release version of package from GitHub
 }
 \note{
-Updated 2021-08-23.
+Updated 2022-10-20.
 }
 \examples{
 repo <- paste("r-lib", c("rlang", "testthat"), sep = "/")
