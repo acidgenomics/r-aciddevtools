@@ -5,13 +5,12 @@
 #' Update all installed packages
 #'
 #' @export
-#' @note Updated 2022-05-31.
+#' @note Updated 2022-10-20.
 #'
 #' @inheritParams params
 #'
-#' @return Invisible `TRUE` or console output.
-#' Whether installation passes Bioconductor validity checks.
-#' See `BiocManager::valid()` for details.
+#' @return `logical`.
+#' Validity check return from `valid`.
 #'
 #' @examples
 #' ## > updatePackages()
@@ -71,13 +70,7 @@ updatePackages <-
                 )
             })
         }
-        out <- .valid(lib = lib)
-        options("warn" = warn) # nolint
-        if (isTRUE(out)) {
-            invisible(TRUE)
-        } else {
-            out
-        }
+        valid()
     }
 
 
