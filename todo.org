@@ -1,6 +1,7 @@
 #+TITLE: AcidDevTools
 #+STARTUP: content
 * Development
+** TODO `view2`: Consider testing and improving support inside VS Code.
 ** TODO `install`: Direct zip file input isn't working correctly here.
     At least this is the case on Windows.
 ** TODO Expand branch automatically to match input of multiple repos.

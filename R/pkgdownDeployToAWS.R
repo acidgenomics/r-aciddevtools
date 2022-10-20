@@ -28,8 +28,7 @@ pkgdownDeployToAWS <-
              bucketDir = "s3://r.acidgenomics.com/packages/",
              clean = TRUE) {
         stopifnot(
-            requireNamespace("desc", quietly = TRUE),
-            requireNamespace("pkgdown", quietly = TRUE),
+            .requireNamespaces(c("desc", "pkgdown")),
             .isASystemCommand("aws"),
             .allAreDirs(package),
             .isString(bucketDir)

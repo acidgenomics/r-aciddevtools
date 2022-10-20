@@ -5,7 +5,7 @@
 #' Execute test_that tests in a package
 #'
 #' @export
-#' @note Updated 2022-05-31.
+#' @note Updated 2022-10-20.
 #'
 #' @inheritParams params
 #'
@@ -23,11 +23,8 @@ test <- function(path = getwd()) {
         ))
         return(invisible(FALSE))
     }
-    stopifnot(
-        requireNamespace("testthat", quietly = TRUE),
-        requireNamespace("pkgload", quietly = TRUE)
-    )
-    maxFails <- getOption(x = "testthat.progress.max_fails")
+    stopifnot(.requireNamespaces(c("testthat", "pkgload")))
+    maxFails <- getOption("testthat.progress.max_fails")
     options("testthat.progress.max_fails" = 1L) # nolint
     out <- testthat::test_dir(
         path = testsDir,
@@ -37,8 +34,9 @@ test <- function(path = getwd()) {
         stop_on_warning = TRUE
     )
     stopifnot(
-        "Unit test failure detected." =
+        "Unit test failure detected." = {
             isTRUE(length(out[[length(out)]][["results"]]) > 0L)
+        }
     )
     options("testthat.progress.max_fails" = maxFails) # nolint
     invisible(out)

@@ -71,8 +71,7 @@ drat <-
              pkgdown = TRUE,
              deploy = TRUE) {
         stopifnot(
-            requireNamespace("desc", quietly = TRUE),
-            requireNamespace("devtools", quietly = TRUE),
+            .requireNamespaces(c("desc", "devtools")),
             .allAreSystemCommands(c("magick", "pandoc")),
             .allAreDirs(package),
             .isADir(repo),

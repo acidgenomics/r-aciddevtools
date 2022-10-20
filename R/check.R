@@ -39,8 +39,7 @@ check <- function(path = getwd(),
                   biocCheck = TRUE,
                   coverage = FALSE) {
     stopifnot(
-        requireNamespace("desc", quietly = TRUE),
-        requireNamespace("rcmdcheck", quietly = TRUE),
+        .requireNamespaces(c("desc", "rcmdcheck")),
         .isADir(path)
     )
     path <- .realpath(path)
@@ -49,13 +48,13 @@ check <- function(path = getwd(),
     pkgName <- keys[["Package"]]
     message(sprintf("Checking '%s' package at '%s'.", pkgName, path))
     if (isTRUE(style) && .isInstalled("styler")) {
-        stopifnot(requireNamespace("styler", quietly = TRUE))
+        stopifnot(.requireNamespaces("styler"))
         message("Checking style with 'style_pkg()'.")
         df <- style_pkg()
         stopifnot(isFALSE(any(df[["changed"]])))
     }
     if (isTRUE(lints) && .isInstalled("lintr")) {
-        stopifnot(requireNamespace("lintr", quietly = TRUE))
+        stopifnot(.requireNamespaces("lintr"))
         message("Checking for lints with 'lint_package()'.")
         lints <- lint_package(path = path)
         if (.hasLength(lints)) {
@@ -68,7 +67,7 @@ check <- function(path = getwd(),
         }
     }
     if (isTRUE(urls) && .isInstalled("urlchecker")) {
-        stopifnot(requireNamespace("urlchecker", quietly = TRUE))
+        stopifnot(.requireNamespaces("urlchecker"))
         message("Checking URLs with 'urlchecker::url_check()'.")
         out <- urlchecker::url_check(path = path)
         print(out)

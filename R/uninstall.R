@@ -17,7 +17,7 @@ uninstall <-
     function(pkgs,
              lib = .libPaths()[[1L]] # nolint
     ) {
-        stopifnot(requireNamespace("utils", quietly = TRUE))
+        stopifnot(.requireNamespaces("utils"))
         warn <- getOption(x = "warn")
         options("warn" = 2L) # nolint
         installedPkgs <- .packages(all.available = FALSE, lib.loc = lib)

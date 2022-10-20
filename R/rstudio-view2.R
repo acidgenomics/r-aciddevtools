@@ -2,13 +2,13 @@
 
 
 
-#' View object in RStudio viewer
+#' View object
 #'
 #' This variant performs internal coercion to data.frame, so we can easily
 #' view S4 DataFrame and GenomicRanges objects.
 #'
 #' @export
-#' @note Updated 2021-10-14.
+#' @note Updated 2022-10-20.
 #'
 #' @inheritParams params
 #'
@@ -19,15 +19,12 @@
 #' @examples
 #' ## > view2(mtcars)
 view2 <- function(object) {
-    stopifnot(
-        requireNamespace("goalie", quietly = TRUE),
-        requireNamespace("utils", quietly = TRUE)
-    )
     ## Coerce S4 object, if applicable.
-    if (goalie::isAny(object, c("DataFrame", "GenomicRanges"))) {
+    if (.isAny(object, c("DataFrame", "GenomicRanges"))) {
         object <- as.data.frame(object)
     }
-    if (!goalie::isRStudio()) {
+    if (!.isRStudio()) {
+        stopifnot(.requireNamespaces("utils"))
         View <- utils::View # nolint
     }
     View(object)

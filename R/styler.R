@@ -21,7 +21,7 @@ NULL
 #' @export
 acid_style <- # nolint
     function() {
-        stopifnot(requireNamespace("styler", quietly = TRUE))
+        stopifnot(.requireNamespaces("styler"))
         styler::tidyverse_style(
             scope = "tokens",
             strict = TRUE,

@@ -3,7 +3,7 @@
 #' @seealso goalie::allAreDirs
 #' @noRd
 .allAreDirs <- function(...) {
-    stopifnot(requireNamespace("goalie", quietly = TRUE))
+    stopifnot(.requireNamespaces("goalie"))
     goalie::allAreDirs(...)
 }
 
@@ -12,7 +12,7 @@
 #' @seealso goalie::allAreSystemCommands
 #' @noRd
 .allAreSystemCommands <- function(...) {
-    stopifnot(requireNamespace("goalie", quietly = TRUE))
+    stopifnot(.requireNamespaces("goalie"))
     goalie::allAreSystemCommands(...)
 }
 
@@ -21,7 +21,7 @@
 #' @seealso AcidBase::gitCurrentBranch
 #' @noRd
 .gitCurrentBranch <- function(...) {
-    stopifnot(requireNamespace("AcidBase", quietly = TRUE))
+    stopifnot(.requireNamespaces("AcidBase"))
     AcidBase::gitCurrentBranch(...)
 }
 
@@ -30,7 +30,7 @@
 #' @seealso AcidBase::gitDefaultBranch
 #' @noRd
 .gitDefaultBranch <- function(...) {
-    stopifnot(requireNamespace("AcidBase", quietly = TRUE))
+    stopifnot(.requireNamespaces("AcidBase"))
     AcidBase::gitDefaultBranch(...)
 }
 
@@ -60,6 +60,15 @@
 
 
 
+#' @seealso methods::is
+#' @noRd
+.is <- function(...) {
+    stopifnot(.requireNamespaces("methods"))
+    methods::is(...)
+}
+
+
+
 #' @seealso goalie::isADir
 #' @noRd
 .isADir <- function(x) {
@@ -76,6 +85,15 @@
 
 
 
+#' @seealso goalie::isAny
+#' @noRd
+.isAny <- function(...) {
+    stopifnot(.requireNamespaces("goalie"))
+    goalie::isAny(...)
+}
+
+
+
 #' @seealso goalie::isFlag
 #' @noRd
 .isFlag <- function(x) {
@@ -87,7 +105,7 @@
 #' @seealso goalie::isAGitRepo
 #' @noRd
 .isAGitRepo <- function(...) {
-    stopifnot(requireNamespace("goalie", quietly = TRUE))
+    stopifnot(.requireNamespaces("goalie"))
     goalie::isAGitRepo(...)
 }
 
@@ -96,7 +114,7 @@
 #' @seealso goalie::isASystemCommand
 #' @noRd
 .isASystemCommand <- function(...) {
-    stopifnot(requireNamespace("goalie", quietly = TRUE))
+    stopifnot(.requireNamespaces("goalie"))
     goalie::isASystemCommand(...)
 }
 
@@ -122,6 +140,15 @@
 #' @noRd
 .isMacOS <- function() {
     isTRUE(grepl(pattern = "darwin", x = R.Version()[["os"]]))
+}
+
+
+
+#' @seealso goalie::isRStudio
+#' @noRd
+.isRStudio <- function(...) {
+    stopifnot(.requireNamespaces("goalie"))
+    goalie::isRStudio(...)
 }
 
 
@@ -153,7 +180,7 @@
 #' @seealso AcidBase::pasteURL
 #' @noRd
 .pasteURL <- function(...) {
-    stopifnot(requireNamespace("AcidBase", quietly = TRUE))
+    stopifnot(.requireNamespaces("AcidBase"))
     AcidBase::pasteURL(...)
 }
 
@@ -162,7 +189,7 @@
 #' @seealso AcidBase::realpath
 #' @noRd
 .realpath <- function(...) {
-    stopifnot(requireNamespace("AcidBase", quietly = TRUE))
+    stopifnot(.requireNamespaces("AcidBase"))
     AcidBase::realpath(...)
 }
 
@@ -171,22 +198,14 @@
 #' @seealso AcidBase::requireNamespaces
 #' @noRd
 .requireNamespaces <- function(packages) {
-    ok <- vapply(
+    ok <- all(vapply(
         X = packages,
         FUN = requireNamespace,
         FUN.VALUE = logical(1L),
         USE.NAMES = TRUE,
         quietly = TRUE
-    )
-    if (!isTRUE(all(ok))) {
-        fail <- names(ok)[!ok]
-        stop(sprintf(
-            fmt = "%s not installed: %s.",
-            ngettext(n = length(fail), msg1 = "Package", msg2 = "Packages"),
-            toString(fail)
-        ))
-    }
-    invisible(TRUE)
+    ))
+    invisible(ok)
 }
 
 
@@ -194,6 +213,6 @@
 #' @seealso AcidBase::shell
 #' @noRd
 .shell <- function(...) {
-    stopifnot(requireNamespace("AcidBase", quietly = TRUE))
+    stopifnot(.requireNamespaces("AcidBase"))
     AcidBase::shell(...)
 }

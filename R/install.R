@@ -52,7 +52,7 @@ install <-
              type = getOption("pkgType", default = "source"),
              reinstall = TRUE) {
         stopifnot(
-            requireNamespace("utils", quietly = TRUE),
+            .requireNamespaces("utils"),
             is.character(pkgs),
             .isString(lib),
             is.logical(dependencies) || is.character(dependencies),
@@ -220,7 +220,7 @@ install <-
             pkg, whatPkg, whatFun, lib
         ))
         .installIfNecessary(pkgs = whatPkg, lib = lib)
-        stopifnot(requireNamespace(whatPkg, quietly = TRUE))
+        stopifnot(.requireNamespaces(whatPkg))
         what <- get(
             x = whatFun,
             envir = asNamespace(whatPkg),

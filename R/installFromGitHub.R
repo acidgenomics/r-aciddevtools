@@ -80,7 +80,7 @@ installFromGitHub <-
             refType <- "branch"
         }
         stopifnot(
-            requireNamespace("utils", quietly = TRUE),
+            .requireNamespaces("utils"),
             all(grepl(x = repo, pattern = "^[^/]+/[^/]+$")),
             identical(length(repo), length(ref)),
             .isFlag(reinstall)

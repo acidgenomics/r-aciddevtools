@@ -1,7 +1,7 @@
 #' Validate installed package versions against correct versions
 #'
 #' @export
-#' @note Updated 2022-07-28.
+#' @note Updated 2022-10-20.
 #'
 #' @param ... Passthrough arguments to `BiocManager::valid()`.
 #'
@@ -10,10 +10,7 @@
 #' @examples
 #' ## > valid()
 valid <- function(...) {
-    stopifnot(
-        requireNamespace("BiocManager", quietly = TRUE),
-        requireNamespace("utils", quietly = TRUE)
-    )
+    stopifnot(.requireNamespaces(c("BiocManager", "utils")))
     pkgs <- list("new" = character(), "old" = character())
     suppressWarnings({
         bioc <- BiocManager::valid(

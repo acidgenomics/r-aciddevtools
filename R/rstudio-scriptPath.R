@@ -6,18 +6,18 @@
 #'
 #' @export
 #' @note Only currently works inside RStudio.
-#' @note Updated 2022-05-31.
+#' @note Updated 2022-10-20.
 #'
 #' @return `character(1)`.
 #' Normalized path to current script.
 #'
 scriptPath <- function() {
     stopifnot(
-        requireNamespace("goalie", quietly = TRUE),
-        goalie::isRStudio(),
-        requireNamespace("rstudioapi", quietly = TRUE)
+        .requireNamespaces("rstudioapi"),
+        .isRStudio()
     )
     x <- rstudioapi::getSourceEditorContext()[["path"]]
+    stopifnot(.isAFile(x))
     x <- .realpath(x)
     x
 }

@@ -19,8 +19,8 @@
 #' ## > build(package = package)
 build <- function(package = getwd()) {
     stopifnot(
-        .isADir(package),
-        requireNamespace("desc", quietly = TRUE)
+        .requireNamespaces("desc"),
+        .isADir(package)
     )
     package <- .realpath(package)
     tempdir <- tempdir()

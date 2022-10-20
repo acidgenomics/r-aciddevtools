@@ -17,7 +17,7 @@
 #' }
 pbcopy <- function(x) {
     stopifnot(
-        requireNamespace("utils", quietly = TRUE),
+        .requireNamespaces("utils"),
         .isMacOS()
     )
     utils::capture.output(x, file = pipe("pbcopy"))
