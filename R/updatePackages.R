@@ -70,6 +70,7 @@ updatePackages <-
                 )
             })
         }
+        options("warn" = warn) # nolint
         valid()
     }
 
