@@ -55,7 +55,7 @@ findAndReplace <-
             full.names = TRUE,
             recursive = recursive
         ))
-        stopifnot(length(files) > 0L)
+        stopifnot(.hasLength(files))
         out <- BiocParallel::bplapply(
             X = files,
             FUN = function(file) {

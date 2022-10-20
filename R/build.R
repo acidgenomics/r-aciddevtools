@@ -1,7 +1,7 @@
 #' Build source and binary packages
 #'
 #' @export
-#' @note Updated 2022-05-23.
+#' @note Updated 2022-10-20.
 #'
 #' @details
 #' Files get built into temporary directory, defined in `tempdir()`.
@@ -18,18 +18,18 @@
 #' ## > package <- file.path("~", "monorepo", "r-packages", "r-goalie")
 #' ## > build(package = package)
 build <- function(package = getwd()) {
-    .assert(
+    stopifnot(
         .isADir(package),
         requireNamespace("desc", quietly = TRUE)
     )
     package <- .realpath(package)
     tempdir <- tempdir()
     descFile <- file.path(package, "DESCRIPTION")
-    .assert(.isAFile(descFile))
+    stopifnot(.isAFile(descFile))
     pkgName <- desc::desc_get_field(key = "Package", file = descFile)
     pkgVersion <- desc::desc_get_field(key = "Version", file = descFile)
-    .alert(sprintf(
-        "Building {.pkg %s} %s at {.dir %s}.",
+    message(sprintf(
+        "Building %s %s at '%s'.",
         pkgName, pkgVersion, tempdir
     ))
     buildArgs <- c("--log", "--md5")
@@ -44,7 +44,7 @@ build <- function(package = getwd()) {
     }
     tarballs <- character()
     command <- file.path(R.home(), "bin", "R")
-    .alert("Building source tarball.")
+    message("Building source tarball.")
     .shell(
         command = command,
         args = c(
@@ -59,8 +59,8 @@ build <- function(package = getwd()) {
             tempdir,
             paste0(pkgName, "_", pkgVersion, ".tar.gz")
         )
-    .assert(.isAFile(tarballs[["source"]]))
-    .alert("Building binary tarball.")
+    stopifnot(.isAFile(tarballs[["source"]]))
+    message("Building binary tarball.")
     .shell(
         command = command,
         args = c(
@@ -74,16 +74,16 @@ build <- function(package = getwd()) {
             tempdir,
             paste0(pkgName, "_", pkgVersion, ".tgz")
         )
-    .assert(.isAFile(tarballs[["binary"]]))
+    stopifnot(.isAFile(tarballs[["binary"]]))
     if (isTRUE(file.size(tarballs[["source"]]) > 2e6L)) {
-        .abort(sprintf(
-            "Source package is too large: {.file %s}.",
+        stop(sprintf(
+            "Source package is too large: '%s'.",
             tarballs[["source"]]
         ))
     }
     if (isTRUE(file.size(tarballs[["binary"]]) > 5e6L)) {
-        .abort(sprintf(
-            "Binary package is too large: {.file %s}.",
+        stop(sprintf(
+            "Binary package is too large: '%s'.",
             tarballs[["binary"]]
         ))
     }

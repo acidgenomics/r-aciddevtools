@@ -1,22 +1,22 @@
-.abort <- function(...) {
-    stopifnot(requireNamespace("AcidCLI", quietly = TRUE))
-    AcidCLI::abort(...)
-}
+## > .abort <- function(...) {
+## >     stopifnot(requireNamespace("AcidCLI", quietly = TRUE))
+## >     AcidCLI::abort(...)
+## > }
 
-.alert <- function(...) {
-    stopifnot(requireNamespace("AcidCLI", quietly = TRUE))
-    AcidCLI::alert(...)
-}
+## > .alert <- function(...) {
+## >     stopifnot(requireNamespace("AcidCLI", quietly = TRUE))
+## >     AcidCLI::alert(...)
+## > }
 
-.alertSuccess <- function(...) {
-    stopifnot(requireNamespace("AcidCLI", quietly = TRUE))
-    AcidCLI::alertSuccess(...)
-}
+## > .alertSuccess <- function(...) {
+## >     stopifnot(requireNamespace("AcidCLI", quietly = TRUE))
+## >     AcidCLI::alertSuccess(...)
+## > }
 
-.alertWarning <- function(...) {
-    stopifnot(requireNamespace("AcidCLI", quietly = TRUE))
-    AcidCLI::alertWarning(...)
-}
+## > .alertWarning <- function(...) {
+## >     stopifnot(requireNamespace("AcidCLI", quietly = TRUE))
+## >     AcidCLI::alertWarning(...)
+## > }
 
 .allAreDirs <- function(...) {
     stopifnot(requireNamespace("goalie", quietly = TRUE))
@@ -28,10 +28,10 @@
     goalie::allAreSystemCommands(...)
 }
 
-.assert <- function(...) {
-    stopifnot(requireNamespace("goalie", quietly = TRUE))
-    goalie::assert(...)
-}
+## > .assert <- function(...) {
+## >     stopifnot(requireNamespace("goalie", quietly = TRUE))
+## >     goalie::assert(...)
+## > }
 
 .gitCurrentBranch <- function(...) {
     stopifnot(requireNamespace("AcidBase", quietly = TRUE))
@@ -43,15 +43,15 @@
     AcidBase::gitDefaultBranch(...)
 }
 
-.isADir <- function(...) {
-    stopifnot(requireNamespace("goalie", quietly = TRUE))
-    goalie::isADir(...)
-}
+## > .isADir <- function(...) {
+## >     stopifnot(requireNamespace("goalie", quietly = TRUE))
+## >     goalie::isADir(...)
+## > }
 
-.isAFile <- function(...) {
-    stopifnot(requireNamespace("goalie", quietly = TRUE))
-    goalie::isAFile(...)
-}
+## > .isAFile <- function(...) {
+## >     stopifnot(requireNamespace("goalie", quietly = TRUE))
+## >     goalie::isAFile(...)
+## > }
 
 .isAGitRepo <- function(...) {
     stopifnot(requireNamespace("goalie", quietly = TRUE))
@@ -63,20 +63,20 @@
     goalie::isASystemCommand(...)
 }
 
-.isFlag <- function(...) {
-    stopifnot(requireNamespace("goalie", quietly = TRUE))
-    goalie::isFlag(...)
-}
+## > .isFlag <- function(...) {
+## >     stopifnot(requireNamespace("goalie", quietly = TRUE))
+## >     goalie::isFlag(...)
+## > }
 
-.isString <- function(...) {
-    stopifnot(requireNamespace("goalie", quietly = TRUE))
-    goalie::isString(...)
-}
+## > .isString <- function(...) {
+## >     stopifnot(requireNamespace("goalie", quietly = TRUE))
+## >     goalie::isString(...)
+## > }
 
-.isSubset <- function(...) {
-    stopifnot(requireNamespace("goalie", quietly = TRUE))
-    goalie::isSubset(...)
-}
+## > .isSubset <- function(...) {
+## >     stopifnot(requireNamespace("goalie", quietly = TRUE))
+## >     goalie::isSubset(...)
+## > }
 
 .pasteURL <- function(...) {
     stopifnot(requireNamespace("AcidBase", quietly = TRUE))

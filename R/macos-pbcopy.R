@@ -6,7 +6,7 @@
 #'
 #' @export
 #' @note Only works on macOS.
-#' @note Updated 2020-04-12.
+#' @note Updated 2022-10-20.
 #'
 #' @inheritParams params
 #'
@@ -17,9 +17,8 @@
 #' }
 pbcopy <- function(x) {
     stopifnot(
-        requireNamespace("goalie", quietly = TRUE),
         requireNamespace("utils", quietly = TRUE),
-        goalie::isMacOS()
+        .isMacOS()
     )
     utils::capture.output(x, file = pipe("pbcopy"))
 }

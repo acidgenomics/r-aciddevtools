@@ -1,7 +1,7 @@
 #' Package dependencies
 #'
 #' @export
-#' @note Updated 2022-05-23.
+#' @note Updated 2022-10-20.
 #'
 #' @param pkg `character(1)`.
 #' Package name.
@@ -16,7 +16,7 @@ packageDependencies <- function(pkg) {
         requireNamespace("BiocManager", quietly = TRUE),
         requireNamespace("tools", quietly = TRUE),
         requireNamespace("withr", quietly = TRUE),
-        is.character(pkg) && identical(length(pkg), 1L)
+        .isString(pkg)
     )
     withr::with_options(
         new = list(

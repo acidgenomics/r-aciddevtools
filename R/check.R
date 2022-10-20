@@ -5,7 +5,7 @@
 #' Check package
 #'
 #' @export
-#' @note Updated 2022-04-29.
+#' @note Updated 2022-10-20.
 #'
 #' @inheritParams params
 #'
@@ -41,7 +41,7 @@ check <- function(path = getwd(),
     stopifnot(
         requireNamespace("desc", quietly = TRUE),
         requireNamespace("rcmdcheck", quietly = TRUE),
-        isTRUE(dir.exists(path))
+        .isADir(path)
     )
     path <- .realpath(path)
     descFile <- file.path(path, "DESCRIPTION")
@@ -52,13 +52,13 @@ check <- function(path = getwd(),
         stopifnot(requireNamespace("styler", quietly = TRUE))
         message("Checking style with 'style_pkg()'.")
         df <- style_pkg()
-        stopifnot(!any(df[["changed"]]))
+        stopifnot(isFALSE(any(df[["changed"]])))
     }
     if (isTRUE(lints) && .isInstalled("lintr")) {
         stopifnot(requireNamespace("lintr", quietly = TRUE))
         message("Checking for lints with 'lint_package()'.")
         lints <- lint_package(path = path)
-        if (length(lints) > 0L) {
+        if (.hasLength(lints)) {
             print(lints)
             stop(sprintf(
                 fmt = "Package failed lintr checks. %d %s detected.",
@@ -72,7 +72,7 @@ check <- function(path = getwd(),
         message("Checking URLs with 'urlchecker::url_check()'.")
         out <- urlchecker::url_check(path = path)
         print(out)
-        stopifnot(nrow(out) == 0L)
+        stopifnot(identical(nrow(out), 0L))
     }
     message("Running package checks with 'rcmdcheck()'.")
     rcmdcheck(path = path, cran = cran)
