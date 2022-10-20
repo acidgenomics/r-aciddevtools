@@ -32,7 +32,6 @@
 \alias{style_file}
 \alias{style_pkg}
 \alias{test_file}
-\alias{view}
 \alias{use_data}
 \alias{devinstall}
 \alias{doc}
