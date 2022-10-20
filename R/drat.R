@@ -1,7 +1,7 @@
 #' Build packages and commit to drat repo
 #'
 #' @export
-#' @note Updated 2022-05-23.
+#' @note Updated 2022-10-20.
 #'
 #' @section Building from the command line:
 #'
@@ -70,7 +70,7 @@ drat <-
              tag = TRUE,
              pkgdown = TRUE,
              deploy = TRUE) {
-        .assert(
+        stopifnot(
             requireNamespace("desc", quietly = TRUE),
             requireNamespace("devtools", quietly = TRUE),
             .allAreSystemCommands(c("magick", "pandoc")),
@@ -91,7 +91,7 @@ drat <-
             deploy = deploy,
             FUN = function(package, repo, check, pkgdown, deploy) {
                 descFile <- file.path(package, "DESCRIPTION")
-                .assert(.isAFile(descFile))
+                stopifnot(.isAFile(descFile))
                 if (isTRUE(check)) {
                     check(package)
                 }
@@ -117,7 +117,7 @@ drat <-
                 ))
                 invisible(lapply(X = tarballs, FUN = file.remove))
                 if (isTRUE(tag)) {
-                    .alert("Tagging on GitHub.")
+                    message("Tagging on GitHub.")
                     name <-
                         desc::desc_get_field(key = "Package", file = descFile)
                     version <-
@@ -199,16 +199,16 @@ drat <-
                     args = "push",
                     wd = repo
                 )
-                .alertSuccess(sprintf(
-                    "Successfully added {.file %s}.",
+                message(sprintf(
+                    "Successfully added '%s'.",
                     basename(tarballs[["source"]])
                 ))
                 TRUE
             }
         )
         if (isTRUE(deploy)) {
-            .alert(sprintf(
-                "Deploying packages to {.var %s}.",
+            message(sprintf(
+                "Deploying packages to '%s'.",
                 "r.acidgenomics.com"
             ))
             .shell(

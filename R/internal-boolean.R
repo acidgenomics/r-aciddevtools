@@ -16,6 +16,63 @@
 
 
 
+
+#' Does the input not contain any duplicates?
+#'
+#' @note Updated 2022-10-20.
+#' @noRd
+#'
+#' @param x Object.
+#'
+#' @return `logical(1)`.
+.hasNoDuplicates <- function(x) {
+    identical(anyDuplicated(x), 0L))
+}
+
+
+
+#' Does the input have non-zero length?
+#'
+#' @note Updated 2022-10-20.
+#' @noRd
+#'
+#' @param x Object.
+#'
+#' @return `logical(1)`.
+.hasLength <- function(x) {
+    length(x) > 0L
+}
+
+
+
+#' Is the input a directory?
+#'
+#' @note Updated 2022-10-20.
+#' @noRd
+#'
+#' @param x Object.
+#'
+#' @return `logical(1)`.
+.isADir <- function(x) {
+    .isString(x) && dir.exists(x)
+}
+
+
+
+#' Is the input a file?
+#'
+#' @note Updated 2022-10-20.
+#' @noRd
+#'
+#' @param x Object.
+#'
+#' @return `logical(1)`.
+.isAFile <- function(x) {
+    .isString(x) && file.exists(x)
+}
+
+
+
 #' Is the input a boolean flag?
 #'
 #' @note Updated 2022-10-20.
@@ -148,6 +205,21 @@
 #' @return `logical(1)`.
 .isString <- function(x) {
     is.character(x) && .isScalar(x)
+}
+
+
+
+#' Is the input x a subset of y?
+#'
+#' @note Updated 2022-10-20.
+#' @noRd
+#'
+#' @param x Object.
+#' @param y Object.
+#'
+#' @return `logical(1)`.
+.isSubset <- function(x, y) {
+    all(x %in% y)
 }
 
 

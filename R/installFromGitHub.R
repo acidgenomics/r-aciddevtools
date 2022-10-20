@@ -17,7 +17,7 @@
 #' `https://github.com/:owner/:repo/archive/:tag.tar.gz`
 #'
 #' @export
-#' @note Updated 2022-05-31.
+#' @note Updated 2022-10-20.
 #'
 #' @inheritParams params
 #'
@@ -83,7 +83,7 @@ installFromGitHub <-
             requireNamespace("utils", quietly = TRUE),
             all(grepl(x = repo, pattern = "^[^/]+/[^/]+$")),
             identical(length(repo), length(ref)),
-            is.logical(reinstall) && identical(length(reinstall), 1L)
+            .isFlag(reinstall)
         )
         if (isFALSE(dir.exists(lib))) {
             dir.create(lib)
@@ -150,10 +150,7 @@ installFromGitHub <-
                     full.names = TRUE,
                     recursive = FALSE
                 )
-                stopifnot(
-                    identical(length(pkgdir), 1L),
-                    isTRUE(dir.exists(pkgdir))
-                )
+                stopifnot(.isADir(pkgdir))
                 install(
                     pkgs = pkgdir,
                     lib = lib,

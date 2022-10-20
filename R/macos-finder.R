@@ -6,7 +6,7 @@
 #'
 #' @export
 #' @note macOS only.
-#' @note Updated 2021-08-22.
+#' @note Updated 2022-10-20.
 #'
 #' @inheritParams params
 #'
@@ -17,9 +17,8 @@
 finder <- function(path = getwd()) {
     stopifnot(
         requireNamespace("AcidBase", quietly = TRUE),
-        requireNamespace("goalie", quietly = TRUE),
-        goalie::isMacOS(),
-        goalie::isString(path)
+        .isMacOS(),
+        .isString(path)
     )
     path <- .realpath(path)
     AcidBase::shell(command = "open", args = path)

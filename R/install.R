@@ -205,7 +205,7 @@ install <-
         )
         stopifnot(
             is.character(pkg),
-            length(pkg) == 1L
+            identical(length(pkg), 1L)
         )
         args <- args[unique(names(args))]
         if (

@@ -1,7 +1,7 @@
 #' Deploy a pkgdown website to AWS S3 bucket
 #'
 #' @export
-#' @note Updated 2022-04-29.
+#' @note Updated 2022-10-20.
 #'
 #' @param package `character`.
 #' Directory path to R package.
@@ -27,7 +27,7 @@ pkgdownDeployToAWS <-
     function(package = getwd(),
              bucketDir = "s3://r.acidgenomics.com/packages/",
              clean = TRUE) {
-        .assert(
+        stopifnot(
             requireNamespace("desc", quietly = TRUE),
             requireNamespace("pkgdown", quietly = TRUE),
             .isASystemCommand("aws"),
@@ -43,23 +43,23 @@ pkgdownDeployToAWS <-
             X = .realpath(package),
             FUN = function(pkgDir) {
                 descFile <- file.path(pkgDir, "DESCRIPTION")
-                .assert(.isAFile(descFile))
+                stopifnot(.isAFile(descFile))
                 pkgName <-
                     desc::desc_get_field(key = "Package", file = descFile)
                 bucketDir <- .pasteURL(bucketDir, tolower(pkgName))
                 docsDir <- file.path(pkgDir, "docs")
                 configFile <- file.path(pkgDir, "_pkgdown.yml")
                 if (!.isAFile(configFile)) {
-                    .alertWarning(sprintf(
-                        "pkgdown not enabled for {.pkg %s} at {.path %s}.",
+                    message(sprintf(
+                        "pkgdown not enabled for '%s' at '%s'.",
                         pkgName, pkgDir
                     ))
                     return(invisible(FALSE))
                 }
-                .alert(sprintf(
+                message(sprintf(
                     paste(
-                        "Building pkgdown website for {.pkg %s} at {.path %s},",
-                        "then pushing to AWS S3 bucket at {.url %s}."
+                        "Building pkgdown website for '%s' at '%s',",
+                        "then pushing to AWS S3 bucket at '%s'."
                     ),
                     pkgName, docsDir, bucketDir
                 ))
