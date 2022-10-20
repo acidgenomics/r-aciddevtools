@@ -38,7 +38,7 @@ returns \code{character} instead of \code{matrix}.
 
 }}
 \note{
-Updated 2020-04-12.
+Updated 2022-10-20.
 }
 \examples{
 db <- tools::Rd_db("base")

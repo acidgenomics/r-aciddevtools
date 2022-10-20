@@ -58,10 +58,7 @@ percent_coverage <- function(...) {
 #' @usage NULL
 #' @export
 report <- function(...) {
-    stopifnot(
-        requireNamespace("DT", quietly = TRUE),
-        requireNamespace("covr", quietly = TRUE)
-    )
+    stopifnot(.requireNamespaces(c("DT", "covr")))
     covr::report(...)
 }
 
@@ -107,43 +104,6 @@ run_examples <- function(..., document = FALSE) {
 
 
 
-
-## formatR =====================================================================
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
-tidy_dir <- function(path = getwd(),
-                     recursive = TRUE) {
-    stopifnot(.requireNamespaces("formatR"))
-    formatR::tidy_dir(
-        path = path,
-        recursive = recursive
-    )
-}
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
-tidy_file <- function(file) {
-    stopifnot(.requireNamespaces("formatR"))
-    formatR::tidy_file(file = file)
-}
-
-
-
-## gh ==========================================================================
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
-gh <- function(...) {
-    stopifnot(.requireNamespaces("gh"))
-    gh::gh(...)
-}
-
-
-
 ## lintr =======================================================================
 
 #' @rdname reexports
@@ -168,26 +128,6 @@ lint_dir <- function(...) {
 lint_package <- function(...) {
     stopifnot(.requireNamespaces("lintr"))
     lintr::lint_package(...)
-}
-
-
-
-## pipette =====================================================================
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
-loadData <- function(...) {
-    stopifnot(.requireNamespaces("pipette"))
-    pipette::loadData(...)
-}
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
-saveData <- function(...) {
-    stopifnot(.requireNamespaces("pipette"))
-    pipette::saveData(...)
 }
 
 
@@ -350,55 +290,6 @@ install_url <- function(...) {
 
 
 
-## reticulate ==================================================================
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
-py_config <- function(...) {
-    stopifnot(.requireNamespaces("reticulate"))
-    reticulate::py_config(...)
-}
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
-py_module_available <- function(...) {
-    stopifnot(.requireNamespaces("reticulate"))
-    reticulate::py_module_available(...)
-}
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
-use_virtualenv <- function(...) {
-    stopifnot(.requireNamespaces("reticulate"))
-    reticulate::use_virtualenv(...)
-}
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
-virtualenv_list <- function(...) {
-    stopifnot(.requireNamespaces("reticulate"))
-    reticulate::virtualenv_list(...)
-}
-
-
-
-## rmarkdown ===================================================================
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
-render <- function(...) {
-    stopifnot(.requireNamespaces("rmarkdown"))
-    rmarkdown::render(...)
-}
-
-
-
-
 ## styler ======================================================================
 
 #' @rdname reexports
@@ -432,42 +323,6 @@ style_pkg <- function(pkg = getwd()) {
         pkg = pkg,
         style = acid_style
     )
-}
-
-
-
-## syntactic ===================================================================
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
-camelCase <- function(...) {
-    stopifnot(.requireNamespaces("syntactic"))
-    syntactic::camelCase(...)
-}
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
-kebabCase <- function(...) {
-    stopifnot(.requireNamespaces("syntactic"))
-    syntactic::kebabCase(...)
-}
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
-makeNames <- function(...) {
-    stopifnot(.requireNamespaces("syntactic"))
-    syntactic::makeNames(...)
-}
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
-snakeCase <- function(...) {
-    stopifnot(.requireNamespaces("syntactic"))
-    syntactic::snakeCase(...)
 }
 
 

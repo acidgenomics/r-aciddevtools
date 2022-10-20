@@ -2,7 +2,7 @@
 % Please edit documentation in R/rstudio-view2.R
 \name{view2}
 \alias{view2}
-\title{View object in RStudio viewer}
+\title{View object}
 \usage{
 view2(object)
 }
@@ -19,7 +19,7 @@ This variant performs internal coercion to data.frame, so we can easily
 view S4 DataFrame and GenomicRanges objects.
 }
 \note{
-Updated 2021-10-14.
+Updated 2022-10-20.
 }
 \examples{
 ## > view2(mtcars)

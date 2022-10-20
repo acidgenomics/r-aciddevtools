@@ -21,7 +21,7 @@ Build source and binary packages
 Files get built into temporary directory, defined in \code{tempdir()}.
 }
 \note{
-Updated 2022-05-23.
+Updated 2022-10-20.
 }
 \examples{
 ## > package <- file.path("~", "monorepo", "r-packages", "r-goalie")

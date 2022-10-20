@@ -10,7 +10,7 @@ installRecommendedPackages()
 Install recommended R packages
 }
 \note{
-Updated 2022-10-18.
+Updated 2022-10-20.
 }
 \examples{
 ## > installRecommendedPackages()

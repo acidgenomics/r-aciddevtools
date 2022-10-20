@@ -32,7 +32,7 @@ input defined in \code{package} argument.
 Deploy a pkgdown website to AWS S3 bucket
 }
 \note{
-Updated 2022-04-29.
+Updated 2022-10-20.
 }
 \examples{
 ## > pkgdownDeployToAWS(

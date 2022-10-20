@@ -12,15 +12,14 @@ Destination library directory path.
 Defaults to the first element of \code{.libPaths()}.}
 }
 \value{
-Invisible \code{TRUE} or console output.
-Whether installation passes Bioconductor validity checks.
-See \code{BiocManager::valid()} for details.
+\code{logical}.
+Validity check return from \code{valid}.
 }
 \description{
 Update all installed packages
 }
 \note{
-Updated 2022-05-31.
+Updated 2022-10-20.
 }
 \examples{
 ## > updatePackages()

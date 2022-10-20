@@ -17,7 +17,7 @@ Invisible \code{TRUE} on success, otherwise error.
 Execute test_that tests in a package
 }
 \note{
-Updated 2022-05-31.
+Updated 2022-10-20.
 }
 \examples{
 ## > test()
