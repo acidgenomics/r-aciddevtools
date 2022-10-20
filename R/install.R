@@ -27,6 +27,10 @@
 #' [`install.packages()`][utils::install.packages], which means
 #' `c("Depends", "Imports", "LinkingTo")`.
 #'
+#' @param type `character(1)`.
+#' Type of package to download and install: `"binary"`, `"source"`, or
+#' `"both"` (prefer binary but fall back to source).
+#'
 #' @return Invisible `list`.
 #' Contains information on `pkgs` and `lib` defined.
 #'
@@ -43,16 +47,19 @@
 #' ## > unlink(testlib, recursive = TRUE)
 install <-
     function(pkgs,
-             dependencies = NA,
              lib = .libPaths()[[1L]], # nolint
+             dependencies = NA,
+             type = getOption("pkgType", default = "source"),
              reinstall = TRUE) {
         stopifnot(
             requireNamespace("utils", quietly = TRUE),
             is.character(pkgs),
-            is.character(lib) && identical(length(lib), 1L),
-            is.logical(reinstall) && identical(length(reinstall), 1L)
+            .isString(lib),
+            is.logical(dependencies) || is.character(dependencies),
+            .isString(type),
+            .isFlag(reinstall)
         )
-        warnDefault <- getOption(x = "warn")
+        warnDefault <- getOption("warn")
         options("warn" = 2L) # nolint
         if (isFALSE(dir.exists(lib))) {
             message(sprintf("Creating R package library at '%s'.", lib))
@@ -64,6 +71,7 @@ install <-
             FUN = .install,
             FUN.VALUE = logical(1L),
             dependencies = dependencies,
+            type = type,
             lib = lib,
             reinstall = reinstall,
             USE.NAMES = FALSE
@@ -71,6 +79,8 @@ install <-
         options("warn" = warnDefault) # nolint
         invisible(list(
             "pkgs" = pkgs,
+            "dependencies" = dependencies,
+            "type" = type,
             "lib" = lib,
             "installed" = out
         ))
@@ -80,12 +90,13 @@ install <-
 
 #' Install an individual package
 #'
-#' @note Updated 2022-04-28.
+#' @note Updated 2022-10-20.
 #' @noRd
 .install <-
     function(pkg,
              lib,
              dependencies,
+             type,
              reinstall) {
         if (
             grepl(pattern = "\\.git$", x = pkg)
@@ -117,10 +128,11 @@ install <-
                 args <- append(
                     x = list(
                         "pkgs" = pkg,
-                        "ask" = FALSE,
-                        "force" = TRUE,
+                        "type" = type,
                         "site_repository" = "https://r.acidgenomics.com",
-                        "update" = FALSE
+                        "update" = FALSE,
+                        "ask" = FALSE,
+                        "force" = TRUE
                     ),
                     values = args
                 )
