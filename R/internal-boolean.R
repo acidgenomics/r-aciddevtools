@@ -26,7 +26,7 @@
 #'
 #' @return `logical(1)`.
 .hasNoDuplicates <- function(x) {
-    identical(anyDuplicated(x), 0L))
+    identical(anyDuplicated(x), 0L)
 }
 
 
