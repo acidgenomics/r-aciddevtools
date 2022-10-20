@@ -32,7 +32,7 @@ saveRdExamples <-
              dir = getwd()) {
         stopifnot(
             .requireNamespaces("tools"),
-            .isString(rd) || is.null(rd),
+            is.character(rd) || is.null(rd),
             .isString(package),
             .isString(dir)
         )

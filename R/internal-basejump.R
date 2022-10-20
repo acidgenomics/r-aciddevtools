@@ -1,5 +1,3 @@
-## FIXME Internalize this.
-
 #' @seealso goalie::allAreDirs
 #' @noRd
 .allAreDirs <- function(...) {
@@ -140,6 +138,30 @@
 #' @noRd
 .isMacOS <- function() {
     isTRUE(grepl(pattern = "darwin", x = R.Version()[["os"]]))
+}
+
+
+
+#' Is the current environment running in macOS R CRAN binary framework?
+#'
+#' @note Updated 2022-04-28.
+#' @noRd
+#'
+#' @return `logical(1)`.
+.isMacosFramework <- function() {
+    isTRUE(grepl(
+        pattern = paste0(
+            "^",
+            file.path(
+                "",
+                "Library",
+                "Frameworks",
+                "R.framework",
+                "Resources"
+            )
+        ),
+        x = Sys.getenv("R_HOME")
+    ))
 }
 
 

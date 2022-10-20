@@ -20,7 +20,7 @@ uninstall <-
         stopifnot(.requireNamespaces("utils"))
         warn <- getOption(x = "warn")
         options("warn" = 2L) # nolint
-        installedPkgs <- .packages(all.available = FALSE, lib.loc = lib)
+        installedPkgs <- .packages(all.available = TRUE, lib.loc = lib)
         removePkgs <- intersect(pkgs, installedPkgs)
         skipPkgs <- setdiff(pkgs, installedPkgs)
         if (isTRUE(length(skipPkgs) > 0L)) {
