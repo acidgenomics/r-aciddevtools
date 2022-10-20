@@ -1,7 +1,7 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2022-07-28.
+#' @note Updated 2022-10-20.
 #'
 #' @inheritParams params
 #'
