@@ -1,5 +1,7 @@
 ## nocov start
 
+## NOTE "grid" package is getting duplicated on Ubuntu 22.
+
 ## Consider including these packages:
 ##
 ## CRAN:
@@ -70,6 +72,7 @@
 ## - MultiAssayExperiment
 ## - RDAVIDWebService (removed in 3.14).
 ## - PANTHER.db
+## - ReactomePA
 ## - Rhdf5lib
 ## - Rhtslib
 ## - RiboProfiling
@@ -132,7 +135,7 @@
 #' Install recommended R packages
 #'
 #' @export
-#' @note Updated 2022-09-13.
+#' @note Updated 2022-10-18.
 #'
 #' @examples
 #' ## > installRecommendedPackages()
@@ -225,6 +228,7 @@ installRecommendedPackages <-
                 "ggupset",
                 "gprofiler2",
                 "hexbin",
+                "httpgd",
                 "janitor",
                 "jsonlite",
                 "knitr",
@@ -300,7 +304,6 @@ installRecommendedPackages <-
                 "IRanges",
                 "InteractiveComplexHeatmap",
                 "MAST",
-                "ReactomePA",
                 "Rsamtools",
                 "Rsubread",
                 "S4Vectors",
