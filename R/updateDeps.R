@@ -31,10 +31,8 @@ updateDeps <-
                  "Enhances"
              )) {
         stopifnot(
-            requireNamespace("BiocManager", quietly = TRUE),
-            requireNamespace("remotes", quietly = TRUE),
-            requireNamespace("utils", quietly = TRUE),
-            isTRUE(file.exists(file.path(pkg, "DESCRIPTION")))
+            .requireNamespaces(c("BiocManager", "remotes", "utils")),
+            .isAFile(file.path(pkg, "DESCRIPTION"))
         )
         ## Get current installed versions.
         current <- utils::installed.packages()

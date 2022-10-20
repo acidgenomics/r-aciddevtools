@@ -17,7 +17,7 @@
 updatePackages <-
     function(lib = .libPaths()[[1L]]) { # nolint
         .installIfNecessary("BiocManager")
-        stopifnot(requireNamespace("BiocManager", quietly = TRUE))
+        stopifnot(.requireNamespaces("BiocManager"))
         warn <- getOption(x = "warn")
         options("warn" = 2L) # nolint
         lib <- .realpath(lib)
@@ -56,7 +56,7 @@ updatePackages <-
                 "GitHub", lib
             ))
             .installIfNecessary("remotes")
-            stopifnot(requireNamespace("remotes", quietly = TRUE))
+            stopifnot(.requireNamespaces("remotes"))
             ## Suppressing messages about packages ahead of CRAN here.
             suppressMessages({
                 remotes::update_packages(

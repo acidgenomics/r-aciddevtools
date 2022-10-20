@@ -47,7 +47,7 @@ findAndReplace <-
              filePattern = "\\.(r|R)$",
              dir = getwd(),
              recursive = FALSE) {
-        stopifnot(requireNamespace("BiocParallel", quietly = TRUE))
+        stopifnot(.requireNamespaces("BiocParallel"))
         dir <- .realpath(dir)
         files <- sort(list.files(
             path = dir,

@@ -31,11 +31,10 @@ saveRdExamples <-
              package,
              dir = getwd()) {
         stopifnot(
-            requireNamespace("goalie", quietly = TRUE),
-            requireNamespace("tools", quietly = TRUE),
-            goalie::isCharacter(rd, nullOK = TRUE),
-            goalie::isString(package),
-            goalie::isString(dir)
+            .requireNamespaces("tools"),
+            .isString(rd) || is.null(rd),
+            .isString(package),
+            .isString(dir)
         )
         dir.create(dir, showWarnings = FALSE, recursive = TRUE)
         dir <- .realpath(dir)
@@ -47,7 +46,7 @@ saveRdExamples <-
             rd <- names(db) # nocov
         }
         ## Check that the requiested function(s) are valid.
-        stopifnot(all(rd %in% names(db)))
+        stopifnot(.isSubset(rd, names(db)))
         ## Parse the rd files and return the working examples as a character.
         list <- Map(
             rd = rd,

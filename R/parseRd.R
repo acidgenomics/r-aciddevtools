@@ -4,7 +4,7 @@
 #' returns `character` instead of `matrix`.
 #'
 #' @export
-#' @note Updated 2020-04-12.
+#' @note Updated 2022-10-20.
 #'
 #' @param object `Rd`.
 #' R documentation, returned from `tools::Rd_db()`.
@@ -37,8 +37,7 @@
 parseRd <-
     function(object, tag) {
         stopifnot(
-            requireNamespace("methods", quietly = TRUE),
-            methods::is(object, "Rd"),
+            .is(object, "Rd"),
             .isString(tag)
         )
         tags <- RdTags(object)
@@ -65,10 +64,7 @@ parseRd <-
 #' @export
 RdTags <- # nolint
     function(object) {
-        stopifnot(
-            requireNamespace("methods", quietly = TRUE),
-            methods::is(object, "Rd")
-        )
+        stopifnot(.is(object, "Rd"))
         tags <- vapply(
             X = object,
             FUN = attr,

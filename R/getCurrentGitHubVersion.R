@@ -1,7 +1,7 @@
 #' Get current release version of package from GitHub
 #'
 #' @export
-#' @note Updated 2021-08-23.
+#' @note Updated 2022-10-20.
 #'
 #' @param repo `character`.
 #' GitHub repository ("user/package").
@@ -16,7 +16,7 @@
 #' x <- getCurrentGitHubVersion(repo)
 #' print(x)
 getCurrentGitHubVersion <- function(repo) {
-    stopifnot(requireNamespace("pipette", quietly = TRUE))
+    stopifnot(.requireNamespaces("pipette"))
     x <- vapply(
         X = repo,
         FUN = function(repo) {

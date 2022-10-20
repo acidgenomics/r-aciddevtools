@@ -13,9 +13,7 @@
 #' ## > packageDependencies("stats")
 packageDependencies <- function(pkg) {
     stopifnot(
-        requireNamespace("BiocManager", quietly = TRUE),
-        requireNamespace("tools", quietly = TRUE),
-        requireNamespace("withr", quietly = TRUE),
+        .requireNamespaces(c("BiocManager", "tools", "withr")),
         .isString(pkg)
     )
     withr::with_options(

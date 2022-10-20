@@ -17,7 +17,7 @@
 #' ## > migrateRecommendedPackages()
 migrateRecommendedPackages <-
     function() {
-        stopifnot(requireNamespace("utils", quietly = TRUE))
+        stopifnot(.requireNamespaces("utils"))
         pkgs <- character()
         x <- utils::installed.packages(lib.loc = .Library)
         lgl <- x[, "Priority"] != "base"

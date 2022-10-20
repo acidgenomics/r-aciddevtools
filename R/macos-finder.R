@@ -16,7 +16,7 @@
 #' ## > finder(path = "~")
 finder <- function(path = getwd()) {
     stopifnot(
-        requireNamespace("AcidBase", quietly = TRUE),
+        .requireNamespaces("AcidBase"),
         .isMacOS(),
         .isString(path)
     )

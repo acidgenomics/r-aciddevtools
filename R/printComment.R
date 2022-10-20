@@ -1,7 +1,7 @@
 #' Print as comment
 #'
 #' @export
-#' @note Updated 2022-05-23.
+#' @note Updated 2022-10-20.
 #'
 #' @param ... Passthrough to `print()`.
 #'
@@ -27,10 +27,7 @@ printComment <-
                  "# >"
              ),
              width = 80L) {
-        stopifnot(
-            requireNamespace("utils", quietly = TRUE),
-            requireNamespace("withr", quietly = TRUE)
-        )
+        stopifnot(.requireNamespaces(c("utils", "withr")))
         prefix <- match.arg(prefix)
         ## Subtract the width of the prefix, including a space.
         width <- width - (length(prefix) + 1L)

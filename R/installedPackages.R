@@ -16,10 +16,7 @@
 #' x <- installedPackages()
 #' table(x[["source"]])
 installedPackages <- function(lib = NULL) {
-    stopifnot(
-        requireNamespace("syntactic", quietly = TRUE),
-        requireNamespace("utils", quietly = TRUE)
-    )
+    stopifnot(.requireNamespaces(c("syntactic", "utils")))
     df <- utils::installed.packages(lib.loc = lib)
     df <- as.data.frame(df)
     colnames(df) <- syntactic::camelCase(colnames(df), strict = TRUE)
