@@ -15,7 +15,10 @@ cluster, codetools, foreign, lattice, mgcv, nlme, nnet, rpart, spatial,
 survival.
 }
 \note{
-Updated 2022-09-06.
+Updated 2022-10-20.
+}
+\examples{
+## > migrateRecommendedPackages()
 }
 \seealso{
 \itemize{

@@ -2,9 +2,37 @@
 
 
 
+#' Does the input contain any duplicates?
+#'
+#' @note Updated 2022-10-20.
+#' @noRd
+#'
+#' @param x Object.
+#'
+#' @return `logical(1)`.
+.hasDuplicates <- function(x) {
+    anyDuplicated(x) > 0L
+}
+
+
+
+#' Is the input a boolean flag?
+#'
+#' @note Updated 2022-10-20.
+#' @noRd
+#'
+#' @param x Object.
+#'
+#' @return `logical(1)`.
+.isFlag <- function(x) {
+    is.logical(x) && .isScalar(x)
+}
+
+
+
 #' Is a package installed?
 #'
-#' @note Updated 2020-08-11.
+#' @note Updated 2022-10-20.
 #' @noRd
 #'
 #' @param x `character`.
@@ -16,9 +44,7 @@
 #'
 #' @return `logical(1)`.
 .isInstalled <- function(x, lib = NULL) {
-    stopifnot(requireNamespace("utils", quietly = TRUE))
-    df <- utils::installed.packages(lib.loc = lib)
-    basename(x) %in% rownames(df)
+    basename(x) %in% .packages(all.available = TRUE, lib.loc = lib)
 }
 
 
@@ -96,6 +122,33 @@
     ))
 }
 
+
+
+#' Is the input scalar?
+#'
+#' @note Updated 2022-10-20.
+#' @noRd
+#'
+#' @param x Object.
+#'
+#' @return `logical(1)`.
+.isScalar <- function(x) {
+    identical(length(x), 1L)
+}
+
+
+
+#' Is the input a character string?
+#'
+#' @note Updated 2022-10-20.
+#' @noRd
+#'
+#' @param x Object.
+#'
+#' @return `logical(1)`.
+.isString <- function(x) {
+    is.character(x) && .isScalar(x)
+}
 
 
 

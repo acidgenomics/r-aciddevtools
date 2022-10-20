@@ -4,7 +4,13 @@
 \alias{install}
 \title{Install packages from Bioconductor, CRAN, or a Git remote}
 \usage{
-install(pkgs, dependencies = NA, lib = .libPaths()[[1L]], reinstall = TRUE)
+install(
+  pkgs,
+  lib = .libPaths()[[1L]],
+  dependencies = NA,
+  type = getOption("pkgType", default = "source"),
+  reinstall = TRUE
+)
 }
 \arguments{
 \item{pkgs}{\code{character}.
@@ -21,6 +27,10 @@ and installed using \code{remotes::install_github()}.
 installed using \code{remotes::install_git()}.
 }}
 
+\item{lib}{\code{character}.
+Destination library directory path.
+Defaults to the first element of \code{.libPaths()}.}
+
 \item{dependencies}{\code{logical(1)}, \code{character}, or \code{NA}.
 \itemize{
 \item \code{TRUE}/\code{FALSE} indicating whether to install uninstalled packages which
@@ -32,9 +42,9 @@ these packages depend on/link to/import/suggest.
 \code{c("Depends", "Imports", "LinkingTo")}.
 }}
 
-\item{lib}{\code{character}.
-Destination library directory path.
-Defaults to the first element of \code{.libPaths()}.}
+\item{type}{\code{character(1)}.
+Type of package to download and install: \code{"binary"}, \code{"source"}, or
+\code{"both"} (prefer binary but fall back to source).}
 
 \item{reinstall}{\code{logical(1)}.
 Force reinstallation of any existing packages.}

@@ -135,7 +135,7 @@
 #' Install recommended R packages
 #'
 #' @export
-#' @note Updated 2022-10-18.
+#' @note Updated 2022-10-20.
 #'
 #' @examples
 #' ## > installRecommendedPackages()
@@ -335,10 +335,6 @@ installRecommendedPackages <-
         )
         install(pkgs = pkgs, dependencies = NA, reinstall = FALSE)
         installAcidverse()
-        stopifnot(
-            requireNamespace("utils", quietly = TRUE),
-            anyDuplicated(rownames(utils::installed.packages())) == 0L
-        )
         invisible(TRUE)
     }
 
