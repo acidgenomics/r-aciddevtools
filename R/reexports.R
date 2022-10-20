@@ -339,18 +339,6 @@ test_file <- function(...) {
 
 
 
-## tibble ======================================================================
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
-view <- function(...) {
-    stopifnot(.requireNamespaces("tibble"))
-    tibble::view(...)
-}
-
-
-
 ## usethis =====================================================================
 
 #' @rdname reexports
