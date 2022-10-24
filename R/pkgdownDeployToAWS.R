@@ -66,9 +66,6 @@ pkgdownDeployToAWS <-
                     unlink(docsDir, recursive = TRUE)
                 }
                 build_site(pkg = pkgDir)
-                ## FIXME The message is inconsistent here. Our local directory
-                ## is not escaped with single quotes, but the AWS S3 bucket
-                ## is currently. Need to rework in AcidBase?
                 .shell(
                     command = "aws",
                     args = c(
