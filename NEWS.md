@@ -1,5 +1,10 @@
 # Release notes
 
+## AcidDevTools 0.6.1 (2022-10-25)
+
+- `check`: Don't error on URL check failures. This is often too strict, and
+  currently problematic when checking AcidGenomes package.
+
 ## AcidDevTools 0.6.0 (2022-10-20)
 
 - `install`: Added back `type` argument, to install from source when required
