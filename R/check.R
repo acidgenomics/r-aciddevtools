@@ -5,7 +5,7 @@
 #' Check package
 #'
 #' @export
-#' @note Updated 2022-10-20.
+#' @note Updated 2022-10-25.
 #'
 #' @inheritParams params
 #'
@@ -71,7 +71,8 @@ check <- function(path = getwd(),
         message("Checking URLs with 'urlchecker::url_check()'.")
         out <- urlchecker::url_check(path = path)
         print(out)
-        stopifnot(identical(nrow(out), 0L))
+        ## Allow URL failures to pass through without check failure.
+        ## > stopifnot(identical(nrow(out), 0L))
     }
     message("Running package checks with 'rcmdcheck()'.")
     rcmdcheck(path = path, cran = cran)
