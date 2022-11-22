@@ -1,4 +1,8 @@
 ## https://stackoverflow.com/questions/53324885
+stopifnot(
+    requireNamespace("AcidBase", quietly = TRUE),
+    requireNamespace("koopa", quietly = TRUE)
+)
 optPrefix <- koopa::koopaOptPrefix()
 realpath <- AcidBase::realpath
 apps <- c(
