@@ -1,7 +1,7 @@
 #' Validate installed package versions against correct versions
 #'
 #' @export
-#' @note Updated 2022-10-20.
+#' @note Updated 2022-11-22.
 #'
 #' @param ... Passthrough arguments to `BiocManager::valid()`.
 #'
@@ -40,7 +40,9 @@ valid <- function(...) {
             values = rownames(bioc[["out_of_date"]])
         )
     }
-    old <- utils::old.packages(checkBuilt = TRUE)
+    ## Ensure we exclude `.Library` here, to avoid unwanted messages about
+    ## outdated system packages.
+    old <- utils::old.packages(lib.loc = .Library.site, checkBuilt = TRUE)
     if (is.matrix(old)) {
         pkgs[["old"]] <- append(pkgs[["old"]], values = rownames(old))
     }
