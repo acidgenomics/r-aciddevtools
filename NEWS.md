@@ -1,5 +1,11 @@
 # Release notes
 
+## AcidDevTools 0.6.2 (2022-11-22)
+
+- `valid`: Restricted internal `old.packages` call to specifically check
+  `.Library.site` and ignore `.Library`, so that we don't return unwanted
+  messages about outdated system packages.
+
 ## AcidDevTools 0.6.1 (2022-10-25)
 
 - `check`: Don't error on URL check failures. This is often too strict, and
