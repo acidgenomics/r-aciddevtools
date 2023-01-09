@@ -1,5 +1,9 @@
 # Release notes
 
+## AcidDevTools 0.6.3 (2023-01-09)
+
+- `valid`: Improved singular/plural handling of package names.
+
 ## AcidDevTools 0.6.2 (2022-11-22)
 
 - `valid`: Restricted internal `old.packages` call to specifically check
