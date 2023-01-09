@@ -18,7 +18,6 @@ valid <- function(...) {
             site_repository = "https://r.acidgenomics.com"
         )
     })
-    ## Too new.
     if (
         is.list(bioc) &&
             isTRUE("too_new" %in% names(bioc)) &&
@@ -29,7 +28,6 @@ valid <- function(...) {
             values = rownames(bioc[["too_new"]])
         )
     }
-    ## Too old.
     if (
         is.list(bioc) &&
             isTRUE("out_of_date" %in% names(bioc)) &&
