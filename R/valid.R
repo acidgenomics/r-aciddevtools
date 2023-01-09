@@ -1,7 +1,7 @@
 #' Validate installed package versions against correct versions
 #'
 #' @export
-#' @note Updated 2022-11-22.
+#' @note Updated 2023-01-09.
 #'
 #' @param ... Passthrough arguments to `BiocManager::valid()`.
 #'
@@ -58,9 +58,15 @@ valid <- function(...) {
             "",
             paste(length(pkgs[["new"]]), "pre-release:"),
             paste0(
-                "AcidDevTools::install(pkgs = c(",
-                toString(paste0("\"", pkgs[["new"]], "\"")),
-                "), reinstall = TRUE)"
+                "AcidDevTools::install(pkgs = ",
+                if (length(pkgs[["new"]]) > 1L) {
+                    "c("
+                },
+                "\"", toString(pkgs[["new"]]), "\"",
+                if (length(pkgs[["new"]]) > 1L) {
+                    ")"
+                },
+                ", reinstall = TRUE)"
             ),
             sep = "\n"
         ))
@@ -71,9 +77,15 @@ valid <- function(...) {
             "",
             paste(length(pkgs[["old"]]), "outdated:"),
             paste0(
-                "AcidDevTools::install(pkgs = c(",
-                toString(paste0("\"", pkgs[["old"]], "\"")),
-                "), reinstall = TRUE)"
+                "AcidDevTools::install(pkgs = ",
+                if (length(pkgs[["old"]]) > 1L) {
+                    "c("
+                },
+                "\"", toString(pkgs[["old"]]), "\"",
+                if (length(pkgs[["old"]]) > 1L) {
+                    ")"
+                },
+                ", reinstall = TRUE)"
             ),
             sep = "\n"
         ))
