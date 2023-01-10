@@ -1,5 +1,9 @@
 # Release notes
 
+## AcidDevTools 0.6.4 (2023-01-10)
+
+- `valid`: Bug fix for incorrect quoting of package names.
+
 ## AcidDevTools 0.6.3 (2023-01-09)
 
 - `valid`: Improved singular/plural handling of package names.
