@@ -60,7 +60,7 @@ valid <- function(...) {
                 if (length(pkgs[["new"]]) > 1L) {
                     "c("
                 },
-                "\"", toString(pkgs[["new"]]), "\"",
+                toString(paste0("\"", pkgs[["new"]], "\"")),
                 if (length(pkgs[["new"]]) > 1L) {
                     ")"
                 },
@@ -79,7 +79,7 @@ valid <- function(...) {
                 if (length(pkgs[["old"]]) > 1L) {
                     "c("
                 },
-                "\"", toString(pkgs[["old"]]), "\"",
+                toString(paste0("\"", pkgs[["old"]], "\"")),
                 if (length(pkgs[["old"]]) > 1L) {
                     ")"
                 },
