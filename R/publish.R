@@ -1,7 +1,7 @@
-#' Build packages and commit to drat repo
+#' Build packages and publish to Acid Genomics repo
 #'
 #' @export
-#' @note Updated 2022-10-20.
+#' @note Updated 2023-02-09.
 #'
 #' @section Building from the command line:
 #'
@@ -29,7 +29,7 @@
 #' Vectorized, supporting the building of multiple packages in a single call.
 #'
 #' @param repo `character(1)`.
-#' Directory path to local R drat repository (e.g. `"r-acidgenomics-com"`).
+#' Directory path to local R repository (e.g. `"r-acidgenomics-com"`).
 #'
 #' @param check `logical(1)`.
 #' Perform package checks prior to building package.
@@ -41,17 +41,17 @@
 #' Build pkgdown website, if supported.
 #'
 #' @param deploy `logical(1)`.
-#' Deploy (push) the drat repo to AWS S3.
+#' Deploy (push) the local repo to AWS S3.
 #'
 #' @return `logical(1)`.
-#' Boolean, indicating if drat build was successful.
+#' Boolean, indicating if package build was successful.
 #'
 #' @seealso
 #' - https://seandavi.github.io/post/build-linux-r-binary-packages/
 #' - https://rstudio.github.io/r-manuals/r-exts/Creating-R-packages.html
 #'
 #' @examples
-#' ## > drat(
+#' ## > publish(
 #' ## >     package = file.path(
 #' ## >         "~",
 #' ## >         "monorepo",
@@ -63,7 +63,7 @@
 #' ## >         )
 #' ## >     )
 #' ## > )
-drat <-
+publish <-
     function(package = getwd(),
              repo = file.path("~", "monorepo", "r-acidgenomics-com"),
              check = TRUE,
