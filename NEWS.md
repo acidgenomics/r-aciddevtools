@@ -1,5 +1,9 @@
 # Release notes
 
+## AcidDevTools 0.6.5 (2023-02-09)
+
+- Renamed `drat` function to `publish`, which is a better verb.
+
 ## AcidDevTools 0.6.4 (2023-01-10)
 
 - `valid`: Bug fix for incorrect quoting of package names.

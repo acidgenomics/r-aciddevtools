@@ -38,7 +38,7 @@ test_that("BiocManager", {
     unlink(testlib, recursive = TRUE)
 })
 
-test_that("Acid Genomics drat repo", {
+test_that("Acid Genomics repo", {
     unlink(testlib, recursive = TRUE)
     pkgs <- "goalie"
     install(
