@@ -217,7 +217,7 @@
 
 
 
-#' @seealso AcidBase::requireNamespaces
+#' @seealso goalie::requireNamespaces
 #' @noRd
 .requireNamespaces <- function(packages) {
     ok <- all(vapply(
