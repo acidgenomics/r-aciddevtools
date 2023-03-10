@@ -135,7 +135,7 @@
 #' Install recommended R packages
 #'
 #' @export
-#' @note Updated 2022-10-20.
+#' @note Updated 2023-03-10.
 #'
 #' @examples
 #' ## > installRecommendedPackages()
@@ -202,6 +202,7 @@ installRecommendedPackages <-
                 "bookdown",
                 "broom",
                 "cli",
+                "conflicted",
                 "covr",
                 "crayon",
                 "curl",
@@ -229,6 +230,7 @@ installRecommendedPackages <-
                 "gprofiler2",
                 "hexbin",
                 "httpgd",
+                "import",
                 "janitor",
                 "jsonlite",
                 "knitr",
