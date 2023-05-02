@@ -23,5 +23,5 @@ devinstall <- function(pkg = getwd(), dependencies = FALSE) {
     }
     devtools::install(pkg, dependencies = dependencies)
     options("repos" = repos)
-    invisible(pkgs)
+    invisible(pkg)
 }
