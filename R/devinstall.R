@@ -19,9 +19,9 @@ devinstall <- function(pkg = getwd(), dependencies = FALSE) {
     repos <- getOption("repos")
     if (!isFALSE(dependencies)) {
         stopifnot(.requireNamespaces("BiocManager"))
-        options("repos" = BiocManager::repositories())
+        options("repos" = BiocManager::repositories()) # nolint
     }
     devtools::install(pkg, dependencies = dependencies)
-    options("repos" = repos)
+    options("repos" = repos) # nolint
     invisible(pkg)
 }
