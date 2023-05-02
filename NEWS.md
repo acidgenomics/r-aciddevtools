@@ -1,5 +1,10 @@
 # Release notes
 
+## AcidDevTools 0.6.6 (2023-05-02)
+
+- `devinstall`: Improved install support of Bioconductor dependencies when
+  `dependencies = TRUE` is set.
+
 ## AcidDevTools 0.6.5 (2023-02-09)
 
 - Renamed `drat` function to `publish`, which is a better verb.
