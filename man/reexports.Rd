@@ -33,7 +33,6 @@
 \alias{style_pkg}
 \alias{test_file}
 \alias{use_data}
-\alias{devinstall}
 \alias{doc}
 \alias{exit}
 \title{Reexported functions}

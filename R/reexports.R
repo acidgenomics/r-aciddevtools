@@ -356,14 +356,6 @@ use_data <- function(..., overwrite = TRUE) {
 #' @rdname reexports
 #' @usage NULL
 #' @export
-devinstall <- function(..., dependencies = FALSE) {
-    stopifnot(.requireNamespaces("devtools"))
-    devtools::install(..., dependencies = dependencies)
-}
-
-#' @rdname reexports
-#' @usage NULL
-#' @export
 doc <- function(...) {
     document(...)
 }
