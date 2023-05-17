@@ -5,7 +5,7 @@
 #' @inheritParams params
 #'
 #' @export
-#' @note Updated 2022-10-20.
+#' @note Updated 2023-05-17.
 #'
 #' @return Invisible `list`.
 #' Metadata containing names of packages that were removed, and the package
@@ -18,8 +18,8 @@ uninstall <-
              lib = .libPaths()[[1L]] # nolint
     ) {
         stopifnot(.requireNamespaces("utils"))
-        warn <- getOption(x = "warn")
-        options("warn" = 2L) # nolint
+        ## > warn <- getOption(x = "warn")
+        ## > options("warn" = 2L) # nolint
         installedPkgs <- .packages(all.available = TRUE, lib.loc = lib)
         removePkgs <- intersect(pkgs, installedPkgs)
         skipPkgs <- setdiff(pkgs, installedPkgs)
@@ -30,7 +30,7 @@ uninstall <-
             message(sprintf("Removing packages: %s", toString(removePkgs)))
             utils::remove.packages(pkgs = removePkgs, lib = lib)
         }
-        options("warn" = warn) # nolint
+        ## > options("warn" = warn) # nolint
         invisible(list(
             "pkgs" = removePkgs,
             "lib" = lib

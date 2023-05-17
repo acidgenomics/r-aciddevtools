@@ -1,7 +1,7 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2022-10-20.
+#' @note Updated 2023-05-17.
 #'
 #' @inheritParams params
 #'
@@ -59,8 +59,8 @@ install <-
             .isString(type),
             .isFlag(reinstall)
         )
-        warnDefault <- getOption("warn")
-        options("warn" = 2L) # nolint
+        ## > warnDefault <- getOption("warn")
+        ## > options("warn" = 2L) # nolint
         if (isFALSE(dir.exists(lib))) {
             message(sprintf("Creating R package library at '%s'.", lib))
             dir.create(lib)
@@ -76,7 +76,7 @@ install <-
             reinstall = reinstall,
             USE.NAMES = FALSE
         )
-        options("warn" = warnDefault) # nolint
+        ## > options("warn" = warnDefault) # nolint
         invisible(list(
             "pkgs" = pkgs,
             "dependencies" = dependencies,
@@ -242,7 +242,7 @@ install <-
 
 #' Install packages, if necessary
 #'
-#' @note Updated 2022-05-23.
+#' @note Updated 2023-05-17.
 #' @noRd
 #'
 #' @param pkgs `character`.
@@ -260,8 +260,8 @@ install <-
     function(pkgs,
              lib = .libPaths()[[1L]] # nolint
     ) {
-        warn <- getOption(x = "warn")
-        options("warn" = 2L) # nolint
+        ## > warn <- getOption(x = "warn")
+        ## > options("warn" = 2L) # nolint
         invisible(lapply(
             X = pkgs,
             FUN = function(pkg) {
@@ -274,6 +274,6 @@ install <-
                 }
             }
         ))
-        options("warn" = warn) # nolint
+        ## > options("warn" = warn) # nolint
         invisible(TRUE)
     }

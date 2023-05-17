@@ -1,11 +1,9 @@
 ## nocov start
 
-
-
 #' Update all installed packages
 #'
 #' @export
-#' @note Updated 2022-10-20.
+#' @note Updated 2023-05-17.
 #'
 #' @inheritParams params
 #'
@@ -18,8 +16,8 @@ updatePackages <-
     function(lib = .libPaths()[[1L]]) { # nolint
         .installIfNecessary("BiocManager")
         stopifnot(.requireNamespaces("BiocManager"))
-        warn <- getOption(x = "warn")
-        options("warn" = 2L) # nolint
+        ## > warn <- getOption(x = "warn")
+        ## > options("warn" = 2L) # nolint
         lib <- .realpath(lib)
         biocInstalled <- BiocManager::version()
         biocCurrent <- currentBiocVersion()
@@ -70,10 +68,8 @@ updatePackages <-
                 )
             })
         }
-        options("warn" = warn) # nolint
+        ## > options("warn" = warn) # nolint
         valid()
     }
-
-
 
 ## nocov end
