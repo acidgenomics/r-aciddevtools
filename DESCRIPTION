@@ -20,7 +20,6 @@ URL:
 BugReports: https://github.com/acidgenomics/r-aciddevtools/issues/
 License: AGPL-3
 Encoding: UTF-8
-Depends: R
 Suggests:
     AcidBase,
     BiocCheck,
@@ -43,7 +42,7 @@ Suggests:
     rstudioapi,
     styler,
     syntactic,
-    testthat (>= 3.0.0),
+    testthat,
     tools,
     urlchecker,
     usethis,
