@@ -1,5 +1,10 @@
 # Release notes
 
+## AcidDevTools 0.6.7 (2023-05-17)
+
+- Disabling error on warning during install and uninstall steps, to avoid
+  current issues with Bioconductor 3.17 repos.
+
 ## AcidDevTools 0.6.6 (2023-05-02)
 
 - `devinstall`: Improved install support of Bioconductor dependencies when
