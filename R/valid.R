@@ -17,7 +17,7 @@ valid <- function() {
     stopifnot(.requireNamespaces(c("BiocManager", "utils")))
     dict <- list()
     dict[["checkBuilt"]] <- TRUE
-    dict[["libLoc"]] <- .libPaths()[[1L]]
+    dict[["libLoc"]] <- .libPaths()[[1L]] # nolint
     dict[["type"]] <- getOption("pkgType")
     dict[["type"]] <- switch(
         EXPR = dict[["type"]],
