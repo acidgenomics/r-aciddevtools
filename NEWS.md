@@ -1,5 +1,11 @@
 # Release notes
 
+## AcidDevTools 0.6.8 (2023-05-22)
+
+- `valid`: Improved checking of binary/source packages when `pkgType` is set
+  to `"both"` mode. This applies primarily to macOS.
+- `findAndReplace` now uses parallel instead of BiocParallel internally.
+
 ## AcidDevTools 0.6.7 (2023-05-17)
 
 - Disabling error on warning during install and uninstall steps, to avoid
