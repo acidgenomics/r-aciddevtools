@@ -19,7 +19,11 @@ valid <- function() {
     dict[["checkBuilt"]] <- TRUE
     dict[["libLoc"]] <- .libPaths()[[1L]]
     dict[["type"]] <- getOption("pkgType")
-    dict[["type"]] <- switch(EXPR = type, "both" = "binary", dict[["type"]])
+    dict[["type"]] <- switch(
+        EXPR = dict[["type"]],
+        "both" = "binary",
+        dict[["type"]]
+    )
     pkgs <- list("new" = character(), "old" = character())
     suppressWarnings({
         bioc <- BiocManager::valid(
