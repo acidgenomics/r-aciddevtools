@@ -3,12 +3,14 @@ testlib <- file.path(tempdir(), "testlib")
 test_that("BiocManager", {
     unlink(testlib, recursive = TRUE)
     pkgs <- "BiocGenerics"
-    install(
-        pkgs = pkgs,
-        lib = testlib,
-        dependencies = FALSE,
-        reinstall = TRUE
-    )
+    suppressWarnings({
+        install(
+            pkgs = pkgs,
+            lib = testlib,
+            dependencies = FALSE,
+            reinstall = TRUE
+        )
+    })
     expect_true(all(
         pkgs %in% list.dirs(
             path = testlib,
@@ -41,12 +43,14 @@ test_that("BiocManager", {
 test_that("Acid Genomics repo", {
     unlink(testlib, recursive = TRUE)
     pkgs <- "goalie"
-    install(
-        pkgs = pkgs,
-        lib = testlib,
-        dependencies = FALSE,
-        reinstall = TRUE
-    )
+    suppressWarnings({
+        install(
+            pkgs = pkgs,
+            lib = testlib,
+            dependencies = FALSE,
+            reinstall = TRUE
+        )
+    })
     expect_true(all(
         pkgs %in% list.dirs(
             path = testlib,
