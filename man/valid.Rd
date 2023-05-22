@@ -4,10 +4,7 @@
 \alias{valid}
 \title{Validate installed package versions against correct versions}
 \usage{
-valid(...)
-}
-\arguments{
-\item{...}{Passthrough arguments to \code{BiocManager::valid()}.}
+valid()
 }
 \value{
 \code{logical(1)}.
@@ -18,6 +15,14 @@ Validate installed package versions against correct versions
 \note{
 Updated 2023-05-22.
 }
+\section{Library location}{
+
+
+Calling \code{.libPaths()[[1L]]} internally here. Alternatively, can use
+\code{.Library.site} instead. Ensuring we exclude \code{.Library} here, to avoid
+unwanted messages about outdated system packages.
+}
+
 \examples{
 ## > valid()
 }

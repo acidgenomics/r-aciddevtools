@@ -3,21 +3,29 @@
 #' @export
 #' @note Updated 2023-05-22.
 #'
-#' @param ... Passthrough arguments to `BiocManager::valid()`.
+#' @section Library location:
+#'
+#' Calling `.libPaths()[[1L]]` internally here. Alternatively, can use
+#' `.Library.site` instead. Ensuring we exclude `.Library` here, to avoid
+#' unwanted messages about outdated system packages.
 #'
 #' @return `logical(1)`.
 #'
 #' @examples
 #' ## > valid()
-valid <- function(...) {
+valid <- function() {
     stopifnot(.requireNamespaces(c("BiocManager", "utils")))
+    dict <- list()
+    dict[["checkBuilt"]] <- TRUE
+    dict[["libLoc"]] <- .libPaths()[[1L]]
+    dict[["type"]] <- getOption("pkgType")
+    dict[["type"]] <- switch(EXPR = type, "both" = "binary", dict[["type"]])
     pkgs <- list("new" = character(), "old" = character())
-    type <- getOption("pkgType")
-    type <- switch(EXPR = type, "both" = "binary", type)
     suppressWarnings({
         bioc <- BiocManager::valid(
-            type = type,
-            checkBuilt = TRUE,
+            lib.loc = dict[["libLoc"]],
+            type = dict[["type"]],
+            checkBuilt = dict[["checkBuilt"]],
             site_repository = "https://r.acidgenomics.com"
         )
     })
@@ -41,9 +49,13 @@ valid <- function(...) {
             values = rownames(bioc[["out_of_date"]])
         )
     }
-    ## Ensure we exclude `.Library` here, to avoid unwanted messages about
-    ## outdated system packages.
-    old <- utils::old.packages(lib.loc = .Library.site, checkBuilt = TRUE)
+    suppressWarnings({
+        old <- utils::old.packages(
+            lib.loc = dict[["libLoc"]],
+            checkBuilt = dict[["checkBuilt"]],
+            type = dict[["type"]]
+        )
+    })
     if (is.matrix(old)) {
         pkgs[["old"]] <- append(pkgs[["old"]], values = rownames(old))
     }
