@@ -1,7 +1,7 @@
 #' Validate installed package versions against correct versions
 #'
 #' @export
-#' @note Updated 2023-01-09.
+#' @note Updated 2023-05-22.
 #'
 #' @param ... Passthrough arguments to `BiocManager::valid()`.
 #'
@@ -12,8 +12,11 @@
 valid <- function(...) {
     stopifnot(.requireNamespaces(c("BiocManager", "utils")))
     pkgs <- list("new" = character(), "old" = character())
+    type <- getOption("pkgType")
+    type <- switch(EXPR = type, "both" = "binary", type)
     suppressWarnings({
         bioc <- BiocManager::valid(
+            type = type,
             checkBuilt = TRUE,
             site_repository = "https://r.acidgenomics.com"
         )

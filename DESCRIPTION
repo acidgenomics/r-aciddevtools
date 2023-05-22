@@ -1,8 +1,8 @@
 Package: AcidDevTools
 Title: Acid Genomics Developer Tools
 Description: Toolkit for R package development.
-Version: 0.6.7
-Date: 2023-05-17
+Version: 0.6.8.9000
+Date: 2023-05-22
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -24,7 +24,6 @@ Suggests:
     AcidBase,
     BiocCheck,
     BiocManager,
-    BiocParallel,
     DT,
     covr,
     desc,
@@ -33,13 +32,13 @@ Suggests:
     goalie,
     lintr,
     methods,
+    parallel,
     pipette,
     pkgdown,
     pkgload,
     rcmdcheck,
     remotes,
     rmarkdown,
-    rstudioapi,
     styler,
     syntactic,
     testthat,

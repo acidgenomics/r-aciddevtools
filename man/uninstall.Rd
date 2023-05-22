@@ -23,7 +23,7 @@ library path.
 Wrapper for \code{utils::remove.packages()}.
 }
 \note{
-Updated 2022-10-20.
+Updated 2023-05-17.
 }
 \examples{
 ## > uninstall("rlang")
