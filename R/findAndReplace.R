@@ -1,8 +1,7 @@
 #' Find and replace in files across a directory
 #'
 #' @export
-#' @note Updated 2022-05-31.
-#' @note Requires `BiocParallel` package to be installed.
+#' @note Updated 2023-05-22.
 #'
 #' @inheritParams params
 #'
@@ -47,7 +46,7 @@ findAndReplace <-
              filePattern = "\\.(r|R)$",
              dir = getwd(),
              recursive = FALSE) {
-        stopifnot(.requireNamespaces("BiocParallel"))
+        stopifnot(.requireNamespaces("parallel"))
         dir <- .realpath(dir)
         files <- sort(list.files(
             path = dir,
@@ -56,7 +55,7 @@ findAndReplace <-
             recursive = recursive
         ))
         stopifnot(.hasLength(files))
-        out <- BiocParallel::bplapply(
+        out <- parallel::mclapply(
             X = files,
             FUN = function(file) {
                 x <- readLines(con = file)

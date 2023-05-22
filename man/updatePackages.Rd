@@ -19,7 +19,7 @@ Validity check return from \code{valid}.
 Update all installed packages
 }
 \note{
-Updated 2022-10-20.
+Updated 2023-05-17.
 }
 \examples{
 ## > updatePackages()

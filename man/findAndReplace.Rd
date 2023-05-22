@@ -36,9 +36,7 @@ Invisibly return file paths.
 Find and replace in files across a directory
 }
 \note{
-Updated 2022-05-31.
-
-Requires \code{BiocParallel} package to be installed.
+Updated 2023-05-22.
 }
 \examples{
 unlink("testdata", recursive = TRUE)
