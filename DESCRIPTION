@@ -39,6 +39,7 @@ Suggests:
     rcmdcheck,
     remotes,
     rmarkdown,
+    rstudioapi,
     styler,
     syntactic,
     testthat,
