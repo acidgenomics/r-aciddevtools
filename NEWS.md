@@ -1,5 +1,10 @@
 # Release notes
 
+## AcidDevTools 0.6.9 (2023-05-31)
+
+- `check`: Now checking that all required and suggested packages are installed
+  before proceeding. Otherwise we can run into NAMESPACE linter errors.
+
 ## AcidDevTools 0.6.8 (2023-05-22)
 
 - `valid`: Improved checking of binary/source packages when `pkgType` is set
