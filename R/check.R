@@ -44,9 +44,9 @@ check <- function(path = getwd(),
     )
     path <- .realpath(path)
     descFile <- file.path(path, "DESCRIPTION")
-    deps <- desc::desc_get_deps(file = descFile)
-    if (nrow(deps) > 0L) {
-        deps <- deps[["package"]]
+    deps <- desc::desc_get_deps(file = descFile)[["package"]]
+    deps <- setdiff(deps, "R")
+    if (length(deps) > 0L) {
         ok <- .isInstalled(deps)
         if (!all(ok)) {
             missing <- deps[!ok]
