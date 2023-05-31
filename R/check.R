@@ -5,7 +5,7 @@
 #' Check package
 #'
 #' @export
-#' @note Updated 2022-10-25.
+#' @note Updated 2023-05-31.
 #'
 #' @inheritParams params
 #'
@@ -44,6 +44,15 @@ check <- function(path = getwd(),
     )
     path <- .realpath(path)
     descFile <- file.path(path, "DESCRIPTION")
+    deps <- desc::desc_get_deps(file = descFile)
+    if (nrow(deps) > 0L) {
+        deps <- deps[["package"]]
+        ok <- .isInstalled(deps)
+        if (!all(ok)) {
+            missing <- deps[!ok]
+            stop(sprintf("Not installed: %s.", toString(missing)))
+        }
+    }
     keys <- desc::desc_get(keys = c("Package", "biocViews"), file = descFile)
     pkgName <- keys[["Package"]]
     message(sprintf("Checking '%s' package at '%s'.", pkgName, path))
