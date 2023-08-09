@@ -46,7 +46,7 @@ Check that unit tests provide sufficient coverage.}
 Check package
 }
 \note{
-Updated 2022-10-25.
+Updated 2023-05-31.
 }
 \examples{
 ## > check()
