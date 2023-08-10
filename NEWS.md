@@ -1,5 +1,17 @@
 # Release notes
 
+## AcidDevTools 0.6.10 (2023-08-10)
+
+New functions:
+
+- `size`: Returns object size in a human readable format. Calls `object.size`
+  and `format` internally.
+
+Minor changes:
+
+- `test`: Now using `test_local` instead of `test_dir` internally, which plays
+  nicer with testthat tests run in parallel.
+
 ## AcidDevTools 0.6.9 (2023-05-31)
 
 - `check`: Now checking that all required and suggested packages are installed
