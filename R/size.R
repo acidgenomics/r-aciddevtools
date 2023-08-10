@@ -12,5 +12,8 @@
 #' x <- c("aaa", "bbb")
 #' print(size(x))
 size <- function(x) {
-    format(object.size(x), units = "auto")
+    stopifnot(.requireNamespaces("utils"))
+    x <- utils::object.size(x)
+    x <- format(x, units = "auto")
+    x
 }
