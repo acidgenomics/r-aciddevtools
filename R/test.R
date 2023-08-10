@@ -1,6 +1,6 @@
 ## nocov start
 
-#' Execute test_that tests in a package
+#' Execute testthat tests in a package
 #'
 #' @export
 #' @note Updated 2023-08-10.
