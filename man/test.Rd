@@ -2,7 +2,7 @@
 % Please edit documentation in R/test.R
 \name{test}
 \alias{test}
-\title{Execute test_that tests in a package}
+\title{Execute testthat tests in a package}
 \usage{
 test(path = getwd())
 }
@@ -14,11 +14,21 @@ File path (e.g. to package).}
 Invisible \code{TRUE} on success, otherwise error.
 }
 \description{
-Execute test_that tests in a package
+Execute testthat tests in a package
+}
+\details{
+Note that usage of \code{test_local} is now recommended instead of \code{test_dir},
+and appears to be required for testthat checks to run successfully in
+parallel.
 }
 \note{
-Updated 2022-10-20.
+Updated 2023-08-10.
 }
 \examples{
 ## > test()
+}
+\seealso{
+\itemize{
+\item https://github.com/r-lib/testthat/issues/1216
+}
 }
