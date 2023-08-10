@@ -6,6 +6,9 @@
 \usage{
 size(x)
 }
+\arguments{
+\item{x}{Object.}
+}
 \value{
 \code{character(1)}.
 Object size.
