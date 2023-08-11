@@ -1,5 +1,7 @@
 # AcidDevTools
 
+![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)
+
 Trusty sidekick for [R][] package development.
 
 ## Installation
