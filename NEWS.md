@@ -1,5 +1,11 @@
 # Release notes
 
+## AcidDevTools 0.6.11 (2023-08-15)
+
+Minor changes:
+
+- `check`: Need to pass package location to `style_pkg`.
+
 ## AcidDevTools 0.6.10 (2023-08-10)
 
 New functions:
