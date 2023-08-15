@@ -1,9 +1,5 @@
 ## nocov start
 
-## FIXME This isn't returning TRUE for successful check in some cases...
-## need to debug this breaking change with testthat update.
-
-
 #' Check package
 #'
 #' @export
@@ -91,8 +87,6 @@ check <- function(path = getwd(),
     }
     message("Running package checks with 'rcmdcheck()'.")
     rcmdcheck(path = path, cran = cran)
-    ## FIXME This isn't returning TRUE on a successful test argh...need to
-    ## debug the breaking change with testthat.
     test(path = path)
     if (isTRUE(coverage)) {
         .checkCoverage(path = path)
@@ -110,7 +104,5 @@ check <- function(path = getwd(),
     }
     invisible(TRUE)
 }
-
-
 
 ## nocov end

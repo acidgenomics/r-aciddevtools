@@ -1,5 +1,11 @@
 # Release notes
 
+## AcidDevTools 0.6.12 (2023-08-15)
+
+Minor changes:
+
+- `check`: Rework assert check for testthat results return.
+
 ## AcidDevTools 0.6.11 (2023-08-15)
 
 Minor changes:
