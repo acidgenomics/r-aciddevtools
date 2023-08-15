@@ -39,6 +39,12 @@ test <- function(path = getwd()) {
         stop_on_warning = TRUE
     )
     stopifnot(.is(out, "testthat_results"))
+    outDf <- as.data.frame(out)
+    stopifnot(
+        .isSubset(c("error", "warning"), colnames(outDf)),
+        isFALSE(any(outDf[["error"]])),
+        identical(sum(outDf[["warning"]]), 0L)
+    )
     options("testthat.progress.max_fails" = maxFails) # nolint
     invisible(out)
 }
