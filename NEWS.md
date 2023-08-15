@@ -1,5 +1,13 @@
 # Release notes
 
+## AcidDevTools 0.6.14 (2023-08-15)
+
+Minor changes:
+
+- `check`: Ensure that testthat `test` does not return successful if any errors
+  or warnings are detected. This requires coercion of `testthat_results` to
+  a `data.frame`.
+
 ## AcidDevTools 0.6.13 (2023-08-15)
 
 Minor changes:
