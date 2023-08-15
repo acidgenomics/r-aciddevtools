@@ -42,12 +42,7 @@ test <- function(path = getwd()) {
         stop_on_failure = TRUE,
         stop_on_warning = TRUE
     )
-    ## FIXME This is problematic with testthat update.
-    stopifnot(
-        "Unit test failure detected." = {
-            isTRUE(length(out[[length(out)]][["results"]]) > 0L)
-        }
-    )
+    stopifnot(is(out, "testthat_results"))
     options("testthat.progress.max_fails" = maxFails) # nolint
     invisible(out)
 }
