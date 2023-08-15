@@ -1,9 +1,5 @@
 ## nocov start
 
-## FIXME This isn't returning TRUE for testthat update argh.
-
-
-
 #' Execute testthat tests in a package
 #'
 #' @export
