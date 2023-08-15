@@ -75,6 +75,7 @@ check <- function(path = getwd(),
             ))
         }
     }
+    ## FIXME Only run this if pandoc is also installed.
     if (isTRUE(urls) && .isInstalled("urlchecker")) {
         stopifnot(.requireNamespaces("urlchecker"))
         message("Checking URLs with 'urlchecker::url_check()'.")
