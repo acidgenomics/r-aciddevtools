@@ -75,8 +75,8 @@ check <- function(path = getwd(),
     }
     if (
         isTRUE(urls) &&
-        .isInstalled("urlchecker") &&
-        .isASystemCommand("pandoc")
+            .isInstalled("urlchecker") &&
+            .isASystemCommand("pandoc")
     ) {
         stopifnot(.requireNamespaces("urlchecker"))
         message("Checking URLs with 'urlchecker::url_check()'.")
