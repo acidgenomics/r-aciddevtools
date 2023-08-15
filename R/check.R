@@ -1,5 +1,7 @@
 ## nocov start
 
+## FIXME This isn't returning TRUE for successful check in some cases...
+## need to debug this breaking change with testthat update.
 
 
 #' Check package
@@ -75,8 +77,11 @@ check <- function(path = getwd(),
             ))
         }
     }
-    ## FIXME Only run this if pandoc is also installed.
-    if (isTRUE(urls) && .isInstalled("urlchecker")) {
+    if (
+        isTRUE(urls) &&
+        .isInstalled("urlchecker") &&
+        .isASystemCommand("pandoc")
+    ) {
         stopifnot(.requireNamespaces("urlchecker"))
         message("Checking URLs with 'urlchecker::url_check()'.")
         out <- urlchecker::url_check(path = path)
@@ -86,6 +91,8 @@ check <- function(path = getwd(),
     }
     message("Running package checks with 'rcmdcheck()'.")
     rcmdcheck(path = path, cran = cran)
+    ## FIXME This isn't returning TRUE on a successful test argh...need to
+    ## debug the breaking change with testthat.
     test(path = path)
     if (isTRUE(coverage)) {
         .checkCoverage(path = path)
