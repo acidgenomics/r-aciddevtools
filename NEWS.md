@@ -1,5 +1,11 @@
 # Release notes
 
+## AcidDevTools 0.6.13 (2023-08-15)
+
+Minor changes:
+
+- NAMESPACE fix for accidental `is` call.
+
 ## AcidDevTools 0.6.12 (2023-08-15)
 
 Minor changes:
