@@ -1,3 +1,7 @@
+## FIXME This function is failing inside of Latch workflow.
+
+
+
 #' Get current release version of package from GitHub
 #'
 #' @export
