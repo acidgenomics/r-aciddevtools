@@ -1,6 +1,6 @@
 # AcidDevTools
 
-![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)
+![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)
 
 Trusty sidekick for [R][] package development.
 
