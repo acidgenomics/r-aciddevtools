@@ -1,9 +1,13 @@
 ## nocov start
 
+## FIXME This isn't returning TRUE for testthat update argh.
+
+
+
 #' Execute testthat tests in a package
 #'
 #' @export
-#' @note Updated 2023-08-10.
+#' @note Updated 2023-08-15.
 #'
 #' @details
 #' Note that usage of `test_local` is now recommended instead of `test_dir`,
@@ -38,6 +42,7 @@ test <- function(path = getwd()) {
         stop_on_failure = TRUE,
         stop_on_warning = TRUE
     )
+    ## FIXME This is problematic with testthat update.
     stopifnot(
         "Unit test failure detected." = {
             isTRUE(length(out[[length(out)]][["results"]]) > 0L)
