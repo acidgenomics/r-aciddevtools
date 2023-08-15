@@ -5,7 +5,7 @@
 #' Check package
 #'
 #' @export
-#' @note Updated 2023-05-31.
+#' @note Updated 2023-08-15.
 #'
 #' @inheritParams params
 #'
@@ -59,7 +59,7 @@ check <- function(path = getwd(),
     if (isTRUE(style) && .isInstalled("styler")) {
         stopifnot(.requireNamespaces("styler"))
         message("Checking style with 'style_pkg()'.")
-        df <- style_pkg()
+        df <- style_pkg(pkg = path)
         stopifnot(isFALSE(any(df[["changed"]])))
     }
     if (isTRUE(lints) && .isInstalled("lintr")) {
