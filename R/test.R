@@ -38,7 +38,7 @@ test <- function(path = getwd()) {
         stop_on_failure = TRUE,
         stop_on_warning = TRUE
     )
-    stopifnot(is(out, "testthat_results"))
+    stopifnot(.is(out, "testthat_results"))
     options("testthat.progress.max_fails" = maxFails) # nolint
     invisible(out)
 }
