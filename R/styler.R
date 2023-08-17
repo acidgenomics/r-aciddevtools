@@ -1,16 +1,18 @@
 #' Acid Genomics styler formatting theme
 #'
 #' @name styler
-#' @note Updated 2022-03-14.
+#' @note Updated 2023-08-17.
 #'
 #' @return `list`.
 #' List containing styler rule definitions.
 #'
 #' @seealso
 #' - `styler::tidyverse_style`.
+#' - https://styler.r-lib.org/reference/tidyverse_style.html
 #' - https://styler.r-lib.org/articles/customizing_styler.html
 #' - https://styler.r-lib.org/articles/remove_rules.html
 #' - https://styler.r-lib.org/reference/styler_addins.html
+#' - https://styler.r-lib.org/reference/style_pkg.html
 #' - https://github.com/r-lib/styler/issues/319
 #' - https://github.com/r-lib/lintr/issues/43
 NULL
@@ -23,6 +25,8 @@ acid_style <- # nolint
     function() {
         stopifnot(.requireNamespaces("styler"))
         styler::tidyverse_style(
+            ## Supported scope (from less invasive to more invasive):
+            ## "spaces", "identation", "line_breaks", "tokens".
             scope = "tokens",
             strict = TRUE,
             indent_by = 4L,
