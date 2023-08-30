@@ -2,8 +2,6 @@
 ## nolint start
 
 
-## FIXME Consider including loadData and saveData here.
-
 
 #' Reexported functions
 #' @name reexports
