@@ -22,7 +22,7 @@ and appears to be required for testthat checks to run successfully in
 parallel.
 }
 \note{
-Updated 2023-08-10.
+Updated 2023-08-15.
 }
 \examples{
 ## > test()

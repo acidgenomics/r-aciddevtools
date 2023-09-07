@@ -15,14 +15,16 @@ List containing styler rule definitions.
 Acid Genomics styler formatting theme
 }
 \note{
-Updated 2022-03-14.
+Updated 2023-08-17.
 }
 \seealso{
 \itemize{
 \item \code{styler::tidyverse_style}.
+\item https://styler.r-lib.org/reference/tidyverse_style.html
 \item https://styler.r-lib.org/articles/customizing_styler.html
 \item https://styler.r-lib.org/articles/remove_rules.html
 \item https://styler.r-lib.org/reference/styler_addins.html
+\item https://styler.r-lib.org/reference/style_pkg.html
 \item https://github.com/r-lib/styler/issues/319
 \item https://github.com/r-lib/lintr/issues/43
 }

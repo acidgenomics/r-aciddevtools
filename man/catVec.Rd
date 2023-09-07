@@ -2,7 +2,7 @@
 % Please edit documentation in R/catVec.R
 \name{catVec}
 \alias{catVec}
-\title{Print (cat) a vector}
+\title{Print (cat) a vector to console}
 \usage{
 catVec(x)
 }
@@ -13,8 +13,17 @@ catVec(x)
 Console output.
 }
 \description{
-Print (cat) a vector
+Print (cat) a vector to console
 }
 \note{
-Updated 2019-08-13.
+Updated 2023-09-07.
+}
+\examples{
+## Unnamed vector.
+x <- c("aaa", "bbb", "ccc")
+catVec(x)
+
+## Named vector.
+x <- c("aaa" = "AAA", "bbb" = "BBB", "ccc" = "CCC")
+catVec(x)
 }
