@@ -1,5 +1,13 @@
 # Release notes
 
+## AcidDevTools 0.6.15 (2023-09-07)
+
+Minor changes:
+
+- `catVec`: Now handles return of named vectors. This addition was very useful
+  for improving code coverage against Sanger CellModelPassports in the recent
+  Cellosaurus package update.
+
 ## AcidDevTools 0.6.14 (2023-08-15)
 
 Minor changes:
