@@ -1,5 +1,12 @@
 # Release notes
 
+## AcidDevTools 0.6.16 (2023-09-14)
+
+Minor changes:
+
+- `packageDependencies`: Can now disable recursion using `recursive = FALSE`.
+  Still recommended by default for true evaluation of package heaviness.
+
 ## AcidDevTools 0.6.15 (2023-09-07)
 
 Minor changes:
