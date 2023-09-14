@@ -6,15 +6,19 @@
 #' @param pkg `character(1)`.
 #' Package name.
 #'
+#' @param recursive `logical(1)`.
+#' Check dependencies recursively.
+#'
 #' @return `character`.
 #' Names of dependency packages.
 #'
 #' @examples
 #' ## > packageDependencies("stats")
-packageDependencies <- function(pkg) {
+packageDependencies <- function(pkg, recursive = TRUE) {
     stopifnot(
         .requireNamespaces(c("BiocManager", "tools", "withr")),
-        .isString(pkg)
+        .isString(pkg),
+        .isFlag(recursive)
     )
     withr::with_options(
         new = list(
@@ -28,7 +32,7 @@ packageDependencies <- function(pkg) {
                 packages = pkg,
                 db = NULL,
                 which = c("Depends", "Imports", "LinkingTo"),
-                recursive = TRUE,
+                recursive = recursive,
                 reverse = FALSE
             )
             out <- out[[1L]]
