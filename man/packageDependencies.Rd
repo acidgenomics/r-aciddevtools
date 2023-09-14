@@ -4,11 +4,14 @@
 \alias{packageDependencies}
 \title{Package dependencies}
 \usage{
-packageDependencies(pkg)
+packageDependencies(pkg, recursive = TRUE)
 }
 \arguments{
 \item{pkg}{\code{character(1)}.
 Package name.}
+
+\item{recursive}{\code{logical(1)}.
+Check dependencies recursively.}
 }
 \value{
 \code{character}.
