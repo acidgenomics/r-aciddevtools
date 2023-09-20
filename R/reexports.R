@@ -41,13 +41,13 @@ BiocCheck <- function(package = getwd()) {
         file.exists(logFile)
     )
     lines <- readLines(logFile)
+    unlink(checkDir, recursive = TRUE)
     lgl <- grepl(pattern = "* ERROR: ", x = lines)
     if (any(lgl)) {
         errors <- lines[lgl]
         message(paste(errors, collapse = "\n"))
         stop("Errors detected.")
     }
-    unlink(checkDir, recursive = TRUE)
     invisible(lines)
     TRUE
 }
