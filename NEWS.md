@@ -1,5 +1,11 @@
 # Release notes
 
+## AcidDevTools 0.6.17 (2023-09-2)
+
+Minor changes:
+
+- `check`: Check as CRAN by default.
+
 ## AcidDevTools 0.6.16 (2023-09-14)
 
 Minor changes:
