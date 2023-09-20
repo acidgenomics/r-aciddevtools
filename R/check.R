@@ -94,8 +94,8 @@ check <- function(path = getwd(),
     if (isTRUE(biocCheck)) {
         ok <- all(
             !is.na(keys[["biocViews"]]),
-            identical(pkgName, basename(path)),
             .isInstalled("BiocCheck")
+            ## > identical(pkgName, basename(path))
         )
         if (isTRUE(ok)) {
             message("Running Bioconductor checks with 'BiocCheck()'.")
