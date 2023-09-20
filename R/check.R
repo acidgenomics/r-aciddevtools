@@ -33,7 +33,7 @@ check <- function(path = getwd(),
                   style = TRUE,
                   lints = TRUE,
                   urls = TRUE,
-                  cran = FALSE,
+                  cran = TRUE,
                   biocCheck = TRUE,
                   coverage = FALSE) {
     stopifnot(
