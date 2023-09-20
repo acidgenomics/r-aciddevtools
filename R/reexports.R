@@ -34,8 +34,22 @@ BiocCheck <- function(package = getwd()) {
         `no-check-bioc-help` = TRUE,
         `no-check-version-num` = TRUE
     )
-    ## FIXME This needs to stop on error.
-    ## FIXME This needs to clean up BiocCheck folder on success.
+    checkDir <- paste0(normalizePath(package), ".BiocCheck")
+    logFile <- file.path(checkDir, "00BiocCheck.log")
+    stopifnot(
+        dir.exists(checkDir),
+        file.exists(logFile)
+    )
+    lines <- readLines(logFile)
+    lgl <- grepl(pattern = "* ERROR: ", x = lines)
+    if (any(lgl)) {
+        errors <- lines[lgl]
+        message(paste(errors, collapse = "\n"))
+        stop("Errors detected.")
+    }
+    unlink(checkDir, recursive = TRUE)
+    invisible(lines)
+    TRUE
 }
 
 
