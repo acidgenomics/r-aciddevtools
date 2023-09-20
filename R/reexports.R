@@ -34,6 +34,8 @@ BiocCheck <- function(package = getwd()) {
         `no-check-bioc-help` = TRUE,
         `no-check-version-num` = TRUE
     )
+    ## FIXME This needs to stop on error.
+    ## FIXME This needs to clean up BiocCheck folder on success.
 }
 
 
