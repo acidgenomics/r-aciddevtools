@@ -54,17 +54,6 @@ check <- function(path = getwd(),
     keys <- desc::desc_get(keys = c("Package", "biocViews"), file = descFile)
     pkgName <- keys[["Package"]]
     message(sprintf("Checking '%s' package at '%s'.", pkgName, path))
-    if (isTRUE(biocCheck)) {
-        ok <- all(
-            !is.na(keys[["biocViews"]]),
-            identical(pkgName, basename(path)),
-            .isInstalled("BiocCheck")
-        )
-        if (isTRUE(ok)) {
-            message("Running Bioconductor checks with 'BiocCheck()'.")
-            BiocCheck(package = path)
-        }
-    }
     if (isTRUE(style) && .isInstalled("styler")) {
         stopifnot(.requireNamespaces("styler"))
         message("Checking style with 'style_pkg()'.")
@@ -95,6 +84,17 @@ check <- function(path = getwd(),
         print(out)
         ## Allow URL failures to pass through without check failure.
         ## > stopifnot(identical(nrow(out), 0L))
+    }
+    if (isTRUE(biocCheck)) {
+        ok <- all(
+            !is.na(keys[["biocViews"]]),
+            identical(pkgName, basename(path)),
+            .isInstalled("BiocCheck")
+        )
+        if (isTRUE(ok)) {
+            message("Running Bioconductor checks with 'BiocCheck()'.")
+            BiocCheck(package = path)
+        }
     }
     message("Running package checks with 'rcmdcheck()'.")
     rcmdcheck(path = path, cran = cran)
