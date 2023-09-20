@@ -49,7 +49,6 @@ BiocCheck <- function(package = getwd()) {
         stop("Errors detected.")
     }
     invisible(lines)
-    TRUE
 }
 
 
