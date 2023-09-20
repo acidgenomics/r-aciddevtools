@@ -15,6 +15,14 @@ NULL
 ## Run `BiocCheck::usage()` for options.
 ## See also r-cmd-check bioc-check script.
 ## https://github.com/acidgenomics/r-cmd-check/blob/master/checks/bioc-check
+##
+## Consider including:
+## > `no-check-bioc-help` = TRUE,
+## > `no-check-bioc-views` = TRUE,
+## > `no-check-coding-practices` = TRUE,
+## > `no-check-remotes` = TRUE,
+## > `no-check-version-num` = TRUE,
+## > `no-check-vignettes` = TRUE
 
 #' @rdname reexports
 #' @usage NULL
@@ -24,13 +32,7 @@ BiocCheck <- function(package = getwd()) {
     BiocCheck::BiocCheck(
         package = package,
         `new-package` = TRUE,
-        `no-check-R-ver` = TRUE,
-        `no-check-bioc-help` = TRUE,
-        `no-check-bioc-views` = TRUE,
-        `no-check-coding-practices` = TRUE,
-        `no-check-remotes` = TRUE,
-        `no-check-version-num` = TRUE,
-        `no-check-vignettes` = TRUE
+        `no-check-R-ver` = TRUE
     )
 }
 
