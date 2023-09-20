@@ -213,7 +213,7 @@ build_site <- function(..., devel = FALSE, preview = FALSE) {
 #' @usage NULL
 #' @export
 rcmdcheck <- function(path = getwd(),
-                      cran = FALSE) {
+                      cran = TRUE) {
     stopifnot(.requireNamespaces("rcmdcheck"))
     Sys.setenv(
         ## See also `force_suggests` argument in `devtools::check()`.
@@ -232,7 +232,7 @@ rcmdcheck <- function(path = getwd(),
         # Time out after 1 hour.
         timeout = 3600L,
         # Alternatively, can be stricter by setting this to "note".
-        error_on = Sys.getenv(x = "RCMDCHECK_ERROR_ON", unset = "warning")
+        error_on = Sys.getenv(x = "RCMDCHECK_ERROR_ON", unset = "error")
     )
     stopifnot(identical(out[["status"]], 0L))
     invisible(out)
