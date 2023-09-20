@@ -20,7 +20,6 @@ NULL
 ## > `no-check-bioc-views` = TRUE,
 ## > `no-check-coding-practices` = TRUE,
 ## > `no-check-remotes` = TRUE,
-## > `no-check-vignettes` = TRUE
 
 #' @rdname reexports
 #' @usage NULL
@@ -32,7 +31,8 @@ BiocCheck <- function(package = getwd()) {
         `new-package` = TRUE,
         `no-check-R-ver` = TRUE,
         `no-check-bioc-help` = TRUE,
-        `no-check-version-num` = TRUE
+        `no-check-version-num` = TRUE,
+        `no-check-vignettes` = TRUE
     )
     checkDir <- paste0(normalizePath(package), ".BiocCheck")
     logFile <- file.path(checkDir, "00BiocCheck.log")
