@@ -33,7 +33,8 @@ check <- function(path = getwd(),
                   style = TRUE,
                   lints = TRUE,
                   urls = TRUE,
-                  cran = TRUE,
+                  ## CRAN checks seems to have issues with requireNamespace.
+                  cran = FALSE,
                   biocCheck = TRUE,
                   coverage = FALSE) {
     stopifnot(
