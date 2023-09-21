@@ -1,10 +1,10 @@
 # Release notes
 
-## AcidDevTools 0.6.17 (2023-09-2)
+## AcidDevTools 0.6.17 (2023-09-21)
 
 Minor changes:
 
-- `check`: Check as CRAN by default.
+- `check`: Check as CRAN by default. Also added tweaks to `BiocCheck` settings.
 
 ## AcidDevTools 0.6.16 (2023-09-14)
 
