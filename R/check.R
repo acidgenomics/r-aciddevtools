@@ -87,7 +87,7 @@ check <- function(path = getwd(),
     }
     message("Running package checks with 'rcmdcheck()'.")
     rcmdcheck(path = path, cran = cran)
-    # test(path = path)
+    ## > test(path = path)
     if (isTRUE(biocCheck)) {
         ok <- all(
             !is.na(keys[["biocViews"]]),
