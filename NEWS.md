@@ -1,5 +1,12 @@
 # Release notes
 
+## AcidDevTools: 0.6.18 (2023-09-21)
+
+Minor changes:
+
+- `check`: Don't check as CRAN by default. Can have issues with
+  `requireNamespace` not finding packages as expected.
+
 ## AcidDevTools 0.6.17 (2023-09-21)
 
 Minor changes:
