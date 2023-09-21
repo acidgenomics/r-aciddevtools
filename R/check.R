@@ -85,6 +85,9 @@ check <- function(path = getwd(),
         ## Allow URL failures to pass through without check failure.
         ## > stopifnot(identical(nrow(out), 0L))
     }
+    message("Running package checks with 'rcmdcheck()'.")
+    rcmdcheck(path = path, cran = cran)
+    # test(path = path)
     if (isTRUE(biocCheck)) {
         ok <- all(
             !is.na(keys[["biocViews"]]),
@@ -96,9 +99,6 @@ check <- function(path = getwd(),
             BiocCheck(package = path)
         }
     }
-    message("Running package checks with 'rcmdcheck()'.")
-    rcmdcheck(path = path, cran = cran)
-    test(path = path)
     if (isTRUE(coverage)) {
         .checkCoverage(path = path)
     }
