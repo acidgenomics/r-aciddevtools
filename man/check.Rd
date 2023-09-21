@@ -9,7 +9,7 @@ check(
   style = TRUE,
   lints = TRUE,
   urls = TRUE,
-  cran = TRUE,
+  cran = FALSE,
   biocCheck = TRUE,
   coverage = FALSE
 )
