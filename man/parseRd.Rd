@@ -2,12 +2,12 @@
 % Please edit documentation in R/parseRd.R
 \name{parseRd}
 \alias{parseRd}
-\alias{RdTags}
+\alias{rdTags}
 \title{Parse R documentation}
 \usage{
 parseRd(object, tag)
 
-RdTags(object)
+rdTags(object)
 }
 \arguments{
 \item{object}{\code{Rd}.
@@ -34,19 +34,17 @@ returns \code{character} instead of \code{matrix}.
 }
 \section{Functions}{
 \itemize{
-\item \code{RdTags()}: Modified version of the unexported \code{tools:::RdTags()} function.
+\item \code{rdTags()}: Modified version of the unexported \code{tools:::RdTags()} function.
 
 }}
 \note{
-Updated 2022-10-20.
+Updated 2023-09-25.
 }
 \examples{
 db <- tools::Rd_db("base")
 head(names(db))
 rd <- db[["nrow.Rd"]]
-class(rd)
-summary(rd)
-RdTags(rd)
+print(rdTags(rd))
 examples <- parseRd(rd, tag = "examples")
 print(examples)
 }
