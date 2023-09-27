@@ -24,8 +24,8 @@ nonCamelExports <- function(path = getwd()) {
         return(character())
     }
     x <- sub(
-        pattern = "^export\\((.+)\\)$",
-        replacement = "\\1",
+        pattern = "^export(Classes|Methods)?\\((.+)\\)$",
+        replacement = "\\2",
         x = x
     )
     ## Sanitize leading "." which normally shouldn't be exported anyway.
