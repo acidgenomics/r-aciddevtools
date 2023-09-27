@@ -30,7 +30,7 @@ nonCamelExports <- function(path = getwd()) {
         x = x
     )
     ## Sanitize assignment methods.
-    x <- sub(pattern = "^"\"(.+)<-\"$", replacement = "\\1", x = x)
+    x <- sub(pattern = "^\"(.+)<-\"$", replacement = "\\1", x = x)
     x <- unique(x)
     y <- syntactic::camelCase(x)
     ok <- x == y
