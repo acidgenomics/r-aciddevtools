@@ -1,7 +1,7 @@
 #' Return exports that are not formatted in strict lower camel case
 #'
 #' @export
-#' @note Updated 2023-09-27
+#' @note Updated 2023-09-27.
 #'
 #' @inheritParams params
 #'
@@ -30,11 +30,7 @@ nonCamelExports <- function(path = getwd()) {
         x = x
     )
     ## Sanitize assignment methods.
-    x <- sub(
-        pattern = "<-$",
-        replacement = "",
-        x = x
-    )
+    x <- sub(pattern = "^"\"(.+)<-\"$", replacement = "\\1", x = x)
     x <- unique(x)
     y <- syntactic::camelCase(x)
     ok <- x == y
