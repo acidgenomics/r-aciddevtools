@@ -19,7 +19,7 @@ nonCamelExports <- function(path = getwd()) {
     file <- file.path(path, "NAMESPACE")
     stopifnot(.isAFile(file))
     x <- readLines(file)
-    x <- grep(pattern = "^export(Classes)?\\(", x = x, value = TRUE)
+    x <- grep(pattern = "^export(Classes|Methods)?\\(", x = x, value = TRUE)
     if (!.hasLength(x)) {
         return(character())
     }
