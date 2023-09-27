@@ -3,7 +3,7 @@
 #' Execute testthat tests in a package
 #'
 #' @export
-#' @note Updated 2023-08-15.
+#' @note Updated 2023-09-27.
 #'
 #' @details
 #' Note that usage of `test_local` is now recommended instead of `test_dir`,
@@ -12,17 +12,26 @@
 #'
 #' @inheritParams params
 #'
+#' @param longtests `logical(1)`.
+#' Also run optional long tests in `longtests` directory.
+#'
 #' @return Invisible `TRUE` on success, otherwise error.
 #'
 #' @seealso
+#' - https://contributions.bioconductor.org/long-tests.html
 #' - https://github.com/r-lib/testthat/issues/1216
 #'
 #' @examples
 #' ## > test()
-test <- function(path = getwd()) {
+test <- function(path = getwd(), longtests = FALSE) {
+    stopifnot(.isADir(path), .isFlag(longtests))
     path <- .realpath(path)
-    testsDir <- file.path(path, "tests", "testthat")
-    if (!isTRUE(dir.exists(testsDir))) {
+    testsDir <- ifelse(
+        test = longtests,
+        yes = file.path(path, "longtests", "testthat"),
+        no = file.path(path, "tests", "testthat")
+    )
+    if (!.isADir(testsDir)) {
         message(sprintf(
             "No testthat unit tests defined in '%s'.",
             testsDir
@@ -47,6 +56,14 @@ test <- function(path = getwd()) {
     )
     options("testthat.progress.max_fails" = maxFails) # nolint
     invisible(out)
+}
+
+
+
+#' @export
+#' @rdname test
+longtest <- function(...) {
+    test(..., longtests = TRUE)
 }
 
 ## nocov end
