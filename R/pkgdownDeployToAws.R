@@ -1,7 +1,7 @@
 #' Deploy a pkgdown website to AWS S3 bucket
 #'
 #' @export
-#' @note Updated 2022-10-20.
+#' @note Updated 2023-09-27.
 #'
 #' @param package `character`.
 #' Directory path to R package.
@@ -20,10 +20,10 @@
 #' input defined in `package` argument.
 #'
 #' @examples
-#' ## > pkgdownDeployToAWS(
+#' ## > pkgdownDeployToAws(
 #' ## >     package = file.path("~", "monorepo", "r-packages", "r-koopa")
 #' ## > )
-pkgdownDeployToAWS <-
+pkgdownDeployToAws <-
     function(package = getwd(),
              bucketDir = "s3://r.acidgenomics.com/packages/",
              clean = TRUE) {

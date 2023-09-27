@@ -21,5 +21,6 @@ Return exports that are not formatted in strict lower camel case
 Updated 2023-09-27
 }
 \examples{
-nonCamelExports()
+x <- nonCamelExports()
+print(x)
 }
