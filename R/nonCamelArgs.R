@@ -54,6 +54,10 @@ nonCamelArgs <- function(
     lst <- lapply(
         X = lst,
         FUN = function(x) {
+            ## Split combined arguments, when necessary.
+            if (any(grepl(pattern = ", ", x = x))) {
+                x <- unique(unlist(strsplit(x, split = ", ")))
+            }
             ## Ignore leading "." on arguments, such as ".xname".
             x <- sub(pattern = "^\\.", replacement = "", x = x)
             y <- syntactic::camelCase(x)
