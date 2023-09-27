@@ -4,7 +4,7 @@
 #' returns `character` instead of `matrix`.
 #'
 #' @export
-#' @note Updated 2022-10-20.
+#' @note Updated 2023-09-25.
 #'
 #' @param object `Rd`.
 #' R documentation, returned from `tools::Rd_db()`.
@@ -30,9 +30,7 @@
 #' db <- tools::Rd_db("base")
 #' head(names(db))
 #' rd <- db[["nrow.Rd"]]
-#' class(rd)
-#' summary(rd)
-#' RdTags(rd)
+#' print(rdTags(rd))
 #' examples <- parseRd(rd, tag = "examples")
 #' print(examples)
 parseRd <-
@@ -41,11 +39,11 @@ parseRd <-
             .is(object, "Rd"),
             .isString(tag)
         )
-        tags <- RdTags(object)
+        tags <- rdTags(object)
         stopifnot(.isSubset(tag, tags))
         ## Get the metadata that matches the requested tag.
         data <- object[tags == tag]
-        data <- unlist(data)
+        data <- unlist(data, recursive = TRUE, use.names = FALSE)
         ## Strip trailing newlines and superfluous whitespace.
         data <- trimws(data, which = "right")
         ## Strip leading and trailing carriage returns, if present.
@@ -63,7 +61,7 @@ parseRd <-
 #' @describeIn parseRd
 #' Modified version of the unexported `tools:::RdTags()` function.
 #' @export
-RdTags <- # nolint
+rdTags <- # nolint
     function(object) {
         stopifnot(.is(object, "Rd"))
         tags <- vapply(
