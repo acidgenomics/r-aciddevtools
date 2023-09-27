@@ -23,11 +23,19 @@ nonCamelExports <- function(path = getwd()) {
     if (!.hasLength(exports)) {
         return(character())
     }
+    x <- exports
     x <- sub(
         pattern = "^export\\((.+)\\)$",
         replacement = "\\1",
-        x = exports
+        x = x
     )
+    ## Sanitize assignment methods.
+    x <- sub(
+        pattern = "<-$",
+        replacement = "",
+        x = x
+    )
+    x <- unique(x)
     y <- syntactic::camelCase(x)
     ok <- x == y
     if (all(ok)) {
