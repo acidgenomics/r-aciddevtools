@@ -11,14 +11,14 @@
 #' @inheritParams params
 #'
 #' @examples
-#' if (goalie::isMacOS()) {
+#' if (goalie::isMacos()) {
 #'     x <- "hello world"
 #'     pbcopy(x)
 #' }
 pbcopy <- function(x) {
     stopifnot(
         .requireNamespaces("utils"),
-        .isMacOS()
+        .isMacos()
     )
     utils::capture.output(x, file = pipe("pbcopy"))
 }

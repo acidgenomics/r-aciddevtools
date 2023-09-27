@@ -45,7 +45,7 @@ pkgdownDeployToAws <-
                 stopifnot(.isAFile(descFile))
                 pkgName <-
                     desc::desc_get_field(key = "Package", file = descFile)
-                bucketDir <- .pasteURL(bucketDir, tolower(pkgName))
+                bucketDir <- .pasteUrl(bucketDir, tolower(pkgName))
                 docsDir <- file.path(pkgDir, "docs")
                 configFile <- file.path(pkgDir, "_pkgdown.yml")
                 if (!.isAFile(configFile)) {
