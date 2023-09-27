@@ -5,11 +5,17 @@
 \title{Return documentation with arguments that are not formatted in strict lower
 camel case}
 \usage{
-nonCamelArgs(pkgName)
+nonCamelArgs(
+  pkgName,
+  allowlist = c("FUN", "MARGIN", "USE.NAMES", "X", ".xname")
+)
 }
 \arguments{
 \item{pkgName}{\code{character(1)}.
 Package name.}
+
+\item{allowlist}{\code{character}.
+Character vector of common non-camel argument names to allow.}
 }
 \value{
 \code{character}.

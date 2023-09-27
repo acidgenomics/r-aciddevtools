@@ -7,14 +7,26 @@
 #' @param pkgName `character(1)`.
 #' Package name.
 #'
+#' @param allowlist `character`.
+#' Character vector of common non-camel argument names to allow.
+#'
 #' @return `character`.
 #' Offending Rd documentation files.
-nonCamelArgs <- function(pkgName) {
-    stopifnot(.requireNamespaces(c("syntactic", "tools")))
+nonCamelArgs <- function(
+        pkgName,
+        allowlist = c("FUN", "MARGIN", "USE.NAMES", "X", ".xname")
+    ) {
+    stopifnot(
+        .requireNamespaces(c("syntactic", "tools")),
+        .isString(pkgName),
+        is.character(allowlist)
+    )
+    allowlist <- c(allowlist, "\n", "...")
     db <- tools::Rd_db(pkgName)
     lst <- lapply(
         X = db,
-        FUN = function(rd) {
+        allowlist = allowlist,
+        FUN = function(rd, allowlist) {
             tag <- "arguments"
             tags <- rdTags(rd)
             if (!.isSubset(tag, tags)) {
@@ -28,7 +40,7 @@ nonCamelArgs <- function(pkgName) {
                 },
                 FUN.VALUE = character(1L)
             )
-            vec <- setdiff(vec, c("\n", "..."))
+            vec <- setdiff(vec, allowlist)
             if (identical(vec, tolower(vec))) {
                 return(NULL)
             }
@@ -49,6 +61,10 @@ nonCamelArgs <- function(pkgName) {
         USE.NAMES = FALSE
     )
     lst <- lst[!ok]
-    out <- names(lst)
+    out <- paste(
+        names(lst),
+        lapply(X = lst, FUN = toString),
+        sep = ": "
+    )
     out
 }
