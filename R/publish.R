@@ -95,7 +95,7 @@ publish <-
                     check(package)
                 }
                 if (isTRUE(pkgdown)) {
-                    pkgdownDeployToAWS(package = package)
+                    pkgdownDeployToAws(package = package)
                 }
                 tarballs <- build(package = package)
                 invisible(Map(
