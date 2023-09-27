@@ -35,7 +35,7 @@ nonCamelExports <- function(path = getwd()) {
     ## Ignore coercion methods (e.g. "as.DataFrame").
     x <- x[!grepl(pattern = "^as\\.", x = x)]
     ## Ignore all uppercase exports (e.g. "HGNC", "MGI").
-    x <- x[!grepl(pattern = "^[A-Z0-9]+$", x = x)]
+    ## > x <- x[!grepl(pattern = "^[A-Z0-9]+$", x = x)]
     x <- sort(unique(x))
     subx <- substr(x, start = 1L, stop = 1L)
     case <- list()
