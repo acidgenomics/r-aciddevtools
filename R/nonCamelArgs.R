@@ -14,7 +14,7 @@
 #' Offending Rd documentation files.
 nonCamelArgs <- function(
         pkgName,
-        allowlist = c("FUN", "MARGIN", "USE.NAMES", "X")
+        allowlist = c("BPPARAM", "FUN", "MARGIN", "USE.NAMES", "X")
     ) {
     stopifnot(
         .requireNamespaces(c("syntactic", "tools")),
@@ -51,18 +51,16 @@ nonCamelArgs <- function(
     if (!.hasLength(lst)) {
         return(character())
     }
-    ok <- vapply(
+    lst <- lapply(
         X = lst,
         FUN = function(x) {
             ## Ignore leading "." on arguments, such as ".xname".
             x <- sub(pattern = "^\\.", replacement = "", x = x)
             y <- syntactic::camelCase(x)
-            identical(x, y)
-        },
-        FUN.VALUE = logical(1L),
-        USE.NAMES = FALSE
+            x[x != y]
+        }
     )
-    lst <- lst[!ok]
+    lst <- Filter(.hasLength, lst)
     out <- paste(
         names(lst),
         lapply(X = lst, FUN = toString),
