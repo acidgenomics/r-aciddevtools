@@ -1,4 +1,4 @@
-#' Return exports that are not formatted in strict lower camel case
+#' Return exports that are not formatted in strict camel case
 #'
 #' @export
 #' @note Updated 2023-09-27.
@@ -6,7 +6,7 @@
 #' @inheritParams params
 #'
 #' @return `character`.
-#' Names of exports that do not conform to strict lower camel case.
+#' Names of exports that do not conform to strict camel case.
 #'
 #' @examples
 #' x <- nonCamelExports()
@@ -18,25 +18,41 @@ nonCamelExports <- function(path = getwd()) {
     )
     file <- file.path(path, "NAMESPACE")
     stopifnot(.isAFile(file))
-    lines <- readLines(file)
-    exports <- grep(pattern = "^export\\(", x = lines, value = TRUE)
-    if (!.hasLength(exports)) {
+    x <- readLines(file)
+    x <- grep(pattern = "^export\\(", x = x, value = TRUE)
+    if (!.hasLength(x)) {
         return(character())
     }
-    x <- exports
     x <- sub(
         pattern = "^export\\((.+)\\)$",
         replacement = "\\1",
         x = x
     )
+    ## Sanitize leading "." which normally shouldn't be exported anyway.
+    x <- sub(pattern = "^\\.", replacement = "", x = x)
     ## Sanitize assignment methods.
     x <- sub(pattern = "^\"(.+)<-\"$", replacement = "\\1", x = x)
-    x <- unique(x)
-    y <- syntactic::camelCase(x)
-    ok <- x == y
-    if (all(ok)) {
-        return(character())
+    ## Ignore coercion methods, such as "as.DataFrame".
+    x <- x[!grepl(pattern = "^as\\.", x = x)]
+    x <- sort(unique(x))
+    subx <- substr(x, start = 1L, stop = 1L)
+    case <- list()
+    case[["lower"]] <- subx == tolower(subx)
+    case[["upper"]] <- !case[["lower"]]
+    fail <- character()
+    if (any(case[["upper"]])) {
+        xx <- x[case[["upper"]]]
+        xx <- xx[xx != syntactic::upperCamelCase(xx)]
+        if (.hasLength(xx)) {
+            fail <- append(fail, xx)
+        }
     }
-    out <- x[!ok]
-    out
+    if (any(case[["lower"]])) {
+        xx <- x[case[["lower"]]]
+        xx <- xx[xx != syntactic::camelCase(xx)]
+        if (.hasLength(xx)) {
+            fail <- append(fail, xx)
+        }
+    }
+    fail
 }
