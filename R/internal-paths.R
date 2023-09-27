@@ -41,7 +41,7 @@
             return(x)
         }
     }
-    if (.isMacOS()) {
+    if (.isMacos()) {
         if (isTRUE(dir.exists(file.path("", "opt", "homebrew")))) {
             x <- file.path("", "opt", "homebrew")
         } else {

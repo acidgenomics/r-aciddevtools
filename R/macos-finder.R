@@ -17,7 +17,7 @@
 finder <- function(path = getwd()) {
     stopifnot(
         .requireNamespaces("AcidBase"),
-        .isMacOS(),
+        .isMacos(),
         .isString(path)
     )
     path <- .realpath(path)

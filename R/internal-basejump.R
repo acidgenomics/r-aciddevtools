@@ -134,9 +134,9 @@
 
 
 
-#' @seealso goalie::isMacOS
+#' @seealso goalie::isMacos
 #' @noRd
-.isMacOS <- function() {
+.isMacos <- function() {
     isTRUE(grepl(pattern = "darwin", x = R.Version()[["os"]]))
 }
 
@@ -199,11 +199,11 @@
 
 
 
-#' @seealso AcidBase::pasteURL
+#' @seealso AcidBase::pasteUrl
 #' @noRd
-.pasteURL <- function(...) {
+.pasteUrl <- function(...) {
     stopifnot(.requireNamespaces("AcidBase"))
-    AcidBase::pasteURL(...)
+    AcidBase::pasteUrl(...)
 }
 
 
