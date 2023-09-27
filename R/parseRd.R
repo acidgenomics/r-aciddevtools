@@ -23,7 +23,8 @@
 #' - `seealso`.
 #' - `examples`.
 #'
-#' @seealso `tools::Rd_db()`.
+#' @seealso
+#' - `tools::Rd_db()`.
 #'
 #' @examples
 #' db <- tools::Rd_db("base")
@@ -75,7 +76,7 @@ RdTags <- # nolint
             tags <- character() # nocov
         } else {
             ## Remove the leading "\\" backslashes.
-            tags <- gsub("^\\\\", "", tags)
+            tags <- sub(pattern = "^\\\\", replacement = "", x = tags)
         }
         tags
     }

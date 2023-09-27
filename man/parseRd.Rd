@@ -51,5 +51,7 @@ examples <- parseRd(rd, tag = "examples")
 print(examples)
 }
 \seealso{
-\code{tools::Rd_db()}.
+\itemize{
+\item \code{tools::Rd_db()}.
+}
 }
