@@ -2,13 +2,21 @@
 % Please edit documentation in R/test.R
 \name{test}
 \alias{test}
+\alias{longtest}
 \title{Execute testthat tests in a package}
 \usage{
-test(path = getwd())
+test(path = getwd(), longtests = FALSE)
+
+longtest(...)
 }
 \arguments{
 \item{path}{\code{character(1)}.
 File path (e.g. to package).}
+
+\item{longtests}{\code{logical(1)}.
+Also run optional long tests in \code{longtests} directory.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 Invisible \code{TRUE} on success, otherwise error.
@@ -22,13 +30,14 @@ and appears to be required for testthat checks to run successfully in
 parallel.
 }
 \note{
-Updated 2023-08-15.
+Updated 2023-09-27.
 }
 \examples{
 ## > test()
 }
 \seealso{
 \itemize{
+\item https://contributions.bioconductor.org/long-tests.html
 \item https://github.com/r-lib/testthat/issues/1216
 }
 }
