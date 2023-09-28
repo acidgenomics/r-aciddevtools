@@ -45,6 +45,7 @@ check <- function(path = getwd(),
     dt[["start"]] <- Sys.time()
     path <- .realpath(path)
     descFile <- file.path(path, "DESCRIPTION")
+    stopifnot(file.exists(descFile))
     deps <- desc::desc_get_deps(file = descFile)[["package"]]
     deps <- setdiff(deps, "R")
     if (length(deps) > 0L) {
