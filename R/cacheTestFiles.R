@@ -19,7 +19,7 @@ cacheTestFiles <-
             goalie::isString(pkg),
             goalie::isCharacter(files)
         )
-        remoteDir <- AcidBase::pasteURL(
+        remoteDir <- AcidBase::pasteUrl(
             "r.acidgenomics.com", "testdata", tolower(pkg),
             protocol = "https"
         )
