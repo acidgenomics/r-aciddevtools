@@ -7,7 +7,7 @@ camel case}
 \usage{
 nonCamelArgs(
   pkgName,
-  allowlist = c("FUN", "MARGIN", "USE.NAMES", "X", ".xname")
+  allowlist = c("BPPARAM", "FUN", "MARGIN", "USE.NAMES", "X", "do.NULL")
 )
 }
 \arguments{
