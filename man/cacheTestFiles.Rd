@@ -4,7 +4,7 @@
 \alias{cacheTestFiles}
 \title{Cache test files}
 \usage{
-cacheTestFiles(pkg, files, remoteDir)
+cacheTestFiles(pkg, files)
 }
 \arguments{
 \item{pkg}{\code{character(1)}.
@@ -12,9 +12,6 @@ Package name.}
 
 \item{files}{\code{character}.
 File basenames relative to \code{remoteDir}.}
-
-\item{remoteDir}{\code{character(1)}.
-Remote base URL.}
 }
 \value{
 Invisible \code{character}.
