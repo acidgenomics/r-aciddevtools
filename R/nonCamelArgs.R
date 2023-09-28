@@ -2,7 +2,7 @@
 #' camel case
 #'
 #' @export
-#' @note Updated 2023-09-27.
+#' @note Updated 2023-09-28.
 #'
 #' @param pkgName `character(1)`.
 #' Package name.
@@ -14,7 +14,9 @@
 #' Offending Rd documentation files.
 nonCamelArgs <-
     function(pkgName,
-             allowlist = c("BPPARAM", "FUN", "MARGIN", "USE.NAMES", "X", "do.NULL")) {
+             allowlist = c(
+                 "BPPARAM", "FUN", "MARGIN", "USE.NAMES", "X", "do.NULL"
+             )) {
         stopifnot(
             .requireNamespaces(c("syntactic", "tools")),
             .isString(pkgName),
