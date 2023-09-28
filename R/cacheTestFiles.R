@@ -23,7 +23,6 @@ cacheTestFiles <-
             "r.acidgenomics.com", "testdata", tolower(pkg),
             protocol = "https"
         )
-        stopifnot(goalie::isAnExistingUrl(remoteDir))
         cacheDir <- AcidBase::pkgCacheDir(.pkgName)
         cacheDir <- file.path(cacheDir, "testthat")
         cacheDir <- AcidBase::initDir(cacheDir)
