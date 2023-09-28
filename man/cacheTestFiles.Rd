@@ -14,8 +14,8 @@ Package name.}
 File names in S3 testdata bucket.}
 }
 \value{
-Invisible \code{character}.
-File paths.
+Invisible \code{list}.
+List containing \code{"cacheDir"}, \code{"files"}, and \code{"remoteDir"}.
 }
 \description{
 Cache test files from Acid Genomics S3 bucket

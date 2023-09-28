@@ -9,8 +9,8 @@
 #' @param files `character`.
 #' File names in S3 testdata bucket.
 #'
-#' @return Invisible `character`.
-#' File paths.
+#' @return Invisible `list`.
+#' List containing `"cacheDir"`, `"files"`, and `"remoteDir"`.
 cacheTestFiles <-
     function(pkg, files) {
         stopifnot(
@@ -27,7 +27,7 @@ cacheTestFiles <-
         cacheDir <- AcidBase::pkgCacheDir(.pkgName)
         cacheDir <- file.path(cacheDir, "testthat")
         cacheDir <- AcidBase::initDir(cacheDir)
-        out <- vapply(
+        files <- vapply(
             X = files,
             FUN = function(file, remoteDir) {
                 destfile <- file.path(cacheDir, file)
@@ -43,6 +43,10 @@ cacheTestFiles <-
             remoteDir = remoteDir,
             USE.NAMES = FALSE
         )
-        stopifnot(goalie::allAreFiles(out))
-        invisible(out)
+        stopifnot(goalie::allAreFiles(files))
+        invisible(list(
+            "cacheDir" = cacheDir,
+            "files" = files,
+            "remoteDir" = remoteDir
+        ))
     }
