@@ -1,5 +1,25 @@
 # Release notes
 
+## AcidDevTools 0.7.0 (2023-09-28)
+
+New functions:
+
+- `cacheTestFiles`: New utility function used in other packages to quickly
+  cache files for testthat build checks.
+- `longtest`: Variant of `test` that runs optional tests defined in `longtests`.
+  This is useful for matching recommended Bioconductor conventions. These tests
+  are run in a temporary directory.
+- `nonCamelArgs`: Check for documented arguments that are not correctly
+  formatted in strict camel case.
+- `nonCamelExports`: Check for exported functions that are not correctly
+  formatted in strict camel case.
+
+Minor changes:
+
+- `check`: Now returns the amount of time required to run checks.
+- Enforcing strict camel case in function names. As a result, we have renamed
+  `pkgdownDeployToAWS` to `pkgdownDeployToAws`.
+
 ## AcidDevTools: 0.6.18 (2023-09-21)
 
 Minor changes:
