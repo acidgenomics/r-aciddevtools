@@ -5,7 +5,7 @@
 #' Return exports that are not formatted in strict camel case
 #'
 #' @export
-#' @note Updated 2023-09-27.
+#' @note Updated 2023-09-28.
 #'
 #' @inheritParams params
 #'
@@ -32,6 +32,8 @@ nonCamelExports <- function(path = getwd()) {
         replacement = "\\2",
         x = x
     )
+    ## Ignore non-alphanumeric functions, such as "[".
+    x <- x[!grepl(pattern = "^\"[^a-zA-Z0-9.]\"", x = x)]
     ## Sanitize leading "." which normally shouldn't be exported anyway.
     x <- sub(pattern = "^\\.", replacement = "", x = x)
     ## Sanitize assignment methods.
