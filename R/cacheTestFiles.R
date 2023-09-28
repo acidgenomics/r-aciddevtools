@@ -1,4 +1,4 @@
-#' Cache test files
+#' Cache test files from Acid Genomics S3 bucket
 #'
 #' @export
 #' @note Updated 2023-09-28.
@@ -7,7 +7,7 @@
 #' Package name.
 #'
 #' @param files `character`.
-#' File basenames relative to `remoteDir`.
+#' File names in S3 testdata bucket.
 #'
 #' @return Invisible `character`.
 #' File paths.
