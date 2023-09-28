@@ -1,7 +1,3 @@
-## FIXME Need to ignore non-alphanumeric, such as "[" in DESeqAnalysis.
-
-
-
 #' Return exports that are not formatted in strict camel case
 #'
 #' @export
