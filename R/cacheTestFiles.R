@@ -22,10 +22,12 @@ cacheTestFiles <- function(pkg, files, remoteDir) {
         goalie::isCharacter(files),
         goalie::isAnExistingUrl(remoteDir)
     )
-    cacheDir <- file.path(AcidBase::pkgCacheDir(.pkgName), "testthat")
-    AcidBase::initDir(cacheDir)
-    out <- unlist(Map(
-        f = function(file, remoteDir, envir) {
+    cacheDir <- AcidBase::pkgCacheDir(.pkgName)
+    cacheDir <- file.path(cacheDir, "testthat")
+    cacheDir <- AcidBase::initDir(cacheDir)
+    out <- vapply(
+        X = files,
+        FUN = function(file, remoteDir) {
             destfile <- file.path(cacheDir, file)
             if (!goalie::isAFile(destfile)) {
                 AcidBase::download(
@@ -35,9 +37,10 @@ cacheTestFiles <- function(pkg, files, remoteDir) {
             }
             destfile
         },
-        file = files,
-        MoreArgs = list("remoteDir" = remoteDir)
-    ))
+        FUN.VALUE = character(1L),
+        remoteDir = remoteDir,
+        USE.NAMES = FALSE
+    )
     stopifnot(goalie::allAreFiles(out))
     invisible(out)
 }
