@@ -23,7 +23,7 @@ cacheTestFiles <-
             "r.acidgenomics.com", "testdata", tolower(pkg),
             protocol = "https"
         )
-        cacheDir <- AcidBase::pkgCacheDir(.pkgName)
+        cacheDir <- AcidBase::pkgCacheDir(pkg)
         cacheDir <- file.path(cacheDir, "testthat")
         cacheDir <- AcidBase::initDir(cacheDir)
         files <- vapply(
