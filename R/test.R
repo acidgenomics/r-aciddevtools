@@ -41,6 +41,7 @@ test <- function(path = getwd(), longtests = FALSE) {
     stopifnot(.requireNamespaces(c("testthat", "pkgload")))
     maxFails <- getOption("testthat.progress.max_fails")
     options("testthat.progress.max_fails" = 1L) # nolint
+    message(sprintf("Running testthat tests in '%s'.", testsDir))
     out <- testthat::test_local(
         path = testsDir,
         load_helpers = TRUE,
