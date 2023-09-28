@@ -18,9 +18,9 @@ Names of exports that do not conform to strict camel case.
 Return exports that are not formatted in strict camel case
 }
 \note{
-Updated 2023-09-27.
+Updated 2023-09-28.
 }
 \examples{
-x <- nonCamelExports()
-print(x)
+## > x <- nonCamelExports()
+## > print(x)
 }
