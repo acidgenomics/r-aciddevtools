@@ -3,7 +3,7 @@
 #' Execute testthat tests in a package
 #'
 #' @export
-#' @note Updated 2023-09-27.
+#' @note Updated 2023-09-28.
 #'
 #' @details
 #' Note that usage of `test_local` is now recommended instead of `test_dir`,
@@ -11,9 +11,6 @@
 #' parallel.
 #'
 #' @inheritParams params
-#'
-#' @param longtests `logical(1)`.
-#' Also run optional long tests in `longtests` directory.
 #'
 #' @return Invisible `TRUE` on success, otherwise error.
 #'
@@ -23,14 +20,10 @@
 #'
 #' @examples
 #' ## > test()
-test <- function(path = getwd(), longtests = FALSE) {
-    stopifnot(.isADir(path), .isFlag(longtests))
+test <- function(path = getwd()) {
+    stopifnot(.isADir(path))
     path <- .realpath(path)
-    testsDir <- ifelse(
-        test = longtests,
-        yes = file.path(path, "longtests", "testthat"),
-        no = file.path(path, "tests", "testthat")
-    )
+    testsDir <- file.path(path, "tests", "testthat")
     if (!.isADir(testsDir)) {
         message(sprintf(
             "No testthat unit tests defined in '%s'.",
@@ -63,8 +56,33 @@ test <- function(path = getwd(), longtests = FALSE) {
 
 #' @export
 #' @rdname test
-longtest <- function(...) {
-    test(..., longtests = TRUE)
+longtest <- function(path = getwd()) {
+    testsDir <- file.path(path, "longtests", "testthat")
+    if (!.isADir(testsDir)) {
+        message(sprintf(
+            "No testthat unit tests defined in '%s'.",
+            testsDir
+        ))
+        return(invisible(FALSE))
+    }
+    stopifnot(.requireNamespaces("AcidBase"))
+    message(sprintf("Running long tests in '%s'.", testsDir))
+    tmpdir <- AcidBase::tempdir2()
+    invisible(file.copy(
+        from = path,
+        to = tmpdir,
+        overwrite = TRUE,
+        recursive = TRUE
+    ))
+    path2 <- file.path(tmpdir, basename(path))
+    AcidBase::unlink2(file.path(path2, "tests"))
+    file.rename(
+        from = file.path(path2, "longtests"),
+        to = file.path(path2, "tests")
+    )
+    test(path = path2)
+    AcidBase::unlink2(tmpdir)
+    invisible(TRUE)
 }
 
 ## nocov end
