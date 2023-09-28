@@ -5,18 +5,13 @@
 \alias{longtest}
 \title{Execute testthat tests in a package}
 \usage{
-test(path = getwd(), longtests = FALSE)
+test(path = getwd())
 
-longtest(...)
+longtest(path = getwd())
 }
 \arguments{
 \item{path}{\code{character(1)}.
 File path (e.g. to package).}
-
-\item{longtests}{\code{logical(1)}.
-Also run optional long tests in \code{longtests} directory.}
-
-\item{...}{Additional arguments.}
 }
 \value{
 Invisible \code{TRUE} on success, otherwise error.
@@ -30,7 +25,7 @@ and appears to be required for testthat checks to run successfully in
 parallel.
 }
 \note{
-Updated 2023-09-27.
+Updated 2023-09-28.
 }
 \examples{
 ## > test()
