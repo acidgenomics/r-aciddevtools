@@ -2,7 +2,7 @@
 % Please edit documentation in R/cacheTestFiles.R
 \name{cacheTestFiles}
 \alias{cacheTestFiles}
-\title{Cache test files}
+\title{Cache test files from Acid Genomics S3 bucket}
 \usage{
 cacheTestFiles(pkg, files)
 }
@@ -11,14 +11,14 @@ cacheTestFiles(pkg, files)
 Package name.}
 
 \item{files}{\code{character}.
-File basenames relative to \code{remoteDir}.}
+File names in S3 testdata bucket.}
 }
 \value{
 Invisible \code{character}.
 File paths.
 }
 \description{
-Cache test files
+Cache test files from Acid Genomics S3 bucket
 }
 \note{
 Updated 2023-09-28.
