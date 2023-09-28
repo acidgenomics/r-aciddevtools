@@ -3,7 +3,7 @@
 #' Check package
 #'
 #' @export
-#' @note Updated 2023-08-15.
+#' @note Updated 2023-09-28.
 #'
 #' @inheritParams params
 #'
@@ -41,6 +41,8 @@ check <- function(path = getwd(),
         .requireNamespaces(c("desc", "rcmdcheck")),
         .isADir(path)
     )
+    dt <- list()
+    dt[["start"]] <- Sys.time()
     path <- .realpath(path)
     descFile <- file.path(path, "DESCRIPTION")
     deps <- desc::desc_get_deps(file = descFile)[["package"]]
@@ -103,6 +105,16 @@ check <- function(path = getwd(),
     if (isTRUE(coverage)) {
         .checkCoverage(path = path)
     }
+    dt[["stop"]] <- Sys.time()
+    dt[["duration"]] <- difftime(
+        time1 = dt[["stop"]],
+        time2 = dt[["start"]],
+        units = "auto"
+    )
+    message(sprintf(
+        "Package check completed successfully (%s).",
+        format(dt[["duration"]])
+    ))
     invisible(TRUE)
 }
 
