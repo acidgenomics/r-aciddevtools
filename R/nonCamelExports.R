@@ -9,8 +9,8 @@
 #' Names of exports that do not conform to strict camel case.
 #'
 #' @examples
-#' x <- nonCamelExports()
-#' print(x)
+#' ## > x <- nonCamelExports()
+#' ## > print(x)
 nonCamelExports <- function(path = getwd()) {
     stopifnot(
         .requireNamespaces("syntactic"),

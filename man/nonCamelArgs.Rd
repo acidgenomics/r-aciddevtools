@@ -26,5 +26,5 @@ Return documentation with arguments that are not formatted in strict lower
 camel case
 }
 \note{
-Updated 2023-09-27.
+Updated 2023-09-28.
 }
