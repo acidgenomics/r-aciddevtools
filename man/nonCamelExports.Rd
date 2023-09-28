@@ -2,7 +2,7 @@
 % Please edit documentation in R/nonCamelExports.R
 \name{nonCamelExports}
 \alias{nonCamelExports}
-\title{Return exports that are not formatted in strict lower camel case}
+\title{Return exports that are not formatted in strict camel case}
 \usage{
 nonCamelExports(path = getwd())
 }
@@ -12,13 +12,13 @@ File path (e.g. to package).}
 }
 \value{
 \code{character}.
-Names of exports that do not conform to strict lower camel case.
+Names of exports that do not conform to strict camel case.
 }
 \description{
-Return exports that are not formatted in strict lower camel case
+Return exports that are not formatted in strict camel case
 }
 \note{
-Updated 2023-09-27
+Updated 2023-09-27.
 }
 \examples{
 x <- nonCamelExports()

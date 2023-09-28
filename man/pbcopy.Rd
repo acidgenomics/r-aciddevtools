@@ -18,7 +18,7 @@ Only works on macOS.
 Updated 2022-10-20.
 }
 \examples{
-if (goalie::isMacOS()) {
+if (goalie::isMacos()) {
     x <- "hello world"
     pbcopy(x)
 }
