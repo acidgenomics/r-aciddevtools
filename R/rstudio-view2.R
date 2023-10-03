@@ -23,7 +23,7 @@ view2 <- function(object) {
     if (.isAny(object, c("DataFrame", "GenomicRanges"))) {
         object <- as.data.frame(object)
     }
-    if (!.isRStudio()) {
+    if (!.isRstudio()) {
         stopifnot(.requireNamespaces("utils"))
         View <- utils::View # nolint
     }
