@@ -20,14 +20,6 @@
 \alias{build_reference_index}
 \alias{build_site}
 \alias{rcmdcheck}
-\alias{download_version}
-\alias{install_bioc}
-\alias{install_bitbucket}
-\alias{install_deps}
-\alias{install_git}
-\alias{install_github}
-\alias{install_gitlab}
-\alias{install_url}
 \alias{style_dir}
 \alias{style_file}
 \alias{style_pkg}
