@@ -166,11 +166,11 @@
 
 
 
-#' @seealso goalie::isRStudio
+#' @seealso goalie::isRstudio
 #' @noRd
-.isRStudio <- function(...) {
+.isRstudio <- function(...) {
     stopifnot(.requireNamespaces("goalie"))
-    goalie::isRStudio(...)
+    goalie::isRstudio(...)
 }
 
 

@@ -14,7 +14,7 @@
 scriptPath <- function() {
     stopifnot(
         .requireNamespaces("rstudioapi"),
-        .isRStudio()
+        .isRstudio()
     )
     x <- rstudioapi::getSourceEditorContext()[["path"]]
     stopifnot(.isAFile(x))
