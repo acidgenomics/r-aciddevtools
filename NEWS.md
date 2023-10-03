@@ -1,5 +1,11 @@
 # Release notes
 
+## AcidDevTools 0.7.1 (2023-10-03)
+
+Minor changes:
+
+- No longer reexporting functions from remotes.
+
 ## AcidDevTools 0.7.0 (2023-09-28)
 
 New functions:
