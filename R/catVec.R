@@ -16,7 +16,7 @@
 #' x <- c("aaa" = "AAA", "bbb" = "BBB", "ccc" = "CCC")
 #' catVec(x)
 catVec <- function(x) {
-    stopifnot(is.character(x))
+    stopifnot(is.vector(x))
     if (is.null(names(x))) {
         x <- vapply(X = x, FUN = deparse, FUN.VALUE = character(1L))
     } else {
