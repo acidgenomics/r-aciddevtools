@@ -1,5 +1,11 @@
 # Release notes
 
+## AcidDevTools 0.7.2 (2023-10-06)
+
+Minor changes:
+
+- `view2`: Need to set `optional = TRUE` for `as.data.frame` coercion.
+
 ## AcidDevTools 0.7.1 (2023-10-03)
 
 Minor changes:
