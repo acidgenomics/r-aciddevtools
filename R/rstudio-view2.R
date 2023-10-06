@@ -21,7 +21,8 @@
 view2 <- function(object) {
     ## Coerce S4 object, if applicable.
     if (.isAny(object, c("DataFrame", "GenomicRanges"))) {
-        object <- as.data.frame(object, check.names = FALSE)
+        ## Coercion with `as.data.frame` can change column names.
+        object <- as(object, "data.frame")
     }
     if (!.isRstudio()) {
         stopifnot(.requireNamespaces("utils"))
