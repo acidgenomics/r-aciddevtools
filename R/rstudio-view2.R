@@ -8,7 +8,7 @@
 #' view S4 DataFrame and GenomicRanges objects.
 #'
 #' @export
-#' @note Updated 2022-10-20.
+#' @note Updated 2023-10-06.
 #'
 #' @inheritParams params
 #'
@@ -21,7 +21,7 @@
 view2 <- function(object) {
     ## Coerce S4 object, if applicable.
     if (.isAny(object, c("DataFrame", "GenomicRanges"))) {
-        object <- as.data.frame(object)
+        object <- as.data.frame(object, check.names = FALSE)
     }
     if (!.isRstudio()) {
         stopifnot(.requireNamespaces("utils"))
