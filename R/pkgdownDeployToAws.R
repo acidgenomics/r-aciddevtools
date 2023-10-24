@@ -62,7 +62,7 @@ pkgdownDeployToAws <-
                     ),
                     pkgName, docsDir, bucketDir
                 ))
-                if (isTRUE(clean)) {
+                if (isTRUE(clean) && dir.exists(docsDir)) {
                     .unlink2(docsDir)
                 }
                 build_site(pkg = pkgDir)

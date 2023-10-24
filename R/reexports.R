@@ -196,7 +196,12 @@ build_reference_index <- function(...) {
 #' @export
 build_site <- function(..., devel = FALSE, preview = FALSE) {
     stopifnot(.requireNamespaces("pkgdown"))
-    unlink(file.path("docs", "reference"), recursive = TRUE)
+    if (dir.exists("docs")) {
+        .unlink2("docs")
+    }
+    if (dir.exists("reference")) {
+        .unlink2("reference")
+    }
     pkgdown::build_site(..., devel = devel, preview = preview)
 }
 
