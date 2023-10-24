@@ -292,3 +292,21 @@
     stopifnot(.requireNamespaces("AcidBase"))
     AcidBase::shell(...)
 }
+
+
+
+#' @seealso AcidBase::tempdir2
+#' @noRd
+.tempdir2 <- function(...) {
+    stopifnot(.requireNamespaces("AcidBase"))
+    AcidBase::tempdir2(...)
+}
+
+
+
+#' @seealso AcidBase::unlink2
+#' @noRd
+.unlink2 <- function(...) {
+    stopifnot(.requireNamespaces("AcidBase"))
+    AcidBase::unlink2(...)
+}

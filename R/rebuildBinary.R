@@ -38,7 +38,7 @@ rebuildBinary <- function(
             ))
             stopifnot(.isAFile(srcTarball))
             command <- file.path(R.home(), "bin", "R")
-            tempdir <- tempdir()
+            tempdir <- .tempdir2()
             message("Building binary tarball.")
             .shell(
                 command = command,
@@ -54,7 +54,7 @@ rebuildBinary <- function(
                 full.names = TRUE
             ))
             out <- .insertPackage(file = binTarball, repo = repo)
-            unlink(tempdir, recursive = TRUE)
+            .unlink2(tempdir)
             out
         }
     ))

@@ -23,7 +23,7 @@ build <- function(package = getwd()) {
         .isADir(package)
     )
     package <- .realpath(package)
-    tempdir <- tempdir()
+    tempdir <- .tempdir2()
     descFile <- file.path(package, "DESCRIPTION")
     stopifnot(.isAFile(descFile))
     pkgName <- desc::desc_get_field(key = "Package", file = descFile)
