@@ -100,7 +100,7 @@ publish <-
                 tarballs <- build(package = package)
                 invisible(Map(
                     file = tarballs,
-                    MoreArgs = list("repodir" = repo),
+                    MoreArgs = list("repo" = repo),
                     f = .insertPackage
                 ))
                 invisible(lapply(X = tarballs, FUN = file.remove))
