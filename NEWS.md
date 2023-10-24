@@ -7,7 +7,8 @@ New functions:
 - `rebuildBinary`: New function for updating problematic binary file in
   drat repo. Added this after I hit S4 subclass caching issues related to
   the change in AcidGenomes from `HumanToMouse` to `JaxHumanToMouse`. This
-  affected AcidSingleCell and DESeqAnalysis.
+  affected AcidSingleCell and DESeqAnalysis. Function is vectorized, supporting
+  multiple `packageName` in a single call.
 
 ## AcidDevTools 0.7.2 (2023-10-06)
 
