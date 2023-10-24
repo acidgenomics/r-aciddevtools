@@ -10,11 +10,14 @@ rebuildBinary(
 )
 }
 \arguments{
-\item{packageName}{\code{character(1)}.
-Package name}
+\item{packageName}{\code{character}.
+Package name(s).}
 
 \item{repo}{\code{character(1)}.
 Drat repo directory path.}
+}
+\value{
+Invisible output.
 }
 \description{
 Rebuild a binary tarball from a source tarball
@@ -23,7 +26,7 @@ Rebuild a binary tarball from a source tarball
 Updated 2023-10-24.
 }
 \examples{
-## > rebuildBinary("AcidSingleCell")
+## > rebuildBinary(c("AcidSingleCell", "DESeqAnalysis"))
 }
 \seealso{
 \itemize{

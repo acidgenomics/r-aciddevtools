@@ -14,25 +14,24 @@
 cacheTestFiles <-
     function(pkg, files) {
         stopifnot(
-            .requireNamespaces(c("AcidBase", "goalie")),
-            goalie::hasInternet(),
-            goalie::isString(pkg),
-            goalie::isCharacter(files)
+            .hasInternet(),
+            .isString(pkg),
+            .isCharacter(files)
         )
-        remoteDir <- AcidBase::pasteUrl(
+        remoteDir <- .pasteUrl(
             "r.acidgenomics.com", "testdata", tolower(pkg),
             protocol = "https"
         )
-        cacheDir <- AcidBase::pkgCacheDir(pkg)
+        cacheDir <- .pkgCacheDir(pkg)
         cacheDir <- file.path(cacheDir, "testthat")
-        cacheDir <- AcidBase::initDir(cacheDir)
+        cacheDir <- .initDir(cacheDir)
         files <- vapply(
             X = files,
             FUN = function(file, remoteDir) {
                 destfile <- file.path(cacheDir, file)
-                if (!goalie::isAFile(destfile)) {
-                    AcidBase::download(
-                        url = AcidBase::pasteUrl(remoteDir, file),
+                if (!.isAFile(destfile)) {
+                    .download(
+                        url = .pasteUrl(remoteDir, file),
                         destfile = destfile
                     )
                 }
@@ -42,7 +41,7 @@ cacheTestFiles <-
             remoteDir = remoteDir,
             USE.NAMES = FALSE
         )
-        stopifnot(goalie::allAreFiles(files))
+        stopifnot(.allAreFiles(files))
         invisible(list(
             "cacheDir" = cacheDir,
             "files" = files,
