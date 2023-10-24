@@ -100,19 +100,8 @@ publish <-
                 tarballs <- build(package = package)
                 invisible(Map(
                     file = tarballs,
-                    MoreArgs = list(
-                        "repodir" = repo,
-                        "action" = "none",
-                        # Additional `write_PACKAGES` options.
-                        "verbose" = FALSE,
-                        "unpacked" = FALSE,
-                        "subdirs" = FALSE,
-                        "latestOnly" = TRUE,
-                        "addFiles" = FALSE,
-                        "rds_compress" = "xz",
-                        "validate" = TRUE
-                    ),
-                    f = drat::insertPackage
+                    MoreArgs = list("repodir" = repo),
+                    f = .insertPackage
                 ))
                 invisible(lapply(X = tarballs, FUN = file.remove))
                 if (isTRUE(tag)) {
@@ -217,3 +206,30 @@ publish <-
         }
         invisible(TRUE)
     }
+
+
+
+#' Insert a package into drat repository
+#'
+#' @note Updated 2023-10-24.
+#' @noRd
+.insertPackage <- function(file, repo) {
+    stopifnot(
+        requireNamespace("drat", quietly = TRUE),
+        .isAFile(file),
+        .isADir(repo)
+    )
+    drat::insertPackage(
+        file = file,
+        "repodir" = repo,
+        "action" = "none",
+        # Additional `write_PACKAGES` options.
+        "verbose" = FALSE,
+        "unpacked" = FALSE,
+        "subdirs" = FALSE,
+        "latestOnly" = TRUE,
+        "addFiles" = FALSE,
+        "rds_compress" = "xz",
+        "validate" = TRUE
+    )
+}

@@ -19,8 +19,13 @@ This variant performs internal coercion to data.frame, so we can easily
 view S4 DataFrame and GenomicRanges objects.
 }
 \note{
-Updated 2022-10-20.
+Updated 2023-10-06.
 }
 \examples{
 ## > view2(mtcars)
+}
+\seealso{
+\itemize{
+\item https://support.bioconductor.org/p/9137534/
+}
 }
