@@ -1,5 +1,14 @@
 # Release notes
 
+## AcidDevTools 0.7.3 (2023-10-24)
+
+New functions:
+
+- `rebuildBinary`: New function for updating problematic binary file in
+  drat repo. Added this after I hit S4 subclass caching issues related to
+  the change in AcidGenomes from `HumanToMouse` to `JaxHumanToMouse`. This
+  affected AcidSingleCell and DESeqAnalysis.
+
 ## AcidDevTools 0.7.2 (2023-10-06)
 
 Minor changes:
