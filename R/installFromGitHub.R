@@ -130,7 +130,7 @@ installFromGitHub <-
                 )
                 ## Using a random string of 'A-Za-z' here for directory.
                 exdir <- file.path(
-                    tempdir(),
+                    .tempdir2(),
                     paste0(
                         "untar-",
                         paste0(
@@ -159,7 +159,7 @@ installFromGitHub <-
                 )
                 ## Clean up temporary files.
                 file.remove(tarfile)
-                unlink(exdir, recursive = TRUE)
+                .unlink2(exdir)
                 TRUE
             }
         )

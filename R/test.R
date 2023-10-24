@@ -75,13 +75,13 @@ longtest <- function(path = getwd()) {
         recursive = TRUE
     ))
     path2 <- file.path(tmpdir, basename(path))
-    AcidBase::unlink2(file.path(path2, "tests"))
+    .unlink2(file.path(path2, "tests"))
     file.rename(
         from = file.path(path2, "longtests"),
         to = file.path(path2, "tests")
     )
     test(path = path2)
-    AcidBase::unlink2(tmpdir)
+    .unlink2(tmpdir)
     invisible(TRUE)
 }
 

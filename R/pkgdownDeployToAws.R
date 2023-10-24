@@ -63,7 +63,7 @@ pkgdownDeployToAws <-
                     pkgName, docsDir, bucketDir
                 ))
                 if (isTRUE(clean)) {
-                    unlink(docsDir, recursive = TRUE)
+                    .unlink2(docsDir)
                 }
                 build_site(pkg = pkgDir)
                 .shell(
@@ -77,7 +77,7 @@ pkgdownDeployToAws <-
                     print = TRUE
                 )
                 if (isTRUE(clean)) {
-                    unlink(docsDir, recursive = TRUE)
+                    .unlink2(docsDir)
                 }
                 TRUE
             },
