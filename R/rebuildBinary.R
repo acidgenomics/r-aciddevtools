@@ -17,10 +17,8 @@
 #'
 #' @examples
 #' ## > rebuildBinary(c("AcidSingleCell", "DESeqAnalysis"))
-rebuildBinary <- function(
-        packageName,
-        repo = file.path("~", "monorepo", "r-acidgenomics-com")
-    ) {
+rebuildBinary <- function(packageName,
+                          repo = file.path("~", "monorepo", "r-acidgenomics-com")) {
     stopifnot(
         .isCharacter(packageName),
         .isADir(repo)
