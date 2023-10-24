@@ -19,7 +19,7 @@ Open Finder to the current directory
 \note{
 macOS only.
 
-Updated 2022-10-20.
+Updated 2023-10-24.
 }
 \examples{
 ## > finder(path = "~")

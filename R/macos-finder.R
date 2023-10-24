@@ -6,7 +6,7 @@
 #'
 #' @export
 #' @note macOS only.
-#' @note Updated 2022-10-20.
+#' @note Updated 2023-10-24.
 #'
 #' @inheritParams params
 #'
@@ -16,12 +16,11 @@
 #' ## > finder(path = "~")
 finder <- function(path = getwd()) {
     stopifnot(
-        .requireNamespaces("AcidBase"),
         .isMacos(),
         .isString(path)
     )
     path <- .realpath(path)
-    AcidBase::shell(command = "open", args = path)
+    .shell(command = "open", args = path)
 }
 
 

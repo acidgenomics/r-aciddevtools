@@ -7,11 +7,29 @@
 
 
 
+#' @seealso goalie::allAreFiles
+#' @noRd
+.allAreFiles <- function(...) {
+    stopifnot(.requireNamespaces("goalie"))
+    goalie::allAreFiles(...)
+}
+
+
+
 #' @seealso goalie::allAreSystemCommands
 #' @noRd
 .allAreSystemCommands <- function(...) {
     stopifnot(.requireNamespaces("goalie"))
     goalie::allAreSystemCommands(...)
+}
+
+
+
+#' @seealso AcidBase::download
+#' @noRd
+.download <- function(...) {
+    stopifnot(.requireNamespaces("AcidBase"))
+    AcidBase::download(...)
 }
 
 
@@ -42,6 +60,15 @@
 
 
 
+#' @seealso AcidBase::hasInternet
+#' @noRd
+.hasInternet <- function(...) {
+    stopifnot(.requireNamespaces("AcidBase"))
+    goalie::hasInternet(...)
+}
+
+
+
 #' @seealso goalie::hasNoDuplicates
 #' @noRd
 .hasNoDuplicates <- function(x) {
@@ -54,6 +81,15 @@
 #' @noRd
 .hasLength <- function(x) {
     length(x) > 0L
+}
+
+
+
+#' @seealso AcidBase::initDir
+#' @noRd
+.initDir <- function(...) {
+    stopifnot(.requireNamespaces("AcidBase"))
+    AcidBase::initDir(...)
 }
 
 
@@ -88,6 +124,15 @@
 .isAny <- function(...) {
     stopifnot(.requireNamespaces("goalie"))
     goalie::isAny(...)
+}
+
+
+
+#' @seealso goalie::isCharacter
+#' @noRd
+.isCharacter <- function(...) {
+    stopifnot(.requireNamespaces("goalie"))
+    goalie::isCharacter(...)
 }
 
 
@@ -204,6 +249,15 @@
 .pasteUrl <- function(...) {
     stopifnot(.requireNamespaces("AcidBase"))
     AcidBase::pasteUrl(...)
+}
+
+
+
+#' @seealso AcidBase::pkgCacheDir
+#' @noRd
+.pkgCacheDir <- function(...) {
+    stopifnot(.requireNamespaces("AcidBase"))
+    AcidBase::pkgCacheDir(...)
 }
 
 
