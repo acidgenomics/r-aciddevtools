@@ -1,7 +1,3 @@
-## nocov start
-
-
-
 #' Copy to clipboard
 #'
 #' @export
@@ -22,7 +18,3 @@ pbcopy <- function(x) {
     )
     utils::capture.output(x, file = pipe("pbcopy"))
 }
-
-
-
-## nocov end

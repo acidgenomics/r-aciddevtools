@@ -43,7 +43,7 @@ saveRdExamples <-
         names(db) <- gsub("\\.Rd", "", names(db))
         ## If no Rd file is specified, save everything in package.
         if (is.null(rd)) {
-            rd <- names(db) # nocov
+            rd <- names(db)
         }
         ## Check that the requiested function(s) are valid.
         stopifnot(.isSubset(rd, names(db)))
@@ -61,10 +61,8 @@ saveRdExamples <-
                 )
                 ## Early return if there are no examples.
                 if (identical(length(x), 0L)) {
-                    ## nocov start
                     message(sprintf("Skipped '%s'.", rd))
                     return(invisible(NULL))
-                    ## nocov end
                 }
                 ## Save to an R script.
                 path <- file.path(dir, paste0(rd, ".R"))

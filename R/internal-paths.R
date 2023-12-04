@@ -1,7 +1,3 @@
-## nocov start
-
-
-
 #' CRAN mirror
 #'
 #' @note Updated 2020-11-11.
@@ -101,7 +97,3 @@
         mustWork = TRUE
     )
 }
-
-
-
-## nocov end

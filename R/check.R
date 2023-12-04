@@ -1,5 +1,3 @@
-## nocov start
-
 #' Check package
 #'
 #' @export
@@ -118,5 +116,3 @@ check <- function(path = getwd(),
     ))
     invisible(TRUE)
 }
-
-## nocov end

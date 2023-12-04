@@ -1,7 +1,3 @@
-## nocov start
-
-
-
 #' Open Finder to the current directory
 #'
 #' @export
@@ -22,7 +18,3 @@ finder <- function(path = getwd()) {
     path <- .realpath(path)
     .shell(command = "open", args = path)
 }
-
-
-
-## nocov end
