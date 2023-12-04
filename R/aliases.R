@@ -1,7 +1,3 @@
-## nocov start
-
-
-
 #' Aliases
 #'
 #' Mnemonic functions and shortcut aliases, to reduce common keystrokes.
@@ -52,7 +48,3 @@ d <- function(...) {
 la <- function(...) {
     load_all(...)
 }
-
-
-
-## nocov end

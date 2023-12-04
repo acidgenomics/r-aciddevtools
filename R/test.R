@@ -1,5 +1,3 @@
-## nocov start
-
 #' Execute testthat tests in a package
 #'
 #' @export
@@ -84,5 +82,3 @@ longtest <- function(path = getwd()) {
     .unlink2(tmpdir)
     invisible(TRUE)
 }
-
-## nocov end

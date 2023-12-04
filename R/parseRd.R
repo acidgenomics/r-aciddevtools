@@ -51,7 +51,7 @@ parseRd <-
             data <- data[-1L]
         }
         if (identical(data[[length(data)]], "")) {
-            data <- data[-length(data)] # nocov
+            data <- data[-length(data)]
         }
         data
     }
@@ -71,7 +71,7 @@ rdTags <- # nolint
             "Rd_tag"
         )
         if (identical(length(tags), 0L)) {
-            tags <- character() # nocov
+            tags <- character()
         } else {
             ## Remove the leading "\\" backslashes.
             tags <- sub(pattern = "^\\\\", replacement = "", x = tags)

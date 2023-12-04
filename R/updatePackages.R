@@ -1,5 +1,3 @@
-## nocov start
-
 #' Update all installed packages
 #'
 #' @export
@@ -71,5 +69,3 @@ updatePackages <-
         ## > options("warn" = warn) # nolint
         valid()
     }
-
-## nocov end

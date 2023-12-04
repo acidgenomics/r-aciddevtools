@@ -1,7 +1,3 @@
-## nocov start
-
-
-
 #' Install Acid Genomics packages
 #'
 #' @export
@@ -56,7 +52,3 @@ installAcidverse <- function(reinstall = FALSE) {
         reinstall = reinstall
     )
 }
-
-
-
-## nocov end

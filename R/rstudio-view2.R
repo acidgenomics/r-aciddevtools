@@ -1,7 +1,3 @@
-## nocov start
-
-
-
 #' View object
 #'
 #' This variant performs internal coercion to data.frame, so we can easily
@@ -35,7 +31,3 @@ view2 <- function(object) {
     }
     View(object)
 }
-
-
-
-## nocov end

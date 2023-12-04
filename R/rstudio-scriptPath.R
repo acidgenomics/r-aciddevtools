@@ -1,7 +1,3 @@
-## nocov start
-
-
-
 #' Script path
 #'
 #' @export
@@ -21,7 +17,3 @@ scriptPath <- function() {
     x <- .realpath(x)
     x
 }
-
-
-
-## nocov end

@@ -1,7 +1,3 @@
-## nocov start
-
-
-
 #' Check package coverage using covr
 #'
 #' @note Updated 2022-10-20.
@@ -33,7 +29,3 @@
     }
     invisible(TRUE)
 }
-
-
-
-## nocov end

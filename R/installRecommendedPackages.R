@@ -1,5 +1,3 @@
-## nocov start
-
 ## NOTE "grid" package is getting duplicated on Ubuntu 22.
 
 ## Consider including these packages:
@@ -339,7 +337,3 @@ installRecommendedPackages <-
         installAcidverse()
         invisible(TRUE)
     }
-
-
-
-## nocov end

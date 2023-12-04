@@ -1,4 +1,3 @@
-## nocov start
 ## nolint start
 
 
@@ -324,4 +323,3 @@ exit <- function(...) {
 
 
 ## nolint end
-## nocov end
