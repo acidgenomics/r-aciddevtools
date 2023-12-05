@@ -109,6 +109,7 @@ installFromGitHub <-
                     ))
                     return(FALSE)
                 }
+                ## nolint start
                 url <- paste(
                     "https://github.com",
                     repo,
@@ -122,6 +123,7 @@ installFromGitHub <-
                     paste0(ref, ".tar.gz"),
                     sep = "/"
                 )
+                ## nolint end
                 tarfile <- tempfile(fileext = ".tar.gz")
                 utils::download.file(
                     url = url,

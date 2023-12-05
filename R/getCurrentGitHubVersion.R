@@ -20,10 +20,12 @@ getCurrentGitHubVersion <- function(repo) {
     x <- vapply(
         X = repo,
         FUN = function(repo) {
+            ## nolint start
             url <- paste(
                 "https://api.github.com", "repos", repo, "releases", "latest",
                 sep = "/"
             )
+            ## nolint end
             x <- pipette::import(url, format = "json", quiet = TRUE)
             x <- x[["tag_name"]]
             x <- gsub(pattern = "^v", replacement = "", x = x)
