@@ -1,5 +1,12 @@
 # Release notes
 
+## AcidDevTools 0.7.4 (2023-12-13)
+
+New functions:
+
+- `inspectRow`: Quickly examine nested values in a `data.frame` row. Supports
+  any object that can be coerced to a `data.frame`.
+
 ## AcidDevTools 0.7.3 (2023-10-24)
 
 New functions:
