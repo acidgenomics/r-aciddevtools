@@ -4,7 +4,7 @@
 #' view S4 DataFrame and GenomicRanges objects.
 #'
 #' @export
-#' @note Updated 2023-10-06.
+#' @note Updated 2023-12-19.
 #'
 #' @inheritParams params
 #'
@@ -19,7 +19,7 @@
 #' ## > view2(mtcars)
 view2 <- function(object) {
     ## Coerce S4 object, if applicable.
-    if (.isAny(object, c("DataFrame", "GenomicRanges"))) {
+    if (.isAny(object, c("DFrame", "GRanges", "GRangesList"))) {
         ## Coercion with `as.data.frame` can change column names.
         ## Alternative approach:
         ## > object <- as(object, "data.frame")
