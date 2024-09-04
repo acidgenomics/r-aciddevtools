@@ -5,7 +5,7 @@
 #' Validate installed package versions against correct versions
 #'
 #' @export
-#' @note Updated 2023-05-22.
+#' @note Updated 2024-09-04.
 #'
 #' @section Library location:
 #'
