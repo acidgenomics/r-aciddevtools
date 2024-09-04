@@ -29,13 +29,15 @@ valid <- function() {
         dict[["type"]]
     )
     pkgs <- list("new" = character(), "old" = character())
-    suppressWarnings({
-        bioc <- BiocManager::valid(
-            lib.loc = dict[["libLoc"]],
-            type = dict[["type"]],
-            checkBuilt = dict[["checkBuilt"]],
-            site_repository = "https://r.acidgenomics.com"
-        )
+    suppressMessages({
+        suppressWarnings({
+            bioc <- BiocManager::valid(
+                lib.loc = dict[["libLoc"]],
+                type = dict[["type"]],
+                checkBuilt = dict[["checkBuilt"]],
+                site_repository = "https://r.acidgenomics.com"
+            )
+        })
     })
     if (
         is.list(bioc) &&
