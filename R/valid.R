@@ -1,7 +1,3 @@
-## FIXME This needs to check if Bioconductor version is current.
-
-
-
 #' Validate installed package versions against correct versions
 #'
 #' @export

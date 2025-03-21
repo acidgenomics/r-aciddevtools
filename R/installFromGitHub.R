@@ -131,6 +131,7 @@ installFromGitHub <-
                     quiet = FALSE
                 )
                 ## Using a random string of 'A-Za-z' here for directory.
+                ## nolint start
                 exdir <- file.path(
                     .tempdir2(),
                     paste0(
@@ -141,6 +142,7 @@ installFromGitHub <-
                         )
                     )
                 )
+                ## nolint end
                 utils::untar(
                     tarfile = tarfile,
                     exdir = exdir,
