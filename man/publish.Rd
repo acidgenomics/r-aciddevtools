@@ -6,7 +6,7 @@
 \usage{
 publish(
   package = getwd(),
-  repo = file.path("~", "monorepo", "r-acidgenomics-com"),
+  repo = Sys.getenv("ACIDGENOMICS_REPO"),
   check = TRUE,
   tag = TRUE,
   pkgdown = TRUE,
@@ -41,7 +41,7 @@ Boolean, indicating if package build was successful.
 Build packages and publish to Acid Genomics repo
 }
 \note{
-Updated 2023-02-09.
+Updated 2025-03-21.
 }
 \section{Building from the command line}{
 
