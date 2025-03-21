@@ -26,6 +26,7 @@ Suggests:
     BiocManager,
     DT,
     covr,
+    cyclocomp,
     desc,
     devtools,
     drat,
