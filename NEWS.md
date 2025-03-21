@@ -1,5 +1,10 @@
 # Release notes
 
+## AcidDevTools 0.7.5 (2025-03-21)
+
+- `publish`: Change `repo` argument to inherit `ACIDGENOMICS_REPO` environment
+variable, which should be defined in `~/.Renviron`.
+
 ## AcidDevTools 0.7.4 (2023-12-13)
 
 New functions:
