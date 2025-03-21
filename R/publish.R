@@ -1,7 +1,7 @@
 #' Build packages and publish to Acid Genomics repo
 #'
 #' @export
-#' @note Updated 2023-02-09.
+#' @note Updated 2025-03-21.
 #'
 #' @section Building from the command line:
 #'
@@ -65,7 +65,7 @@
 #' ## > )
 publish <-
     function(package = getwd(),
-             repo = file.path("~", "monorepo", "r-acidgenomics-com"),
+             repo = Sys.getenv("ACIDGENOMICS_REPO"),
              check = TRUE,
              tag = TRUE,
              pkgdown = TRUE,
