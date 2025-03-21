@@ -19,7 +19,7 @@ This variant performs internal coercion to data.frame, so we can easily
 view S4 DataFrame and GenomicRanges objects.
 }
 \note{
-Updated 2023-10-06.
+Updated 2023-12-19.
 }
 \examples{
 ## > view2(mtcars)
