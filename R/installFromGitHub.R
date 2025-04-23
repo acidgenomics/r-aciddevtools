@@ -60,12 +60,14 @@
 #' sort(list.dirs(path = testlib, full.names = FALSE, recursive = FALSE))
 #' unlink(testlib, recursive = TRUE)
 installFromGitHub <-
-    function(repo,
-             tag,
-             branch,
-             lib = .libPaths()[[1L]], # nolint
-             reinstall = TRUE,
-             ...) {
+    function(
+        repo,
+        tag,
+        branch,
+        lib = .libPaths()[[1L]], # nolint
+        reinstall = TRUE,
+        ...
+    ) {
         if (
             (missing(tag) && missing(branch)) ||
                 (!missing(tag) && !missing(branch))
@@ -105,7 +107,8 @@ installFromGitHub <-
                 ) {
                     message(sprintf(
                         "'%s' is installed in '%s'.",
-                        pkg, lib
+                        pkg,
+                        lib
                     ))
                     return(FALSE)
                 }

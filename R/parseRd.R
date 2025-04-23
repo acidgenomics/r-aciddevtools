@@ -57,7 +57,6 @@ parseRd <-
     }
 
 
-
 #' @describeIn parseRd
 #' Modified version of the unexported `tools:::RdTags()` function.
 #' @export

@@ -18,7 +18,6 @@
 NULL
 
 
-
 #' @rdname styler
 #' @export
 acid_style <- # nolint

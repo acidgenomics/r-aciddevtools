@@ -21,13 +21,11 @@
 NULL
 
 
-
 #' @rdname kill
 #' @export
 kill <- function(pid = Sys.getpid()) {
     system2(command = "kill", args = pid)
 }
-
 
 
 #' @rdname kill

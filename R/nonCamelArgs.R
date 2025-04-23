@@ -13,10 +13,17 @@
 #' @return `character`.
 #' Offending Rd documentation files.
 nonCamelArgs <-
-    function(pkgName,
-             allowlist = c(
-                 "BPPARAM", "FUN", "MARGIN", "USE.NAMES", "X", "do.NULL"
-             )) {
+    function(
+        pkgName,
+        allowlist = c(
+            "BPPARAM",
+            "FUN",
+            "MARGIN",
+            "USE.NAMES",
+            "X",
+            "do.NULL"
+        )
+    ) {
         stopifnot(
             .requireNamespaces(c("syntactic", "tools")),
             .isString(pkgName),

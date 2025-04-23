@@ -24,9 +24,11 @@
 #' ## >     package = file.path("~", "monorepo", "r-packages", "r-koopa")
 #' ## > )
 pkgdownDeployToAws <-
-    function(package = getwd(),
-             bucketDir = "s3://r.acidgenomics.com/packages/",
-             clean = TRUE) {
+    function(
+        package = getwd(),
+        bucketDir = "s3://r.acidgenomics.com/packages/",
+        clean = TRUE
+    ) {
         stopifnot(
             .requireNamespaces(c("desc", "pkgdown")),
             .isASystemCommand("aws"),
@@ -51,7 +53,8 @@ pkgdownDeployToAws <-
                 if (!.isAFile(configFile)) {
                     message(sprintf(
                         "pkgdown not enabled for '%s' at '%s'.",
-                        pkgName, pkgDir
+                        pkgName,
+                        pkgDir
                     ))
                     return(invisible(FALSE))
                 }
@@ -60,7 +63,9 @@ pkgdownDeployToAws <-
                         "Building pkgdown website for '%s' at '%s',",
                         "then pushing to AWS S3 bucket at '%s'."
                     ),
-                    pkgName, docsDir, bucketDir
+                    pkgName,
+                    docsDir,
+                    bucketDir
                 ))
                 if (isTRUE(clean) && dir.exists(docsDir)) {
                     .unlink2(docsDir)
@@ -69,8 +74,11 @@ pkgdownDeployToAws <-
                 .shell(
                     command = "aws",
                     args = c(
-                        "--profile", "acidgenomics",
-                        "s3", "sync", "--delete",
+                        "--profile",
+                        "acidgenomics",
+                        "s3",
+                        "sync",
+                        "--delete",
                         paste0(docsDir, "/"),
                         paste0(bucketDir, "/")
                     ),

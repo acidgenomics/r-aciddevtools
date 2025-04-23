@@ -22,7 +22,11 @@ getCurrentGitHubVersion <- function(repo) {
         FUN = function(repo) {
             ## nolint start
             url <- paste(
-                "https://api.github.com", "repos", repo, "releases", "latest",
+                "https://api.github.com",
+                "repos",
+                repo,
+                "releases",
+                "latest",
                 sep = "/"
             )
             ## nolint end

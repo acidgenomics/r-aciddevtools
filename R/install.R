@@ -46,11 +46,13 @@
 #' ## > list.dirs(path = testlib, full.names = FALSE, recursive = FALSE)
 #' ## > unlink(testlib, recursive = TRUE)
 install <-
-    function(pkgs,
-             lib = .libPaths()[[1L]], # nolint
-             dependencies = NA,
-             type = getOption("pkgType", default = "source"),
-             reinstall = TRUE) {
+    function(
+        pkgs,
+        lib = .libPaths()[[1L]], # nolint
+        dependencies = NA,
+        type = getOption("pkgType", default = "source"),
+        reinstall = TRUE
+    ) {
         stopifnot(
             .requireNamespaces("utils"),
             is.character(pkgs),
@@ -87,29 +89,20 @@ install <-
     }
 
 
-
 #' Install an individual package
 #'
 #' @note Updated 2022-10-20.
 #' @noRd
 .install <-
-    function(pkg,
-             lib,
-             dependencies,
-             type,
-             reinstall) {
-        if (
-            grepl(pattern = "\\.git$", x = pkg)
-        ) {
+    function(pkg, lib, dependencies, type, reinstall) {
+        if (grepl(pattern = "\\.git$", x = pkg)) {
             mode <- "gitRepo"
         } else if (
             file.exists(pkg) ||
                 grepl(pattern = "^http(s)?://", x = pkg)
         ) {
             mode <- "tarball"
-        } else if (
-            grepl(pattern = "^[^/]+/[^/]+$", x = pkg)
-        ) {
+        } else if (grepl(pattern = "^[^/]+/[^/]+$", x = pkg)) {
             mode <- "gitHub"
         } else {
             mode <- "default"
@@ -217,7 +210,10 @@ install <-
         }
         message(sprintf(
             "Installing '%s' with '%s::%s' in '%s'.",
-            pkg, whatPkg, whatFun, lib
+            pkg,
+            whatPkg,
+            whatFun,
+            lib
         ))
         .installIfNecessary(pkgs = whatPkg, lib = lib)
         stopifnot(.requireNamespaces(whatPkg))
@@ -239,7 +235,6 @@ install <-
     }
 
 
-
 #' Install packages, if necessary
 #'
 #' @note Updated 2023-05-17.
@@ -257,8 +252,9 @@ install <-
 #' @examples
 #' ## > .installIfNecessary("BiocManager")
 .installIfNecessary <-
-    function(pkgs,
-             lib = .libPaths()[[1L]] # nolint
+    function(
+        pkgs,
+        lib = .libPaths()[[1L]] # nolint
     ) {
         ## > warn <- getOption(x = "warn")
         ## > options("warn" = 2L) # nolint

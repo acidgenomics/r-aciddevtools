@@ -14,8 +14,9 @@
 #' @examples
 #' ## > uninstall("rlang")
 uninstall <-
-    function(pkgs,
-             lib = .libPaths()[[1L]] # nolint
+    function(
+        pkgs,
+        lib = .libPaths()[[1L]] # nolint
     ) {
         stopifnot(.requireNamespaces("utils"))
         ## > warn <- getOption(x = "warn")

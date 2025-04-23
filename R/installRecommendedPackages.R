@@ -128,8 +128,6 @@
 ## - VeloViz
 ## - immunogenomics/scpost (power calculations)
 
-
-
 #' Install recommended R packages
 #'
 #' @export

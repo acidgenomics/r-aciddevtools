@@ -14,14 +14,12 @@
 NULL
 
 
-
 #' @describeIn aliases
 #' Alias for `setwd()`.
 #' @export
 cd <- function(...) {
     setwd(...) # nolint
 }
-
 
 
 #' @describeIn aliases
@@ -32,14 +30,12 @@ clear <- function() {
 }
 
 
-
 #' @describeIn aliases
 #' Alias for `document()`.
 #' @export
 d <- function(...) {
     document(...)
 }
-
 
 
 #' @describeIn aliases

@@ -6,14 +6,12 @@
 }
 
 
-
 #' @seealso goalie::allAreFiles
 #' @noRd
 .allAreFiles <- function(...) {
     stopifnot(.requireNamespaces("goalie"))
     goalie::allAreFiles(...)
 }
-
 
 
 #' @seealso goalie::allAreSystemCommands
@@ -24,14 +22,12 @@
 }
 
 
-
 #' @seealso AcidBase::download
 #' @noRd
 .download <- function(...) {
     stopifnot(.requireNamespaces("AcidBase"))
     AcidBase::download(...)
 }
-
 
 
 #' @seealso AcidBase::gitCurrentBranch
@@ -42,7 +38,6 @@
 }
 
 
-
 #' @seealso AcidBase::gitDefaultBranch
 #' @noRd
 .gitDefaultBranch <- function(...) {
@@ -51,13 +46,11 @@
 }
 
 
-
 #' @seealso goalie::hasDuplicates
 #' @noRd
 .hasDuplicates <- function(x) {
     anyDuplicated(x) > 0L
 }
-
 
 
 #' @seealso AcidBase::hasInternet
@@ -68,7 +61,6 @@
 }
 
 
-
 #' @seealso goalie::hasNoDuplicates
 #' @noRd
 .hasNoDuplicates <- function(x) {
@@ -76,13 +68,11 @@
 }
 
 
-
 #' @seealso goalie::hasLength
 #' @noRd
 .hasLength <- function(x) {
     length(x) > 0L
 }
-
 
 
 #' @seealso AcidBase::initDir
@@ -93,14 +83,12 @@
 }
 
 
-
 #' @seealso methods::is
 #' @noRd
 .is <- function(...) {
     stopifnot(.requireNamespaces("methods"))
     methods::is(...)
 }
-
 
 
 #' @seealso goalie::isADir
@@ -110,13 +98,11 @@
 }
 
 
-
 #' @seealso goalie::isAFile
 #' @noRd
 .isAFile <- function(x) {
     .isString(x) && file.exists(x)
 }
-
 
 
 #' @seealso goalie::isAny
@@ -127,7 +113,6 @@
 }
 
 
-
 #' @seealso goalie::isCharacter
 #' @noRd
 .isCharacter <- function(...) {
@@ -136,13 +121,11 @@
 }
 
 
-
 #' @seealso goalie::isFlag
 #' @noRd
 .isFlag <- function(x) {
     is.logical(x) && .isScalar(x)
 }
-
 
 
 #' @seealso goalie::isAGitRepo
@@ -153,14 +136,12 @@
 }
 
 
-
 #' @seealso goalie::isASystemCommand
 #' @noRd
 .isASystemCommand <- function(...) {
     stopifnot(.requireNamespaces("goalie"))
     goalie::isASystemCommand(...)
 }
-
 
 
 #' @seealso goalie::isInstalled
@@ -170,7 +151,6 @@
 }
 
 
-
 #' @seealso goalie::isLinux
 #' @noRd
 .isLinux <- function() {
@@ -178,13 +158,11 @@
 }
 
 
-
 #' @seealso goalie::isMacos
 #' @noRd
 .isMacos <- function() {
     isTRUE(grepl(pattern = "darwin", x = R.Version()[["os"]]))
 }
-
 
 
 #' Is the current environment running in macOS R CRAN binary framework?
@@ -210,14 +188,12 @@
 }
 
 
-
 #' @seealso goalie::isRstudio
 #' @noRd
 .isRstudio <- function(...) {
     stopifnot(.requireNamespaces("goalie"))
     goalie::isRstudio(...)
 }
-
 
 
 #' @seealso goalie::isScalar
@@ -227,7 +203,6 @@
 }
 
 
-
 #' @seealso goalie::isString
 #' @noRd
 .isString <- function(x) {
@@ -235,13 +210,11 @@
 }
 
 
-
 #' @seealso goalie::isSubset
 #' @noRd
 .isSubset <- function(x, y) {
     all(x %in% y)
 }
-
 
 
 #' @seealso AcidBase::pasteUrl
@@ -252,7 +225,6 @@
 }
 
 
-
 #' @seealso AcidBase::pkgCacheDir
 #' @noRd
 .pkgCacheDir <- function(...) {
@@ -261,14 +233,12 @@
 }
 
 
-
 #' @seealso AcidBase::realpath
 #' @noRd
 .realpath <- function(...) {
     stopifnot(.requireNamespaces("AcidBase"))
     AcidBase::realpath(...)
 }
-
 
 
 #' @seealso goalie::requireNamespaces
@@ -285,7 +255,6 @@
 }
 
 
-
 #' @seealso AcidBase::shell
 #' @noRd
 .shell <- function(...) {
@@ -294,14 +263,12 @@
 }
 
 
-
 #' @seealso AcidBase::tempdir2
 #' @noRd
 .tempdir2 <- function(...) {
     stopifnot(.requireNamespaces("AcidBase"))
     AcidBase::tempdir2(...)
 }
-
 
 
 #' @seealso AcidBase::unlink2

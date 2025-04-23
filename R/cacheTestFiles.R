@@ -19,7 +19,9 @@ cacheTestFiles <-
             .isCharacter(files)
         )
         remoteDir <- .pasteUrl(
-            "r.acidgenomics.com", "testdata", tolower(pkg),
+            "r.acidgenomics.com",
+            "testdata",
+            tolower(pkg),
             protocol = "https"
         )
         cacheDir <- .pkgCacheDir(pkg)

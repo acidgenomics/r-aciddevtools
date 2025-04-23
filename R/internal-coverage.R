@@ -9,7 +9,8 @@
     path <- .realpath(path)
     message(sprintf(
         "Checking coverage in '%s' with %s package.",
-        path, "covr"
+        path,
+        "covr"
     ))
     pctCutoff <- cutoff * 100L
     if (isTRUE(nzchar(Sys.getenv("RCHECK_KEEP_IT_100")))) {

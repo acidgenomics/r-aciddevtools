@@ -17,16 +17,18 @@
 #' @examples
 #' printComment(c("hello", "world"))
 printComment <-
-    function(...,
-             prefix = c(
-                 "##",
-                 "## >",
-                 "#'",
-                 "#' >",
-                 "#",
-                 "# >"
-             ),
-             width = 80L) {
+    function(
+        ...,
+        prefix = c(
+            "##",
+            "## >",
+            "#'",
+            "#' >",
+            "#",
+            "# >"
+        ),
+        width = 80L
+    ) {
         stopifnot(.requireNamespaces(c("utils", "withr")))
         prefix <- match.arg(prefix)
         ## Subtract the width of the prefix, including a space.
