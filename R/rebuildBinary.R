@@ -18,8 +18,10 @@
 #' @examples
 #' ## > rebuildBinary(c("AcidSingleCell", "DESeqAnalysis"))
 rebuildBinary <-
-    function(packageName,
-             repo = file.path("~", "monorepo", "r-acidgenomics-com")) {
+    function(
+        packageName,
+        repo = file.path("~", "monorepo", "r-acidgenomics-com")
+    ) {
         stopifnot(
             .isCharacter(packageName),
             .isADir(repo)
@@ -42,7 +44,9 @@ rebuildBinary <-
                 .shell(
                     command = command,
                     args = c(
-                        "CMD", "INSTALL", "--build",
+                        "CMD",
+                        "INSTALL",
+                        "--build",
                         srcTarball
                     ),
                     wd = tempdir

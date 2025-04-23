@@ -30,7 +30,9 @@ build <- function(package = getwd()) {
     pkgVersion <- desc::desc_get_field(key = "Version", file = descFile)
     message(sprintf(
         "Building %s %s at '%s'.",
-        pkgName, pkgVersion, tempdir
+        pkgName,
+        pkgVersion,
+        tempdir
     ))
     buildArgs <- c("--log", "--md5")
     if (isTRUE(pkgName %in% "cgdsr")) {
@@ -48,7 +50,8 @@ build <- function(package = getwd()) {
     .shell(
         command = command,
         args = c(
-            "CMD", "build",
+            "CMD",
+            "build",
             buildArgs,
             package
         ),
@@ -64,7 +67,9 @@ build <- function(package = getwd()) {
     .shell(
         command = command,
         args = c(
-            "CMD", "INSTALL", "--build",
+            "CMD",
+            "INSTALL",
+            "--build",
             tarballs[["source"]]
         ),
         wd = tempdir

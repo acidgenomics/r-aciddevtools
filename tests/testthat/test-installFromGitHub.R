@@ -12,11 +12,12 @@ test_that("tag", {
         reinstall = TRUE
     )
     expect_true(all(
-        pkgName %in% list.dirs(
-            path = testlib,
-            full.names = FALSE,
-            recursive = FALSE
-        )
+        pkgName %in%
+            list.dirs(
+                path = testlib,
+                full.names = FALSE,
+                recursive = FALSE
+            )
     ))
     expect_message(
         object = installFromGitHub(
@@ -42,11 +43,12 @@ test_that("branch", {
         reinstall = TRUE
     )
     expect_true(all(
-        pkgName %in% list.dirs(
-            path = testlib,
-            full.names = FALSE,
-            recursive = FALSE
-        )
+        pkgName %in%
+            list.dirs(
+                path = testlib,
+                full.names = FALSE,
+                recursive = FALSE
+            )
     ))
     expect_message(
         object = installFromGitHub(

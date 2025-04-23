@@ -51,7 +51,6 @@ test <- function(path = getwd()) {
 }
 
 
-
 #' @export
 #' @rdname test
 longtest <- function(path = getwd()) {

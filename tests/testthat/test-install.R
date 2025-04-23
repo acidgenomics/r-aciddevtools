@@ -12,11 +12,12 @@ test_that("BiocManager", {
         )
     })
     expect_true(all(
-        pkgs %in% list.dirs(
-            path = testlib,
-            full.names = FALSE,
-            recursive = FALSE
-        )
+        pkgs %in%
+            list.dirs(
+                path = testlib,
+                full.names = FALSE,
+                recursive = FALSE
+            )
     ))
     expect_message(
         object = install(
@@ -31,11 +32,12 @@ test_that("BiocManager", {
         lib = testlib
     )
     expect_false(all(
-        pkgs %in% list.dirs(
-            path = testlib,
-            full.names = FALSE,
-            recursive = FALSE
-        )
+        pkgs %in%
+            list.dirs(
+                path = testlib,
+                full.names = FALSE,
+                recursive = FALSE
+            )
     ))
     unlink(testlib, recursive = TRUE)
 })
@@ -52,11 +54,12 @@ test_that("Acid Genomics repo", {
         )
     })
     expect_true(all(
-        pkgs %in% list.dirs(
-            path = testlib,
-            full.names = FALSE,
-            recursive = FALSE
-        )
+        pkgs %in%
+            list.dirs(
+                path = testlib,
+                full.names = FALSE,
+                recursive = FALSE
+            )
     ))
     expect_message(
         object = install(
@@ -80,11 +83,12 @@ test_that("Git repo", {
         reinstall = TRUE
     )
     expect_true(all(
-        pkgNames %in% list.dirs(
-            path = testlib,
-            full.names = FALSE,
-            recursive = FALSE
-        )
+        pkgNames %in%
+            list.dirs(
+                path = testlib,
+                full.names = FALSE,
+                recursive = FALSE
+            )
     ))
     expect_message(
         object = install(
@@ -108,11 +112,12 @@ test_that("GitHub", {
         reinstall = TRUE
     )
     expect_true(all(
-        pkgNames %in% list.dirs(
-            path = testlib,
-            full.names = FALSE,
-            recursive = FALSE
-        )
+        pkgNames %in%
+            list.dirs(
+                path = testlib,
+                full.names = FALSE,
+                recursive = FALSE
+            )
     ))
     expect_message(
         object = install(

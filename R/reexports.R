@@ -1,12 +1,9 @@
 ## nolint start
 
-
-
 #' Reexported functions
 #' @name reexports
 #' @note Updated 2020-07-01.
 NULL
-
 
 
 ## BiocCheck ===================================================================
@@ -51,7 +48,6 @@ BiocCheck <- function(package = getwd()) {
 }
 
 
-
 ## covr ========================================================================
 
 #' @rdname reexports
@@ -77,7 +73,6 @@ report <- function(...) {
     stopifnot(.requireNamespaces(c("DT", "covr")))
     covr::report(...)
 }
-
 
 
 ## devtools ====================================================================
@@ -119,7 +114,6 @@ run_examples <- function(..., document = FALSE) {
 }
 
 
-
 ## lintr =======================================================================
 
 #' @rdname reexports
@@ -145,7 +139,6 @@ lint_package <- function(...) {
     stopifnot(.requireNamespaces("lintr"))
     lintr::lint_package(...)
 }
-
 
 
 ## pkgdown =====================================================================
@@ -205,7 +198,6 @@ build_site <- function(..., devel = FALSE, preview = FALSE) {
 }
 
 
-
 ## rcmdcheck ===================================================================
 
 ## See also:
@@ -215,8 +207,7 @@ build_site <- function(..., devel = FALSE, preview = FALSE) {
 #' @rdname reexports
 #' @usage NULL
 #' @export
-rcmdcheck <- function(path = getwd(),
-                      cran = TRUE) {
+rcmdcheck <- function(path = getwd(), cran = TRUE) {
     stopifnot(.requireNamespaces("rcmdcheck"))
     Sys.setenv(
         ## See also `force_suggests` argument in `devtools::check()`.
@@ -240,7 +231,6 @@ rcmdcheck <- function(path = getwd(),
     stopifnot(identical(out[["status"]], 0L))
     invisible(out)
 }
-
 
 
 ## styler ======================================================================
@@ -279,7 +269,6 @@ style_pkg <- function(pkg = getwd()) {
 }
 
 
-
 ## testthat ====================================================================
 
 #' @rdname reexports
@@ -291,7 +280,6 @@ test_file <- function(...) {
 }
 
 
-
 ## usethis =====================================================================
 
 #' @rdname reexports
@@ -301,7 +289,6 @@ use_data <- function(..., overwrite = TRUE) {
     stopifnot(.requireNamespaces("usethis"))
     usethis::use_data(..., overwrite = overwrite)
 }
-
 
 
 ## Custom ======================================================================
@@ -319,7 +306,5 @@ doc <- function(...) {
 exit <- function(...) {
     quit(...)
 }
-
-
 
 ## nolint end

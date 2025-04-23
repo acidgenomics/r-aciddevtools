@@ -18,14 +18,16 @@
 #'
 #' @return `BiocManager::install()` call if packages need an update.
 updateDeps <-
-    function(pkg = getwd(),
-             type = c(
-                 "Depends",
-                 "Imports",
-                 "LinkingTo",
-                 "Suggests",
-                 "Enhances"
-             )) {
+    function(
+        pkg = getwd(),
+        type = c(
+            "Depends",
+            "Imports",
+            "LinkingTo",
+            "Suggests",
+            "Enhances"
+        )
+    ) {
         stopifnot(
             .requireNamespaces(c("BiocManager", "remotes", "utils")),
             .isAFile(file.path(pkg, "DESCRIPTION"))
@@ -106,7 +108,8 @@ updateDeps <-
         if (length(pkgs) > 0L) {
             message(sprintf(
                 "Updating %s dependencies: %s.",
-                pkgname, toString(pkgs)
+                pkgname,
+                toString(pkgs)
             ))
             install(pkgs = pkgs, reinstall = TRUE)
         } else {

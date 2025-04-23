@@ -41,11 +41,13 @@
 #' print(readLines(out[[1L]]))
 #' unlink("testdata", recursive = TRUE)
 findAndReplace <-
-    function(pattern,
-             replacement,
-             filePattern = "\\.(r|R)$",
-             dir = getwd(),
-             recursive = FALSE) {
+    function(
+        pattern,
+        replacement,
+        filePattern = "\\.(r|R)$",
+        dir = getwd(),
+        recursive = FALSE
+    ) {
         stopifnot(.requireNamespaces("parallel"))
         dir <- .realpath(dir)
         files <- sort(list.files(

@@ -64,12 +64,14 @@
 #' ## >     )
 #' ## > )
 publish <-
-    function(package = getwd(),
-             repo = Sys.getenv("ACIDGENOMICS_REPO"),
-             check = TRUE,
-             tag = TRUE,
-             pkgdown = TRUE,
-             deploy = TRUE) {
+    function(
+        package = getwd(),
+        repo = Sys.getenv("ACIDGENOMICS_REPO"),
+        check = TRUE,
+        tag = TRUE,
+        pkgdown = TRUE,
+        deploy = TRUE
+    ) {
         stopifnot(
             .requireNamespaces(c("desc", "devtools")),
             .allAreSystemCommands(c("magick", "pandoc")),
@@ -173,7 +175,8 @@ publish <-
                 .shell(
                     command = "git",
                     args = c(
-                        "commit", "-m",
+                        "commit",
+                        "-m",
                         paste0(
                             "'Add ",
                             basename(tarballs[["source"]]),
@@ -206,7 +209,6 @@ publish <-
         }
         invisible(TRUE)
     }
-
 
 
 #' Insert a package into drat repository

@@ -11,7 +11,8 @@
 #' @examples
 #' ## > updatePackages()
 updatePackages <-
-    function(lib = .libPaths()[[1L]]) { # nolint
+    function(lib = .libPaths()[[1L]]) {
+        # nolint
         .installIfNecessary("BiocManager")
         stopifnot(.requireNamespaces("BiocManager"))
         ## > warn <- getOption(x = "warn")
@@ -35,7 +36,9 @@ updatePackages <-
         }
         message(sprintf(
             "Updating %s and %s packages in '%s'.",
-            "Bioconductor", "CRAN", lib
+            "Bioconductor",
+            "CRAN",
+            lib
         ))
         BiocManager::repositories()
         BiocManager::install(
@@ -49,7 +52,8 @@ updatePackages <-
         if (isTRUE(nzchar(Sys.getenv("GITHUB_PAT")))) {
             message(sprintf(
                 "Updating %s packages in '%s'.",
-                "GitHub", lib
+                "GitHub",
+                lib
             ))
             .installIfNecessary("remotes")
             stopifnot(.requireNamespaces("remotes"))

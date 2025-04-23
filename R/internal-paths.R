@@ -5,7 +5,6 @@
 .cran <- "https://cloud.r-project.org"
 
 
-
 #' Homebrew opt prefix
 #'
 #' @note Updated 2021-09-22.
@@ -21,7 +20,6 @@
     }
     x
 }
-
 
 
 #' Homebrew prefix
@@ -53,7 +51,6 @@
 }
 
 
-
 #' Koopa opt prefix.
 #'
 #' @note Updated 2021-09-22.
@@ -71,7 +68,6 @@
 }
 
 
-
 #' Koopa prefix.
 #'
 #' @note Updated 2021-04-30.
@@ -83,7 +79,6 @@
     }
     x
 }
-
 
 
 #' Normalize file path

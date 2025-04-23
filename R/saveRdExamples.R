@@ -27,9 +27,7 @@
 #' print(out)
 #' unlink(dir, recursive = TRUE)
 saveRdExamples <-
-    function(rd = NULL,
-             package,
-             dir = getwd()) {
+    function(rd = NULL, package, dir = getwd()) {
         stopifnot(
             .requireNamespaces("tools"),
             is.character(rd) || is.null(rd),
@@ -54,7 +52,8 @@ saveRdExamples <-
                 "package" = package,
                 "dir" = dir
             ),
-            f = function(rd, package, dir) { # nolint
+            f = function(rd, package, dir) {
+                # nolint
                 x <- tryCatch(
                     expr = parseRd(db[[rd]], tag = "examples"),
                     error = function(e) character()
@@ -78,7 +77,9 @@ saveRdExamples <-
         names(paths) <- names
         message(sprintf(
             fmt = "Saved %d Rd examples from %s to '%s'.",
-            length(paths), package, dir
+            length(paths),
+            package,
+            dir
         ))
         ## Return file paths of saved R scripts.
         invisible(paths)
