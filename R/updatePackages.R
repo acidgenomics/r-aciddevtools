@@ -11,8 +11,9 @@
 #' @examples
 #' ## > updatePackages()
 updatePackages <-
-    function(lib = .libPaths()[[1L]]) {
-        # nolint
+    function(
+        lib = .libPaths()[[1L]] # nolint
+    ) {
         .installIfNecessary("BiocManager")
         stopifnot(.requireNamespaces("BiocManager"))
         ## > warn <- getOption(x = "warn")
