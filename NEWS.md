@@ -1,5 +1,12 @@
 # Release notes
 
+## AcidDevTools 0.7.6 (2025-04-24)
+
+- Added `languageserver` and `later` as suggested packages, which makes
+  bootstrapping a new R developer environment easier.
+- `check` now disables styler checks by default (`styler = FALSE`). We are
+  testing out using the `air` formatter instead.
+
 ## AcidDevTools 0.7.5 (2025-03-21)
 
 - `publish`: Change `repo` argument to inherit `ACIDGENOMICS_REPO` environment

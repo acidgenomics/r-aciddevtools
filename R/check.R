@@ -1,7 +1,7 @@
 #' Check package
 #'
 #' @export
-#' @note Updated 2023-09-28.
+#' @note Updated 2025-04-24.
 #'
 #' @inheritParams params
 #'
@@ -11,8 +11,10 @@
 #' @param urls `logical(1)`.
 #' Perform `urlchecker::url_check()` checks.
 #'
-#' @param style `logical(1)`.
-#' Perform `styler::style_pkg()` checks.
+#' @param styler `logical(1)`.
+#' Perform `styler::style_pkg()` checks. Currently using air by default for
+#' automatic reformatting, but this can be enabled to use styler formatting
+#' rules instead.
 #'
 #' @param cran `logical(1)`.
 #' Perform additional CRAN submission checks.
@@ -29,10 +31,10 @@
 #' ## > check()
 check <- function(
     path = getwd(),
-    style = TRUE,
     lints = TRUE,
     urls = TRUE,
-    ## CRAN checks seems to have issues with requireNamespace.
+    styler = FALSE,
+    ## CRAN checks seem to have issues with requireNamespace.
     cran = FALSE,
     biocCheck = TRUE,
     coverage = FALSE
