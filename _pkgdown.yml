@@ -8,6 +8,7 @@ navbar:
     acid:
       icon: 'fas fa-vial fa-lg'
       href: https://acidgenomics.com/
+      aria-label: 'Acid Genomics'
   structure:
     right: [acid, github]
 news:
