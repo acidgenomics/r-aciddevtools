@@ -1,5 +1,3 @@
-# Release notes
-
 ## AcidDevTools 0.7.6 (2025-04-24)
 
 - Added `languageserver` and `later` as suggested packages, which makes
