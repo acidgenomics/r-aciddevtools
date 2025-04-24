@@ -60,7 +60,7 @@ check <- function(
     keys <- desc::desc_get(keys = c("Package", "biocViews"), file = descFile)
     pkgName <- keys[["Package"]]
     message(sprintf("Checking '%s' package at '%s'.", pkgName, path))
-    if (isTRUE(style) && .isInstalled("styler")) {
+    if (isTRUE(styler) && .isInstalled("styler")) {
         stopifnot(.requireNamespaces("styler"))
         message("Checking style with 'style_pkg()'.")
         df <- style_pkg(pkg = path)
