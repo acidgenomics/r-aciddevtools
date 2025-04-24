@@ -6,9 +6,9 @@
 \usage{
 check(
   path = getwd(),
-  style = TRUE,
   lints = TRUE,
   urls = TRUE,
+  styler = FALSE,
   cran = FALSE,
   biocCheck = TRUE,
   coverage = FALSE
@@ -18,14 +18,16 @@ check(
 \item{path}{\code{character(1)}.
 File path (e.g. to package).}
 
-\item{style}{\code{logical(1)}.
-Perform \code{styler::style_pkg()} checks.}
-
 \item{lints}{\code{logical(1)}.
 Perform \code{lintr::lint_package()} checks.}
 
 \item{urls}{\code{logical(1)}.
 Perform \code{urlchecker::url_check()} checks.}
+
+\item{styler}{\code{logical(1)}.
+Perform \code{styler::style_pkg()} checks. Currently using air by default for
+automatic reformatting, but this can be enabled to use styler formatting
+rules instead.}
 
 \item{cran}{\code{logical(1)}.
 Perform additional CRAN submission checks.}
@@ -46,7 +48,7 @@ Check that unit tests provide sufficient coverage.}
 Check package
 }
 \note{
-Updated 2023-09-28.
+Updated 2025-04-24.
 }
 \examples{
 ## > check()
