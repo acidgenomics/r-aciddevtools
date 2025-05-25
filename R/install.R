@@ -223,11 +223,6 @@ install <-
             inherits = FALSE
         )
         stopifnot(is.function(what))
-        ## Ensure data.table always installs from source on macOS, to enable
-        ## support for OpenMP and multiple threads.
-        ## > if (.isMacosFramework() && isTRUE(pkg %in% "data.table")) {
-        ## >     args[["type"]] <- "source"
-        ## > }
         suppressMessages({
             do.call(what = what, args = args)
         })

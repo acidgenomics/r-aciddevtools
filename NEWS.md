@@ -1,3 +1,9 @@
+## AcidDevTools 0.7.7 (2025-05-25)
+
+- `install` no longer automatically attempts to build data.table from source
+  on macOS to enable parallel threads. The latest version of data.table 1.17.2
+  now supports this automatically on macOS.
+
 ## AcidDevTools 0.7.6 (2025-04-24)
 
 - Added `languageserver` and `later` as suggested packages, which makes
