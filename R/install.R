@@ -1,7 +1,7 @@
 #' Install packages from Bioconductor, CRAN, or a Git remote
 #'
 #' @export
-#' @note Updated 2023-05-17.
+#' @note Updated 2025-05-25.
 #'
 #' @inheritParams params
 #'
@@ -225,9 +225,9 @@ install <-
         stopifnot(is.function(what))
         ## Ensure data.table always installs from source on macOS, to enable
         ## support for OpenMP and multiple threads.
-        if (.isMacosFramework() && isTRUE(pkg %in% "data.table")) {
-            args[["type"]] <- "source"
-        }
+        ## > if (.isMacosFramework() && isTRUE(pkg %in% "data.table")) {
+        ## >     args[["type"]] <- "source"
+        ## > }
         suppressMessages({
             do.call(what = what, args = args)
         })
