@@ -1,3 +1,8 @@
+## AcidDevTools 0.7.8 (2026-03-02)
+
+- `valid`: Removed internal override for `pkgType` passthrough. This wasn't
+  returning invalid pre-release software packages without binaries correctly.
+
 ## AcidDevTools 0.7.7 (2025-05-25)
 
 - `install` no longer automatically attempts to build data.table from source
