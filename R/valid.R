@@ -19,11 +19,6 @@ valid <- function() {
     dict[["checkBuilt"]] <- TRUE
     dict[["libLoc"]] <- .libPaths()[[1L]] # nolint
     dict[["type"]] <- getOption("pkgType")
-    dict[["type"]] <- switch(
-        EXPR = dict[["type"]],
-        "both" = "binary",
-        dict[["type"]]
-    )
     pkgs <- list("new" = character(), "old" = character())
     suppressMessages({
         suppressWarnings({
