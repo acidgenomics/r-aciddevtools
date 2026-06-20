@@ -1,3 +1,15 @@
+## AcidDevTools 0.7.10 (2026-06-19)
+
+License changes:
+
+- Relicensed from AGPL-3 to Apache 2.0.
+
+Minor changes:
+
+- Modernized tooling: removed per-package `.lintr` in favour of global
+  `~/.lintr`; added `air.toml`; migrated to roxygen2 8.0
+  (`Config/roxygen2/version`).
+
 ## AcidDevTools 0.7.9 (2026-06-20)
 
 - `publish`: Delegate build, drat insert, S3 sync, and CloudFront

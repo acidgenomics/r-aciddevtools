@@ -4,22 +4,12 @@
 \alias{publish}
 \title{Build packages and publish to Acid Genomics repo}
 \usage{
-publish(
-  package = getwd(),
-  repo = Sys.getenv("ACIDGENOMICS_REPO"),
-  check = TRUE,
-  tag = TRUE,
-  pkgdown = TRUE,
-  deploy = TRUE
-)
+publish(package = getwd(), check = TRUE, tag = TRUE, pkgdown = TRUE)
 }
 \arguments{
 \item{package}{\code{character}.
 Directory paths to R package source code.
 Vectorized, supporting the building of multiple packages in a single call.}
-
-\item{repo}{\code{character(1)}.
-Directory path to local R repository (e.g. \code{"r-acidgenomics-com"}).}
 
 \item{check}{\code{logical(1)}.
 Perform package checks prior to building package.}
@@ -29,9 +19,6 @@ Tag release on GitHub.}
 
 \item{pkgdown}{\code{logical(1)}.
 Build pkgdown website, if supported.}
-
-\item{deploy}{\code{logical(1)}.
-Deploy (push) the local repo to AWS S3.}
 }
 \value{
 \code{logical(1)}.
@@ -40,33 +27,14 @@ Boolean, indicating if package build was successful.
 \description{
 Build packages and publish to Acid Genomics repo
 }
+\details{
+Delegates build, drat insert, S3 sync, and CloudFront invalidation to
+\verb{koopa app r publish}. Optional package checks and pkgdown site deployment
+are handled in R before handing off to koopa.
+}
 \note{
-Updated 2025-03-21.
+Updated 2026-06-20.
 }
-\section{Building from the command line}{
-
-
-\if{html}{\out{<div class="sourceCode sh">}}\preformatted{R CMD build ~/monorepo/r-packages/r-syntactic
-R CMD INSTALL --build syntactic_0.5.2.tar.gz
-R CMD check --as-cran syntactic_0.5.2.tar.gz
-# How to install from source:
-R CMD INSTALL syntactic_0.5.2.tar.gz
-# Or how to install binary (on macOS).
-R CMD INSTALL syntactic_0.5.2.tgz
-}\if{html}{\out{</div>}}
-}
-
-\section{Building vignettes}{
-
-
-If you run into problems with a vignette index not being detected, make sure
-the \code{.Rbuildignore} file does not contain \verb{^vignettes$}. Ignoring \verb{^Meta$}
-and \verb{^doc$} is acceptable though.
-
-Note that \code{devtools::build} currently doesn't handle building vignettes
-for binary packages correctly.
-}
-
 \examples{
 ## > publish(
 ## >     package = file.path(
@@ -80,10 +48,4 @@ for binary packages correctly.
 ## >         )
 ## >     )
 ## > )
-}
-\seealso{
-\itemize{
-\item https://seandavi.github.io/post/build-linux-r-binary-packages/
-\item https://rstudio.github.io/r-manuals/r-exts/Creating-R-packages.html
-}
 }

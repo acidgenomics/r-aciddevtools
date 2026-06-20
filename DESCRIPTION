@@ -1,8 +1,8 @@
 Package: AcidDevTools
 Title: Acid Genomics Developer Tools
 Description: Toolkit for R package development.
-Version: 0.7.9
-Date: 2026-06-20
+Version: 0.7.10
+Date: 2026-06-19
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -18,7 +18,7 @@ URL:
     https://r.acidgenomics.com/packages/aciddevtools/,
     https://github.com/acidgenomics/r-aciddevtools/
 BugReports: https://github.com/acidgenomics/r-aciddevtools/issues/
-License: AGPL-3
+License: Apache License (>= 2)
 Encoding: UTF-8
 Suggests:
     AcidBase,
@@ -56,4 +56,4 @@ Additional_repositories: https://r.acidgenomics.com
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
+Config/roxygen2/version: 8.0.0

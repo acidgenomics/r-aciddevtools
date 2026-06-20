@@ -23,14 +23,14 @@ NULL
 acid_style <- # nolint
     function() {
         stopifnot(.requireNamespaces("styler"))
-        styler::tidyverse_style(
+        styler::tidyverse_style( # nolint
             ## Supported scope (from less invasive to more invasive):
             ## "spaces", "identation", "line_breaks", "tokens".
             scope = "tokens",
             strict = TRUE,
             indent_by = 4L,
             start_comments_with_one_space = TRUE,
-            reindention = styler::tidyverse_reindention(),
-            math_token_spacing = styler::tidyverse_math_token_spacing()
+            reindention = styler::tidyverse_reindention(), # nolint
+            math_token_spacing = styler::tidyverse_math_token_spacing() # nolint
         )
     }

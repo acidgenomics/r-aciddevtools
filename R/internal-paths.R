@@ -28,7 +28,7 @@
 #' @noRd
 .homebrewPrefix <- function() {
     x <- Sys.getenv("HOMEBREW_PREFIX")
-    if (isTRUE(nchar(x) > 0L)) {
+    if (isTRUE(nzchar(x))) {
         if (isFALSE(dir.exists(x))) {
             return("")
         } else {
