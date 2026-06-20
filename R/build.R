@@ -35,7 +35,7 @@ build <- function(package = getwd()) {
         tempdir
     ))
     buildArgs <- c("--log", "--md5")
-    if (isTRUE(pkgName %in% "cgdsr")) {
+    if (isTRUE(pkgName == "cgdsr")) {
         buildArgs <- append(
             x = buildArgs,
             values = c(
@@ -81,16 +81,22 @@ build <- function(package = getwd()) {
         )
     stopifnot(.isAFile(tarballs[["binary"]]))
     if (isTRUE(file.size(tarballs[["source"]]) > 2e6L)) {
-        stop(sprintf(
-            "Source package is too large: '%s'.",
-            tarballs[["source"]]
-        ))
+        stop(
+            sprintf(
+                "Source package is too large: '%s'.",
+                tarballs[["source"]]
+            ),
+            call. = FALSE
+        )
     }
     if (isTRUE(file.size(tarballs[["binary"]]) > 5e6L)) {
-        stop(sprintf(
-            "Binary package is too large: '%s'.",
-            tarballs[["binary"]]
-        ))
+        stop(
+            sprintf(
+                "Binary package is too large: '%s'.",
+                tarballs[["binary"]]
+            ),
+            call. = FALSE
+        )
     }
     tarballs
 }

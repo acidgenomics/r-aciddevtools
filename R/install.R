@@ -95,7 +95,7 @@ install <-
 #' @noRd
 .install <-
     function(pkg, lib, dependencies, type, reinstall) {
-        if (grepl(pattern = "\\.git$", x = pkg)) {
+        if (endsWith(pkg, ".git")) {
             mode <- "gitRepo"
         } else if (
             file.exists(pkg) ||
