@@ -1,1 +1,2 @@
 # This file intentionally minimal — see ~/.config/git/ignore for global patterns.
+tests/testthat/_problems/

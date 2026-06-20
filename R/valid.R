@@ -14,7 +14,10 @@
 #' @examples
 #' ## > valid()
 valid <- function() {
-    stopifnot(.requireNamespaces(c("BiocManager", "utils")))
+    if (!nzchar(system.file(package = "BiocManager"))) {
+        message("BiocManager is required for valid().")
+        return(invisible(FALSE))
+    }
     dict <- list()
     dict[["checkBuilt"]] <- TRUE
     dict[["libLoc"]] <- .libPaths()[[1L]] # nolint
