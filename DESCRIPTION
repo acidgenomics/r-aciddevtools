@@ -1,8 +1,8 @@
 Package: AcidDevTools
 Title: Acid Genomics Developer Tools
 Description: Toolkit for R package development.
-Version: 0.7.8
-Date: 2026-03-02
+Version: 0.7.9
+Date: 2026-06-20
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
