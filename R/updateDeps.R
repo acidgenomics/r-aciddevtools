@@ -55,7 +55,7 @@ updateDeps <-
         noVersionMissing <- noVersion[which(!noVersion %in% rownames(current))]
         pkgs <- c(pkgs, noVersionMissing)
         ## Packages less than or equal to a specific version.
-        keep <- grepl("^>= ", df[["version"]])
+        keep <- startsWith(df[["version"]], ">= ")
         df <- df[keep, , drop = FALSE]
         df[["version"]] <- sub("^>= ", "", df[["version"]])
         colnames(df)[colnames(df) == "version"] <- "required"
@@ -77,7 +77,9 @@ updateDeps <-
             table <- df[["package"]]
             match <- match(x = basename(x), table = table)
             for (i in seq_along(match)) {
-                if (is.na(match[i])) next
+                if (is.na(match[i])) {
+                    next
+                }
                 table[match[i]] <- remotes[i]
             }
             df[["package"]] <- table

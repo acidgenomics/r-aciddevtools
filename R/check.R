@@ -54,7 +54,10 @@ check <- function(
         ok <- .isInstalled(deps)
         if (!all(ok)) {
             missing <- deps[!ok]
-            stop(sprintf("Not installed: %s.", toString(missing)))
+            stop(
+                sprintf("Not installed: %s.", toString(missing)),
+                call. = FALSE
+            )
         }
     }
     keys <- desc::desc_get(keys = c("Package", "biocViews"), file = descFile)
@@ -72,11 +75,14 @@ check <- function(
         lints <- lint_package(path = path)
         if (.hasLength(lints)) {
             print(lints)
-            stop(sprintf(
-                fmt = "Package failed lintr checks. %d %s detected.",
-                length(lints),
-                ngettext(n = length(lints), msg1 = "lint", msg2 = "lints")
-            ))
+            stop(
+                sprintf(
+                    fmt = "Package failed lintr checks. %d %s detected.",
+                    length(lints),
+                    ngettext(n = length(lints), msg1 = "lint", msg2 = "lints")
+                ),
+                call. = FALSE
+            )
         }
     }
     if (

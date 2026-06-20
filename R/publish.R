@@ -66,12 +66,12 @@ publish <-
                 if (isTRUE(pkgdown)) {
                     pkgdownDeployToAws(package = package)
                 }
-                koopa_args <- c("app", "r", "publish", package, "--no-check")
+                koopaArgs <- c("app", "r", "publish", package, "--no-check")
                 message(sprintf(
                     "Running: koopa %s",
-                    paste(koopa_args, collapse = " ")
+                    paste(koopaArgs, collapse = " ")
                 ))
-                .shell(command = "koopa", args = koopa_args, wd = package)
+                .shell(command = "koopa", args = koopaArgs, wd = package)
                 if (isTRUE(tag)) {
                     message("Tagging on GitHub.")
                     name <-

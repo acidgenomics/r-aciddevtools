@@ -154,14 +154,14 @@
 #' @seealso goalie::isLinux
 #' @noRd
 .isLinux <- function() {
-    isTRUE(grepl(pattern = "linux", x = R.Version()[["os"]]))
+    isTRUE(grepl(pattern = "linux", x = R.Version()[["os"]], fixed = TRUE))
 }
 
 
 #' @seealso goalie::isMacos
 #' @noRd
 .isMacos <- function() {
-    isTRUE(grepl(pattern = "darwin", x = R.Version()[["os"]]))
+    isTRUE(grepl(pattern = "darwin", x = R.Version()[["os"]], fixed = TRUE))
 }
 
 

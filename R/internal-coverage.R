@@ -22,11 +22,14 @@
     pct <- percent_coverage(cov)
     print(cov)
     if (pct < pctCutoff) {
-        stop(sprintf(
-            "Coverage in '%s' is %s%%.",
-            path,
-            round(pct, digits = 2L)
-        ))
+        stop(
+            sprintf(
+                "Coverage in '%s' is %s%%.",
+                path,
+                round(pct, digits = 2L)
+            ),
+            call. = FALSE
+        )
     }
     invisible(TRUE)
 }
