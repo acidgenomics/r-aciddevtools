@@ -58,7 +58,18 @@ valid <- function() {
         )
     })
     if (is.matrix(old)) {
-        pkgs[["old"]] <- append(pkgs[["old"]], values = rownames(old))
+        ## Exclude packages already flagged by BiocManager::valid() above so
+        ## Bioconductor packages are not double-reported when
+        ## utils::old.packages() picks them up via the CRAN repos option.
+        biocAlreadyFlagged <- if (
+            is.list(bioc) && "out_of_date" %in% names(bioc)
+        ) {
+            rownames(bioc[["out_of_date"]])
+        } else {
+            character()
+        }
+        oldPkgs <- setdiff(rownames(old), biocAlreadyFlagged)
+        pkgs[["old"]] <- append(pkgs[["old"]], values = oldPkgs)
     }
     if (length(pkgs[["new"]]) > 0L || length(pkgs[["old"]]) > 0L) {
         ok <- FALSE
