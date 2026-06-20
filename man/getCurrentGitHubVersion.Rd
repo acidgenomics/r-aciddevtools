@@ -22,8 +22,8 @@ Get current release version of package from GitHub
 Updated 2022-10-20.
 }
 \examples{
-repo <- paste("r-lib", c("rlang", "testthat"), sep = "/")
-print(repo)
-x <- getCurrentGitHubVersion(repo)
-print(x)
+## > repo <- paste("r-lib", c("rlang", "testthat"), sep = "/")
+## > print(repo)
+## > x <- getCurrentGitHubVersion(repo)
+## > print(x)
 }

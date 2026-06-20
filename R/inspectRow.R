@@ -13,8 +13,8 @@
 #' Invisibly returns dropped data structure.
 #'
 #' @examples
-#' object <- datasets::mtcars
-#' inspectRow(object, i = 1L)
+#' ## > object <- datasets::mtcars
+#' ## > inspectRow(object, i = 1L)
 inspectRow <- function(object, i) {
     stopifnot(
         is.integer(i) || is.character(i),

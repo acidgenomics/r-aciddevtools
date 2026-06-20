@@ -41,7 +41,7 @@ cacheTestFiles <-
             },
             FUN.VALUE = character(1L),
             remoteDir = remoteDir,
-            USE.NAMES = FALSE
+            useNames = FALSE
         )
         stopifnot(.allAreFiles(files))
         invisible(list(

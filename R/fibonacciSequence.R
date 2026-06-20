@@ -8,7 +8,7 @@
 #' @return `integer`.
 #'
 #' @examples
-#' fibonacciSequence(8L)
+#' ## > fibonacciSequence(8L)
 fibonacciSequence <- function(len) {
     stopifnot(
         is.integer(len),

@@ -19,8 +19,8 @@ Bioconductor, or from a remote (i.e. GitHub, GitLab) install.
 Updated 2021-08-23.
 }
 \examples{
-x <- installedPackages()
-table(x[["source"]])
+## > x <- installedPackages()
+## > table(x[["source"]])
 }
 \seealso{
 \itemize{

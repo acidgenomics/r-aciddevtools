@@ -30,5 +30,5 @@ Print as comment
 Updated 2022-10-20.
 }
 \examples{
-printComment(c("hello", "world"))
+## > printComment(c("hello", "world"))
 }
