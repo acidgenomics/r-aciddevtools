@@ -20,6 +20,6 @@ Friendly human readable object size
 Updated 2023-08-09.
 }
 \examples{
-x <- c("aaa", "bbb")
-print(size(x))
+## > x <- c("aaa", "bbb")
+## > print(size(x))
 }

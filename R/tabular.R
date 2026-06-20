@@ -11,13 +11,13 @@
 #' - http://r-pkgs.had.co.nz/man.html
 #'
 #' @examples
-#' df <- data.frame(
-#'     "aaa" = seq(from = 1L, to = 4L),
-#'     "bbb" = seq(from = 2L, to = 5L),
-#'     "ccc" = seq(from = 3L, to = 6L),
-#'     row.names = c("AAA", "BBB", "CCC", "DDD")
-#' )
-#' tabular(df)
+#' ## > df <- data.frame(
+#' ## >     "aaa" = seq(from = 1L, to = 4L),
+#' ## >     "bbb" = seq(from = 2L, to = 5L),
+#' ## >     "ccc" = seq(from = 3L, to = 6L),
+#' ## >     row.names = c("AAA", "BBB", "CCC", "DDD")
+#' ## > )
+#' ## > tabular(df)
 tabular <- function(x) {
     stopifnot(is.data.frame(x))
     align <- function(x) {

@@ -43,22 +43,18 @@
 #' - `install.packages()`.
 #'
 #' @examples
-#' testlib <- file.path(tempdir(), "testlib")
-#' unlink(testlib, recursive = TRUE)
-#' out <- installFromGitHub(
-#'     repo = paste(
-#'         "acidgenomics",
-#'         "r-goalie",
-#'         sep = "/"
-#'     ),
-#'     tag = "v0.5.2",
-#'     dependencies = FALSE,
-#'     lib = testlib,
-#'     reinstall = TRUE
-#' )
-#' print(out)
-#' sort(list.dirs(path = testlib, full.names = FALSE, recursive = FALSE))
-#' unlink(testlib, recursive = TRUE)
+#' ## > testlib <- file.path(tempdir(), "testlib")
+#' ## > unlink(testlib, recursive = TRUE)
+#' ## > out <- installFromGitHub(
+#' ## >     repo = paste("acidgenomics", "r-goalie", sep = "/"),
+#' ## >     tag = "v0.5.2",
+#' ## >     dependencies = FALSE,
+#' ## >     lib = testlib,
+#' ## >     reinstall = TRUE
+#' ## > )
+#' ## > print(out)
+#' ## > sort(list.dirs(path = testlib, full.names = FALSE, recursive = FALSE))
+#' ## > unlink(testlib, recursive = TRUE)
 installFromGitHub <-
     function(
         repo,

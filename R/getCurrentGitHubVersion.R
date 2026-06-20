@@ -11,10 +11,10 @@
 #' Package `repo` is defined in `names`.
 #'
 #' @examples
-#' repo <- paste("r-lib", c("rlang", "testthat"), sep = "/")
-#' print(repo)
-#' x <- getCurrentGitHubVersion(repo)
-#' print(x)
+#' ## > repo <- paste("r-lib", c("rlang", "testthat"), sep = "/")
+#' ## > print(repo)
+#' ## > x <- getCurrentGitHubVersion(repo)
+#' ## > print(x)
 getCurrentGitHubVersion <- function(repo) {
     stopifnot(.requireNamespaces("pipette"))
     x <- vapply(
@@ -36,7 +36,7 @@ getCurrentGitHubVersion <- function(repo) {
             x
         },
         FUN.VALUE = character(1L),
-        USE.NAMES = FALSE
+        useNames = FALSE
     )
     x <- package_version(x)
     names(x) <- repo

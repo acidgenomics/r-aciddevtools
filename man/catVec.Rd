@@ -19,11 +19,11 @@ Print (cat) a vector to console
 Updated 2023-09-07.
 }
 \examples{
-## Unnamed vector.
-x <- c("aaa", "bbb", "ccc")
-catVec(x)
+## > ## Unnamed vector.
+## > x <- c("aaa", "bbb", "ccc")
+## > catVec(x)
 
-## Named vector.
-x <- c("aaa" = "AAA", "bbb" = "BBB", "ccc" = "CCC")
-catVec(x)
+## > ## Named vector.
+## > x <- c("aaa" = "AAA", "bbb" = "BBB", "ccc" = "CCC")
+## > catVec(x)
 }

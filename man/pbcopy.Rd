@@ -18,8 +18,8 @@ Only works on macOS.
 Updated 2022-10-20.
 }
 \examples{
-if (goalie::isMacos()) {
-    x <- "hello world"
-    pbcopy(x)
-}
+## > if (goalie::isMacos()) {
+## >     x <- "hello world"
+## >     pbcopy(x)
+## > }
 }

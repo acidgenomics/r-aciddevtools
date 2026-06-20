@@ -9,8 +9,8 @@
 #' Object size.
 #'
 #' @examples
-#' x <- c("aaa", "bbb")
-#' print(size(x))
+#' ## > x <- c("aaa", "bbb")
+#' ## > print(size(x))
 size <- function(x) {
     stopifnot(.requireNamespaces("utils"))
     x <- utils::object.size(x)

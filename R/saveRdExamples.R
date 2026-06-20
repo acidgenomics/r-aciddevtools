@@ -18,14 +18,14 @@
 #' File path(s).
 #'
 #' @examples
-#' dir <- file.path(tempdir(), "testdata")
-#' out <- saveRdExamples(
-#'     rd = c("do.call", "droplevels"),
-#'     package = "base",
-#'     dir = dir
-#' )
-#' print(out)
-#' unlink(dir, recursive = TRUE)
+#' ## > dir <- file.path(tempdir(), "testdata")
+#' ## > out <- saveRdExamples(
+#' ## >     rd = c("do.call", "droplevels"),
+#' ## >     package = "base",
+#' ## >     dir = dir
+#' ## > )
+#' ## > print(out)
+#' ## > unlink(dir, recursive = TRUE)
 saveRdExamples <-
     function(package, rd = NULL, dir = getwd()) {
         stopifnot(

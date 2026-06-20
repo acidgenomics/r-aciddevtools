@@ -24,6 +24,6 @@ Inspect a single (nested) row of a data frame
 Updated 2023-12-13.
 }
 \examples{
-object <- datasets::mtcars
-inspectRow(object, i = 1L)
+## > object <- datasets::mtcars
+## > inspectRow(object, i = 1L)
 }

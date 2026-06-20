@@ -15,7 +15,7 @@
 #' @return Console output.
 #'
 #' @examples
-#' printComment(c("hello", "world"))
+#' ## > printComment(c("hello", "world"))
 printComment <-
     function(
         ...,
