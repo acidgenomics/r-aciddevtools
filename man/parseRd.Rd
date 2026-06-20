@@ -41,12 +41,12 @@ returns \code{character} instead of \code{matrix}.
 Updated 2023-09-25.
 }
 \examples{
-db <- tools::Rd_db("base")
-head(names(db))
-rd <- db[["nrow.Rd"]]
-print(rdTags(rd))
-examples <- parseRd(rd, tag = "examples")
-print(examples)
+## > db <- tools::Rd_db("base")
+## > head(names(db))
+## > rd <- db[["nrow.Rd"]]
+## > print(rdTags(rd))
+## > examples <- parseRd(rd, tag = "examples")
+## > print(examples)
 }
 \seealso{
 \itemize{

@@ -15,7 +15,7 @@
 #' @return Console output.
 #'
 #' @examples
-#' printComment(c("hello", "world"))
+#' ## > printComment(c("hello", "world"))
 printComment <-
     function(
         ...,
@@ -29,7 +29,7 @@ printComment <-
         ),
         width = 80L
     ) {
-        stopifnot(.requireNamespaces(c("utils", "withr")))
+        stopifnot(.requireNamespaces("withr"))
         prefix <- match.arg(prefix)
         ## Subtract the width of the prefix, including a space.
         width <- width - (length(prefix) + 1L)

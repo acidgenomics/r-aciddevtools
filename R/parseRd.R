@@ -27,12 +27,12 @@
 #' - `tools::Rd_db()`.
 #'
 #' @examples
-#' db <- tools::Rd_db("base")
-#' head(names(db))
-#' rd <- db[["nrow.Rd"]]
-#' print(rdTags(rd))
-#' examples <- parseRd(rd, tag = "examples")
-#' print(examples)
+#' ## > db <- tools::Rd_db("base")
+#' ## > head(names(db))
+#' ## > rd <- db[["nrow.Rd"]]
+#' ## > print(rdTags(rd))
+#' ## > examples <- parseRd(rd, tag = "examples")
+#' ## > print(examples)
 parseRd <-
     function(object, tag) {
         stopifnot(

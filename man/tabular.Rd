@@ -19,13 +19,13 @@ R documentation table
 Updated 2019-08-13.
 }
 \examples{
-df <- data.frame(
-    "aaa" = seq(from = 1L, to = 4L),
-    "bbb" = seq(from = 2L, to = 5L),
-    "ccc" = seq(from = 3L, to = 6L),
-    row.names = c("AAA", "BBB", "CCC", "DDD")
-)
-tabular(df)
+## > df <- data.frame(
+## >     "aaa" = seq(from = 1L, to = 4L),
+## >     "bbb" = seq(from = 2L, to = 5L),
+## >     "ccc" = seq(from = 3L, to = 6L),
+## >     row.names = c("AAA", "BBB", "CCC", "DDD")
+## > )
+## > tabular(df)
 }
 \seealso{
 \itemize{

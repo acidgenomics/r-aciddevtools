@@ -16,7 +16,7 @@ Current Bioconductor release version
 Updated 2020-11-11.
 }
 \examples{
-currentBiocVersion()
+## > currentBiocVersion()
 }
 \seealso{
 \itemize{

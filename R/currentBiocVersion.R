@@ -10,7 +10,7 @@
 #' - https://bioconductor.org/config.yaml
 #'
 #' @examples
-#' currentBiocVersion()
+#' ## > currentBiocVersion()
 currentBiocVersion <- function() {
     url <- "https://bioconductor.org/bioc-version"
     x <- readLines(con = url, warn = FALSE)

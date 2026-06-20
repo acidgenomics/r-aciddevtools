@@ -90,7 +90,7 @@ pkgdownDeployToAws <-
                 TRUE
             },
             FUN.VALUE = logical(1L),
-            USE.NAMES = FALSE
+            useNames = FALSE
         )
         invisible(out)
     }

@@ -8,13 +8,13 @@
 #' @return Console output.
 #'
 #' @examples
-#' ## Unnamed vector.
-#' x <- c("aaa", "bbb", "ccc")
-#' catVec(x)
+#' ## > ## Unnamed vector.
+#' ## > x <- c("aaa", "bbb", "ccc")
+#' ## > catVec(x)
 #'
-#' ## Named vector.
-#' x <- c("aaa" = "AAA", "bbb" = "BBB", "ccc" = "CCC")
-#' catVec(x)
+#' ## > ## Named vector.
+#' ## > x <- c("aaa" = "AAA", "bbb" = "BBB", "ccc" = "CCC")
+#' ## > catVec(x)
 catVec <- function(x) {
     stopifnot(is.vector(x))
     if (is.null(names(x))) {

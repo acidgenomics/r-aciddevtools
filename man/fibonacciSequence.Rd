@@ -19,5 +19,5 @@ Fibonacci sequence
 Updated 2022-05-23.
 }
 \examples{
-fibonacciSequence(8L)
+## > fibonacciSequence(8L)
 }

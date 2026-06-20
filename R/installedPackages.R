@@ -13,10 +13,10 @@
 #' - `utils::installed.packages()`.
 #'
 #' @examples
-#' x <- installedPackages()
-#' table(x[["source"]])
+#' ## > x <- installedPackages()
+#' ## > table(x[["source"]])
 installedPackages <- function(lib = NULL) {
-    stopifnot(.requireNamespaces(c("syntactic", "utils")))
+    stopifnot(.requireNamespaces("syntactic"))
     df <- utils::installed.packages(lib.loc = lib)
     df <- as.data.frame(df)
     colnames(df) <- syntactic::camelCase(colnames(df), strict = TRUE)

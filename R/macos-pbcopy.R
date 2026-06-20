@@ -7,10 +7,10 @@
 #' @inheritParams params
 #'
 #' @examples
-#' if (goalie::isMacos()) {
-#'     x <- "hello world"
-#'     pbcopy(x)
-#' }
+#' ## > if (goalie::isMacos()) {
+#' ## >     x <- "hello world"
+#' ## >     pbcopy(x)
+#' ## > }
 pbcopy <- function(x) {
     stopifnot(
         .requireNamespaces("utils"),

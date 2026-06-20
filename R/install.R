@@ -76,7 +76,7 @@ install <-
             type = type,
             lib = lib,
             reinstall = reinstall,
-            USE.NAMES = FALSE
+            useNames = FALSE
         )
         ## > options("warn" = warnDefault) # nolint
         invisible(list(

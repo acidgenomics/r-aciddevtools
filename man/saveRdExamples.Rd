@@ -30,12 +30,12 @@ requests in a single call.
 Updated 2022-05-31.
 }
 \examples{
-dir <- file.path(tempdir(), "testdata")
-out <- saveRdExamples(
-    rd = c("do.call", "droplevels"),
-    package = "base",
-    dir = dir
-)
-print(out)
-unlink(dir, recursive = TRUE)
+## > dir <- file.path(tempdir(), "testdata")
+## > out <- saveRdExamples(
+## >     rd = c("do.call", "droplevels"),
+## >     package = "base",
+## >     dir = dir
+## > )
+## > print(out)
+## > unlink(dir, recursive = TRUE)
 }
