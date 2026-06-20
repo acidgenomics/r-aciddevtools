@@ -16,7 +16,7 @@
 #' ## > packageDependencies("stats")
 packageDependencies <- function(pkg, recursive = TRUE) {
     stopifnot(
-        .requireNamespaces(c("BiocManager", "tools", "withr")),
+        .requireNamespaces(c("BiocManager", "withr")),
         .isString(pkg),
         .isFlag(recursive)
     )

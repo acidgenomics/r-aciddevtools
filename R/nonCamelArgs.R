@@ -25,7 +25,7 @@ nonCamelArgs <-
         )
     ) {
         stopifnot(
-            .requireNamespaces(c("syntactic", "tools")),
+            .requireNamespaces("syntactic"),
             .isString(pkgName),
             is.character(allowlist)
         )
