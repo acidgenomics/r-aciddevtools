@@ -8,11 +8,11 @@
 #' @note Updated 2022-05-31.
 #'
 #' @inheritParams params
+#' @param package `character(1)`.
+#' Package name.
 #' @param rd `character` or `NULL`.
 #' R documentation name(s) from which to parse and save the working examples.
 #' If `NULL`, all documentation files containing examples will be saved.
-#' @param package `character(1)`.
-#' Package name.
 #'
 #' @return Invisible `character`.
 #' File path(s).
