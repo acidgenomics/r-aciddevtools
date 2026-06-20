@@ -1,3 +1,10 @@
+## AcidDevTools 0.7.9 (2026-06-20)
+
+- `publish`: Delegate build, drat insert, S3 sync, and CloudFront
+  invalidation to `koopa app r publish`. The `repo` and `deploy`
+  parameters are removed; koopa reads `ACIDGENOMICS_REPO` from the
+  environment. Check and pkgdown steps remain in R as before.
+
 ## AcidDevTools 0.7.8 (2026-03-02)
 
 - `valid`: Removed internal override for `pkgType` passthrough. This wasn't
