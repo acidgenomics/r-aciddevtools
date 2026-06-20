@@ -1,3 +1,11 @@
+## AcidDevTools 0.7.11 (2026-06-20)
+
+Bug fixes:
+
+- `valid()`: exclude Bioconductor packages already flagged by
+  `BiocManager::valid()` from `utils::old.packages()` results so that
+  Bioconductor packages are not double-reported as outdated.
+
 ## AcidDevTools 0.7.10 (2026-06-19)
 
 License changes:
