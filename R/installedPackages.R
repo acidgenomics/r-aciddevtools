@@ -25,10 +25,9 @@ installedPackages <- function(lib = NULL) {
         grepl("^https://.+\\.acidgenomics\\.com", desc[["URL"]])
     }
     isBioconductor <- function(desc) {
-        ok <- grepl(
-            pattern = "^https://git\\.bioconductor\\.org",
-            x = desc[["git_url"]]
-        )
+        gitUrl <- desc[["git_url"]]
+        ok <- !is.null(gitUrl) &&
+            startsWith(gitUrl, "https://git.bioconductor.org")
         if (isTRUE(ok)) {
             return(TRUE)
         }
@@ -48,7 +47,7 @@ installedPackages <- function(lib = NULL) {
         X = pkgs,
         FUN = function(pkg) {
             desc <- utils::packageDescription(pkg)
-            if (!is.null(desc[["Repository"]])) {
+            if (!is.null(desc[["Repository"]])) { # nolint
                 desc[["Repository"]]
             } else if (isTRUE(isGitHub(desc))) {
                 "GitHub"

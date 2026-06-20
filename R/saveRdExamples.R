@@ -27,7 +27,7 @@
 #' print(out)
 #' unlink(dir, recursive = TRUE)
 saveRdExamples <-
-    function(rd = NULL, package, dir = getwd()) {
+    function(package, rd = NULL, dir = getwd()) {
         stopifnot(
             .requireNamespaces("tools"),
             is.character(rd) || is.null(rd),
@@ -38,7 +38,7 @@ saveRdExamples <-
         dir <- .realpath(dir)
         ## Get a database of the Rd files available in the requested package.
         db <- tools::Rd_db(package)
-        names(db) <- gsub("\\.Rd", "", names(db))
+        names(db) <- gsub(".Rd", "", names(db), fixed = TRUE)
         ## If no Rd file is specified, save everything in package.
         if (is.null(rd)) {
             rd <- names(db)

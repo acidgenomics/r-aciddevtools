@@ -72,7 +72,7 @@ installFromGitHub <-
             (missing(tag) && missing(branch)) ||
                 (!missing(tag) && !missing(branch))
         ) {
-            stop("Specify either 'tag' or 'branch'.")
+            stop("Specify either 'tag' or 'branch'.", call. = FALSE)
         }
         if (!missing(tag)) {
             ref <- tag
@@ -83,7 +83,7 @@ installFromGitHub <-
         }
         stopifnot(
             .requireNamespaces("utils"),
-            all(grepl(x = repo, pattern = "^[^/]+/[^/]+$")),
+            grepl(x = repo, pattern = "^[^/]+/[^/]+$"),
             identical(length(repo), length(ref)),
             .isFlag(reinstall)
         )
@@ -131,6 +131,7 @@ installFromGitHub <-
                 utils::download.file(
                     url = url,
                     destfile = tarfile,
+                    mode = "wb",
                     quiet = FALSE
                 )
                 ## Using a random string of 'A-Za-z' here for directory.
