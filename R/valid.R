@@ -45,9 +45,41 @@ valid <- function() {
             isTRUE("out_of_date" %in% names(bioc)) &&
             isTRUE(length(bioc[["out_of_date"]]) > 0L)
     ) {
+        outOfDate <- bioc[["out_of_date"]]
+        ## Only flag packages where a binary is available at the newer version.
+        ## Bioconductor source and binary builds are not always in sync;
+        ## flagging source-only updates forces compilation with no benefit
+        ## on a binary R installation.
+        if (isTRUE(nrow(outOfDate) > 0L)) {
+            binAvail <- tryCatch(
+                available.packages(
+                    repos = BiocManager::repositories(),
+                    type = "binary",
+                    filters = NULL
+                ),
+                error = function(e) NULL
+            )
+            if (!is.null(binAvail)) {
+                hasBinary <- vapply(
+                    X = rownames(outOfDate),
+                    FUN = function(pkg) {
+                        isTRUE(
+                            pkg %in% rownames(binAvail) &&
+                                package_version(
+                                    binAvail[pkg, "Version"]
+                                ) > package_version(
+                                    outOfDate[pkg, "Installed"]
+                                )
+                        )
+                    },
+                    FUN.VALUE = logical(1L)
+                )
+                outOfDate <- outOfDate[hasBinary, , drop = FALSE]
+            }
+        }
         pkgs[["old"]] <- append(
             x = pkgs[["old"]],
-            values = rownames(bioc[["out_of_date"]])
+            values = rownames(outOfDate)
         )
     }
     suppressWarnings({
@@ -58,18 +90,7 @@ valid <- function() {
         )
     })
     if (is.matrix(old)) {
-        ## Exclude packages already flagged by BiocManager::valid() above so
-        ## Bioconductor packages are not double-reported when
-        ## utils::old.packages() picks them up via the CRAN repos option.
-        biocAlreadyFlagged <- if (
-            is.list(bioc) && "out_of_date" %in% names(bioc)
-        ) {
-            rownames(bioc[["out_of_date"]])
-        } else {
-            character()
-        }
-        oldPkgs <- setdiff(rownames(old), biocAlreadyFlagged)
-        pkgs[["old"]] <- append(pkgs[["old"]], values = oldPkgs)
+        pkgs[["old"]] <- append(pkgs[["old"]], values = rownames(old))
     }
     if (length(pkgs[["new"]]) > 0L || length(pkgs[["old"]]) > 0L) {
         ok <- FALSE
