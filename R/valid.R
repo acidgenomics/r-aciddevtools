@@ -45,9 +45,41 @@ valid <- function() {
             isTRUE("out_of_date" %in% names(bioc)) &&
             isTRUE(length(bioc[["out_of_date"]]) > 0L)
     ) {
+        outOfDate <- bioc[["out_of_date"]]
+        ## Only flag packages where a binary is available at the newer version.
+        ## Bioconductor source and binary builds are not always in sync;
+        ## flagging source-only updates forces compilation with no benefit
+        ## on a binary R installation.
+        if (isTRUE(nrow(outOfDate) > 0L)) {
+            binAvail <- tryCatch(
+                available.packages(
+                    repos = BiocManager::repositories(),
+                    type = "binary",
+                    filters = NULL
+                ),
+                error = function(e) NULL
+            )
+            if (!is.null(binAvail)) {
+                hasBinary <- vapply(
+                    X = rownames(outOfDate),
+                    FUN = function(pkg) {
+                        isTRUE(
+                            pkg %in% rownames(binAvail) &&
+                                package_version(
+                                    binAvail[pkg, "Version"]
+                                ) > package_version(
+                                    outOfDate[pkg, "Installed"]
+                                )
+                        )
+                    },
+                    FUN.VALUE = logical(1L)
+                )
+                outOfDate <- outOfDate[hasBinary, , drop = FALSE]
+            }
+        }
         pkgs[["old"]] <- append(
             x = pkgs[["old"]],
-            values = rownames(bioc[["out_of_date"]])
+            values = rownames(outOfDate)
         )
     }
     suppressWarnings({
