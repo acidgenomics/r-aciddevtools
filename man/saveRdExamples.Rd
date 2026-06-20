@@ -4,15 +4,15 @@
 \alias{saveRdExamples}
 \title{Save R documentation examples}
 \usage{
-saveRdExamples(rd = NULL, package, dir = getwd())
+saveRdExamples(package, rd = NULL, dir = getwd())
 }
 \arguments{
+\item{package}{\code{character(1)}.
+Package name.}
+
 \item{rd}{\code{character} or \code{NULL}.
 R documentation name(s) from which to parse and save the working examples.
 If \code{NULL}, all documentation files containing examples will be saved.}
-
-\item{package}{\code{character(1)}.
-Package name.}
 
 \item{dir}{\code{character(1)}.
 Directory path.}
