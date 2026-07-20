@@ -54,7 +54,6 @@ install <-
         reinstall = TRUE
     ) {
         stopifnot(
-            .requireNamespaces("utils"),
             is.character(pkgs),
             .isString(lib),
             is.logical(dependencies) || is.character(dependencies),
@@ -76,7 +75,7 @@ install <-
             type = type,
             lib = lib,
             reinstall = reinstall,
-            useNames = FALSE
+            USE.NAMES = FALSE
         )
         ## > options("warn" = warnDefault) # nolint
         invisible(list(

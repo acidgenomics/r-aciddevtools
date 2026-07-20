@@ -1,3 +1,19 @@
+## AcidDevTools 0.7.12 (2026-07-20)
+
+Bug fixes:
+
+- `install()`: Fixed an over-broad `USE.NAMES` → `useNames` rename introduced
+  in `d28d156` (0.7.11) that clobbered five base-R `vapply()` calls, causing
+  `.requireNamespaces("utils") is not TRUE` on every call. Restored `USE.NAMES`
+  on all five sites. Also removed the redundant `.requireNamespaces("utils")`
+  guard from `install()` — base packages must not be passed to this helper.
+- `valid()`: Filter `utils::old.packages()` results to packages where a
+  strictly newer binary version is actually available in the configured repos,
+  using the `ReposVer` column. Previously, `checkBuilt = TRUE` caused packages
+  built against a prior R patch release (e.g. built for 4.6.0, running 4.6.1)
+  to be flagged even when binary repos carry only the same version — reinstalling
+  produced an infinite loop with no change in the installed binary.
+
 ## AcidDevTools 0.7.11 (2026-06-20)
 
 Bug fixes:

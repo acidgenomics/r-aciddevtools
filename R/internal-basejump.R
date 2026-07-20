@@ -248,7 +248,7 @@
         X = packages,
         FUN = requireNamespace,
         FUN.VALUE = logical(1L),
-        useNames = TRUE,
+        USE.NAMES = TRUE,
         quietly = TRUE
     ))
     invisible(ok)

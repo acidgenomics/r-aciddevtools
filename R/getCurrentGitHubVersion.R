@@ -36,7 +36,7 @@ getCurrentGitHubVersion <- function(repo) {
             x
         },
         FUN.VALUE = character(1L),
-        useNames = FALSE
+        USE.NAMES = FALSE
     )
     x <- package_version(x)
     names(x) <- repo

@@ -1,7 +1,7 @@
 #' Validate installed package versions against correct versions
 #'
 #' @export
-#' @note Updated 2024-09-04.
+#' @note Updated 2026-07-20.
 #'
 #' @section Library location:
 #'
@@ -23,6 +23,17 @@ valid <- function() {
     dict[["libLoc"]] <- .libPaths()[[1L]] # nolint
     dict[["type"]] <- getOption("pkgType")
     pkgs <- list("new" = character(), "old" = character())
+    ## Fetch binary availability once; reused by both BiocManager and
+    ## old.packages() filters below. Avoids flagging packages where only a
+    ## source update exists — reinstalling would give the same binary and loop.
+    binAvail <- tryCatch(
+        available.packages(
+            repos = BiocManager::repositories(),
+            type = "binary",
+            filters = NULL
+        ),
+        error = function(e) NULL
+    )
     suppressMessages({
         suppressWarnings({
             bioc <- BiocManager::valid(
@@ -53,32 +64,23 @@ valid <- function() {
         ## Bioconductor source and binary builds are not always in sync;
         ## flagging source-only updates forces compilation with no benefit
         ## on a binary R installation.
-        if (isTRUE(nrow(outOfDate) > 0L)) {
-            binAvail <- tryCatch(
-                available.packages(
-                    repos = BiocManager::repositories(),
-                    type = "binary",
-                    filters = NULL
-                ),
-                error = function(e) NULL
+        if (isTRUE(nrow(outOfDate) > 0L) && !is.null(binAvail)) {
+            hasBinary <- vapply(
+                X = rownames(outOfDate),
+                FUN = function(pkg) {
+                    isTRUE(
+                        pkg %in% rownames(binAvail) &&
+                            package_version(
+                                binAvail[pkg, "Version"]
+                            ) > package_version(
+                                outOfDate[pkg, "Installed"]
+                            )
+                    )
+                },
+                FUN.VALUE = logical(1L),
+                USE.NAMES = FALSE
             )
-            if (!is.null(binAvail)) {
-                hasBinary <- vapply(
-                    X = rownames(outOfDate),
-                    FUN = function(pkg) {
-                        isTRUE(
-                            pkg %in% rownames(binAvail) &&
-                                package_version(
-                                    binAvail[pkg, "Version"]
-                                ) > package_version(
-                                    outOfDate[pkg, "Installed"]
-                                )
-                        )
-                    },
-                    FUN.VALUE = logical(1L)
-                )
-                outOfDate <- outOfDate[hasBinary, , drop = FALSE]
-            }
+            outOfDate <- outOfDate[hasBinary, , drop = FALSE]
         }
         pkgs[["old"]] <- append(
             x = pkgs[["old"]],
@@ -92,7 +94,30 @@ valid <- function() {
             type = dict[["type"]]
         )
     })
-    if (is.matrix(old)) {
+    if (is.matrix(old) && isTRUE(nrow(old) > 0L) && !is.null(binAvail)) {
+        ## Filter to packages where a newer binary version is actually
+        ## available. old.packages() reports ReposVer from source when type
+        ## includes source, so it flags packages whose source version advanced
+        ## but whose binary hasn't landed yet — reinstalling gives the same
+        ## binary and loops. Checking binAvail directly avoids this.
+        keep <- vapply(
+            X = rownames(old),
+            FUN = function(pkg) {
+                isTRUE(
+                    pkg %in% rownames(binAvail) &&
+                        package_version(
+                            binAvail[pkg, "Version"]
+                        ) > package_version(
+                            old[pkg, "Installed"]
+                        )
+                )
+            },
+            FUN.VALUE = logical(1L),
+            USE.NAMES = FALSE
+        )
+        old <- old[keep, , drop = FALSE]
+    }
+    if (is.matrix(old) && isTRUE(nrow(old) > 0L)) {
         pkgs[["old"]] <- append(pkgs[["old"]], values = rownames(old))
     }
     if (length(pkgs[["new"]]) > 0L || length(pkgs[["old"]]) > 0L) {
