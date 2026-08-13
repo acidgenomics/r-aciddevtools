@@ -1,7 +1,16 @@
 #' Deploy a pkgdown website to AWS S3 bucket
 #'
 #' @export
-#' @note Updated 2023-09-27.
+#' @note Updated 2026-07-28.
+#'
+#' @details
+#' Deprecated in favor of `koopa app r publish-docs`, which builds the
+#' pkgdown site and syncs it to the account-scoped R bucket resolved via
+#' `koopa_s3_bucket("r")`, serving docs at `https://r.acidgenomics.com/<name>/`.
+#' The old default `bucketDir` here pointed at the legacy
+#' `s3://r.acidgenomics.com/packages/` bucket, which is no longer the live
+#' origin for `r.acidgenomics.com` and was never actually being read by
+#' visitors to the site.
 #'
 #' @param package `character`.
 #' Directory path to R package.
@@ -9,11 +18,10 @@
 #' a single call.
 #'
 #' @param bucketDir `character(1)`.
-#' AWS S3 bucket path.
+#' Unused. Retained for backward compatibility only.
 #'
 #' @param clean `logical(1)`.
-#' Ensure pkgdown website build is clean, and also deleted after upload
-#' to AWS S3.
+#' Unused. Retained for backward compatibility only.
 #'
 #' @return `logical`.
 #' Whether individual pkgdown builds were successful, corresponding to
@@ -29,16 +37,11 @@ pkgdownDeployToAws <-
         bucketDir = "s3://r.acidgenomics.com/packages/",
         clean = TRUE
     ) {
+        .Deprecated("koopa app r publish-docs")
         stopifnot(
-            .requireNamespaces(c("desc", "pkgdown")),
-            .isASystemCommand("aws"),
-            .allAreDirs(package),
-            .isString(bucketDir)
-        )
-        bucketDir <- sub(
-            pattern = "/$",
-            replacement = "",
-            x = bucketDir
+            .requireNamespaces("desc"),
+            .isASystemCommand("koopa"),
+            .allAreDirs(package)
         )
         out <- vapply(
             X = .realpath(package),
@@ -47,8 +50,6 @@ pkgdownDeployToAws <-
                 stopifnot(.isAFile(descFile))
                 pkgName <-
                     desc::desc_get_field(key = "Package", file = descFile)
-                bucketDir <- .pasteUrl(bucketDir, tolower(pkgName))
-                docsDir <- file.path(pkgDir, "docs")
                 configFile <- file.path(pkgDir, "_pkgdown.yml")
                 if (!.isAFile(configFile)) {
                     message(sprintf(
@@ -59,34 +60,15 @@ pkgdownDeployToAws <-
                     return(invisible(FALSE))
                 }
                 message(sprintf(
-                    paste(
-                        "Building pkgdown website for '%s' at '%s',",
-                        "then pushing to AWS S3 bucket at '%s'."
-                    ),
+                    "Publishing pkgdown website for '%s' at '%s'.",
                     pkgName,
-                    docsDir,
-                    bucketDir
+                    pkgDir
                 ))
-                if (isTRUE(clean) && dir.exists(docsDir)) {
-                    .unlink2(docsDir)
-                }
-                build_site(pkg = pkgDir)
                 .shell(
-                    command = "aws",
-                    args = c(
-                        "--profile",
-                        "acidgenomics",
-                        "s3",
-                        "sync",
-                        "--delete",
-                        paste0(docsDir, "/"),
-                        paste0(bucketDir, "/")
-                    ),
+                    command = "koopa",
+                    args = c("app", "r", "publish-docs", pkgDir),
                     print = TRUE
                 )
-                if (isTRUE(clean)) {
-                    .unlink2(docsDir)
-                }
                 TRUE
             },
             FUN.VALUE = logical(1L),

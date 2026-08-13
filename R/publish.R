@@ -64,7 +64,12 @@ publish <-
                     check(package)
                 }
                 if (isTRUE(pkgdown)) {
-                    pkgdownDeployToAws(package = package)
+                    message("Publishing pkgdown site.")
+                    .shell(
+                        command = "koopa",
+                        args = c("app", "r", "publish-docs", package),
+                        wd = package
+                    )
                 }
                 koopaArgs <- c("app", "r", "publish", package, "--no-check")
                 message(sprintf(
