@@ -1,6 +1,7 @@
-#+TITLE: AcidDevTools
-#+STARTUP: content
-* Development
+** TODO Hitting this weird utils error still
+    Error in AcidDevTools::install(pkgs = c("AcidBase", "AcidPlyr", "KernSmooth",  :
+      .requireNamespaces("utils") is not TRUE
+    Calls: <Anonymous> -> stopifnot
 ** TODO Suppress BiocManager repositories message during valid call
     AcidDevTools::valid()
     'getOption("repos")' replaces Bioconductor standard
