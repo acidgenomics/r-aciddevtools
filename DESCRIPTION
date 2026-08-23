@@ -24,7 +24,7 @@ BugReports: https://github.com/acidgenomics/r-aciddevtools/issues/
 License: Apache License (>= 2)
 Encoding: UTF-8
 Suggests:
-    AcidBase,
+    AcidBase (>= 0.7.8),
     BiocCheck,
     BiocManager,
     DT,
@@ -59,4 +59,4 @@ Additional_repositories: https://r.acidgenomics.com
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Roxygen: list(markdown = TRUE)
-Config/roxygen2/version: 8.0.0
+Config/roxygen2/version: 8.1.0

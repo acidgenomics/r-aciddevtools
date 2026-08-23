@@ -13,7 +13,7 @@ valid()
 Validate installed package versions against correct versions
 }
 \note{
-Updated 2024-09-04.
+Updated 2026-07-20.
 }
 \section{Library location}{
 

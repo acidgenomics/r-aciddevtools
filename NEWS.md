@@ -2,6 +2,9 @@
 
 Bug fixes:
 
+- Require AcidBase 0.7.8 or newer, which calls `goalie::bapply()` with its
+  current `useNames` argument. AcidBase 0.7.7 instead passes the legacy
+  `USE.NAMES` argument, causing GitHub-install tests to fail with goalie 0.7.10.
 - `install()`: Fixed an over-broad `USE.NAMES` → `useNames` rename introduced
   in `d28d156` (0.7.11) that clobbered five base-R `vapply()` calls, causing
   `.requireNamespaces("utils") is not TRUE` on every call. Restored `USE.NAMES`

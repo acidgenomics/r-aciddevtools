@@ -26,14 +26,17 @@ valid <- function() {
     ## Fetch binary availability once; reused by both BiocManager and
     ## old.packages() filters below. Avoids flagging packages where only a
     ## source update exists — reinstalling would give the same binary and loop.
-    binAvail <- tryCatch(
-        available.packages(
-            repos = BiocManager::repositories(),
-            type = "binary",
-            filters = NULL
-        ),
-        error = function(e) NULL
-    )
+    binAvail <- NULL
+    if (identical(dict[["type"]], "binary")) {
+        binAvail <- tryCatch(
+            utils::available.packages(
+                repos = BiocManager::repositories(),
+                type = "binary",
+                filters = NULL
+            ),
+            error = function(e) NULL
+        )
+    }
     suppressMessages({
         suppressWarnings({
             bioc <- BiocManager::valid(
