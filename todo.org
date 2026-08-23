@@ -1,8 +1,21 @@
-** TODO Hitting this weird utils error still
+** DONE Hitting this issue that breaks AcidDevTools package
+    > load_all()
+    Error in load_all() : .requireNamespaces("pkgload") is not TRUE
+    Calls: load_all -> stopifnot
+    Backtrace:
+        ▆
+     1. └─AcidDevTools::load_all()
+     2.   └─base::stopifnot(.requireNamespaces("pkgload"))
+    >
+    Resolved: `pkgload` is a suggested development dependency and must be
+    installed before calling `load_all()`.
+** DONE Hitting this weird utils error still
     Error in AcidDevTools::install(pkgs = c("AcidBase", "AcidPlyr", "KernSmooth",  :
       .requireNamespaces("utils") is not TRUE
     Calls: <Anonymous> -> stopifnot
-** TODO Suppress BiocManager repositories message during valid call
+    Resolved in 0.7.12 by preserving `USE.NAMES` in `vapply()` calls and
+    removing the unnecessary namespace guard for base package `utils`.
+** DONE Suppress BiocManager repositories message during valid call
     AcidDevTools::valid()
     'getOption("repos")' replaces Bioconductor standard
     repositories, see 'help("repositories", package =
@@ -10,6 +23,8 @@
     Replacement repositories:
     CRAN: https://packagemanager.posit.co/cran/2024-05-01/
 ** TODO `view2`: Consider testing and improving support inside VS Code.
-** TODO `install`: Direct zip file input isn't working correctly here.
+** DONE `install`: Direct zip file input isn't working correctly here.
     At least this is the case on Windows.
-** TODO Expand branch automatically to match input of multiple repos.
+    Resolved by selecting binary installation for `.zip` package inputs.
+** DONE Expand branch automatically to match input of multiple repos.
+    Scalar `branch` values are now recycled across multiple repositories.

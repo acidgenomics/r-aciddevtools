@@ -175,7 +175,13 @@ install <-
                 if (file.exists(url)) {
                     url <- .realpath(url)
                 }
-                pkg <- basename(url)
+                urlPath <- sub(pattern = "[?#].*$", replacement = "", x = url)
+                isBinary <- grepl(
+                    pattern = "\\.zip$",
+                    x = urlPath,
+                    ignore.case = TRUE
+                )
+                pkg <- basename(urlPath)
                 pkg <- sub(pattern = "^r-", replacement = "", x = pkg)
                 pkg <- strsplit(
                     x = pkg,
@@ -189,7 +195,7 @@ install <-
                     x = list(
                         "pkgs" = url,
                         "repos" = NULL,
-                        "type" = "source"
+                        "type" = if (isBinary) "binary" else "source"
                     ),
                     values = args
                 )

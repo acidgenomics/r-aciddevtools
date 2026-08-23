@@ -80,9 +80,12 @@ installFromGitHub <-
         stopifnot(
             .requireNamespaces("utils"),
             grepl(x = repo, pattern = "^[^/]+/[^/]+$"),
-            identical(length(repo), length(ref)),
+            length(ref) %in% c(1L, length(repo)),
             .isFlag(reinstall)
         )
+        if (length(ref) == 1L && length(repo) > 1L) {
+            ref <- rep(ref, length(repo))
+        }
         if (isFALSE(dir.exists(lib))) {
             dir.create(lib)
         }
