@@ -1,4 +1,4 @@
-## AcidDevTools 0.7.12 (2026-07-20)
+## AcidDevTools 0.7.12 (2026-08-23)
 
 Bug fixes:
 
@@ -13,6 +13,13 @@ Bug fixes:
   built against a prior R patch release (e.g. built for 4.6.0, running 4.6.1)
   to be flagged even when binary repos carry only the same version — reinstalling
   produced an infinite loop with no change in the installed binary.
+
+Minor changes:
+
+- `pkgdownDeployToAws()`: Deprecated in favor of `koopa app r publish-docs`,
+  which builds and publishes pkgdown sites to the current account-scoped
+  bucket.
+- `publish()`: Use `koopa app r publish-docs` for pkgdown site deployment.
 
 ## AcidDevTools 0.7.11 (2026-06-20)
 
