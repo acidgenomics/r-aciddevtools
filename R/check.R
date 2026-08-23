@@ -54,8 +54,19 @@ check <- function(
         ok <- .isInstalled(deps)
         if (!all(ok)) {
             missing <- deps[!ok]
+            installCall <- paste0(
+                "AcidDevTools::install(pkgs = ",
+                if (length(missing) > 1L) "c(",
+                toString(paste0("\"", missing, "\"")),
+                if (length(missing) > 1L) ")",
+                ")"
+            )
             stop(
-                sprintf("Not installed: %s.", toString(missing)),
+                sprintf(
+                    "Not installed: %s.\nRun `%s` to install them.",
+                    toString(missing),
+                    installCall
+                ),
                 call. = FALSE
             )
         }

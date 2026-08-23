@@ -2,7 +2,7 @@ Package: AcidDevTools
 Title: Acid Genomics Developer Tools
 Description: Toolkit for R package development.
 Version: 0.7.12
-Date: 2026-07-20
+Date: 2026-08-23
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -14,14 +14,17 @@ Authors@R: c(
         given = "Acid Genomics",
         role = c("cph", "fnd")
     ))
+Author: Michael Steinbaugh [aut, cre] (ORCID:
+    <https://orcid.org/0000-0002-2403-2221>), Acid Genomics [cph, fnd]
+Maintainer: Michael Steinbaugh <mike@steinbaugh.com>
 URL:
-    https://r.acidgenomics.com/packages/aciddevtools/,
+    https://r.acidgenomics.com/aciddevtools/,
     https://github.com/acidgenomics/r-aciddevtools/
 BugReports: https://github.com/acidgenomics/r-aciddevtools/issues/
 License: Apache License (>= 2)
 Encoding: UTF-8
 Suggests:
-    AcidBase,
+    AcidBase (>= 0.7.8),
     BiocCheck,
     BiocManager,
     DT,
@@ -56,4 +59,4 @@ Additional_repositories: https://r.acidgenomics.com
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Roxygen: list(markdown = TRUE)
-Config/roxygen2/version: 8.0.0
+Config/roxygen2/version: 8.1.0

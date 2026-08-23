@@ -17,11 +17,10 @@ Parameterized, supporting building of multiple package websites in
 a single call.}
 
 \item{bucketDir}{\code{character(1)}.
-AWS S3 bucket path.}
+Unused. Retained for backward compatibility only.}
 
 \item{clean}{\code{logical(1)}.
-Ensure pkgdown website build is clean, and also deleted after upload
-to AWS S3.}
+Unused. Retained for backward compatibility only.}
 }
 \value{
 \code{logical}.
@@ -31,8 +30,17 @@ input defined in \code{package} argument.
 \description{
 Deploy a pkgdown website to AWS S3 bucket
 }
+\details{
+Deprecated in favor of \verb{koopa app r publish-docs}, which builds the
+pkgdown site and syncs it to the account-scoped R bucket resolved via
+\code{koopa_s3_bucket("r")}, serving docs at \verb{https://r.acidgenomics.com/<name>/}.
+The old default \code{bucketDir} here pointed at the legacy
+\verb{s3://r.acidgenomics.com/packages/} bucket, which is no longer the live
+origin for \code{r.acidgenomics.com} and was never actually being read by
+visitors to the site.
+}
 \note{
-Updated 2023-09-27.
+Updated 2026-07-28.
 }
 \examples{
 ## > pkgdownDeployToAws(

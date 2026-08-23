@@ -14,7 +14,7 @@ Personal package with additional developer utilities.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://r.acidgenomics.com/packages/aciddevtools/}
+  \item \url{https://r.acidgenomics.com/aciddevtools/}
   \item \url{https://github.com/acidgenomics/r-aciddevtools/}
   \item Report bugs at \url{https://github.com/acidgenomics/r-aciddevtools/issues/}
 }

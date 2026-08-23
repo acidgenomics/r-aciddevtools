@@ -61,3 +61,16 @@ test_that("branch", {
     )
     unlink(testlib, recursive = TRUE)
 })
+
+test_that("scalar branch with multiple repositories", {
+    repo <- c("acidgenomics/r-goalie", "acidgenomics/r-goalie")
+    branch <- "main"
+    out <- installFromGitHub(
+        repo = repo,
+        branch = branch,
+        lib = testlib,
+        reinstall = FALSE
+    )
+    expect_length(out[["installed"]], 2L)
+    unlink(testlib, recursive = TRUE)
+})
